@@ -21,11 +21,11 @@ glob_perl_sched_executable = 'scripts/run_schedule_simulator.pl'
 perl_sched_variants = {'BASIC': 0, 'BEST_EFFORT_CONTIGUOUS': 1,
                        'CONTIGUOUS': 2, 'BEST_EFFORT_LOCAL': 3, 'LOCAL': 4}
 
-platform = '/root/griffon_modified.xml'
+platform = 'griffon_modified.xml'
 master_host_name = 'master_host0'
 
 input_swf_trace = 'CEA-Curie-2011-2.1-cln.swf'
-generator_executable = '/root/swfToJsonConverter.py'
+generator_executable = './swfToJsonConverter.py'
 
 # What should we run ?
 compFactors = [1e6]
