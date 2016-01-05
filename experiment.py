@@ -17,19 +17,18 @@ import csv
 import logging
 import sys
 import multiprocessing
-import time
 
 # initialyse logger
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 LOG = logging.getLogger('expe-batsim')
 
 
-##################
-### Parameters ###
-##################
+##############
+# Parameters #
+##############
 
 # Options that might be changed
-generate_json_files = False
+generate_json_files = True
 launch_experiments = True
 experiment_id = 0
 experiment_name = 'test'
@@ -66,9 +65,11 @@ variants_to_use = ['BEST_EFFORT_CONTIGUOUS',
 seeds_to_use = [x for x in range(0, 3)]
 # seeds_to_use = [0,1,2,4,17]
 
-#############
-### UTILS ###
-#############
+
+#########
+# Utils #
+#########
+
 
 def zpad(val, n):
     bits = str(val).split('.')
@@ -77,10 +78,10 @@ def zpad(val, n):
     else:
         return "%s" % bits[0].zfill(n)
 
+#############
+# Functions #
+#############
 
-#################
-### Functions ###
-#################
 
 def init_results(json_directory, result_directory):
     # Let's create the result directory if needed, or leave if we may erase
@@ -91,7 +92,7 @@ def init_results(json_directory, result_directory):
                     if os.path.isfile(os.path.join(result_directory, name))]
         if len(subfiles) > 0 and leave_on_already_existing_experiment:
             LOG.error('The result directory already exists and contains files.'
-                  'Aborting to avoid deleting previously obtained results')
+                      'Aborting to avoid deleting previously obtained results')
             exit(1)
     else:
         os.makedirs(result_directory)
@@ -120,7 +121,6 @@ def init_results(json_directory, result_directory):
     return writer
 
 
-
 def run_batsim_and_perl_scheduler(batsim_platform,
                                   json_file,
                                   perl_sched_variant,
@@ -145,27 +145,44 @@ def run_batsim_and_perl_scheduler(batsim_platform,
 
     socket = '/tmp/' + instance_name
 
-    perl_sched_command = '{} {} {} {} {} {}'.format(perl_sched_executable, cluster_size, perl_sched_variants[
-                                                    perl_sched_variant], perl_sched_delay, socket, json_file)
+    perl_sched_command = "{} {} {} {} {} {}".format(perl_sched_executable,
+                                                    cluster_size,
+                                                    perl_sched_variants[perl_sched_variant],
+                                                    perl_sched_delay,
+                                                    socket,
+                                                    json_file)
     perl_sched_args = str.split(perl_sched_command, sep=' ')
-
     batsim_log_level = 'info'
     batsim_export_prefix = result_directory + instance_name
-    batsim_command = "{} --socket={} --master-host={} --export={} -- {} {} --log=batsim.thresh:{} --log=network.thresh:{} --log=utils.thresh:{}".format(batsim_executable,
-                                                                                                                                                        socket, batsim_master_host_name, batsim_export_prefix, batsim_platform, json_file, batsim_log_level, batsim_log_level, batsim_log_level)
+    batsim_command = ("{} --socket={} --master-host={} --export={} -- "
+                      "{} {} --log=batsim.thresh:{} "
+                      "--log=network.thresh:{} "
+                      "--log=utils.thresh:{}"
+                      ).format(batsim_executable,
+                               socket,
+                               batsim_master_host_name,
+                               batsim_export_prefix,
+                               batsim_platform,
+                               json_file,
+                               batsim_log_level,
+                               batsim_log_level,
+                               batsim_log_level)
     batsim_args = str.split(batsim_command, sep=' ')
 
     # Let's create the processes
     LOG.debug("Run Batsim process: " + batsim_command)
     batsim_process = subprocess.Popen(
-        batsim_args, cwd=batsim_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        batsim_args, cwd=batsim_directory,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     LOG.debug("Run perl scheduler process: " + perl_sched_command)
     perl_sched_process = subprocess.Popen(
-        perl_sched_args, cwd=perl_sched_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        perl_sched_args, cwd=perl_sched_directory,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
     # Let's wait for them to finish
-    LOG.info("Waiting for perl sched " + instance_name + " (PID=" + str(perl_sched_process.pid) + ")")
-    perl_errcode = perl_sched_process.wait()
+    LOG.info("Waiting for perl sched " + instance_name +
+             " (PID=" + str(perl_sched_process.pid) + ")")
+    perl_sched_errcode = perl_sched_process.wait()
 
     # If batsim did not finish successfully, let's display it
     if perl_sched_errcode != 0:
@@ -174,7 +191,9 @@ def run_batsim_and_perl_scheduler(batsim_platform,
         LOG.error('Perl sched failed on instance', instance_name)
         LOG.error('perl_out :', str(perl_out))
         LOG.error('perl_err :', str(perl_err))
+        return
 
+    batsim_errcode = batsim_process.wait()
     if batsim_errcode != 0:
         batsim_out, batsim_err = batsim_process.communicate()
 
@@ -182,8 +201,8 @@ def run_batsim_and_perl_scheduler(batsim_platform,
         LOG.error('batsim_out :', str(batsim_out))
         LOG.error('batsim_err :', str(batsim_err))
 
-    if batsim_errcode != 0 or perl_errcode != 0:
-        exit(127)
+    if batsim_errcode != 0 or perl_sched_errcode != 0:
+        return
 
     # Let's retrieve some information about the execution from the scheduler
     # output
@@ -203,14 +222,33 @@ def run_batsim_and_perl_scheduler(batsim_platform,
 
     # Let's write a csv line about this run
     return {
-        'variant': perl_sched_variant, 'comp_factor': comp_factor, 'comm_factor': comm_factor, 'cmax': cmax, 'locality_factor': locality_factor,
-            'contiguous_jobs_number': contiguous_jobs_number, 'local_jobs_number': local_jobs_number, 'runtime': runtime,
-            'nb_jobs': batsim_result['nb_jobs'], 'success_rate': batsim_result['success_rate'],
-            'nb_jobs_killed': batsim_result['nb_jobs_killed'], 'platform_file': batsim_platform, 'json_file': json_file, 'jobs_random_seed': jobs_random_seed,
-            'jobs_execution_time_boundary_ratio': batsim_result['jobs_execution_time_boundary_ratio']}
+        'variant': perl_sched_variant,
+        'comp_factor': comp_factor,
+        'comm_factor': comm_factor,
+        'cmax': cmax,
+        'locality_factor': locality_factor,
+        'contiguous_jobs_number': contiguous_jobs_number,
+        'local_jobs_number': local_jobs_number,
+        'runtime': runtime,
+        'nb_jobs': batsim_result['nb_jobs'],
+        'success_rate': batsim_result['success_rate'],
+        'nb_jobs_killed': batsim_result['nb_jobs_killed'],
+        'platform_file': batsim_platform,
+        'json_file': json_file,
+        'jobs_random_seed': jobs_random_seed,
+        'jobs_execution_time_boundary_ratio': batsim_result['jobs_execution_time_boundary_ratio']}
 
 
-def generateJsonFile(inputSWFFile, outputJsonFiles, compFactors, commFactors, nb_jobs, max_job_height, platform_size, jobMinWidth, jobMaxWidth, randomSeed=0):
+def generateJsonFile(inputSWFFile,
+                     outputJsonFiles,
+                     compFactors,
+                     commFactors,
+                     nb_jobs,
+                     max_job_height,
+                     platform_size,
+                     jobMinWidth,
+                     jobMaxWidth,
+                     randomSeed=0):
     ''' Generate a JSON file (via another script call) '''
 
     outputJsonFilesJ = ' '.join(outputJsonFiles)
@@ -238,7 +276,8 @@ def generateJsonFile(inputSWFFile, outputJsonFiles, compFactors, commFactors, nb
     generator_args = str.split(generator_command, sep=' ')
 
     generator_process = subprocess.Popen(
-        generator_command, shell=True, cwd=os.getcwd(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        generator_command, shell=True, cwd=os.getcwd(),
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if generator_process.wait() != 0:
         out, err = generator_process.communicate()
         LOG.error('Failed to generate json files', outputJsonFiles)
@@ -255,24 +294,28 @@ def generateOneInstanceGroup(t):
     for compFactor in compFactorsI:
         for comFactor in comFactorsI:
             json_filenames.append('{}{}_{}_{}_{}_{}.json'.format(
-                json_directory, num_jobs, max_job_height, zpad(compFactor, 10), zpad(comFactor, 10), zpad(seed, 3)))
+                json_directory, num_jobs, max_job_height,
+                zpad(compFactor, 10), zpad(comFactor, 10), zpad(seed, 3)))
     generateJsonFile(
         input_swf_trace, json_filenames, compFactorsI, comFactorsI, num_jobs,
-                     max_job_height, 128, jobMinWidth=60 * 60, jobMaxWidth=60 * 60 * 2, randomSeed=seed)
+        max_job_height, 128, jobMinWidth=60 * 60, jobMaxWidth=60 * 60 * 2,
+        randomSeed=seed)
 
 
 def launchOneInstance(t):
     json_file, absolute_json_file, current_variant = t
-    nb_jobs, max_job_height, compFactor, comFactor, seed = str.split(json_file[
-                                                                     :-5], sep='_')
+    nb_jobs, max_job_height, compFactor, comFactor, seed = str.split(
+        json_file[:-5], sep='_')
     nb_jobs = int(nb_jobs)
     max_job_height = int(max_job_height)
     comFactor = float(comFactor)
     compFactor = float(compFactor)
     seed = int(seed)
 
-    LOG.info('Running instance: (nb_jobs={}, max_job_height={}, comp={}, com={}, var={}, seed={})'.format(
-        nb_jobs, max_job_height, compFactor, comFactor, current_variant, seed))
+    LOG.info('Running instance: (nb_jobs={}, max_job_height={}, comp={},'
+             ' com={}, var={}, seed={})'
+             ''.format(nb_jobs, max_job_height, compFactor,
+                       comFactor, current_variant, seed))
     return run_batsim_and_perl_scheduler(
         batsim_platform=platform,
         json_file=absolute_json_file,
@@ -283,9 +326,9 @@ def launchOneInstance(t):
         jobs_random_seed=seed)
 
 
-####################
-### Main Program ###
-####################
+################
+# Main Program #
+################
 
 def main():
 
