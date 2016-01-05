@@ -34,9 +34,6 @@ experiment_id = 0
 experiment_name = 'test'
 leave_on_already_existing_experiment = False
 
-glob_batsim_directory = '/root/batsim/'
-glob_batsim_executable = 'build/batsim'
-
 glob_perl_sched_directory = '/root/batch-simulator/'
 glob_perl_sched_executable = 'scripts/run_schedule_simulator.pl'
 perl_sched_variants = {'BASIC': 0, 'BEST_EFFORT_CONTIGUOUS': 1,
@@ -55,14 +52,14 @@ json_directory = result_directory + 'json/'
 # What should we run ?
 compFactors = [1e6]
 # commFactors = [x for x in range(0,1000000000) if x%1e6==0]
-commFactors = [x * 1e7 for x in range(0, 40)]
+commFactors = [x * 1e7 for x in range(0, 1)]
 # commFactors = [0]
 jobs_to_use = [300]
 maximum_job_height = [16]
-variants_to_use = ['BEST_EFFORT_CONTIGUOUS',
-                   'CONTIGUOUS', 'BEST_EFFORT_LOCAL', 'LOCAL']
-# variants_to_use = ['BASIC']
-seeds_to_use = [x for x in range(0, 3)]
+# variants_to_use = ['BEST_EFFORT_CONTIGUOUS',
+#                    'CONTIGUOUS', 'BEST_EFFORT_LOCAL', 'LOCAL']
+variants_to_use = ['BASIC']
+seeds_to_use = [x for x in range(0, 1)]
 # seeds_to_use = [0,1,2,4,17]
 
 
@@ -127,8 +124,7 @@ def run_batsim_and_perl_scheduler(batsim_platform,
                                   comp_factor,
                                   comm_factor,
                                   batsim_master_host_name="master_host",
-                                  batsim_directory=glob_batsim_directory,
-                                  batsim_executable=glob_batsim_executable,
+                                  batsim_executable="batsim",
                                   perl_sched_directory=glob_perl_sched_directory,
                                   perl_sched_executable=glob_perl_sched_executable,
                                   verbose=False,
@@ -145,12 +141,12 @@ def run_batsim_and_perl_scheduler(batsim_platform,
 
     socket = '/tmp/' + instance_name
 
-    perl_sched_command = "{} {} {} {} {} {}".format(perl_sched_executable,
-                                                    cluster_size,
-                                                    perl_sched_variants[perl_sched_variant],
-                                                    perl_sched_delay,
-                                                    socket,
-                                                    json_file)
+    perl_sched_command = "perl {} {} {} {} {} {}".format(perl_sched_executable,
+                                                         cluster_size,
+                                                         perl_sched_variants[perl_sched_variant],
+                                                         perl_sched_delay,
+                                                         socket,
+                                                         json_file)
     perl_sched_args = str.split(perl_sched_command, sep=' ')
     batsim_log_level = 'info'
     batsim_export_prefix = result_directory + instance_name
@@ -172,36 +168,36 @@ def run_batsim_and_perl_scheduler(batsim_platform,
     # Let's create the processes
     LOG.debug("Run Batsim process: " + batsim_command)
     batsim_process = subprocess.Popen(
-        batsim_args, cwd=batsim_directory,
+        batsim_args,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     LOG.debug("Run perl scheduler process: " + perl_sched_command)
     perl_sched_process = subprocess.Popen(
         perl_sched_args, cwd=perl_sched_directory,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    batsim_out, batsim_err = batsim_process.communicate()
 
     # Let's wait for them to finish
     LOG.info("Waiting for perl sched " + instance_name +
              " (PID=" + str(perl_sched_process.pid) + ")")
-    perl_sched_errcode = perl_sched_process.wait()
+    perl_out, perl_err = perl_sched_process.communicate()
 
     # If batsim did not finish successfully, let's display it
-    if perl_sched_errcode != 0:
-        perl_out, perl_err = perl_sched_process.communicate()
+    if perl_sched_process.returncode != 0:
 
         LOG.error('Perl sched failed on instance', instance_name)
+        LOG.error('Command args: ', str(perl_sched_args))
         LOG.error('perl_out :', str(perl_out))
         LOG.error('perl_err :', str(perl_err))
         return
 
     batsim_errcode = batsim_process.wait()
     if batsim_errcode != 0:
-        batsim_out, batsim_err = batsim_process.communicate()
 
         LOG.error('Batsim failed on instance', instance_name)
         LOG.error('batsim_out :', str(batsim_out))
         LOG.error('batsim_err :', str(batsim_err))
 
-    if batsim_errcode != 0 or perl_sched_errcode != 0:
+    if batsim_errcode != 0 or perl_sched_process.returncode != 0:
         return
 
     # Let's retrieve some information about the execution from the scheduler
@@ -366,4 +362,9 @@ def main():
             writer.writerow(value.get())
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    finally:
+        # Kill remainin batsim processes
+        LOG.info("cleaning...")
+        os.system("killall batsim")
