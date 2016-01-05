@@ -17,6 +17,7 @@ import csv
 import logging
 import sys
 import multiprocessing
+import time
 
 # initialyse logger
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -155,14 +156,15 @@ def run_batsim_and_perl_scheduler(batsim_platform,
     batsim_args = str.split(batsim_command, sep=' ')
 
     # Let's create the processes
-    LOG.info("Run Batsim process: " + batsim_command)
+    LOG.debug("Run Batsim process: " + batsim_command)
     batsim_process = subprocess.Popen(
         batsim_args, cwd=batsim_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    LOG.info("Run perl scheduler process: " + perl_sched_command)
+    LOG.debug("Run perl scheduler process: " + perl_sched_command)
     perl_sched_process = subprocess.Popen(
         perl_sched_args, cwd=perl_sched_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # Let's wait for them to finish
+    LOG.info("Waiting for perl sched " + instance_name + " (PID=" + str(perl_sched_process.pid) + ")")
     perl_errcode = perl_sched_process.wait()
 
     # If batsim did not finish successfully, let's display it
