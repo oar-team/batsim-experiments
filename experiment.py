@@ -18,8 +18,15 @@ import logging
 import sys
 import multiprocessing
 
+# Debug mode
+DEBUG = False
+
 # initialyse logger
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+if DEBUG:
+    loglevel = logging.DEBUG
+else:
+    loglevel = logging.INFO
+logging.basicConfig(stream=sys.stdout, level=loglevel)
 LOG = logging.getLogger('expe-batsim')
 
 
@@ -124,7 +131,7 @@ def init_results(json_directory, result_directory):
 
 
 def run_batsim(instance_name, socket, json_file, export_prefix,
-               log_level='info'):
+               log_level='critical'):
     batsim_command = ("batsim --socket={} --master-host={} --export={} -- "
                       "{} {} --log=batsim.thresh:{} "
                       "--log=network.thresh:{} "
@@ -142,9 +149,12 @@ def run_batsim(instance_name, socket, json_file, export_prefix,
 
     # Let's create the processes
     LOG.debug("Run Batsim process: " + batsim_command)
+    if DEBUG:
+        output_mode = None
+    else:
+        output_mode = subprocess.DEVNULL
     return subprocess.Popen(
-        batsim_args,
-        stdout=None, stderr=None)
+        batsim_args, stdout=output_mode, stderr=output_mode)
 
 
 def run_batsim_and_scheduler(json_file,
@@ -168,8 +178,7 @@ def run_batsim_and_scheduler(json_file,
     batsim_export_prefix = result_directory + instance_name
 
     # run the process
-    batsim_process = run_batsim(instance_name, socket, json_file,
-                                batsim_export_prefix)
+    run_batsim(instance_name, socket, json_file, batsim_export_prefix)
 
     if scheduler == 'oar_sched':
         # run bataar scheduler
@@ -177,8 +186,8 @@ def run_batsim_and_scheduler(json_file,
 
         LOG.debug("Run OAR scheduler process: " + str(sched_args))
         sched_process = subprocess.Popen(
-            sched_args, bufsize=1,
-            stdout=None, stderr=None)
+            sched_args,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     elif scheduler == 'perl_sched':
         # run perl scheduler
@@ -200,12 +209,12 @@ def run_batsim_and_scheduler(json_file,
                   'defined')
         return
 
-    batsim_out, batsim_err = batsim_process.communicate()
-
     # Let's wait for them to finish
     LOG.info("Waiting for scheduler " + instance_name +
              " (PID=" + str(sched_process.pid) + ")")
     sched_out, sched_err = sched_process.communicate()
+    LOG.info("Simulation is finished for " + instance_name +
+             " (PID=" + str(sched_process.pid) + ")")
 
     # If batsim did not finish successfully, let's display it
     if sched_process.returncode != 0:
@@ -214,16 +223,6 @@ def run_batsim_and_scheduler(json_file,
         LOG.error('Command args: ', str(sched_args))
         LOG.error('sched_out :', str(sched_out))
         LOG.error('sched_err :', str(sched_err))
-        return
-
-    batsim_errcode = batsim_process.wait()
-    if batsim_errcode != 0:
-
-        LOG.error('Batsim failed on instance', instance_name)
-        LOG.error('batsim_out :', str(batsim_out))
-        LOG.error('batsim_err :', str(batsim_err))
-
-    if batsim_errcode != 0 or sched_process.returncode != 0:
         return
 
     # create empty result dict
