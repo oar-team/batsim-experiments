@@ -45,7 +45,7 @@ master_host_name = 'master_host0'
 input_swf_trace = './CEA-Curie-2011-2.1-cln.swf'
 generator_executable = './swfToJsonConverter.py'
 
-result_directory = os.getcwd() + '/exp' + str(experiment_id) + \
+result_directory = os.getcwd() + '/result_exp' + str(experiment_id) + \
     experiment_name + '/'
 json_directory = result_directory + 'json/'
 
@@ -63,6 +63,8 @@ seeds_to_use = [x for x in range(0, 1)]
 # seeds_to_use = [0,1,2,4,17]
 
 scheduler_to_use = ['perl_sched', 'oar_sched']
+# scheduler_to_use = ['perl_sched']
+# scheduler_to_use = ['oar_sched']
 
 
 #########
@@ -76,6 +78,7 @@ def zpad(val, n):
         return "%s.%s" % (bits[0].zfill(n), bits[1])
     else:
         return "%s" % bits[0].zfill(n)
+
 
 #############
 # Functions #
@@ -141,22 +144,22 @@ def run_batsim(instance_name, socket, json_file, export_prefix,
     LOG.debug("Run Batsim process: " + batsim_command)
     return subprocess.Popen(
         batsim_args,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout=None, stderr=None)
 
 
-def run_batsim_and_perl_scheduler(json_file,
-                                  perl_sched_variant,
-                                  comp_factor,
-                                  comm_factor,
-                                  verbose=False,
-                                  perl_sched_delay=15,
-                                  jobs_random_seed=0,):
+def run_batsim_and_scheduler(json_file,
+                             scheduler,
+                             sched_variant,
+                             comp_factor,
+                             comm_factor,
+                             perl_sched_delay=15,
+                             jobs_random_seed=0,):
     '''
     This function execute both programs in different processes, parse their
     output to write a line of the CSV output file
     '''
 
-    instance_name = str(perl_sched_variant) + '_' + zpad(comp_factor, 10) + \
+    instance_name = scheduler + '_' + str(sched_variant) + '_' + zpad(comp_factor, 10) + \
         '_' + zpad(comm_factor, 10) + '_' + zpad(jobs_random_seed, 3)
     cluster_size = 16
 
@@ -164,38 +167,53 @@ def run_batsim_and_perl_scheduler(json_file,
 
     batsim_export_prefix = result_directory + instance_name
 
-    perl_sched_command = "{} {} {} {} {} {}".format(perl_sched_executable,
-                                                    cluster_size,
-                                                    perl_sched_variants[
-                                                        perl_sched_variant],
-                                                    perl_sched_delay,
-                                                    socket,
-                                                    json_file)
-    perl_sched_args = str.split(perl_sched_command, sep=' ')
-
     # run the process
     batsim_process = run_batsim(instance_name, socket, json_file,
                                 batsim_export_prefix)
 
-    LOG.debug("Run perl scheduler process: " + perl_sched_command)
-    perl_sched_process = subprocess.Popen(
-        perl_sched_args, cwd=perl_sched_directory,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if scheduler == 'oar_sched':
+        # run bataar scheduler
+        sched_args = ('bataar -s ' + socket + " " + json_file).split()
+
+        LOG.debug("Run OAR scheduler process: " + str(sched_args))
+        sched_process = subprocess.Popen(
+            sched_args, bufsize=1,
+            stdout=None, stderr=None)
+
+    elif scheduler == 'perl_sched':
+        # run perl scheduler
+        perl_sched_command = \
+            "{} {} {} {} {} {}".format(perl_sched_executable,
+                                       cluster_size,
+                                       perl_sched_variants[sched_variant],
+                                       perl_sched_delay,
+                                       socket,
+                                       json_file)
+        sched_args = str.split(perl_sched_command, sep=' ')
+
+        LOG.debug("Run perl scheduler process: " + perl_sched_command)
+        sched_process = subprocess.Popen(
+            sched_args, cwd=perl_sched_directory,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    else:
+        LOG.error('Specified scheduler \"' + scheduler + '\" is not '
+                  'defined')
+        return
 
     batsim_out, batsim_err = batsim_process.communicate()
 
     # Let's wait for them to finish
-    LOG.info("Waiting for perl sched " + instance_name +
-             " (PID=" + str(perl_sched_process.pid) + ")")
-    perl_out, perl_err = perl_sched_process.communicate()
+    LOG.info("Waiting for scheduler " + instance_name +
+             " (PID=" + str(sched_process.pid) + ")")
+    sched_out, sched_err = sched_process.communicate()
 
     # If batsim did not finish successfully, let's display it
-    if perl_sched_process.returncode != 0:
+    if sched_process.returncode != 0:
 
-        LOG.error('Perl sched failed on instance', instance_name)
-        LOG.error('Command args: ', str(perl_sched_args))
-        LOG.error('perl_out :', str(perl_out))
-        LOG.error('perl_err :', str(perl_err))
+        LOG.error('Scheduler failed on instance', instance_name)
+        LOG.error('Command args: ', str(sched_args))
+        LOG.error('sched_out :', str(sched_out))
+        LOG.error('sched_err :', str(sched_err))
         return
 
     batsim_errcode = batsim_process.wait()
@@ -205,21 +223,25 @@ def run_batsim_and_perl_scheduler(json_file,
         LOG.error('batsim_out :', str(batsim_out))
         LOG.error('batsim_err :', str(batsim_err))
 
-    if batsim_errcode != 0 or perl_sched_process.returncode != 0:
+    if batsim_errcode != 0 or sched_process.returncode != 0:
         return
 
-    # Let's retrieve some information about the execution from the scheduler
-    # output
-    (cmax,
-     contiguous_jobs_number,
-     local_jobs_number,
-     locality_factor,
-     runtime) = str.split(str(perl_out)[2:-1], sep=' ')
-    cmax = float(cmax)
-    contiguous_jobs_number = float(contiguous_jobs_number)
-    local_jobs_number = float(local_jobs_number)
-    locality_factor = float(locality_factor)
-    runtime = float(runtime)
+    # create empty result dict
+    sched_results = {}
+
+    if scheduler == 'perl_sched':
+        # Let's retrieve some information about the execution from the
+        # scheduler output
+        (cmax,
+         contiguous_jobs_number,
+         local_jobs_number,
+         locality_factor,
+         runtime) = str.split(str(sched_out)[2:-1], sep=' ')
+        sched_results['cmax'] = float(cmax)
+        sched_results['contiguous_jobs_number'] = float(contiguous_jobs_number)
+        sched_results['local_jobs_number'] = float(local_jobs_number)
+        sched_results['locality_factor'] = float(locality_factor)
+        sched_results['runtime'] = float(runtime)
 
     # Let's retrieve some other informations from the batsim output (csv file)
     batsim_csv_output_file = open(batsim_export_prefix + '_schedule.csv', 'r')
@@ -229,14 +251,15 @@ def run_batsim_and_perl_scheduler(json_file,
 
     # Let's write a csv line about this run
     return {
-        'variant': perl_sched_variant,
+        'variant': sched_variant,
         'comp_factor': comp_factor,
         'comm_factor': comm_factor,
-        'cmax': cmax,
-        'locality_factor': locality_factor,
-        'contiguous_jobs_number': contiguous_jobs_number,
-        'local_jobs_number': local_jobs_number,
-        'runtime': runtime,
+        'cmax': batsim_result['makespan'],
+        'locality_factor': sched_results.get('locality_factor', 'N/A'),
+        'contiguous_jobs_number': sched_results.get(
+            'contiguous_jobs_number', 'N/A'),
+        'local_jobs_number': sched_results.get('local_jobs_number', 'N/A'),
+        'runtime': sched_results.get('runtime', 'N/A'),
         'nb_jobs': batsim_result['nb_jobs'],
         'success_rate': batsim_result['success_rate'],
         'nb_jobs_killed': batsim_result['nb_jobs_killed'],
@@ -311,9 +334,9 @@ def generateOneInstanceGroup(t):
 
 
 def launchOneInstance(t):
-    json_file, absolute_json_file, current_variant = t
+    json_file, scheduler, current_variant = t
     nb_jobs, max_job_height, compFactor, comFactor, seed = str.split(
-        json_file[:-5], sep='_')
+        os.path.basename(json_file)[:-5], sep='_')
     nb_jobs = int(nb_jobs)
     max_job_height = int(max_job_height)
     comFactor = float(comFactor)
@@ -324,11 +347,12 @@ def launchOneInstance(t):
              ' com={}, var={}, seed={})'
              ''.format(nb_jobs, max_job_height, compFactor,
                        comFactor, current_variant, seed))
-    return run_batsim_and_perl_scheduler(
-        absolute_json_file,
-        perl_sched_variant=current_variant,
-        comp_factor=compFactor,
-        comm_factor=comFactor,
+    return run_batsim_and_scheduler(
+        json_file,
+        scheduler,
+        current_variant,
+        compFactor,
+        comFactor,
         jobs_random_seed=seed)
 
 
@@ -356,13 +380,13 @@ def main():
         absolute_json_files = [json_directory + name
                                for name in json_files]
 
-        json_zipped_files = zip(json_files, absolute_json_files)
         instances_to_launch = []
 
-        for (json_file, absolute_json_file) in json_zipped_files:
-            for variant in variants_to_use:
-                instances_to_launch.append(
-                    (json_file, absolute_json_file, variant))
+        for json_file in absolute_json_files:
+            for scheduler in scheduler_to_use:
+                for variant in variants_to_use:
+                    instances_to_launch.append(
+                        (json_file, scheduler, variant))
 
         # Use a pool of process for parallel compute of the results
         pool = multiprocessing.Pool(multiprocessing.cpu_count())
