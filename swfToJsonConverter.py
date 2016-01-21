@@ -54,6 +54,7 @@ parser.add_argument('-pf', '--platformSize', type=int, default=None, help='If se
 parser.add_argument('--jobMinWidth', type=float, default=1, help='The job minimum width')
 parser.add_argument('--jobMaxWidth', type=float, default=float('inf'), help='The job maximum width')
 parser.add_argument('--randomizeCommunications', type=float, default=1, help='If set to a real between 0 and 1, the communication factor will be picked randomly via random.uniform(param*comFactor, comFactor)')
+parser.add_argument('--keepOriginalId', action='store_true', help='If set original IDs are keep in the outputed file(s)')
 
 group = parser.add_mutually_exclusive_group()
 group.add_argument("-v", "--verbose", action="store_true")
@@ -132,7 +133,8 @@ for line in args.inputSWF:
 			if (resCount > 0) and (runTime >= args.jobMinWidth) and (runTime <= args.jobMaxWidth):
 				profile = int((((runTime/resCount) // args.jobGrain)+1) * args.jobGrain)
 				profiles.add(profile)
-
+                                if args.keepOriginalId:
+                                    currentID = jobID
 				job = (currentID, resCount, runTime, submitTime, profile, wallTime)
 				currentID = currentID + 1
 				jobs.append(job)
