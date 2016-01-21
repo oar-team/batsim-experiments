@@ -131,7 +131,9 @@ for line in args.inputSWF:
 
 		if (args.maximumJobHeight == None) or (resCount <= args.maximumJobHeight): 
 			if (resCount > 0) and (runTime >= args.jobMinWidth) and (runTime <= args.jobMaxWidth):
-				profile = int((((runTime/resCount) // args.jobGrain)+1) * args.jobGrain)
+				profile = int(((runTime) // args.jobGrain) * args.jobGrain)
+				if profile == 0:
+                                    profile = 1
 				profiles.add(profile)
                                 if args.keepOriginalId:
                                     currentID = jobID
