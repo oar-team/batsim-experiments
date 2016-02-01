@@ -19,6 +19,6 @@ export EXTRAE_CONFIG_FILE=$_script/extrae.xml
 for cmd in $CMDS
 do
   echo "Running command $cmd"
-  mpirun -machinefile $OAR_NODEFILE $NPB_BIN/$cmd
+  mpirun -machinefile $OAR_NODEFILE -x LD_PRELOAD -x EXTRAE_CONFIG_FILE $NPB_BIN/$cmd
   $_script/prv2tit.pl -i $cmd > $cmd.tit
 done
