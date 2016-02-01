@@ -3,7 +3,7 @@
 _script="$(dirname $(readlink -f ${BASH_SOURCE[0]}))"
 
 EXTRAE_HOME=/opt/extrae
-NPB_BIN=$HOME/NPB3.3.1/NPB3.3-MPI/bin/
+NPB_BIN=$_script/NPB3_bin/
 
 OAR_NODEFILE=$_script/hostfile
 NBPROC=$(uniq $OAR_NODEFILE | wc -l)
