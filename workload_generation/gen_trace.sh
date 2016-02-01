@@ -5,10 +5,10 @@ _script="$(dirname $(readlink -f ${BASH_SOURCE[0]}))"
 EXTRAE_HOME=/opt/extrae
 NPB_BIN=/root/NPB3.3.1/NPB3.3-MPI/bin/
 
+OAR_NODEFILE=$_script/hostfile
 NBPROC=$(uniq $OAR_NODEFILE | wc -l)
 CMDS=$(ls -1 $NPB_BIN | grep -E "*\.$NBPROC$")
 RESULTS=/root/results/
-OAR_NODEFILE=$_script/hostfile
 
 mkdir -p $RESULTS
 cd $RESULTS
