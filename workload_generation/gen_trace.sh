@@ -14,9 +14,11 @@ mkdir -p $RESULTS
 cd $RESULTS
 
 export LD_PRELOAD=$EXTRAE_HOME/lib/libmpitrace.so
-export export EXTRAE_CONFIG_FILE=$_script/extrae.xml
+export EXTRAE_CONFIG_FILE=$_script/extrae.xml
+
 for cmd in $CMDS
 do
-  mpirun -np $NBPROC --mca orte_rsh_agent "oarsh" -machinefile $OAR_NODEFILE $NPB_BIN/$cmd
+  echo "Running command $cmd"
+  mpirun -machinefile $OAR_NODEFILE $NPB_BIN/$cmd
   $_script/prv2tit.pl -i $cmd > $cmd.tit
 done
