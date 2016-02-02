@@ -3,7 +3,7 @@
 _script="$(dirname $(readlink -f ${BASH_SOURCE[0]}))"
 
 EXTRAE_HOME=/opt/extrae
-NPB_BIN=$_script/NPB3_bin/
+NPB_BIN=$_script/NPB_bin/
 
 NBPROC=$(uniq $OAR_NODEFILE | wc -l)
 CMDS=$(ls -1 $NPB_BIN | grep -E "*\.$NBPROC$")
