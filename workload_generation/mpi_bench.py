@@ -1,77 +1,104 @@
 #!/usr/bin/env python
+"""
+This script generate the MPI traces using the NAS bachmarks and Extrae
+tracing tool. The NAS bench executatble are in this repository.
+Extrae is installed on the deployed environment.
+It run on the graphene cluster using all the nodes under one switch to
+avoid communication contention.
+It use *execo* to run the experiment on Grid'5000 with parameters sweep.
+Only one MPI process is running by node to be consistent with Simgrid
+simple computation modele.
+"""
 import os
-from itertools import takewhile, count
-from execo import SshProcess, Remote, Put, format_date
+from execo import SshProcess, format_date
 from execo_g5k import oarsub, oardel, OarSubmission, \
     get_oar_job_nodes, wait_oar_job_start, \
-    get_host_attributes, get_cluster_site, get_host_site
-from execo_g5k.kadeploy import deploy
-from execo_engine import Engine, ParamSweeper, sweep, \
-    slugify, logger
+    get_cluster_site
+from execo_g5k.kadeploy import deploy, Deployment
+from execo_engine import Engine, ParamSweeper, sweep, slugify, logger
+
+script_path = os.path.realpath(__file__)
+
 
 def prediction_callback(ts):
     logger.info("job start prediction = %s" % (format_date(ts),))
 
-def get_mpi_opts(cluster):
-    # MPI configuration depends on the cluster
-    # see https://www.grid5000.fr/mediawiki/index.php/FAQ#MPI_options_to_use
-    mpi_opts = '--mca btl self,sm,tcp'
-    return mpi_opts
 
 class mpi_bench(Engine):
 
     def run(self):
         """Inherited method, put here the code for running the engine"""
-        self.define_parameters()
-        if self.prepare_bench():
-            logger.info('Bench prepared on all frontends')
-            self.run_xp()
+        # define parameter consistent with the kadeploy image
+        mpi_options = '--mca btl self,sm,tcp'
+        mpi_env_vars = '-x LD_PRELOAD=/opt/extrae/lib/libmpitrace.so ' + \
+                       '-x EXTRAE_CONFIG_FILE=' + script_path + '/extrae.xml'
+        cluster = 'graphene'
+        switch = 'sgraphene4'
+        env_name = "~/my_g5k_images/debian8_workload_generation.dsc"
+        self.result_dir = script_path + '/results'
+        npb_bin_path = script_path + '/NPB_bin'
 
-    def define_parameters(self):
-        """Create the iterator on the parameters combinations to be explored"""
         # define the parameters
         self.parameters = {
-            'nb_nodes': ['1', '2', '4', '8', '16', '32'],
-            'size' : ['B', 'C', 'D'],
-            'bench' : ['is', 'ft', 'lu']
+            'nb_nodes': ['2', '4', '8', '16', '32'],
+            'size': ['B', 'C', 'D'],
+            'bench': ['is', 'ft', 'lu']
         }
         logger.info(self.parameters)
+
         # define the iterator over the parameters combinations
         self.sweeper = ParamSweeper(os.path.join(self.result_dir, "sweeps"),
                                     sweep(self.parameters))
-        logger.info('Number of parameters combinations %s' % len(self.sweeper.get_remaining()))
+        # remove bench that takes too long
+        self.sweeper.skip_batch({
+            'nb_nodes': ['2', '4', '8'],
+            'size': ['D'],
+            'bench': ['lu']
+        })
 
-    def prepare_bench(self):
-        """bench configuration and compilation, copy binaries to
-        return True if preparation is ok
-        """
-        
+        logger.info('Number of parameters combinations',
+                    len(self.sweeper.get_remaining()))
 
-    def run_xp(self):
-        """Iterate over the parameters and execute the bench"""
+        # Iterate over the parameters and execute the bench
         while len(self.sweeper.get_remaining()) > 0:
             comb = self.sweeper.get_next()
-            if comb['n_core'] > get_host_attributes(comb['cluster']+'-1')['architecture']['smt_size'] * self.n_nodes: 
-                self.sweeper.skip(comb)
-                continue
             logger.info('Processing new combination %s' % (comb,))
-            site = get_cluster_site(comb['cluster'])
-            jobs = oarsub([(OarSubmission(resources = "{cluster='" + comb['cluster']+"'}/nodes=" + str(self.n_nodes),
-                                          job_type = 'allow_classic_ssh', 
-                                          walltime ='0:10:00'), 
+            site = get_cluster_site(cluster)
+            jobs = oarsub([(OarSubmission(resources="{switch='" +
+                                          switch + "'}",
+                                          job_type='allow_classic_ssh',
+                                          walltime='4:00'),
                             site)])
+
             if jobs[0][0]:
                 try:
                     wait_oar_job_start(*jobs[0])
                     nodes = get_oar_job_nodes(*jobs[0])
-                    bench_cmd = 'mpirun -H %s -n %i %s ~/NPB3.3-MPI/bin/lu.%s.%i' % (
-                        ",".join([node.address for node in nodes]),
-                        comb['n_core'],
-                        get_mpi_opts(comb['cluster']),
-                        comb['size'],
-                        comb['n_core'])
+
+                    logger.info("deploying nodes: ", str(nodes))
+                    deployed, undeployed = deploy(
+                        Deployment(nodes, env_name=env_name))
+
+                    hostfile_filename = 'hostfile-'.join(comb['nb_nodes'])
+                    with open(hostfile_filename) as hostfile:
+                        for node in nodes:
+                            print>>hostfile, node
+
+                    mpi_command = '{}/{}.{}.{}'.format(npb_bin_path,
+                                                       comb['bench'],
+                                                       comb['size'],
+                                                       comb['nb_nodes'])
+
+                    bench_cmd = 'mpirun {option}'
+                    '-hostfile {hostfile} {env_vars}'
+                    '{command}'.format(option=mpi_options,
+                                       hostfile=hostfile_filename,
+                                       env_vars=mpi_env_vars,
+                                       command=mpi_command)
                     lu_bench = SshProcess(bench_cmd, nodes[0])
-                    lu_bench.stdout_handlers.append(self.result_dir + '/' + slugify(comb) + '.out')
+                    lu_bench.stdout_handlers.append(
+                        self.result_dir + '/' + slugify(comb) + '.out')
+                    logger.info("generate command: ", bench_cmd)
                     lu_bench.run()
                     if lu_bench.ok:
                         logger.info("comb ok: %s" % (comb,))
