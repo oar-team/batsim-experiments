@@ -1,0 +1,89 @@
+{
+    "profiles": {
+        "truc_1_a": {
+            "type": "msg_par",
+            "command": "mpirun -np 1 truc_1_a",
+            "np": 1,
+            "runtime":600,
+            "cpu": [1e8],
+            "com": [0]
+        },
+        "truc_2_a": {
+            "type": "msg_par",
+            "command": "mpirun -np 2 truc_2_a",
+            "np": 2,
+            "runtime":300,
+            "cpu": [1e8,1e8],
+            "com": [0,1e6,
+                    1e6,0]
+        },
+        "truc_4_a": {
+            "type": "msg_par",
+            "command": "mpirun -np 4 truc_4_a",
+            "np": 4,
+            "runtime":150,
+            "cpu": [1e8,1e8,1e8,1e8],
+            "com": [0,1e6,1e6,1e6,
+                    1e6,0,1e6,1e6,
+                    1e6,1e6,0,1e6,
+                    1e6,1e6,1e6,0]
+        },
+        "truc_8_a": {
+            "type": "msg_par",
+            "command": "mpirun -np 8 truc_8_a",
+            "np": 8,
+            "runtime":75,
+            "cpu": [1e8,1e8,1e8,1e8,1e8,1e8,1e8,1e8],
+            "com": [0,1e6,1e6,1e6,1e6,1e6,1e6,1e6,
+                    1e6,0,1e6,1e6,1e6,1e6,1e6,1e6,
+                    1e6,1e6,0,1e6,1e6,1e6,1e6,1e6,
+                    1e6,1e6,1e6,0,1e6,1e6,1e6,1e6,
+                    1e6,1e6,1e6,1e6,0,1e6,1e6,1e6,
+                    1e6,1e6,1e6,1e6,1e6,0,1e6,1e6,
+                    1e6,1e6,1e6,1e6,1e6,1e6,0,1e6,
+                    1e6,1e6,1e6,1e6,1e6,1e6,1e6,0]
+        },
+        "truc_16_a": {
+            "type": "msg_par_hg",
+            "command": "mpirun -np 16 truc_16_a",
+            "np": 16,
+            "runtime":37.5,
+            "cpu": 1e8,
+            "com": 1e6
+        },
+        "truc_32_a": {
+            "type": "msg_par_hg",
+            "command": "mpirun -np 32 truc_32_a",
+            "np": 32,
+            "runtime":18.75,
+            "cpu": 1e8,
+            "com": 1e6
+        },
+
+        "bidule_1_c": {
+            "type": "msg_par",
+            "command": "mpirun -np 1 bidule_1_c",
+            "np": 1,
+            "runtime":1800,
+            "cpu": [1e10],
+            "com": [0]
+        },
+        "bidule_32_c": {
+            "type": "msg_par_hg",
+            "command": "mpirun -np 32 bidule_32_c",
+            "np": 32,
+            "runtime": 56.25,
+            "cpu": 1e10,
+            "com": 1e7
+        },
+
+        "outlier_24": {
+            "type": "msg_par_hg",
+            "command": "mpirun -np 24 outlier_24",
+            "np": 24,
+            "runtime":120,
+            "cpu": 1e10,
+            "com": 1e7
+        }
+    }
+}
