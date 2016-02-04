@@ -61,7 +61,8 @@ class mpi_bench(Engine):
             str(len(self.sweeper.get_remaining()))))
 
         site = get_cluster_site(cluster)
-        jobs = oarsub([(OarSubmission(resources="/nodes=2",
+        #jobs = oarsub([(OarSubmission(resources="/nodes=2",
+        jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
                                       job_type='deploy',
                                       walltime='04:00:00'),
                         site)])
