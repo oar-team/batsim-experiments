@@ -19,7 +19,7 @@ from execo_g5k import oarsub, oardel, OarSubmission, \
     get_oar_job_nodes, wait_oar_job_start, \
     get_cluster_site
 from execo_g5k.kadeploy import deploy, Deployment
-from execo_engine import Engine, ParamSweeper, sweep, slugify, logger
+from execo_engine import Engine, ParamSweeper, sweep, slugify, logger, HashableDict
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -52,17 +52,16 @@ class mpi_bench(Engine):
             'size': ['B', 'C', 'D'],
             'bench': ['is', 'ft', 'lu']
         }
-        logger.info(self.parameters)
 
         # define the iterator over the parameters combinations
         self.sweeper = ParamSweeper(os.path.join(self.result_dir, "sweeps"),
                                     sweep(self.parameters))
         # remove bench that takes too long
-        self.sweeper.skip_batch({
-            'nb_nodes': ['2', '4', '8'],
-            'size': ['D'],
-            'bench': ['lu']
-        })
+        for n in nb_nodes:
+            self.sweeper.skip(HashableDict({'size': 'D', 'nb_nodes': n, 'bench': 'lu'}))
+
+        logger.info('Skipped parameters:' + \
+                    '{}'.format(str(self.sweeper.get_skipped())))
 
         logger.info('Number of parameters combinations {}'.format(
             str(len(self.sweeper.get_remaining()))))
@@ -103,6 +102,10 @@ class mpi_bench(Engine):
                 while len(self.sweeper.get_remaining()) > 0:
                     comb = self.sweeper.get_next()
                     logger.info('Processing new combination %s' % (comb,))
+                    if (comb['bench'] == 'lu' and comb['size'] == 'D'):
+                        logger.info('skip this combination')
+                        self.sweeper.skip(comb)
+                        continue
 
                     mpi_command = '{}.{}.{}'.format(comb['bench'],
                                                     comb['size'],
@@ -132,10 +135,9 @@ class mpi_bench(Engine):
                 traceback.print_exc()
                 logger.warn("comb NOT ok: %s" % (comb,))
                 self.sweeper.cancel(comb)
-                ipdb.set_trace()
             finally:
-                logger.info("to delete job:\noardel {}".format(jobs))
-                #oardel(jobs)
+                logger.info("delete job: {}".format(jobs))
+                oardel(jobs)
 
 if __name__ == "__main__":
     engine = mpi_bench()

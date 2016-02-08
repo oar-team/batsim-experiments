@@ -2,8 +2,8 @@
 
 _script="$(dirname $(readlink -f ${BASH_SOURCE[0]}))"
 
-EXTRAE_TRACE_DIR=/home/mmercier/results/exp2016-02-02
-TIT_TRACE_DIR=/home/mmercier/results/exp2016-02-02/tit
+EXTRAE_TRACE_DIR=/home/mmercier/expe-batsim/workload_generation/results_2016-02-08--10-10-44
+TIT_TRACE_DIR=/home/mmercier/expe-batsim/workload_generation/results_2016-02-08--10-10-44/tit
 CMDS=$(ls -1 $EXTRAE_TRACE_DIR | grep prv | xargs -I{} basename {} .prv)
 
 mkdir -p $TIT_TRACE_DIR
