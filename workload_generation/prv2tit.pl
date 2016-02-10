@@ -191,15 +191,13 @@ sub define_each_ptp_partner_comm_size
     my($task_send, $task_recv, $comm_size) = @_;
 
     # deal with send action
-    my @send_array = @{$ptp_partner_comm{$task_send}{"send"}};
-    my $send_action = \%{$send_array[0]};
+    my $send_action = \%{@{$ptp_partner_comm{$task_send}{"send"}}[0]};
     $send_action->{"partner"} = $task_recv;
     $send_action->{"comm_size"} = $comm_size;
     shift @{$ptp_partner_comm{$task_send}{"send"}};
 
     # deal with recv action
-    my @recv_array = @{$ptp_partner_comm{$task_recv}{"recv"}};
-    my $recv_action = \%{$recv_array[0]};
+    my $recv_action = \%{@{$ptp_partner_comm{$task_recv}{"recv"}}[0]};
     $recv_action->{"partner"} = $task_send;
     $recv_action->{"comm_size"} = $comm_size;
     shift @{$ptp_partner_comm{$task_recv}{"recv"}};
@@ -1163,3 +1161,4 @@ sub parse_pcf {
 
 
 main();
+
