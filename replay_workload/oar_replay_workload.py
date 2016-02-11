@@ -73,8 +73,8 @@ class oar_replay_workload(Engine):
                 # configure apt-get for all nodes
                 configure_apt_get_cmd = """
                 echo "deb http://oar-ftp.imag.fr/oar/2.5/debian/ jessie main" \
-                        >> /etc/apt/sources.list.d/oar.list
-                wget -q http://oar-ftp.imag.fr/oar/oarmaster.asc -O- | sudo apt-key add -
+                        >> /etc/apt/sources.list.d/oar.list; \
+                wget -q http://oar-ftp.imag.fr/oar/oarmaster.asc -O- | sudo apt-key add -; \
                 apt-get update
                 """
                 configure_nodes = Remote(configure_apt_get_cmd, nodes)
@@ -108,7 +108,7 @@ class oar_replay_workload(Engine):
                     -e 's/^\(LOG_LEVEL\)\=\"2\"/\1\=\"3\"/' \
                     -e 's/^#\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/\1/' \
                     -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\1/' \
-                    /etc/oar/oar.conf
+                    /etc/oar/oar.conf; \
                     oar-database --create --db-is-local
                 """
                 config_master = SshProcess(config_master_cmd, nodes[0],
@@ -120,10 +120,13 @@ class oar_replay_workload(Engine):
                 with open(hostfile_filename, 'w') as hostfile:
                     for node in nodes[1:]:
                         print>>hostfile, node.address
-                add_resources_cmd = "oar_resources_init " + hostfile_filename
+                add_resources_cmd = "oar_resources_init -y -x " + hostfile_filename
                 add_resources = SshProcess(add_resources_cmd, nodes[0],
                                            connection_params={'user': 'root'})
                 add_resources.run()
+
+                logger.info("oar is now configured!")
+                raise RuntimeError()
 
             except:
                 traceback.print_exc()
