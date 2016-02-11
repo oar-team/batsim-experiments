@@ -1,0 +1,136 @@
+3 compute 1579312377404
+0 compute 2143729407738
+2 compute 1537696736134
+1 compute 1525309497438
+1 init
+2 init
+3 init
+0 init
+1 compute 914814164
+3 compute 962665674
+0 compute 1050865844
+2 compute 823946314
+2 compute 70860250
+0 compute 82931502
+2 compute 525066116
+0 compute 108641268
+1 compute 77796218
+0 recv 2 4
+3 compute 77462758
+1 compute 445502560
+3 compute 482149814
+2 send 0 4
+1 send 0 4
+2 compute 71260402
+2 barrier
+3 send 0 4
+1 compute 74294888
+0 compute 22908702
+3 compute 74028120
+0 recv 1 4
+1 barrier
+3 barrier
+0 compute 3834790
+0 recv 3 4
+0 compute 52953448
+0 barrier
+1 compute 75962188
+0 compute 61023180
+2 compute 69559756
+3 compute 70226676
+0 gather 20 80 0
+1 gather 20 0 0
+2 gather 20 0 0
+3 gather 20 0 0
+3 compute 15305814
+3 barrier
+2 compute 18540376
+2 barrier
+1 compute 14405472
+1 barrier
+0 compute 906444318
+0 barrier
+1 compute 32745772
+3 compute 28977674
+0 compute 30111438
+1 bcast 12 0
+2 compute 36213756
+3 bcast 12 0
+0 bcast 12 0
+2 bcast 12 0
+0 compute 137752326
+1 compute 1021387980
+2 compute 1011884370
+3 compute 1006148858
+0 barrier
+3 barrier
+1 barrier
+2 barrier
+0 compute 29177750
+1 compute 31311894
+2 compute 32545696
+3 compute 33646114
+1 compute 30144784
+2 compute 25309614
+0 compute 25309614
+1 reduce 4 0 0
+2 reduce 4 0 0
+0 reduce 4 0 0
+3 compute 27710526
+3 reduce 4 0 0
+2 compute 11170910
+1 compute 10770758
+2 barrier
+1 barrier
+3 compute 11304294
+3 barrier
+0 compute 63257362
+0 barrier
+1 compute 24776078
+0 compute 24576002
+2 compute 25109538
+3 compute 22641934
+1 allreduce 4 0
+0 allreduce 4 0
+2 allreduce 4 0
+3 allreduce 4 0
+0 compute 53253562
+1 compute 185170338
+2 compute 179734940
+3 compute 166563270
+0 barrier
+1 barrier
+3 barrier
+2 barrier
+2 compute 295612290
+0 compute 196207864
+3 compute 248494392
+1 compute 290910504
+0 barrier
+2 barrier
+3 barrier
+1 barrier
+0 compute 23608968
+2 compute 24075812
+1 compute 29511210
+3 compute 25643074
+0 alltoall 8 0
+2 alltoall 8 0
+3 alltoall 8 0
+1 alltoall 8 0
+1 compute 289710048
+0 compute 166596616
+2 compute 270802866
+3 compute 242692188
+0 finalize
+1 finalize
+3 finalize
+2 finalize
+1 compute 104206250
+2 compute 103739406
+3 compute 115977388
+0 compute 185470452
+1 compute 19407372
+2 compute 21874976
+3 compute 27110298
+0 compute 22408512
