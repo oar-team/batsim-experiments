@@ -71,11 +71,37 @@ for line in input_lines:
     elif parts[1] == 'reduce':
         sender = int(parts[0])
         root = int(parts[4])
-        comm_amount = float(parts[2]) / size
+        comm_amount = float(parts[2])
         comp_amount = float(parts[3])
         computation[sender] = computation[sender] + comp_amount
         if root != sender:
             communication[sender][root] = communication[sender][root] + comm_amount
+    elif parts[1] == 'gather':
+        sender = int(parts[0])
+        root = int(parts[4])
+        comm_amount = float(parts[2])
+        comp_amount = float(parts[3])
+        computation[sender] = computation[sender] + comp_amount
+        if root != sender:
+            communication[sender][root] = communication[sender][root] + comm_amount
+    elif parts[1] == 'allreduce':
+        sender = int(parts[0])
+        root = int(parts[3])
+        comm_amount = float(parts[2])
+        comp_amount = float(parts[3])
+        # Reduce (from all ranks != root to root)
+        computation[sender] = computation[sender] + comp_amount
+        if root != sender:
+            communication[sender][root] = communication[sender][root] + comm_amount
+        # Bcast (from root to all ranks != root)
+        if root != sender:
+            communication[root][sender] = communication[root][sender] + comm_amount
+    elif parts[1] == 'recv':
+        pass
+    elif parts[1] == 'irecv':
+        pass
+    elif parts[1] == 'wait':
+        pass
     elif parts[1] == 'init':
         pass
     elif parts[1] == 'finalize':
@@ -83,7 +109,7 @@ for line in input_lines:
     elif parts[1] == 'barrier':
         pass
     else:
-        print("Warning: unhandled command '{}' in line '{}'".format(parts[1], line))
+        print("Warning: unhandled command '{}' in line '{}' of file '{}'".format(parts[1], line, args.inputTIT.name))
 
 # Let the output file be generated
 json_data = dict()
