@@ -24,7 +24,7 @@ my @task_states_buffer;
 my @task_events_buffer;
 my @task_comms_buffer;
 
-my $power_reference = 286.087E-3; # in flop/mus
+my $power_reference = 16.673E3; # in flop/µs taken from graphene simgrid platform
 
 # store all tit events (complete or incomplete)
 my @action_buffer;
