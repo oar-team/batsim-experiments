@@ -23,6 +23,9 @@ from execo_engine import Engine, ParamSweeper, sweep, slugify, logger, HashableD
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
+is_a_test = False
+
+instrument_mpi = False
 
 def prediction_callback(ts):
     logger.info("job start prediction = %s" % (format_date(ts),))
@@ -31,35 +34,45 @@ def prediction_callback(ts):
 class mpi_bench(Engine):
 
     def setup_result_dir(self):
-        self.result_dir = script_path + '/results_' + time.strftime("%Y-%m-%d--%H-%M-%S")
+        result_type = ""
+        if not instrument_mpi:
+            result_type = 'notrace_' + result_type
+        #if is_a_test:
+        #    result_type = 'test_' + result_type
+        self.result_dir = script_path + '/' + result_type + 'results_' + time.strftime("%Y-%m-%d--%H-%M-%S")
 
     def run(self):
         """Inherited method, put here the code for running the engine"""
+        if is_a_test:
+            logger.warn("THIS IS TEST")
+        if not instrument_mpi:
+            logger.warn("NO MPI TRACING")
+
         # define parameter consistent with the kadeploy image
         mpi_options = '--mca btl self,sm,tcp'
-        mpi_env_vars = '-x LD_PRELOAD=/opt/extrae/lib/libmpitrace.so ' + \
-                       '-x EXTRAE_CONFIG_FILE=' + script_path + '/extrae.xml'
         cluster = 'graphene'
         switch = 'sgraphene4'
         env_name = "debian8_workload_generation_nfs"
         npb_bin_path = script_path + '/NPB_bin'
 
         # define the parameters
-        nb_nodes = ['2', '4', '8', '16', '32']
-        #nb_nodes = ['2']
+        if is_a_test:
+            nb_nodes = ['1', '2']
+            size = ['B']
+        else:
+            nb_nodes = ['1', '2', '4', '8', '16', '32']
+            size = ['B', 'C', 'D']
         self.parameters = {
             'nb_nodes': nb_nodes,
-            'size': ['B', 'C', 'D'],
+            'size': size,
             'bench': ['is', 'ft', 'lu']
         }
 
         # define the iterator over the parameters combinations
         self.sweeper = ParamSweeper(os.path.join(self.result_dir, "sweeps"),
                                     sweep(self.parameters))
-        # remove bench that takes too long
-        for n in nb_nodes:
-            self.sweeper.skip(HashableDict({'size': 'D', 'nb_nodes': n, 'bench': 'lu'}))
 
+        # Due to previous (using -c result_dir) run skip some combination
         logger.info('Skipped parameters:' + \
                     '{}'.format(str(self.sweeper.get_skipped())))
 
@@ -70,8 +83,12 @@ class mpi_bench(Engine):
         os.chdir(self.result_dir)
 
         site = get_cluster_site(cluster)
-        #jobs = oarsub([(OarSubmission(resources="/nodes=2",
-        jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
+        if is_a_test:
+            jobs = oarsub([(OarSubmission(resources="{cluster='" + cluster + "'}/nodes=2",
+                                      job_type='deploy',
+                                      walltime='00:35:00'), site)])
+        else:
+            jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
                                       job_type='deploy',
                                       walltime='04:00:00'),
                         site)])
@@ -107,12 +124,25 @@ class mpi_bench(Engine):
                         self.sweeper.skip(comb)
                         continue
 
+                    if comb['nb_nodes'] == '1':
+                        extrae_config = 'extrae.xml'
+                    else:
+                        # FIXME: Warning this is NOT providing Paraver
+                        # trace so they have to be generated manualy using
+                        # /opt/extrae/mpi2prv in the deployed env
+                        extrae_config = 'extrae_no_merge.xml'
+
+                    mpi_env_vars = ""
+                    if instrument_mpi:
+                        mpi_env_vars = '-x LD_PRELOAD=/opt/extrae/lib/libmpitrace.so ' + \
+                                       '-x EXTRAE_CONFIG_FILE=' + script_path + '/' + extrae_config
+
                     mpi_command = '{}.{}.{}'.format(comb['bench'],
                                                     comb['size'],
                                                     comb['nb_nodes'])
 
                     hostfile_filename = self.result_dir + '/' + 'hostfile-' + comb['nb_nodes']
-                    bench_cmd = ('mpirun {option} -hostfile {hostfile} '
+                    bench_cmd = ('time mpirun {option} -hostfile {hostfile} '
                             '{env_vars} {command}').format(option=mpi_options,
                                        hostfile=hostfile_filename,
                                        env_vars=mpi_env_vars,

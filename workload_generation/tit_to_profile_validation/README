@@ -1,0 +1,7 @@
+mpi_test.cpp is a simple MPI program that allows to check that the time-independent traces (TITs)
+are read correctly to generate batsim profiles.
+
+Compilation: mpic++ -std=c++14 -o mpi_test mpi_test.cpp
+Execution: mpirun -np 4 mpi_test
+
+The corresponding TIT has been stored in resulting_trace.tit

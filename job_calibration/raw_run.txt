@@ -1,0 +1,89 @@
+L'exécution a été faite avec une mauvaise valeur de ratio de conversion entre temps et flop
+dans le script de Lucas.
+
+==========
+||  LU  ||
+==========
+
+lu.C.4
+    Temps réel (avec instrumentation)   290.98 s
+    Temps simulé                        25.28 s
+
+lu.C.16
+    Temps réel (avec instrumentation)   98.8 s
+    Temps simulé                        110 s
+
+lu.B.32
+    Temps réel (avec instrumentation)   15.33 s
+    Temps simulé                        25.57 s
+
+lu.C.32
+    Temps réel (avec instrumentation)   58.57 s
+    Temps simulé                        181.48 s
+
+==========
+||  FT  ||
+==========
+
+ft.B.8
+    Temps réel (avec instrumentation)   17.96 s
+    Temps simulé                        96.45794 s
+
+ft.C.8
+    Temps réel (avec instrumentation)   76.44 s
+    Temps simulé                        385.8314 s
+
+ft.D.8
+    Temps réel (avec instrumentation)   2122.37
+    Temps simulé                        7576.322
+
+ft.D.32
+    Temps réel (avec instrumentation)   551.31 s
+    Temps simulé                        9286.8 s
+
+==========
+||  IS  ||
+==========
+
+is.B.8
+    Temps réel (avec instrumentation)   1.37 s
+    Temps simulé                        0.02 s
+
+is.C.8
+    Temps réel (avec instrumentation)   6.49 s
+    Temps simulé                        0.08 s
+
+is.D.32
+    Temps réel (avec instrumentation)   29.01 s
+    Temps simulé                        0.43 s
+
+
+-----------------------------------------------------------------
+
+1     1       8834.781
+2     2     277514.595
+3     3    1000000.000
+4     4      88259.567
+5     5     385558.441
+
+{"id":1, "subtime":0, "walltime": 1e6, "res": 1, "profile": "is.B.1"},
+{"id":2, "subtime":0, "walltime": 1e6, "res": 1, "profile": "lu.B.1"},
+{"id":3, "subtime":0, "walltime": 1e6, "res": 1, "profile": "lu.C.1"},
+{"id":4, "subtime":0, "walltime": 1e6, "res": 1, "profile": "ft.B.1"},
+{"id":5, "subtime":0, "walltime": 1e6, "res": 1, "profile": "ft.C.1"}
+
+is.B.1
+    Temps réel (avec instrumentation)   4.18
+    Temps simulé                        8834
+lu.B.1
+    Temps réel (avec instrumentation)   274.95
+    Temps simulé                        277514
+lu.C.1
+    Temps réel (avec instrumentation)   1161.56
+    Temps simulé                        1000000
+ft.B.1
+    Temps réel (avec instrumentation)   83.13
+    Temps simulé                        88259  <-----
+ft.C.1
+    Temps réel (avec instrumentation)   363.63
+    Temps simulé                        385558
