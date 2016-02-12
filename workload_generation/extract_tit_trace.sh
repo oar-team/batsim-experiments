@@ -3,7 +3,7 @@
 _script="$(dirname $(readlink -f ${BASH_SOURCE[0]}))"
 
 EXTRAE_TRACE_DIR=/home/mmercier/expe-batsim/workload_generation/results_2016-02-08--10-10-44
-TIT_TRACE_DIR=/home/mmercier/expe-batsim/workload_generation/results_2016-02-08--10-10-44/tit
+TIT_TRACE_DIR=/home/mmercier/expe-batsim/workload_generation/results_2016-02-08--10-10-44/tit_calibrated
 CMDS=$(ls -1 $EXTRAE_TRACE_DIR | grep prv | xargs -I{} basename {} .prv)
 TO_RUN=/tmp/to_run
 

@@ -24,7 +24,7 @@ my @task_states_buffer;
 my @task_events_buffer;
 my @task_comms_buffer;
 
-my $power_reference = 16.673E3; # in flop/µs taken from graphene simgrid platform
+my $power_reference = 16.673; # in flop/µs taken from graphene simgrid platform
 
 # store all tit events (complete or incomplete)
 my @action_buffer;
@@ -308,18 +308,18 @@ sub extract_mpi_call {
     
     # search for a MPI call in the event's parameters
     foreach my $key (keys %event_info) {
-	if(defined($events{$key})) {
-	    if(defined($events{$key}{value}{$event_info{$key}})) {
-		my $event_name = $events{$key}{value}{$event_info{$key}};
-		if(grep(/^$event_name$/, @mpi_calls)) {
-		    $translated_events{$event_name} = 1;
-		    return $event_name;
-		}
-		else {
-		    $ignored_events{$event_name} = 1;
-		}
-	    }
-	}
+  if(defined($events{$key})) {
+      if(defined($events{$key}{value}{$event_info{$key}})) {
+    my $event_name = $events{$key}{value}{$event_info{$key}};
+    if(grep(/^$event_name$/, @mpi_calls)) {
+        $translated_events{$event_name} = 1;
+        return $event_name;
+    }
+    else {
+        $ignored_events{$event_name} = 1;
+    }
+      }
+  }
     }
     return "None";
 }
@@ -339,276 +339,276 @@ sub generate_tit {
 
     # keep translating until some MPI call is still missing some parameters
     while (1) {
-	if (! (defined $task_states_buffer[$task])) { last; }
-	if (scalar @{$task_states_buffer[$task]} == 0) { last; }
-	my $state_entry = $task_states_buffer[$task][0];
+  if (! (defined $task_states_buffer[$task])) { last; }
+  if (scalar @{$task_states_buffer[$task]} == 0) { last; }
+  my $state_entry = $task_states_buffer[$task][0];
 
-	# if current state is running, generate tit entry, remove state and continue translating
-	if ($state_entry->{"state"} eq "Running") {
-	    my $comp_size = ($state_entry->{"end_time"} - $state_entry->{"begin_time"}) * $power_reference;
-	    my $time = $state_entry->{"begin_time"};
+  # if current state is running, generate tit entry, remove state and continue translating
+  if ($state_entry->{"state"} eq "Running") {
+      my $comp_size = ($state_entry->{"end_time"} - $state_entry->{"begin_time"}) * $power_reference;
+      my $time = $state_entry->{"begin_time"};
             # PRINT compute
-	    print("$task compute $comp_size\n");
-	    shift(@{$task_states_buffer[$task]});
-	    next;
-	}
+      print("$task compute $comp_size\n");
+      shift(@{$task_states_buffer[$task]});
+      next;
+  }
 
-	# if there are no events in the buffer and more than one state,
-	# remove all states but the last one and continue
-	if (scalar @{$task_events_buffer[$task]} == 0
-	    && scalar @{$task_states_buffer[$task]} > 1) {
-	    shift(@{$task_states_buffer[$task]});
-	    next;		
-	}
+  # if there are no events in the buffer and more than one state,
+  # remove all states but the last one and continue
+  if (scalar @{$task_events_buffer[$task]} == 0
+      && scalar @{$task_states_buffer[$task]} > 1) {
+      shift(@{$task_states_buffer[$task]});
+      next;   
+  }
 
-	# if there are no events in the buffer, stop
-	if (scalar @{$task_events_buffer[$task]} == 0) {
-	    last;
-	}
+  # if there are no events in the buffer, stop
+  if (scalar @{$task_events_buffer[$task]} == 0) {
+      last;
+  }
 
-	# remove current state if it does not contain any event and continue
-	my $event_entry = $task_events_buffer[$task][0];
-	if (!($state_entry->{"begin_time"} <= $event_entry->{"time"}
-	    && $state_entry->{"end_time"} > $event_entry->{"time"})) {
-	    shift(@{$task_states_buffer[$task]});
-	    next;
-	}
-	my $mpi_call = $event_entry->{"mpi_call"};
+  # remove current state if it does not contain any event and continue
+  my $event_entry = $task_events_buffer[$task][0];
+  if (!($state_entry->{"begin_time"} <= $event_entry->{"time"}
+      && $state_entry->{"end_time"} > $event_entry->{"time"})) {
+      shift(@{$task_states_buffer[$task]});
+      next;
+  }
+  my $mpi_call = $event_entry->{"mpi_call"};
         
-	# if event is a mpi v operation
-	# check if other tasks already permormed that operation using the communicator v operation buffer
-	if ($mpi_call eq "MPI_Gatherv" || $mpi_call eq "MPI_Allgatherv"
-	    || $mpi_call eq "MPI_Reduce_scatter" || $mpi_call eq "MPI_Alltoallv") {
+  # if event is a mpi v operation
+  # check if other tasks already permormed that operation using the communicator v operation buffer
+  if ($mpi_call eq "MPI_Gatherv" || $mpi_call eq "MPI_Allgatherv"
+      || $mpi_call eq "MPI_Reduce_scatter" || $mpi_call eq "MPI_Alltoallv") {
 
 
-	    my @task_list = @{$communicators{$event_entry->{"communicator"}}{tasks}};
-	    my $action_ready = 1;
-	    for (my $i = 0; $i < scalar @task_list; $i++) {
-		if (! (defined($communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}))) {
-		    $action_ready = 0;
-		    last;
-		}
-		if (scalar @{$communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}} == 0) {
-		    $action_ready = 0;
-		    last;
-		}	
-	    }
-	    if ($action_ready == 0) {
-		last;
-	    }
+      my @task_list = @{$communicators{$event_entry->{"communicator"}}{tasks}};
+      my $action_ready = 1;
+      for (my $i = 0; $i < scalar @task_list; $i++) {
+    if (! (defined($communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}))) {
+        $action_ready = 0;
+        last;
+    }
+    if (scalar @{$communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}} == 0) {
+        $action_ready = 0;
+        last;
+    } 
+      }
+      if ($action_ready == 0) {
+    last;
+      }
 
-	    my @recv_counts;
-	    my @send_counts;
-	    my $root;
-	    for (my $i = 0; $i < scalar @task_list; $i++) {
-		push(@recv_counts, $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"recv_size"});
-		push(@send_counts, $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"send_size"});
-		if (! (defined($root))) {
-		    $root = $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"root"};
-		}
+      my @recv_counts;
+      my @send_counts;
+      my $root;
+      for (my $i = 0; $i < scalar @task_list; $i++) {
+    push(@recv_counts, $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"recv_size"});
+    push(@send_counts, $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"send_size"});
+    if (! (defined($root))) {
+        $root = $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"root"};
+    }
 
-		my $use_count = $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"use_count"} + 1;
-		$communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"use_count"} = $use_count;
-		if ($use_count == $communicators{$event_entry->{"communicator"}}{size}) {
-		    shift(@{$communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}});
-		}
-	    }
+    my $use_count = $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"use_count"} + 1;
+    $communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}[0]{"use_count"} = $use_count;
+    if ($use_count == $communicators{$event_entry->{"communicator"}}{size}) {
+        shift(@{$communicators{$event_entry->{"communicator"}}{$mpi_call}{$task_list[$i]}});
+    }
+      }
 
-	    switch ($mpi_call) {
-		case "MPI_Gatherv" {
-		    # FORMAT: <rank> gatherV <send_size> <recv_sizes†> <root> [<send_datatype> <recv_datatype>]
-		    my $send_size = $event_entry->{"send_size"};
-		    my $recv_sizes = join(" ", @send_counts);
+      switch ($mpi_call) {
+    case "MPI_Gatherv" {
+        # FORMAT: <rank> gatherV <send_size> <recv_sizes†> <root> [<send_datatype> <recv_datatype>]
+        my $send_size = $event_entry->{"send_size"};
+        my $recv_sizes = join(" ", @send_counts);
                     
-		    $root = $root - 1;
+        $root = $root - 1;
                     # PRINT gatherV
-		    print("$task gatherV $send_size $recv_sizes $root\n");
-		}
-		case "MPI_Allgatherv" {
-		    # FORMAT: <rank> allGatherV <send_size> <recv_sizes†> [<send_datatype> <recv_datatype>]
-		    my $send_size = $event_entry->{"send_size"};
-		    my $recv_sizes = join(" ", @send_counts);
+        print("$task gatherV $send_size $recv_sizes $root\n");
+    }
+    case "MPI_Allgatherv" {
+        # FORMAT: <rank> allGatherV <send_size> <recv_sizes†> [<send_datatype> <recv_datatype>]
+        my $send_size = $event_entry->{"send_size"};
+        my $recv_sizes = join(" ", @send_counts);
                     # PRINT allGatherV
-		    print("$task allGatherV $send_size $recv_sizes\n");
-		}
-		case "MPI_Reduce_scatter" {
-		    # FORMAT: <rank> reduceScatter <recv_sizes†> <comp_size> [<datatype>]
-		    my $recv_sizes = join(" ", @recv_counts);
+        print("$task allGatherV $send_size $recv_sizes\n");
+    }
+    case "MPI_Reduce_scatter" {
+        # FORMAT: <rank> reduceScatter <recv_sizes†> <comp_size> [<datatype>]
+        my $recv_sizes = join(" ", @recv_counts);
                     # PRINT reduceScatter
-		    print("$task reduceScatter $recv_sizes <comp_size>\n");
-		}
-	    }
+        print("$task reduceScatter $recv_sizes <comp_size>\n");
+    }
+      }
 
-	    shift(@{$task_events_buffer[$task]});
-	    shift(@{$task_states_buffer[$task]});
-	    next;
-	}
+      shift(@{$task_events_buffer[$task]});
+      shift(@{$task_states_buffer[$task]});
+      next;
+  }
 
-	# if event is a mpi point to point communication
-	# check if the p2p communication is on the communications buffer
-	if ($mpi_call eq "MPI_Send" || $mpi_call eq "MPI_Recv"
-	    || $mpi_call eq "MPI_Isend" || $mpi_call eq "MPI_Irecv") {
-	    my $found_communication = 0;
+  # if event is a mpi point to point communication
+  # check if the p2p communication is on the communications buffer
+  if ($mpi_call eq "MPI_Send" || $mpi_call eq "MPI_Recv"
+      || $mpi_call eq "MPI_Isend" || $mpi_call eq "MPI_Irecv") {
+      my $found_communication = 0;
 
-	    # if communication buffer is empty, stop translating
-	    if (! defined $task_comms_buffer[$task]) {
-		last;
-	    }
+      # if communication buffer is empty, stop translating
+      if (! defined $task_comms_buffer[$task]) {
+    last;
+      }
 
-	    for (my $j = 0; $j < scalar @{$task_comms_buffer[$task]}; $j++) {
-		my $comm_entry = $task_comms_buffer[$task][$j];
-		if ($state_entry->{"begin_time"} <= $comm_entry->{"time"}
-		      && $state_entry->{"end_time"} >= $comm_entry->{"time"}) {
-		    $found_communication = 1;
+      for (my $j = 0; $j < scalar @{$task_comms_buffer[$task]}; $j++) {
+    my $comm_entry = $task_comms_buffer[$task][$j];
+    if ($state_entry->{"begin_time"} <= $comm_entry->{"time"}
+          && $state_entry->{"end_time"} >= $comm_entry->{"time"}) {
+        $found_communication = 1;
 
-		    # if it is on the communication buffer
-		    # generate the tit entry and remove the state + event + comm entries
-		    my $time = $event_entry->{"time"};
-		    switch ($mpi_call) {
-			case "MPI_Send" {
-			    # FORMAT: <rank> send <dst> <comm_size> [<datatype>]
-			    my $dst = $comm_entry->{"destiny"} - 1;
-			    my $comm_size = $comm_entry->{"comm_size"};
+        # if it is on the communication buffer
+        # generate the tit entry and remove the state + event + comm entries
+        my $time = $event_entry->{"time"};
+        switch ($mpi_call) {
+      case "MPI_Send" {
+          # FORMAT: <rank> send <dst> <comm_size> [<datatype>]
+          my $dst = $comm_entry->{"destiny"} - 1;
+          my $comm_size = $comm_entry->{"comm_size"};
                             # PRINT send
-			    print("$task send $dst $comm_size\n");
-			}
-			case "MPI_Recv" {
-			    # FORMAT: <rank> recv <src> <comm_size> [<datatype>]
-			    my $src = $comm_entry->{"source"} - 1;
-			    my $comm_size = $comm_entry->{"comm_size"};
+          print("$task send $dst $comm_size\n");
+      }
+      case "MPI_Recv" {
+          # FORMAT: <rank> recv <src> <comm_size> [<datatype>]
+          my $src = $comm_entry->{"source"} - 1;
+          my $comm_size = $comm_entry->{"comm_size"};
                             # PRINT recv
-			    print("$task recv $src $comm_size\n");
-			}
-			case "MPI_Isend" {
-			    # FORMAT: <rank> Isend <dst> <comm_size> [<datatype>]
-			    my $dst = $comm_entry->{"destiny"} - 1;
-			    my $comm_size = $comm_entry->{"comm_size"};
+          print("$task recv $src $comm_size\n");
+      }
+      case "MPI_Isend" {
+          # FORMAT: <rank> Isend <dst> <comm_size> [<datatype>]
+          my $dst = $comm_entry->{"destiny"} - 1;
+          my $comm_size = $comm_entry->{"comm_size"};
                             # PRINT Isend
-			    print("$task Isend $dst $comm_size\n");
-			}
-			case "MPI_Irecv" {
-			    # FORMAT: <rank> Irecv <src> <comm_size> [<datatype>]
-			    my $src = $comm_entry->{"source"} - 1;
-			    my $comm_size = $comm_entry->{"comm_size"};
+          print("$task Isend $dst $comm_size\n");
+      }
+      case "MPI_Irecv" {
+          # FORMAT: <rank> Irecv <src> <comm_size> [<datatype>]
+          my $src = $comm_entry->{"source"} - 1;
+          my $comm_size = $comm_entry->{"comm_size"};
                             # PRINT Irecv
-			    print("$task Irecv $src $comm_size\n");
-			}
-		    }
-		    splice(@{$task_comms_buffer[$task]}, $j, 1);
-		    shift(@{$task_events_buffer[$task]});
-		    shift(@{$task_states_buffer[$task]});
-		    last;
-		}
-	    }
+          print("$task Irecv $src $comm_size\n");
+      }
+        }
+        splice(@{$task_comms_buffer[$task]}, $j, 1);
+        shift(@{$task_events_buffer[$task]});
+        shift(@{$task_states_buffer[$task]});
+        last;
+    }
+      }
 
-	    # if communication was not found, stop translating
-	    if ($found_communication == 0) {
-		last;
-	    }
-	    else {
-		next;
-	    }
-	}
+      # if communication was not found, stop translating
+      if ($found_communication == 0) {
+    last;
+      }
+      else {
+    next;
+      }
+  }
 
-	# if mpi call is not a p2p communication
-	# generate a tit entry, remove the state + event and continue 
-	my $time = $event_entry->{"time"};
-	switch ($mpi_call) {
-	    case "MPI_Init" {
-		# FORMAT: <rank> init [<set_default_double>]
+  # if mpi call is not a p2p communication
+  # generate a tit entry, remove the state + event and continue 
+  my $time = $event_entry->{"time"};
+  switch ($mpi_call) {
+      case "MPI_Init" {
+    # FORMAT: <rank> init [<set_default_double>]
                 # PRINT init
-		print("$task init\n");
-	    }
-	    case "MPI_Finalize" {
-		# FORMAT: <rank> finalize
+    print("$task init\n");
+      }
+      case "MPI_Finalize" {
+    # FORMAT: <rank> finalize
                 # PRINT finalize
-		print("$task finalize\n");
-	    }
-	    case "MPI_Wait" {
-		# FORMAT: <rank> wait
+    print("$task finalize\n");
+      }
+      case "MPI_Wait" {
+    # FORMAT: <rank> wait
                 # PRINT wait
-		print("$task wait\n");
-	    }
-	    case "MPI_Waitall" {
-		# FORMAT: <rank> waitAll
+    print("$task wait\n");
+      }
+      case "MPI_Waitall" {
+    # FORMAT: <rank> waitAll
                 # PRINT waitAll
-		print("$task waitAll\n");
-	    }
-	    case "MPI_Bcast" {
-		# FORMAT: <rank> bcast <comm_size> [<root> [<datatype>]]
-		my $comm_size = $event_entry->{"send_size"} || $event_entry->{"recv_size"};
-		my $root = $event_entry->{"root"};
+    print("$task waitAll\n");
+      }
+      case "MPI_Bcast" {
+    # FORMAT: <rank> bcast <comm_size> [<root> [<datatype>]]
+    my $comm_size = $event_entry->{"send_size"} || $event_entry->{"recv_size"};
+    my $root = $event_entry->{"root"};
                 # PRINT bcast
-		if (defined $root) {
-		    print("$task bcast $comm_size $task\n"); #BUG TODO
-		}
-		else {
-		    print("$task bcast $comm_size <ROOT>\n");
-		}
-	    }
-	    case "MPI_Barrier" {
-		# FORMAT: <rank> barrier
+    if (defined $root) {
+        print("$task bcast $comm_size $task\n"); #BUG TODO
+    }
+    else {
+        print("$task bcast $comm_size <ROOT>\n");
+    }
+      }
+      case "MPI_Barrier" {
+    # FORMAT: <rank> barrier
                 # PRINT barrier
-		print("$task barrier\n");
-	    }
-	    case "MPI_Reduce" {
-		# FORMAT: <rank> reduce <comm_size> <comp_size> [<root> [<datatype>]]
-		my $comm_size = $event_entry->{"send_size"} || $event_entry->{"recv_size"};
-		my $root = $event_entry->{"root"};
+    print("$task barrier\n");
+      }
+      case "MPI_Reduce" {
+    # FORMAT: <rank> reduce <comm_size> <comp_size> [<root> [<datatype>]]
+    my $comm_size = $event_entry->{"send_size"} || $event_entry->{"recv_size"};
+    my $root = $event_entry->{"root"};
                 # PRINT reduce
-		if (defined $root) {
-		    print("$task reduce $comm_size <comp_size> $task\n"); #BUG TODO
-		}
-		else {
-		    print("$task reduce $comm_size <comp_size>\n");
-		}
-	    }
-	    case "MPI_Allreduce" {
-		# FORMAT: <rank> allReduce <comm_size> <comp_size> [<datatype>]
-		my $comm_size = $event_entry->{"send_size"} || $event_entry->{"recv_size"};
+    if (defined $root) {
+        print("$task reduce $comm_size <comp_size> $task\n"); #BUG TODO
+    }
+    else {
+        print("$task reduce $comm_size <comp_size>\n");
+    }
+      }
+      case "MPI_Allreduce" {
+    # FORMAT: <rank> allReduce <comm_size> <comp_size> [<datatype>]
+    my $comm_size = $event_entry->{"send_size"} || $event_entry->{"recv_size"};
                 # PRINT allReduce
-		print("$task allReduce $comm_size <comp_size>\n");
-	    }
-	    case "MPI_Comm_split" {
-		# FORMAT: <rank> comm_split
+    print("$task allReduce $comm_size <comp_size>\n");
+      }
+      case "MPI_Comm_split" {
+    # FORMAT: <rank> comm_split
                 # PRINT comm_split
-		print("$task comm_split\n");
-	    }
-	    case "MPI_Comm_dup" {
-		# FORMAT: <rank> comm_dup
+    print("$task comm_split\n");
+      }
+      case "MPI_Comm_dup" {
+    # FORMAT: <rank> comm_dup
                 # PRINT comm_dup
-		print("$task comm_dup\n");
-	    }
-	    case "MPI_Gather" {
-		# FORMAT: <rank> gather <send_size> <recv_size> <root> [<send_datatype> <recv_datatype>]
-		my $send_size = $event_entry->{"send_size"};
-		my $recv_size = $event_entry->{"recv_size"};
-		my $root = $event_entry->{"root"};
+    print("$task comm_dup\n");
+      }
+      case "MPI_Gather" {
+    # FORMAT: <rank> gather <send_size> <recv_size> <root> [<send_datatype> <recv_datatype>]
+    my $send_size = $event_entry->{"send_size"};
+    my $recv_size = $event_entry->{"recv_size"};
+    my $root = $event_entry->{"root"};
                 # PRINT gather
-		if (defined $root) {
-		    print("$task gather $send_size $recv_size $task\n"); #BUG TODO
-		}
-		else {
-		    print("$task gather $send_size $recv_size\n");
-		}
-	    }
-	    case "MPI_Allgather" {
-		# FORMAT: <rank> allGather <send_size> <recv_size> [<send_datatype> <recv_datatype>]
-		my $send_size = $event_entry->{"send_size"};
-		my $recv_size = $event_entry->{"recv_size"};
+    if (defined $root) {
+        print("$task gather $send_size $recv_size $task\n"); #BUG TODO
+    }
+    else {
+        print("$task gather $send_size $recv_size\n");
+    }
+      }
+      case "MPI_Allgather" {
+    # FORMAT: <rank> allGather <send_size> <recv_size> [<send_datatype> <recv_datatype>]
+    my $send_size = $event_entry->{"send_size"};
+    my $recv_size = $event_entry->{"recv_size"};
                 # PRINT allGather
-		print("$task allGather $send_size $recv_size\n");
-	    }
-	    case "MPI_Alltoall" {
-		# FORMAT: <rank> allToAll <send_size> <recv_recv> [<send_datatype> <recv_datatype>]
-		my $send_size = $event_entry->{"send_size"};
-		my $recv_size = $event_entry->{"send_size"};
+    print("$task allGather $send_size $recv_size\n");
+      }
+      case "MPI_Alltoall" {
+    # FORMAT: <rank> allToAll <send_size> <recv_recv> [<send_datatype> <recv_datatype>]
+    my $send_size = $event_entry->{"send_size"};
+    my $recv_size = $event_entry->{"send_size"};
                 # PRINT alltoall
-		print("$task alltoall $send_size $recv_size\n");
-	    }
-	}
-	shift(@{$task_events_buffer[$task]});
-	shift(@{$task_states_buffer[$task]});
+    print("$task alltoall $send_size $recv_size\n");
+      }
+  }
+  shift(@{$task_events_buffer[$task]});
+  shift(@{$task_states_buffer[$task]});
     }
 }
 
@@ -734,19 +734,19 @@ sub add_event_entry {
     # if event is a mpi v operations
     # create buffer entry for it in the communicator entry
     if ($mpi_call eq "MPI_Gatherv" || $mpi_call eq "MPI_Allgatherv"
-	|| $mpi_call eq "MPI_Reduce_scatter") {
-	my %v_operation_entry;
-	$v_operation_entry{"time"} = $time;
-	$v_operation_entry{"send_size"} = $send_size;
-	$v_operation_entry{"recv_size"} = $recv_size;
-	if (defined $root) {
-		$v_operation_entry{"root"} = $task;
-	}
-	else {
-		$v_operation_entry{"root"} = undef;
-	}
-	$v_operation_entry{"use_count"} = 0;
-	push @{ $communicators{$communicator}{$mpi_call}{$task} }, \%v_operation_entry;
+  || $mpi_call eq "MPI_Reduce_scatter") {
+  my %v_operation_entry;
+  $v_operation_entry{"time"} = $time;
+  $v_operation_entry{"send_size"} = $send_size;
+  $v_operation_entry{"recv_size"} = $recv_size;
+  if (defined $root) {
+    $v_operation_entry{"root"} = $task;
+  }
+  else {
+    $v_operation_entry{"root"} = undef;
+  }
+  $v_operation_entry{"use_count"} = 0;
+  push @{ $communicators{$communicator}{$mpi_call}{$task} }, \%v_operation_entry;
     }
 }
 
@@ -795,17 +795,17 @@ sub parse_prv {
     # parse app info
     foreach my $app (1..$number_of_apps) {
         $app_info_list[$app - 1] =~ /^(.*)\((.*)\)$/ or die "Invalid application description\n";
-	my $task_info;
+  my $task_info;
         ($number_of_tasks, $task_info) = ($1, $2);
         my(@task_info_list) = split(/,/, $task_info);
 
         # initiate an empty event buffer for each task
-	@task_events_buffer = (0);
+  @task_events_buffer = (0);
         foreach my $task (1..$number_of_tasks) {
             my($number_of_threads, $node) = split(/_/, $task_info_list[$task - 1]);
-	    my @buffer;
-	    $task_events_buffer[$task - 1] = \@buffer;
-        }	
+      my @buffer;
+      $task_events_buffer[$task - 1] = \@buffer;
+        } 
     }
 
     # start reading records
@@ -816,69 +816,69 @@ sub parse_prv {
         # they keep states along time for each cpu/appl/task/thread
         if($line =~ /^1/) {
             my($record, $cpu, $appli, $task, $thread, $begin_time, $end_time, $state_id) = split(/:/, $line);
-	    my $state_name = $states{$state_id}{name};
+      my $state_name = $states{$state_id}{name};
 
-	    generate_tit($task);
+      generate_tit($task);
 
-	    my %parameters;
-	    $parameters{"begin_time"} = $begin_time;
-	    $parameters{"end_time"} = $end_time;
-	    $parameters{"state"} = $state_name;
-	    add_state_entry($task, %parameters);
+      my %parameters;
+      $parameters{"begin_time"} = $begin_time;
+      $parameters{"end_time"} = $end_time;
+      $parameters{"state"} = $state_name;
+      add_state_entry($task, %parameters);
         }
 
-	# event records are in the format 2:cpu:appl:task:thread:time:event_type:event_value
+  # event records are in the format 2:cpu:appl:task:thread:time:event_type:event_value
         # => multiple event_type:event_value might be present
         # these keep a number of events (MPI or others)
-	elsif ($line =~ /^2/) {
-	    my($record, $cpu, $appli, $task, $thread, $time, %event_list) = split(/:/, $line);
-	    my $mpi_call = extract_mpi_call(%event_list);
+  elsif ($line =~ /^2/) {
+      my($record, $cpu, $appli, $task, $thread, $time, %event_list) = split(/:/, $line);
+      my $mpi_call = extract_mpi_call(%event_list);
 
-	    # if event is a MPI call, get the MPI call parameters and add_event_entry($task, %parameters);
-	    if($mpi_call ne "None") {
+      # if event is a MPI call, get the MPI call parameters and add_event_entry($task, %parameters);
+      if($mpi_call ne "None") {
                 my $event_list;                
-		my $send_size = $event_list{$mpi_call_parameters{"send size"}};
-		my $recv_size = $event_list{$mpi_call_parameters{"recv size"}};
+    my $send_size = $event_list{$mpi_call_parameters{"send size"}};
+    my $recv_size = $event_list{$mpi_call_parameters{"recv size"}};
                 # TODO SUD6: Next line is not working (root appears only for the root of the collective operation)
                 # We should buffer this according to a combination of task/communicator waiting for the root data appears
-		my $root = $event_list{$mpi_call_parameters{"root"}};
-		my $comm = $event_list{$mpi_call_parameters{"communicator"}};
+    my $root = $event_list{$mpi_call_parameters{"root"}};
+    my $comm = $event_list{$mpi_call_parameters{"communicator"}};
                 
-		my %parameters;
-		$parameters{"time"} = $time;
-		$parameters{"mpi_call"} = $mpi_call;
-		$parameters{"send_size"} = $send_size;
-		$parameters{"recv_size"} = $recv_size;
-		$parameters{"root"} = $root;
-		$parameters{"communicator"} = $comm;
-		add_event_entry($task, %parameters);
-	    }
+    my %parameters;
+    $parameters{"time"} = $time;
+    $parameters{"mpi_call"} = $mpi_call;
+    $parameters{"send_size"} = $send_size;
+    $parameters{"recv_size"} = $recv_size;
+    $parameters{"root"} = $root;
+    $parameters{"communicator"} = $comm;
+    add_event_entry($task, %parameters);
+      }
         }
 
-	# communication records are in the format 3:cpu_send:ptask_send:task_send:thread_send:logical_time_send:actual_time_send:cpu_recv:ptask_recv:task_recv:thread_recv:logical_time_recv:actual_time_recv:size:tag
-	elsif($line =~ /^3/) { 
+  # communication records are in the format 3:cpu_send:ptask_send:task_send:thread_send:logical_time_send:actual_time_send:cpu_recv:ptask_recv:task_recv:thread_recv:logical_time_recv:actual_time_recv:size:tag
+  elsif($line =~ /^3/) { 
            my($record, $cpu_send, $ptask_send, $task_send, $thread_send, $ltime_send, $atime_send, $cpu_recv, $ptask_recv, $task_recv, $thread_recv, $ltime_recv, $atime_recv, $size, $tag) = split(/:/, $line);
-	   # get mpi call parameters from the communication entry
-	   my %parameters;
-	   $parameters{"time_send"} = $ltime_send;
-	   $parameters{"time_recv"} = $ltime_recv;
-	   $parameters{"comm_size"} = $size;
-	   $parameters{"source"} = $task_send;
-	   $parameters{"destiny"} = $task_recv;
+     # get mpi call parameters from the communication entry
+     my %parameters;
+     $parameters{"time_send"} = $ltime_send;
+     $parameters{"time_recv"} = $ltime_recv;
+     $parameters{"comm_size"} = $size;
+     $parameters{"source"} = $task_send;
+     $parameters{"destiny"} = $task_recv;
 
            add_communication_entry($task_send, $task_recv, %parameters);
         }
 
-	# communicator record are in the format c:app_id:communicator_id:number_of_process:thread_list (e.g., 1:2:3:4:5:6:7:8)
+  # communicator record are in the format c:app_id:communicator_id:number_of_process:thread_list (e.g., 1:2:3:4:5:6:7:8)
         if($line =~ /^c/) {
             my($record, $appli, $id, $size, @task_list) = split(/:/, $line);
-	    $communicators{$id} = { 'size' => $size };
-	    $communicators{$id}{tasks} = [@task_list];
+      $communicators{$id} = { 'size' => $size };
+      $communicators{$id}{tasks} = [@task_list];
         }
     }
 
     for my $task (1 .. $number_of_tasks) {
-	generate_tit($task);
+  generate_tit($task);
     }
 
     return;
@@ -956,17 +956,17 @@ sub parse_prv_lucas {
     # parse app info
     foreach my $app (1..$number_of_apps) {
         $app_info_list[$app - 1] =~ /^(.*)\((.*)\)$/ or die "Invalid application description\n";
-	my $task_info;
+  my $task_info;
         ($number_of_tasks, $task_info) = ($1, $2);
         my(@task_info_list) = split(/,/, $task_info);
 
         # initiate an empty event buffer for each task
-	@task_events_buffer = (0);
+  @task_events_buffer = (0);
         foreach my $task (1..$number_of_tasks) {
             my($number_of_threads, $node) = split(/_/, $task_info_list[$task - 1]);
-	    my @buffer;
-	    $task_events_buffer[$task - 1] = \@buffer;
-        }	
+      my @buffer;
+      $task_events_buffer[$task - 1] = \@buffer;
+        } 
     }
 
     # LUCAS version LUCAS
@@ -978,7 +978,7 @@ sub parse_prv_lucas {
         # they keep states along time for each cpu/appl/task/thread
         if($line =~ /^1/) {
             my($record, $cpu, $appli, $task, $thread, $begin_time, $end_time, $state_id) = split(/:/, $line);
-	    my $state_name = $states{$state_id}{name};
+      my $state_name = $states{$state_id}{name};
 
             if ($state_name eq "Running"){
                 my $comp_size = ($end_time - $begin_time) * $power_reference;
@@ -991,16 +991,16 @@ sub parse_prv_lucas {
             }
         }
         
-	# event records are in the format 2:cpu:appl:task:thread:time:event_type:event_value
+  # event records are in the format 2:cpu:appl:task:thread:time:event_type:event_value
         # => multiple event_type:event_value might be present
         # these keep a number of events (MPI or others)
         # LUCAS
         elsif($line =~ /^2/){
-	    my($record, $cpu, $appli, $task, $thread, $time, %event_list) = split(/:/, $line);
-	    my $mpi_call = extract_mpi_call(%event_list);
+      my($record, $cpu, $appli, $task, $thread, $time, %event_list) = split(/:/, $line);
+      my $mpi_call = extract_mpi_call(%event_list);
 
-	    # if event is a MPI call, get the MPI call parameters and add_event_entry($task, %parameters);
-	    if($mpi_call ne "None") {
+      # if event is a MPI call, get the MPI call parameters and add_event_entry($task, %parameters);
+      if($mpi_call ne "None") {
 
                 # the action to be pushed (a HASH)
                 my %action;
@@ -1016,10 +1016,10 @@ sub parse_prv_lucas {
 
                 # extract information from this paraver event
                 my $event_list;                
-		my $send_size = $event_list{$mpi_call_parameters{"send size"}};
-		my $recv_size = $event_list{$mpi_call_parameters{"recv size"}};
-		my $root = $event_list{$mpi_call_parameters{"root"}}; #marker present in the root
-		my $comm = $event_list{$mpi_call_parameters{"communicator"}};
+    my $send_size = $event_list{$mpi_call_parameters{"send size"}};
+    my $recv_size = $event_list{$mpi_call_parameters{"recv size"}};
+    my $root = $event_list{$mpi_call_parameters{"root"}}; #marker present in the root
+    my $comm = $event_list{$mpi_call_parameters{"communicator"}};
 
                 # register root
                 switch ($mpi_call) {
@@ -1091,12 +1091,12 @@ sub parse_prv_lucas {
                 
                 # push to the action array (everything is buffered before dump at the end)
                 push @action_buffer, \%action;
-	    }
+      }
         }
         # communication records are in the format 3:cpu_send:ptask_send:task_send:thread_send:logical_time_send:actual_time_send:cpu_recv:ptask_recv:task_recv:thread_recv:logical_time_recv:actual_time_recv:size:tag
-	elsif($line =~ /^3/) { 
+  elsif($line =~ /^3/) { 
            my($record, $cpu_send, $ptask_send, $task_send, $thread_send, $ltime_send, $atime_send, $cpu_recv, $ptask_recv, $task_recv, $thread_recv, $ltime_recv, $atime_recv, $size, $tag) = split(/:/, $line);
-	   # get mpi call parameters from the communication entry
+     # get mpi call parameters from the communication entry
 
            my %ptp_operation;
            $ptp_operation{"task_send"} = $task_send;
@@ -1107,11 +1107,11 @@ sub parse_prv_lucas {
 
         next;
         
-	# communicator record are in the format c:app_id:communicator_id:number_of_process:thread_list (e.g., 1:2:3:4:5:6:7:8)
+  # communicator record are in the format c:app_id:communicator_id:number_of_process:thread_list (e.g., 1:2:3:4:5:6:7:8)
         if($line =~ /^c/) {
             my($record, $appli, $id, $size, @task_list) = split(/:/, $line);
-	    $communicators{$id} = { 'size' => $size };
-	    $communicators{$id}{tasks} = [@task_list];
+      $communicators{$id} = { 'size' => $size };
+      $communicators{$id}{tasks} = [@task_list];
         }
     }
 
@@ -1134,23 +1134,23 @@ sub parse_pcf {
         if($line =~ /^STATES$/) {
             while((defined($line=<INPUT>)) && ($line =~ /^(\d+)\s+(.*)/g)) {
                 $states{$1}{name} = $2;
-		$states{$1}{used} = 0;
+    $states{$1}{used} = 0;
             }
         }
 
         if($line =~ /^EVENT_TYPE$/) {
-	    my $id;
+      my $id;
             while($line=<INPUT>) { # read event
                 if($line =~ /VALUES/g) {
-		    while((defined($line=<INPUT>)) && ($line =~ /^(\d+)\s+(.*)/g)) { # read event values
-			$events{$id}{value}{$1} = $2;
-		    }
-		    last;
-		}
+        while((defined($line=<INPUT>)) && ($line =~ /^(\d+)\s+(.*)/g)) { # read event values
+      $events{$id}{value}{$1} = $2;
+        }
+        last;
+    }
                 $line =~ /[\d]\s+(\d+)\s+(.*)/g or next;
                 $id = $1;
                 $events{$id}{type} = $2;
-		$events{$id}{used} = 0;
+    $events{$id}{used} = 0;
             }
         }
     }
