@@ -40,7 +40,6 @@ class oar_replay_workload(Engine):
         if use_test_resources:
             logger.warn('THIS IS A TEST! This run will use only a few '
                         'resources')
-        logger.info('reserving a cluster of nodes')
 
         cluster = 'graphene'
         switch = 'sgraphene4'
@@ -55,7 +54,6 @@ class oar_replay_workload(Engine):
             jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
                                           job_type='deploy',
                                           walltime='04:00:00'), site)])
-
         job_id, site = jobs[0]
         if job_id:
             try:
@@ -69,17 +67,6 @@ class oar_replay_workload(Engine):
                 if undeployed:
                     logger.warn("NOT deployed nodes: {}".format(str(undeployed)))
                     raise RuntimeError('Deployement failed')
-
-                # configure apt-get for all nodes
-                configure_apt_get_cmd = """
-                echo "deb http://oar-ftp.imag.fr/oar/2.5/debian/ jessie main" \
-                        >> /etc/apt/sources.list.d/oar.list; \
-                wget -q http://oar-ftp.imag.fr/oar/oarmaster.asc -O- | sudo apt-key add -; \
-                apt-get update
-                """
-                configure_nodes = Remote(configure_apt_get_cmd, nodes)
-                configure_nodes.run()
-                logger.info("all nodes packages source list are configured")
 
                 # install OAR
                 install_cmd = "apt-get install -y "
@@ -95,7 +82,7 @@ class oar_replay_workload(Engine):
                                             connection_params={'user': 'root'})
                 install_master.run()
 
-                config_master_cmd = """
+                configure_oar_cmd = """
                 sed -i \
                     -e 's/^\(DB_TYPE\)=.*/\1="Pg"/' \
                     -e 's/^\(DB_HOSTNAME\)=.*/\1="server"/' \
@@ -104,16 +91,18 @@ class oar_replay_workload(Engine):
                     -e 's/^\(DB_BASE_LOGIN\)=.*/\1="oar"/' \
                     -e 's/^\(DB_BASE_PASSWD_RO\)=.*/\1="oar_ro"/' \
                     -e 's/^\(DB_BASE_LOGIN_RO\)=.*/\1="oar_ro"/' \
-                    -e 's/^\(SERVER_HOSTNAME\)=.*/\1="server"/' \
+                    -e 's/^\(SERVER_HOSTNAME\)=.*/\1="localhost"/' \
+                    -e 's/^\(SERVER_PORT\)=.*/\1="16666"/' \
                     -e 's/^\(LOG_LEVEL\)\=\"2\"/\1\=\"3\"/' \
                     -e 's/^#\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/\1/' \
                     -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\1/' \
                     /etc/oar/oar.conf; \
                     oar-database --create --db-is-local
                 """
-                config_master = SshProcess(config_master_cmd, nodes[0],
-                                           connection_params={'user': 'root'})
-                config_master.run()
+                configure_oar = Remote(configure_oar_cmd, nodes,
+                                       connection_params={'user': 'root'})
+                configure_oar.run()
+                logger.info("OAR is configured on all nodes")
 
                 # Add nodes to OAR cluster
                 hostfile_filename = self.result_dir + '/' + 'hostfile'
