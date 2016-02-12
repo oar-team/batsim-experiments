@@ -40,7 +40,6 @@ class oar_replay_workload(Engine):
         if use_test_resources:
             logger.warn('THIS IS A TEST! This run will use only a few '
                         'resources')
-        logger.info('reserving a cluster of nodes')
 
         cluster = 'graphene'
         switch = 'sgraphene4'
@@ -55,7 +54,6 @@ class oar_replay_workload(Engine):
             jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
                                           job_type='deploy',
                                           walltime='04:00:00'), site)])
-
         job_id, site = jobs[0]
         if job_id:
             try:
@@ -84,7 +82,7 @@ class oar_replay_workload(Engine):
                                             connection_params={'user': 'root'})
                 install_master.run()
 
-                config_oar_cmd = """
+                configure_oar_cmd = """
                 sed -i \
                     -e 's/^\(DB_TYPE\)=.*/\1="Pg"/' \
                     -e 's/^\(DB_HOSTNAME\)=.*/\1="server"/' \
@@ -102,8 +100,8 @@ class oar_replay_workload(Engine):
                     oar-database --create --db-is-local
                 """
                 configure_oar = Remote(configure_oar_cmd, nodes,
-                                         connection_params={'user': 'root'})
-                configure_nodes.run()
+                                       connection_params={'user': 'root'})
+                configure_oar.run()
                 logger.info("OAR is configured on all nodes")
 
                 # Add nodes to OAR cluster
