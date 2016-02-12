@@ -18,7 +18,7 @@ from execo_g5k import oarsub, oardel, OarSubmission, \
     get_oar_job_nodes, wait_oar_job_start, \
     get_cluster_site
 from execo_g5k.kadeploy import deploy, Deployment
-from execo_engine import Engine, logger
+from execo_engine import Engine, logger, ParamSweeper, sweep
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -44,6 +44,28 @@ class oar_replay_workload(Engine):
         cluster = 'graphene'
         switch = 'sgraphene4'
         env_name = "debian8_workload_generation_nfs"
+
+        # define the parameters
+        if is_a_test:
+            workloads = ['test_profile.json']
+        else:
+            workloads = ['g5k_workload_delay' + num + '.json'
+                         for num in range(0, 6)]
+
+        self.parameters = {
+            'workload_filenames': workloads
+        }
+
+        # define the iterator over the parameters combinations
+        self.sweeper = ParamSweeper(os.path.join(self.result_dir, "sweeps"),
+                                    sweep(self.parameters))
+
+        # Due to previous (using -c result_dir) run skip some combination
+        logger.info('Skipped parameters:' +
+                    '{}'.format(str(self.sweeper.get_skipped())))
+
+        logger.info('Number of parameters combinations {}'.format(
+            str(len(self.sweeper.get_remaining()))))
 
         site = get_cluster_site(cluster)
         if use_test_resources:
@@ -116,6 +138,18 @@ class oar_replay_workload(Engine):
 
                 logger.info("oar is now configured!")
                 raise RuntimeError()
+
+                # Do the replay
+                while len(self.sweeper.get_remaining()) > 0:
+                    combi = self.sweeper.get_next()
+                    oar_replay = SshProcess("oar_replay" + combi['workload_filename'])
+                    oar_replay.run()
+                    if oar_replay.ok:
+                        logger.info("Replay workload OK: {}".format(combi))
+                        self.sweeper.done(combi)
+                    else:
+                        logger.info("Replay workload NOT OK: {}".format(combi))
+                        self.sweeper.cancel(combi)
 
             except:
                 traceback.print_exc()
