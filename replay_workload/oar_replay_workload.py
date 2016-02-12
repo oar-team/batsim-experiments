@@ -74,10 +74,11 @@ class oar_replay_workload(Engine):
                 configure_apt_get_cmd = """
                 echo "deb http://oar-ftp.imag.fr/oar/2.5/debian/ jessie main" \
                         >> /etc/apt/sources.list.d/oar.list; \
-                wget -q http://oar-ftp.imag.fr/oar/oarmaster.asc -O- | sudo apt-key add -; \
+                wget -q http://oar-ftp.imag.fr/oar/oarmaster.asc -O- | apt-key add -; \
                 apt-get update
                 """
-                configure_nodes = Remote(configure_apt_get_cmd, nodes)
+                configure_nodes = Remote(configure_apt_get_cmd, nodes,
+                                         connection_params={'user': 'root'})
                 configure_nodes.run()
                 logger.info("all nodes packages source list are configured")
 
