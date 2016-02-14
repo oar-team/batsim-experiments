@@ -144,6 +144,9 @@ json_data = {
     'profiles':profiles
     }
 
+if 'description' in input_json_data:
+    json_data['profiles_description'] = input_json_data['description']
+
 try:
     json.dump(json_data, args.outputJSON, indent=args.indent)
 except IOError:
