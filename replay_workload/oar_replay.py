@@ -7,7 +7,7 @@ import argparse
 import json
 import sched
 import time
-from subprocess import call
+from subprocess import call, Popen, PIPE
 from datetime import datetime, timedelta
 
 command_path = "/home/mmercier/expe-batsim/workload_generation/NPB_bin/"
@@ -17,7 +17,8 @@ def do_oar_submission(command, walltime, resources, hostfile_dir):
     hms_time = timedelta(seconds=walltime)
     oar_time = str(hms_time).split('.')[0]
     exports = 'export PATH=$PATH:{}; export HOSTDIR={};'.format(command_path, hostfile_dir)
-    oar_cmd = (exports + 'oarsub -l \\nodes=' + str(resources) + ',walltime=' +
+    oar_options = '--stdout={result_dir}/OAR%jobid%.stdout --stderr={result_dir}/OAR%jobid%.stderr '.format(result_dir=hostfile_dir)
+    oar_cmd = (exports + 'oarsub ' + oar_options + ' -l \\nodes=' + str(resources) + ',walltime=' +
                oar_time + ' "' + command + '"')
     print(oar_cmd)
     call(oar_cmd, shell=True)
@@ -69,6 +70,13 @@ for job in jobs:
                             'resources': job['res'],
                             'hostfile_dir': args.result_dir})
     scheduler.run()
+
+while True:
+    process = Popen(["oarstat"], stdout=PIPE)
+    (output, err) = process.communicate()
+    if not output:
+        break
+    time.sleep(1)
 
 end = datetime.now()
 
