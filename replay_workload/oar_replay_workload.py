@@ -13,7 +13,7 @@ import os
 import time
 import ipdb
 import traceback
-from execo import SshProcess, Remote, format_date
+from execo import Process, SshProcess, Remote, format_date, Get, Put
 from execo_g5k import oarsub, oardel, OarSubmission, \
     get_oar_job_nodes, wait_oar_job_start, \
     get_cluster_site
@@ -138,6 +138,16 @@ class oar_replay_workload(Engine):
                                            connection_params={'user': 'root'})
                 config_master.run()
 
+                # propagate SSH keys
+                logger.info("configuring OAR SSH")
+                oar_key = "/tmp/oar_ssh"
+                Process('scp -o BatchMode=yes -o PasswordAuthentication=no '
+                        '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null '
+                        '-o ConnectTimeout=20 -rp -o User=root ' + nodes[0] +
+                        ' ' + oar_key).run()
+                # Get(nodes[0], "/var/lib/oar/.ssh", [oar_key], connection_params={'user': 'root'}).run()
+                Put(nodes[1:], [oar_key], "/var/lib/oar/", connection_params={'user': 'root'}).run()
+
                 ## Use this for new version of oar_resources_init
                 ##
                 # Add nodes to OAR cluster
@@ -160,7 +170,7 @@ class oar_replay_workload(Engine):
                                            connection_params={'user': 'root'})
                 add_resources.run()
 
-                if add_resources.ok():
+                if add_resources.ok:
                     logger.info("oar is now configured!")
                 else:
                     raise RuntimeError("error in the OAR configuration: Abort!")
@@ -168,7 +178,7 @@ class oar_replay_workload(Engine):
                 # Do the replay
                 while len(self.sweeper.get_remaining()) > 0:
                     combi = self.sweeper.get_next()
-                    oar_replay = SshProcess(script_path + "/oar_replay.py" + combi['workload_filename'])
+                    oar_replay = SshProcess(script_path + "/oar_replay.py " + combi['workload_filename'] + " oar_gant_" + combi['workload_filename'])
                     oar_replay.run()
                     if oar_replay.ok:
                         logger.info("Replay workload OK: {}".format(combi))
