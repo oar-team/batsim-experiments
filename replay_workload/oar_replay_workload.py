@@ -18,12 +18,17 @@ from execo_g5k import oarsub, oardel, OarSubmission, \
     get_oar_job_nodes, wait_oar_job_start, \
     get_cluster_site
 from execo_g5k.kadeploy import deploy, Deployment
-from execo_engine import Engine, logger, ParamSweeper, sweep
+from execo_engine import Engine, logger, ParamSweeper, sweep, slugify
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
-is_a_test = True
+is_a_test = False
 
+is_a_reservation = True
+
+reservation_job_id = 872895
+
+alredy_configured = True
 
 def prediction_callback(ts):
     logger.info("job start prediction = %s" % (format_date(ts),))
@@ -51,11 +56,14 @@ class oar_replay_workload(Engine):
         # define the parameters
         if is_a_test:
             # workloads = [script_path + '/test_profile.json']
-            workloads = [script_path + '/../workload_generation/generated_workloads/mini_workload5.json']
+            workloads = [script_path +
+                         '/../workload_generation/generated_workloads/' +
+                         'micro_workload' + str(num) + '.json'
+                         for num in range(0, 3)]
         else:
             workloads = [script_path +
-                         '../workload_generation/generated_workloads/' +
-                         'g5k_workload_delay' + num + '.json'
+                         '/../workload_generation/generated_workloads/' +
+                         'g5k_workload_delay' + str(num) + '.json'
                          for num in range(0, 6)]
 
         self.parameters = {
@@ -74,10 +82,12 @@ class oar_replay_workload(Engine):
             str(len(self.sweeper.get_remaining()))))
 
         site = get_cluster_site(cluster)
-        if is_a_test:
+        if is_a_test and not is_a_reservation:
             jobs = oarsub([(OarSubmission(resources="/nodes=3",
                                           job_type='deploy',
                                           walltime='00:30:00'), site)])
+        elif is_a_reservation:
+            jobs = [(reservation_job_id, site)]
         else:
             jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
                                           job_type='deploy',
@@ -89,141 +99,150 @@ class oar_replay_workload(Engine):
                 wait_oar_job_start(job_id, site, prediction_callback=prediction_callback)
                 logger.info("getting nodes of %s on %s" % (job_id, site))
                 nodes = get_oar_job_nodes(job_id, site)
+                # sort the nodes
+                nodes = sorted(nodes, key=lambda node: node.address)
                 logger.info("deploying nodes: {}".format(str(nodes)))
                 deployed, undeployed = deploy(
-                    Deployment(nodes, env_name=env_name))
+                    Deployment(nodes, env_name=env_name),
+                               check_deployed_command=alredy_configured)
                 if undeployed:
                     logger.warn("NOT deployed nodes: {}".format(str(undeployed)))
                     raise RuntimeError('Deployement failed')
 
-                # install OAR
-                install_cmd = "apt-get install -y "
-                node_packages = "oar-node"
-                logger.info("installing OAR nodes: {}".format(str(nodes[1:])))
-                install_oar_nodes = Remote(install_cmd + node_packages, nodes[1:],
+                if not alredy_configured:
+
+                    # install OAR
+                    install_cmd = "apt-get install -y "
+                    node_packages = "oar-node"
+                    logger.info("installing OAR nodes: {}".format(str(nodes[1:])))
+                    install_oar_nodes = Remote(install_cmd + node_packages, nodes[1:],
+                                               connection_params={'user': 'root'})
+                    install_oar_nodes.start()
+
+                    server_packages = ("oar-server oar-server-pgsql oar-user "
+                                       "oar-user-pgsql postgresql python3-pip "
+                                       "libjson-perl postgresql-server-dev-all")
+                    install_oar_sched_cmd = """
+                    mkdir -p /opt/oar_sched; \
+                    cd /opt/oar_sched; \
+                    git clone https://github.com/oar-team/oar-lib.git; \
+                    cd oar-lib; \
+                    git checkout a1a59f1e3; \
+                    pip3 install -e .; \
+                    cd ..; \
+                    git clone https://github.com/oar-team/oar-kao.git; \
+                    cd oar-kao; \
+                    pip3 install -e .; \
+                    cd /usr/lib/oar/schedulers; \
+                    ln -s /usr/local/bin/kamelot; \
+                    pip3 install psycopg2
+                    """
+                    logger.info("installing OAR server node: {}".format(str(nodes[0])))
+                    install_master = SshProcess(install_cmd + server_packages +
+                                                ";" + install_oar_sched_cmd, nodes[0],
+                                                connection_params={'user': 'root'})
+                    install_master.run()
+                    install_oar_nodes.wait()
+
+                    if not install_master.ok:
+                        Report(install_master)
+
+                    configure_oar_cmd = """
+                    sed -i \
+                        -e 's/^\(DB_TYPE\)=.*/\\1="Pg"/' \
+                        -e 's/^\(DB_HOSTNAME\)=.*/\\1="localhost"/' \
+                        -e 's/^\(DB_PORT\)=.*/\\1="5432"/' \
+                        -e 's/^\(DB_BASE_PASSWD\)=.*/\\1="oar"/' \
+                        -e 's/^\(DB_BASE_LOGIN\)=.*/\\1="oar"/' \
+                        -e 's/^\(DB_BASE_PASSWD_RO\)=.*/\\1="oar_ro"/' \
+                        -e 's/^\(DB_BASE_LOGIN_RO\)=.*/\\1="oar_ro"/' \
+                        -e 's/^\(SERVER_HOSTNAME\)=.*/\\1="localhost"/' \
+                        -e 's/^\(SERVER_PORT\)=.*/\\1="16666"/' \
+                        -e 's/^\(LOG_LEVEL\)\=\"2\"/\\1\=\"3\"/' \
+                        -e 's/^\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/#\\1/' \
+                        -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\\1/' \
+                        -e 's/^\(FINAUD_FREQUENCY\)\=.*/\\1="0"/' \
+                        /etc/oar/oar.conf
+                    """
+                    configure_oar = Remote(configure_oar_cmd, nodes,
                                            connection_params={'user': 'root'})
-                install_oar_nodes.start()
+                    configure_oar.run()
+                    logger.info("OAR is configured on all nodes")
 
-                server_packages = ("oar-server oar-server-pgsql oar-user "
-                                   "oar-user-pgsql postgresql python3-pip "
-                                   "libjson-perl postgresql-server-dev-all")
-                install_oar_sched_cmd = """
-                mkdir -p /opt/oar_sched; \
-                cd /opt/oar_sched; \
-                git clone https://github.com/oar-team/oar-lib.git; \
-                cd oar-lib; \
-                git checkout a1a59f1e3; \
-                pip3 install -e .; \
-                cd ..; \
-                git clone https://github.com/oar-team/oar-kao.git; \
-                cd oar-kao; \
-                pip3 install -e .; \
-                cd /usr/lib/oar/schedulers; \
-                ln -s /usr/local/bin/kamelot; \
-                pip3 install psycopg2
-                """
-                logger.info("installing OAR server node: {}".format(str(nodes[0])))
-                install_master = SshProcess(install_cmd + server_packages +
-                                            ";" + install_oar_sched_cmd, nodes[0],
-                                            connection_params={'user': 'root'})
-                install_master.run()
-                install_oar_nodes.wait()
+                    # Configure server
+                    create_db = "oar-database --create --db-is-local"
+                    config_oar_sched = ("oarnotify --remove-queue default;"
+                                        "oarnotify --add-queue default,1,kamelot")
+                    start_oar = "systemctl start oar-server.service"
+                    logger.info("configuring OAR database: {}".format(str(nodes[0])))
+                    config_master = SshProcess(create_db + ";" + config_oar_sched + ";" + start_oar,
+                                               nodes[0],
+                                               connection_params={'user': 'root'})
+                    config_master.run()
 
-                if not install_master.ok:
-                    Report(install_master)
+                    # propagate SSH keys
+                    logger.info("configuring OAR SSH")
+                    oar_key = "/tmp/.ssh"
+                    Process('rm -rf ' + oar_key).run()
+                    Process('scp -o BatchMode=yes -o PasswordAuthentication=no '
+                            '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null '
+                            '-o ConnectTimeout=20 -rp -o User=root ' +
+                            nodes[0].address + ":/var/lib/oar/.ssh"
+                            ' ' + oar_key).run()
+                    # Get(nodes[0], "/var/lib/oar/.ssh", [oar_key], connection_params={'user': 'root'}).run()
+                    Put(nodes[1:], [oar_key], "/var/lib/oar/", connection_params={'user': 'root'}).run()
 
-                configure_oar_cmd = """
-                sed -i \
-                    -e 's/^\(DB_TYPE\)=.*/\\1="Pg"/' \
-                    -e 's/^\(DB_HOSTNAME\)=.*/\\1="localhost"/' \
-                    -e 's/^\(DB_PORT\)=.*/\\1="5432"/' \
-                    -e 's/^\(DB_BASE_PASSWD\)=.*/\\1="oar"/' \
-                    -e 's/^\(DB_BASE_LOGIN\)=.*/\\1="oar"/' \
-                    -e 's/^\(DB_BASE_PASSWD_RO\)=.*/\\1="oar_ro"/' \
-                    -e 's/^\(DB_BASE_LOGIN_RO\)=.*/\\1="oar_ro"/' \
-                    -e 's/^\(SERVER_HOSTNAME\)=.*/\\1="localhost"/' \
-                    -e 's/^\(SERVER_PORT\)=.*/\\1="16666"/' \
-                    -e 's/^\(LOG_LEVEL\)\=\"2\"/\\1\=\"3\"/' \
-                    -e 's/^\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/#\\1/' \
-                    -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\\1/' \
-                    -e 's/^\(FINAUD_FREQUENCY\)\=.*/\\1="0"/' \
-                    /etc/oar/oar.conf
-                """
-                configure_oar = Remote(configure_oar_cmd, nodes,
-                                       connection_params={'user': 'root'})
-                configure_oar.run()
-                logger.info("OAR is configured on all nodes")
+                    ## Use this for new version of oar_resources_init
+                    ##
+                    # Create hostfile
+                    #hostfile_filename = self.result_dir + '/' + 'hostfile'
+                    #with open(hostfile_filename, 'w') as hostfile:
+                    #    for node in nodes[1:]:
+                    #        print>>hostfile, node.address
+                    # add_resources_cmd = "oar_resources_init -y -x " + hostfile_filename
 
-                # Configure server
-                create_db = "oar-database --create --db-is-local"
-                config_oar_sched = ("oarnotify --remove-queue default;"
-                                    "oarnotify --add-queue default,1,kamelot")
-                start_oar = "systemctl start oar-server.service"
-                logger.info("configuring OAR database: {}".format(str(nodes[0])))
-                config_master = SshProcess(create_db + ";" + config_oar_sched + ";" + start_oar,
-                                           nodes[0],
-                                           connection_params={'user': 'root'})
-                config_master.run()
-
-                # propagate SSH keys
-                logger.info("configuring OAR SSH")
-                oar_key = "/tmp/.ssh"
-                Process('rm -rf ' + oar_key).run()
-                Process('scp -o BatchMode=yes -o PasswordAuthentication=no '
-                        '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null '
-                        '-o ConnectTimeout=20 -rp -o User=root ' +
-                        nodes[0].address + ":/var/lib/oar/.ssh"
-                        ' ' + oar_key).run()
-                # Get(nodes[0], "/var/lib/oar/.ssh", [oar_key], connection_params={'user': 'root'}).run()
-                Put(nodes[1:], [oar_key], "/var/lib/oar/", connection_params={'user': 'root'}).run()
-
-                ## Use this for new version of oar_resources_init
-                ##
-                # Create hostfile
-                hostfile_filename = self.result_dir + '/' + 'hostfile'
-                with open(hostfile_filename, 'w') as hostfile:
+                    add_resources_cmd = """
+                    oarproperty -a cpu || true; \
+                    oarproperty -a core || true; \
+                    oarproperty -c -a host || true; \
+                    oarproperty -a mem || true; \
+                    """
                     for node in nodes[1:]:
-                        print>>hostfile, node.address
-                # add_resources_cmd = "oar_resources_init -y -x " + hostfile_filename
+                        add_resources_cmd = add_resources_cmd + "oarnodesetting -a -h {node} -p host={node} -p cpu=1 -p core=4 -p cpuset=0 -p mem=16; \\\n".format(node=node.address)
 
-                add_resources_cmd = """
-                oarproperty -a cpu || true; \
-                oarproperty -a core || true; \
-                oarproperty -c -a host || true; \
-                oarproperty -a mem || true; \
-                """
-                for node in nodes[1:]:
-                    add_resources_cmd = add_resources_cmd + "oarnodesetting -a -h {node} -p host={node} -p cpu=1 -p core=4 -p cpuset=0 -p mem=16; \\\n".format(node=node.address)
+                    add_resources = SshProcess(add_resources_cmd, nodes[0],
+                                               connection_params={'user': 'root'})
+                    add_resources.run()
 
-                add_resources = SshProcess(add_resources_cmd, nodes[0],
-                                           connection_params={'user': 'root'})
-                add_resources.run()
-
-                if add_resources.ok:
-                    logger.info("oar is now configured!")
-                else:
-                    raise RuntimeError("error in the OAR configuration: Abort!")
+                    if add_resources.ok:
+                        logger.info("oar is now configured!")
+                    else:
+                        raise RuntimeError("error in the OAR configuration: Abort!")
 
                 logger.info('creating hostfiles for MPI')
                 nb_nodes = ['1', '2', '4', '8', '16', '32']
                 for node_number in nb_nodes:
                     hostfile_filename = self.result_dir + '/' + 'hostfile-' + node_number
                     with open(hostfile_filename, 'w') as hostfile:
-                        for node in nodes[:int(node_number)]:
+                        for node in nodes[1:int(node_number)+1]:
                             print>>hostfile, node.address
 
                 # Do the replay
+                logger.info('begining the replay')
                 while len(self.sweeper.get_remaining()) > 0:
                     combi = self.sweeper.get_next()
+                    workload_file = os.path.basename(combi['workload_filename'])
                     oar_replay = SshProcess(script_path + "/oar_replay.py " +
                                             combi['workload_filename'] + " " +
                                             self.result_dir + "  oar_gant_" +
-                                            os.path.basename(combi['workload_filename']),
+                                            workload_file,
                                             nodes[0])
+                    oar_replay.stdout_handlers.append(self.result_dir + '/' +
+                                                      workload_file + '.out')
+                    logger.info("replaying workload: {}".format(combi))
                     oar_replay.run()
                     if oar_replay.ok:
                         logger.info("Replay workload OK: {}".format(combi))
-                        raise
                         self.sweeper.done(combi)
                     else:
                         logger.info("Replay workload NOT OK: {}".format(combi))
@@ -235,8 +254,11 @@ class oar_replay_workload(Engine):
                 ipdb.set_trace()
 
             finally:
-                logger.info("delete job: {}".format(jobs))
-                oardel(jobs)
+                if is_a_test:
+                    ipdb.set_trace()
+                if not is_a_reservation:
+                    logger.info("delete job: {}".format(jobs))
+                    oardel(jobs)
 
 if __name__ == "__main__":
     engine = oar_replay_workload()
