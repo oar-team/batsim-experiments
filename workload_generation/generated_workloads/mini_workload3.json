@@ -1,0 +1,424 @@
+{
+    "nb_res": 32,
+    "profiles_description": "These profiles have been run on the G5K Graphene cluster. They correspond to the NAS Parallel Benchmark. All nodes below one switch have been reserved to ensure the runtimes are not affected by network interferences.",
+    "date": "2016-02-15 15:27:36.943176",
+    "description": "this workload had been automatically generated",
+    "command": "json_workload_generator.py -i 4 profiles/delay_profiles_mpi_commands.json generated_workloads/mini_workload3.json -jn 20 -lambda 1 -k 20 -mu 0.3 -sigma 0.5 -rs 3",
+    "profiles": {
+        "delay_is.C.8": {
+            "runtime": 9.567,
+            "delay": 9.567,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-8 -x PATH is.C.8",
+            "np": 8
+        },
+        "delay_ft.D.32": {
+            "runtime": 568.66,
+            "delay": 568.66,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-32 -x PATH ft.D.32",
+            "np": 32
+        },
+        "delay_is.C.4": {
+            "runtime": 16.684,
+            "delay": 16.684,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-4 -x PATH is.C.4",
+            "np": 4
+        },
+        "delay_ft.B.16": {
+            "runtime": 10.346,
+            "delay": 10.346,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-16 -x PATH ft.B.16",
+            "np": 16
+        },
+        "delay_lu.C.32": {
+            "runtime": 52.81,
+            "delay": 52.81,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-32 -x PATH lu.C.32",
+            "np": 32
+        },
+        "delay_is.B.16": {
+            "runtime": 1.561,
+            "delay": 1.561,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-16 -x PATH is.B.16",
+            "np": 16
+        },
+        "delay_ft.D.8": {
+            "runtime": 2190.82,
+            "delay": 2190.82,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-8 -x PATH ft.D.8",
+            "np": 8
+        },
+        "delay_lu.B.16": {
+            "runtime": 25.905,
+            "delay": 25.905,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-16 -x PATH lu.B.16",
+            "np": 16
+        },
+        "delay_lu.B.2": {
+            "runtime": 140.95,
+            "delay": 140.95,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-2 -x PATH lu.B.2",
+            "np": 2
+        },
+        "delay_is.D.32": {
+            "runtime": 46.028,
+            "delay": 46.028,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-32 -x PATH is.D.32",
+            "np": 32
+        },
+        "delay_is.B.32": {
+            "runtime": 1.908,
+            "delay": 1.908,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-32 -x PATH is.B.32",
+            "np": 32
+        },
+        "delay_is.C.2": {
+            "runtime": 26.481,
+            "delay": 26.481,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-2 -x PATH is.C.2",
+            "np": 2
+        },
+        "delay_is.C.16": {
+            "runtime": 5.59,
+            "delay": 5.59,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-16 -x PATH is.C.16",
+            "np": 16
+        },
+        "delay_is.B.2": {
+            "runtime": 6.609,
+            "delay": 6.609,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-2 -x PATH is.B.2",
+            "np": 2
+        },
+        "delay_ft.C.4": {
+            "runtime": 151.94,
+            "delay": 151.94,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-4 -x PATH ft.C.4",
+            "np": 4
+        },
+        "delay_ft.C.1": {
+            "runtime": 386.48,
+            "delay": 386.48,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-1 -x PATH ft.C.1",
+            "np": 1
+        },
+        "delay_ft.B.4": {
+            "runtime": 35.932,
+            "delay": 35.932,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-4 -x PATH ft.B.4",
+            "np": 4
+        },
+        "delay_lu.B.8": {
+            "runtime": 48.8,
+            "delay": 48.8,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-8 -x PATH lu.B.8",
+            "np": 8
+        },
+        "delay_is.C.32": {
+            "runtime": 3.301,
+            "delay": 3.301,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-32 -x PATH is.C.32",
+            "np": 32
+        },
+        "delay_is.B.1": {
+            "runtime": 9.257,
+            "delay": 9.257,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-1 -x PATH is.B.1",
+            "np": 1
+        },
+        "delay_ft.B.2": {
+            "runtime": 62.08,
+            "delay": 62.08,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-2 -x PATH ft.B.2",
+            "np": 2
+        },
+        "delay_ft.B.1": {
+            "runtime": 88.51,
+            "delay": 88.51,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-1 -x PATH ft.B.1",
+            "np": 1
+        },
+        "delay_ft.C.2": {
+            "runtime": 265.8,
+            "delay": 265.8,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-2 -x PATH ft.C.2",
+            "np": 2
+        },
+        "delay_lu.C.4": {
+            "runtime": 290.53,
+            "delay": 290.53,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-4 -x PATH lu.C.4",
+            "np": 4
+        },
+        "delay_is.B.8": {
+            "runtime": 2.33,
+            "delay": 2.33,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-8 -x PATH is.B.8",
+            "np": 8
+        },
+        "delay_lu.C.8": {
+            "runtime": 179.08,
+            "delay": 179.08,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-8 -x PATH lu.C.8",
+            "np": 8
+        },
+        "delay_ft.B.32": {
+            "runtime": 6.31,
+            "delay": 6.31,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-32 -x PATH ft.B.32",
+            "np": 32
+        },
+        "delay_is.B.4": {
+            "runtime": 3.993,
+            "delay": 3.993,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-4 -x PATH is.B.4",
+            "np": 4
+        },
+        "delay_ft.B.8": {
+            "runtime": 19.294,
+            "delay": 19.294,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-8 -x PATH ft.B.8",
+            "np": 8
+        },
+        "delay_lu.C.16": {
+            "runtime": 95.56,
+            "delay": 95.56,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-16 -x PATH lu.C.16",
+            "np": 16
+        },
+        "delay_lu.C.2": {
+            "runtime": 593.59,
+            "delay": 593.59,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-2 -x PATH lu.C.2",
+            "np": 2
+        },
+        "delay_ft.C.32": {
+            "runtime": 22.671,
+            "delay": 22.671,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-32 -x PATH ft.C.32",
+            "np": 32
+        },
+        "delay_lu.C.1": {
+            "runtime": 1176.93,
+            "delay": 1176.93,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-1 -x PATH lu.C.1",
+            "np": 1
+        },
+        "delay_ft.C.8": {
+            "runtime": 80.71,
+            "delay": 80.71,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-8 -x PATH ft.C.8",
+            "np": 8
+        },
+        "delay_lu.B.32": {
+            "runtime": 13.385,
+            "delay": 13.385,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-32 -x PATH lu.B.32",
+            "np": 32
+        },
+        "delay_lu.B.4": {
+            "runtime": 87.69,
+            "delay": 87.69,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-4 -x PATH lu.B.4",
+            "np": 4
+        },
+        "delay_lu.B.1": {
+            "runtime": 279.99,
+            "delay": 279.99,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-1 -x PATH lu.B.1",
+            "np": 1
+        },
+        "delay_ft.C.16": {
+            "runtime": 41.998,
+            "delay": 41.998,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-16 -x PATH ft.C.16",
+            "np": 16
+        },
+        "delay_ft.D.16": {
+            "runtime": 1119.22,
+            "delay": 1119.22,
+            "type": "delay",
+            "command": "mpirun -hostfile hostfile-16 -x PATH ft.D.16",
+            "np": 16
+        }
+    },
+    "jobs": [
+        {
+            "id": 0,
+            "subtime": 0.9062902433018918,
+            "walltime": 559.98,
+            "res": 1,
+            "profile": "delay_lu.B.1"
+        },
+        {
+            "id": 1,
+            "subtime": 1.7118907622362214,
+            "walltime": 531.6,
+            "res": 2,
+            "profile": "delay_ft.C.2"
+        },
+        {
+            "id": 2,
+            "subtime": 2.689469002131296,
+            "walltime": 1187.18,
+            "res": 2,
+            "profile": "delay_lu.C.2"
+        },
+        {
+            "id": 3,
+            "subtime": 3.625023318285521,
+            "walltime": 60,
+            "res": 2,
+            "profile": "delay_is.C.2"
+        },
+        {
+            "id": 4,
+            "subtime": 4.590395570074163,
+            "walltime": 559.98,
+            "res": 1,
+            "profile": "delay_lu.B.1"
+        },
+        {
+            "id": 5,
+            "subtime": 5.506578929416634,
+            "walltime": 772.96,
+            "res": 1,
+            "profile": "delay_ft.C.1"
+        },
+        {
+            "id": 6,
+            "subtime": 6.51855260870693,
+            "walltime": 60,
+            "res": 4,
+            "profile": "delay_is.B.4"
+        },
+        {
+            "id": 7,
+            "subtime": 7.580496623455377,
+            "walltime": 124.16,
+            "res": 2,
+            "profile": "delay_ft.B.2"
+        },
+        {
+            "id": 8,
+            "subtime": 8.472864259018506,
+            "walltime": 177.02,
+            "res": 1,
+            "profile": "delay_ft.B.1"
+        },
+        {
+            "id": 9,
+            "subtime": 9.414186974296275,
+            "walltime": 60,
+            "res": 1,
+            "profile": "delay_is.B.1"
+        },
+        {
+            "id": 10,
+            "subtime": 10.373109381413318,
+            "walltime": 531.6,
+            "res": 2,
+            "profile": "delay_ft.C.2"
+        },
+        {
+            "id": 11,
+            "subtime": 11.41943700730884,
+            "walltime": 60,
+            "res": 8,
+            "profile": "delay_ft.B.8"
+        },
+        {
+            "id": 12,
+            "subtime": 12.4999952744975,
+            "walltime": 177.02,
+            "res": 1,
+            "profile": "delay_ft.B.1"
+        },
+        {
+            "id": 13,
+            "subtime": 13.500111534941329,
+            "walltime": 303.88,
+            "res": 4,
+            "profile": "delay_ft.C.4"
+        },
+        {
+            "id": 14,
+            "subtime": 14.533366464767472,
+            "walltime": 124.16,
+            "res": 2,
+            "profile": "delay_ft.B.2"
+        },
+        {
+            "id": 15,
+            "subtime": 15.504541075878159,
+            "walltime": 60,
+            "res": 2,
+            "profile": "delay_is.B.2"
+        },
+        {
+            "id": 16,
+            "subtime": 16.467952680069523,
+            "walltime": 281.9,
+            "res": 2,
+            "profile": "delay_lu.B.2"
+        },
+        {
+            "id": 17,
+            "subtime": 17.450560206191568,
+            "walltime": 71.864,
+            "res": 4,
+            "profile": "delay_ft.B.4"
+        },
+        {
+            "id": 18,
+            "subtime": 18.437381910708574,
+            "walltime": 531.6,
+            "res": 2,
+            "profile": "delay_ft.C.2"
+        },
+        {
+            "id": 19,
+            "subtime": 19.352552000881268,
+            "walltime": 71.864,
+            "res": 4,
+            "profile": "delay_ft.B.4"
+        }
+    ]
+}
