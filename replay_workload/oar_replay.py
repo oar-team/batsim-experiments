@@ -10,11 +10,14 @@ import time
 from subprocess import call
 from datetime import datetime, timedelta
 
+command_path = "/home/mmercier/expe-batsim/workload_generation/NPB_bin/"
 
-def do_oar_submission(command, walltime, resources):
+
+def do_oar_submission(command, walltime, resources, hostfile_dir):
     hms_time = timedelta(seconds=walltime)
     oar_time = str(hms_time).split('.')[0]
-    oar_cmd = ('oarsub -l \\nodes=' + str(resources) + ',walltime=' +
+    exports = 'export PATH=$PATH:{}; export HOSTDIR={};'.format(command_path, hostfile_dir)
+    oar_cmd = (exports + 'oarsub -l \\nodes=' + str(resources) + ',walltime=' +
                oar_time + ' "' + command + '"')
     print(oar_cmd)
     call(oar_cmd, shell=True)
@@ -33,8 +36,10 @@ parser = argparse.ArgumentParser(description='Replay Batsim profile using'
 parser.add_argument('inputJSON',
                     type=argparse.FileType('r'),
                     help='The input JSON Batsim profiles file')
+parser.add_argument('result_dir',
+                    help='The result directory to put the result and find the hostname')
 parser.add_argument('outputJSON',
-                    help='The output JSON OAR gantt file')
+                    help='The output JSON OAR gantt file. It will be put in the result_dir')
 
 args = parser.parse_args()
 
@@ -61,9 +66,10 @@ for job in jobs:
                     do_oar_submission,
                     kwargs={'command': cmd,
                             'walltime': job['walltime'],
-                            'resources': job['res']})
+                            'resources': job['res'],
+                            'hostfile_dir': args.result_dir})
     scheduler.run()
 
 end = datetime.now()
 
-get_scheduling_results(args.outputJSON)
+get_scheduling_results(args.result_dir + '/' + args.outputJSON)
