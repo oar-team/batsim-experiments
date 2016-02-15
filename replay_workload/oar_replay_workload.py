@@ -50,13 +50,15 @@ class oar_replay_workload(Engine):
 
         # define the parameters
         if is_a_test:
-            workloads = [script_path + 'test_profile.json']
+            workloads = [script_path + '/test_profile.json']
         else:
-            workloads = ['g5k_workload_delay' + num + '.json'
+            workloads = [script_path +
+                         '../workload_generation/generated_workloads/' +
+                         'g5k_workload_delay' + num + '.json'
                          for num in range(0, 6)]
 
         self.parameters = {
-            'workload_filenames': workloads
+            'workload_filename': workloads
         }
 
         # define the iterator over the parameters combinations
@@ -101,12 +103,33 @@ class oar_replay_workload(Engine):
                                            connection_params={'user': 'root'})
                 install_oar_nodes.start()
 
-                server_packages = "oar-server oar-server-pgsql oar-user oar-user-pgsql postgresql"
+                server_packages = ("oar-server oar-server-pgsql oar-user "
+                                   "oar-user-pgsql postgresql python3-pip "
+                                   "libjson-perl postgresql-server-dev-all")
+                install_oar_sched_cmd = """
+                mkdir -p /opt/oar_sched; \
+                cd /opt/oar_sched; \
+                git clone https://github.com/oar-team/oar-lib.git; \
+                cd oar-lib; \
+                git checkout a1a59f1e3; \
+                pip3 install -e .; \
+                cd ..; \
+                git clone https://github.com/oar-team/oar-kao.git; \
+                cd oar-kao; \
+                pip3 install -e .; \
+                cd /usr/lib/oar/schedulers; \
+                ln -s /usr/local/bin/kamelot; \
+                pip3 install psycopg2
+                """
                 logger.info("installing OAR server node: {}".format(str(nodes[0])))
-                install_master = SshProcess(install_cmd + server_packages, nodes[0],
+                install_master = SshProcess(install_cmd + server_packages +
+                                            ";" + install_oar_sched_cmd, nodes[0],
                                             connection_params={'user': 'root'})
                 install_master.run()
                 install_oar_nodes.wait()
+
+                if not install_master.ok:
+                    Report(install_master)
 
                 configure_oar_cmd = """
                 sed -i \
@@ -120,8 +143,9 @@ class oar_replay_workload(Engine):
                     -e 's/^\(SERVER_HOSTNAME\)=.*/\\1="localhost"/' \
                     -e 's/^\(SERVER_PORT\)=.*/\\1="16666"/' \
                     -e 's/^\(LOG_LEVEL\)\=\"2\"/\\1\=\"3\"/' \
-                    -e 's/^#\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/\\1/' \
+                    -e 's/^\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/#\\1/' \
                     -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\\1/' \
+                    -e 's/^\(FINAUD_FREQUENCY\)\=.*/\\1="0"/' \
                     /etc/oar/oar.conf
                 """
                 configure_oar = Remote(configure_oar_cmd, nodes,
@@ -131,19 +155,23 @@ class oar_replay_workload(Engine):
 
                 # Configure server
                 create_db = "oar-database --create --db-is-local"
+                config_oar_sched = ("oarnotify --remove-queue default;"
+                                    "oarnotify --add-queue default,1,kamelot")
                 start_oar = "systemctl start oar-server.service"
                 logger.info("configuring OAR database: {}".format(str(nodes[0])))
-                config_master = SshProcess(create_db + ";" + start_oar,
+                config_master = SshProcess(create_db + ";" + config_oar_sched + ";" + start_oar,
                                            nodes[0],
                                            connection_params={'user': 'root'})
                 config_master.run()
 
                 # propagate SSH keys
                 logger.info("configuring OAR SSH")
-                oar_key = "/tmp/oar_ssh"
+                oar_key = "/tmp/.ssh"
+                Process('rm -rf ' + oar_key)
                 Process('scp -o BatchMode=yes -o PasswordAuthentication=no '
                         '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null '
-                        '-o ConnectTimeout=20 -rp -o User=root ' + nodes[0] +
+                        '-o ConnectTimeout=20 -rp -o User=root ' +
+                        nodes[0].address + ":/var/lib/oar/.ssh"
                         ' ' + oar_key).run()
                 # Get(nodes[0], "/var/lib/oar/.ssh", [oar_key], connection_params={'user': 'root'}).run()
                 Put(nodes[1:], [oar_key], "/var/lib/oar/", connection_params={'user': 'root'}).run()
@@ -178,14 +206,20 @@ class oar_replay_workload(Engine):
                 # Do the replay
                 while len(self.sweeper.get_remaining()) > 0:
                     combi = self.sweeper.get_next()
-                    oar_replay = SshProcess(script_path + "/oar_replay.py " + combi['workload_filename'] + " oar_gant_" + combi['workload_filename'])
+                    oar_replay = SshProcess(script_path + "/oar_replay.py " +
+                                            combi['workload_filename'] + " " +
+                                            self.result_dir + "/oar_gant_" +
+                                            os.path.basename(combi['workload_filename']),
+                                            nodes[0])
                     oar_replay.run()
                     if oar_replay.ok:
                         logger.info("Replay workload OK: {}".format(combi))
+                        raise
                         self.sweeper.done(combi)
                     else:
                         logger.info("Replay workload NOT OK: {}".format(combi))
                         self.sweeper.cancel(combi)
+                        raise RuntimeError("error in the OAR replay: Abort!")
 
             except:
                 traceback.print_exc()
