@@ -141,7 +141,7 @@ json_data['profiles'][args.profileName] = json_profile
 
 try:
     out_file = open(args.outputJSON, 'w')
-    json.dump(json_data, out_file, indent=args.indent)
+    json.dump(json_data, out_file, indent=args.indent, sort_keys=True)
     out_file.close()
 except IOError:
     print("Cannot write file ", args.outputJSON)

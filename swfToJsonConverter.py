@@ -200,7 +200,7 @@ for (cpuFactor, comFactor, outputJsonFilename) in instancesToGenerate:
 
 	try:
 		outFile = open(outputJsonFilename, 'w')
-		json.dump(data, outFile, indent=args.indent)
+		json.dump(data, outFile, indent=args.indent, sort_keys=True)
 
 		if not args.quiet:
 			print('{} jobs and {} profiles had been created'.format(len(jobs), len(profiles)))

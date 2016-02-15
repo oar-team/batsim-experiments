@@ -90,6 +90,10 @@ for prof in profiles:
 for i in range(args.maximum_power_of_two + 1):
     assert(len(sprofiles[i]) > 0), "There is no profile corresponding to job_size={}, aborting.".format(2**i)
 
+# Let the sprofiles be sorted by some criteria to ensure output determinism since the JSON library does not seem to be deterministic
+for sublist in sprofiles:
+    sublist.sort()
+
 # Workload generation
 workload = []
 
@@ -148,7 +152,7 @@ if 'description' in input_json_data:
     json_data['profiles_description'] = input_json_data['description']
 
 try:
-    json.dump(json_data, args.outputJSON, indent=args.indent)
+    json.dump(json_data, args.outputJSON, indent=args.indent, sort_keys=True)
 except IOError:
     print('Cannot write file', args.outputJSON)
     raise
