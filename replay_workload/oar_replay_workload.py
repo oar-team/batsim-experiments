@@ -50,7 +50,7 @@ class oar_replay_workload(Engine):
 
         # define the parameters
         if is_a_test:
-            workloads = ['test_profile.json']
+            workloads = [script_path + 'test_profile.json']
         else:
             workloads = ['g5k_workload_delay' + num + '.json'
                          for num in range(0, 6)]
@@ -101,7 +101,7 @@ class oar_replay_workload(Engine):
                                            connection_params={'user': 'root'})
                 install_oar_nodes.start()
 
-                server_packages = "oar-server oar-server-pgsql oar-user oar-user-pgsql"
+                server_packages = "oar-server oar-server-pgsql oar-user oar-user-pgsql postgresql"
                 logger.info("installing OAR server node: {}".format(str(nodes[0])))
                 install_master = SshProcess(install_cmd + server_packages, nodes[0],
                                             connection_params={'user': 'root'})
@@ -133,21 +133,29 @@ class oar_replay_workload(Engine):
                 create_db = "oar-database --create --db-is-local"
                 start_oar = "systemctl start oar-server.service"
                 logger.info("configuring OAR database: {}".format(str(nodes[0])))
-                config_master = SshProcess(create_db + ";" + start_oar, nodes[0],
-                                            connection_params={'user': 'root'})
+                config_master = SshProcess(create_db + ";" + start_oar,
+                                           nodes[0],
+                                           connection_params={'user': 'root'})
                 config_master.run()
 
+                ## Use this for new version of oar_resources_init
+                ##
                 # Add nodes to OAR cluster
-                hostfile_filename = self.result_dir + '/' + 'hostfile'
-                with open(hostfile_filename, 'w') as hostfile:
-                    for node in nodes[1:]:
-                        print>>hostfile, node.address
-
-                # Use this for new version of oar_resources_init
+                #hostfile_filename = self.result_dir + '/' + 'hostfile'
+                #with open(hostfile_filename, 'w') as hostfile:
+                #    for node in nodes[1:]:
+                #        print>>hostfile, node.address
                 # add_resources_cmd = "oar_resources_init -y -x " + hostfile_filename
 
-                add_resources_cmd = "oar_resources_init -o /tmp/add_nodes " + \
-                                    hostfile_filename + "<<EOF\ny\nEOF;. /tmp/add/nodes"
+                add_resources_cmd = """
+                oarproperty -a cpu || true; \
+                oarproperty -a core || true; \
+                oarproperty -c -a host || true; \
+                oarproperty -a mem || true; \
+                """
+                for node in nodes[1:]:
+                    add_resources_cmd = add_resources_cmd + "oarnodesetting -a -h {node} -p host={node} -p cpu=1 -p core=4 -p cpuset=0 -p mem=16; \\\n".format(node=node.address)
+
                 add_resources = SshProcess(add_resources_cmd, nodes[0],
                                            connection_params={'user': 'root'})
                 add_resources.run()
@@ -160,7 +168,7 @@ class oar_replay_workload(Engine):
                 # Do the replay
                 while len(self.sweeper.get_remaining()) > 0:
                     combi = self.sweeper.get_next()
-                    oar_replay = SshProcess("oar_replay" + combi['workload_filename'])
+                    oar_replay = SshProcess(script_path + "/oar_replay.py" + combi['workload_filename'])
                     oar_replay.run()
                     if oar_replay.ok:
                         logger.info("Replay workload OK: {}".format(combi))
