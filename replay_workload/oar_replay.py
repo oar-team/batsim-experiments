@@ -8,21 +8,25 @@ import json
 import sched
 import time
 from subprocess import call
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def do_oar_submission(command, walltime, resources):
-    hms_time = datetime.timedelta(secounds=walltime)
-    oar_time = ":".join(hms_time.hours, hms_time.minutes,
-                        hms_time.secounds)
-    call('oarsub -l \\nodes=' + resources + ',walltime=' +
-                  oar_time + ' ' + cmd, shell=True)
+    hms_time = timedelta(seconds=walltime)
+    oar_time = str(hms_time).split('.')[0]
+    oar_cmd = ('oarsub -l \\nodes=' + str(resources) + ',walltime=' +
+               oar_time + ' "' + command + '"')
+    print(oar_cmd)
+    call(oar_cmd, shell=True)
 
 
-def get_scheduling_results(results_dir):
+def get_scheduling_results(results_file):
     fmt = '%Y-%m-%d %X'
-    call('oarstat -J --gantt "' + begin.strftime(fmt) + ',' + \
-                  end.strftime(fmt) + '" > ' + results_dir + '/oar_gant.json', shell=True)
+    oar_gantt_cmd = ('oarstat -J --gantt "' + begin.strftime(fmt) + ',' +
+                     end.strftime(fmt) + '" > ' + str(results_file))
+    print(oar_gantt_cmd)
+    call(oar_gantt_cmd,
+         shell=True)
 
 parser = argparse.ArgumentParser(description='Replay Batsim profile using'
                                              'OAR submitions')
@@ -30,7 +34,6 @@ parser.add_argument('inputJSON',
                     type=argparse.FileType('r'),
                     help='The input JSON Batsim profiles file')
 parser.add_argument('outputJSON',
-                    type=argparse.FileType('w'),
                     help='The output JSON OAR gantt file')
 
 args = parser.parse_args()
@@ -58,9 +61,9 @@ for job in jobs:
                     do_oar_submission,
                     kwargs={'command': cmd,
                             'walltime': job['walltime'],
-                            'resources_number': job['res']})
+                            'resources': job['res']})
     scheduler.run()
 
 end = datetime.now()
 
-get_scheduling_results()
+get_scheduling_results(args.outputJSON)
