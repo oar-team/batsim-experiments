@@ -1,0 +1,60 @@
+{
+    "description": "this workload had been automatically generated",
+    "profiles_description": "These profiles have been run on the G5K Graphene cluster. They correspond to the NAS Parallel Benchmark. All nodes below one switch have been reserved to ensure the runtimes are not affected by network interferences.",
+    "command": "json_workload_generator.py -i 4 profiles/delay_profiles.json generated_workloads/g5k_workload_delay0.json -jn 250 -lambda 20 -k 20 -mu 0.25 -sigma 0.5 -rs 0",
+    "profiles": {
+        "delay_is.B.2": {
+            "delay": 6.609,
+            "type": "delay",
+            "runtime": 6.609,
+            "command": "sleep 5",
+            "np": 2
+        },
+        "delay_lu.C.2": {
+            "delay": 10,
+            "type": "delay",
+            "runtime": 10,
+            "command": "sleep 10",
+            "np": 2
+        },
+        "delay_ft.C.1": {
+            "delay": 8.48,
+            "type": "delay",
+            "runtime": 8.48,
+            "command": "sleep 8",
+            "np": 1
+        }
+    },
+    "nb_res": 2,
+    "jobs": [
+        {
+            "id": 0,
+            "subtime": 2.441489715712297,
+            "walltime": 13.218,
+            "res": 2,
+            "profile": "delay_is.B.2"
+        },
+        {
+            "id": 4,
+            "subtime": 8.14917658589945,
+            "walltime": 13.218,
+            "res": 2,
+            "profile": "delay_is.B.2"
+        },
+        {
+            "id": 7,
+            "subtime": 15.99753852408713,
+            "walltime": 2.02,
+            "res": 2,
+            "profile": "delay_lu.C.2"
+        },
+        {
+            "id": 8,
+            "subtime": 17.35007725091273,
+            "walltime": 13.218,
+            "res": 2,
+            "profile": "delay_is.B.2"
+        }
+    ],
+    "date": "2016-02-12 16:52:35.528769"
+}

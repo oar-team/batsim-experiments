@@ -22,7 +22,7 @@ from execo_engine import Engine, logger, ParamSweeper, sweep
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
-use_test_resources = True
+is_a_test = True
 
 
 def prediction_callback(ts):
@@ -32,12 +32,15 @@ def prediction_callback(ts):
 class oar_replay_workload(Engine):
 
     def setup_result_dir(self):
-        self.result_dir = script_path + '/results_' + \
+        run_type = ""
+        if is_a_test:
+            run_type = "test"
+        self.result_dir = script_path + '/' + run_type + 'results_' + \
                 time.strftime("%Y-%m-%d--%H-%M-%S")
 
     def run(self):
         """Run the experiment"""
-        if use_test_resources:
+        if is_a_test:
             logger.warn('THIS IS A TEST! This run will use only a few '
                         'resources')
 
@@ -47,7 +50,7 @@ class oar_replay_workload(Engine):
 
         # define the parameters
         if is_a_test:
-            workloads = ['test_profile.json']
+            workloads = [script_path + 'test_profile.json']
         else:
             workloads = ['g5k_workload_delay' + num + '.json'
                          for num in range(0, 6)]
@@ -68,7 +71,7 @@ class oar_replay_workload(Engine):
             str(len(self.sweeper.get_remaining()))))
 
         site = get_cluster_site(cluster)
-        if use_test_resources:
+        if is_a_test:
             jobs = oarsub([(OarSubmission(resources="/nodes=3",
                                           job_type='deploy',
                                           walltime='00:30:00'), site)])
@@ -94,55 +97,78 @@ class oar_replay_workload(Engine):
                 install_cmd = "apt-get install -y "
                 node_packages = "oar-node"
                 logger.info("installing OAR nodes: {}".format(str(nodes[1:])))
-                install_oar_nodes = Remote(install_cmd + node_packages, nodes,
+                install_oar_nodes = Remote(install_cmd + node_packages, nodes[1:],
                                            connection_params={'user': 'root'})
                 install_oar_nodes.start()
 
-                server_packages = "oar-server oar-server-pgsql oar-user oar-user-pgsql"
+                server_packages = "oar-server oar-server-pgsql oar-user oar-user-pgsql postgresql"
                 logger.info("installing OAR server node: {}".format(str(nodes[0])))
                 install_master = SshProcess(install_cmd + server_packages, nodes[0],
                                             connection_params={'user': 'root'})
                 install_master.run()
+                install_oar_nodes.wait()
 
                 configure_oar_cmd = """
                 sed -i \
-                    -e 's/^\(DB_TYPE\)=.*/\1="Pg"/' \
-                    -e 's/^\(DB_HOSTNAME\)=.*/\1="server"/' \
-                    -e 's/^\(DB_PORT\)=.*/\1="5432"/' \
-                    -e 's/^\(DB_BASE_PASSWD\)=.*/\1="oar"/' \
-                    -e 's/^\(DB_BASE_LOGIN\)=.*/\1="oar"/' \
-                    -e 's/^\(DB_BASE_PASSWD_RO\)=.*/\1="oar_ro"/' \
-                    -e 's/^\(DB_BASE_LOGIN_RO\)=.*/\1="oar_ro"/' \
-                    -e 's/^\(SERVER_HOSTNAME\)=.*/\1="localhost"/' \
-                    -e 's/^\(SERVER_PORT\)=.*/\1="16666"/' \
-                    -e 's/^\(LOG_LEVEL\)\=\"2\"/\1\=\"3\"/' \
-                    -e 's/^#\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/\1/' \
-                    -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\1/' \
-                    /etc/oar/oar.conf; \
-                    oar-database --create --db-is-local
+                    -e 's/^\(DB_TYPE\)=.*/\\1="Pg"/' \
+                    -e 's/^\(DB_HOSTNAME\)=.*/\\1="localhost"/' \
+                    -e 's/^\(DB_PORT\)=.*/\\1="5432"/' \
+                    -e 's/^\(DB_BASE_PASSWD\)=.*/\\1="oar"/' \
+                    -e 's/^\(DB_BASE_LOGIN\)=.*/\\1="oar"/' \
+                    -e 's/^\(DB_BASE_PASSWD_RO\)=.*/\\1="oar_ro"/' \
+                    -e 's/^\(DB_BASE_LOGIN_RO\)=.*/\\1="oar_ro"/' \
+                    -e 's/^\(SERVER_HOSTNAME\)=.*/\\1="localhost"/' \
+                    -e 's/^\(SERVER_PORT\)=.*/\\1="16666"/' \
+                    -e 's/^\(LOG_LEVEL\)\=\"2\"/\\1\=\"3\"/' \
+                    -e 's/^#\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/\\1/' \
+                    -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\\1/' \
+                    /etc/oar/oar.conf
                 """
                 configure_oar = Remote(configure_oar_cmd, nodes,
                                        connection_params={'user': 'root'})
                 configure_oar.run()
                 logger.info("OAR is configured on all nodes")
 
+                # Configure server
+                create_db = "oar-database --create --db-is-local"
+                start_oar = "systemctl start oar-server.service"
+                logger.info("configuring OAR database: {}".format(str(nodes[0])))
+                config_master = SshProcess(create_db + ";" + start_oar,
+                                           nodes[0],
+                                           connection_params={'user': 'root'})
+                config_master.run()
+
+                ## Use this for new version of oar_resources_init
+                ##
                 # Add nodes to OAR cluster
-                hostfile_filename = self.result_dir + '/' + 'hostfile'
-                with open(hostfile_filename, 'w') as hostfile:
-                    for node in nodes[1:]:
-                        print>>hostfile, node.address
-                add_resources_cmd = "oar_resources_init -y -x " + hostfile_filename
+                #hostfile_filename = self.result_dir + '/' + 'hostfile'
+                #with open(hostfile_filename, 'w') as hostfile:
+                #    for node in nodes[1:]:
+                #        print>>hostfile, node.address
+                # add_resources_cmd = "oar_resources_init -y -x " + hostfile_filename
+
+                add_resources_cmd = """
+                oarproperty -a cpu || true; \
+                oarproperty -a core || true; \
+                oarproperty -c -a host || true; \
+                oarproperty -a mem || true; \
+                """
+                for node in nodes[1:]:
+                    add_resources_cmd = add_resources_cmd + "oarnodesetting -a -h {node} -p host={node} -p cpu=1 -p core=4 -p cpuset=0 -p mem=16; \\\n".format(node=node.address)
+
                 add_resources = SshProcess(add_resources_cmd, nodes[0],
                                            connection_params={'user': 'root'})
                 add_resources.run()
 
-                logger.info("oar is now configured!")
-                raise RuntimeError()
+                if add_resources.ok():
+                    logger.info("oar is now configured!")
+                else:
+                    raise RuntimeError("error in the OAR configuration: Abort!")
 
                 # Do the replay
                 while len(self.sweeper.get_remaining()) > 0:
                     combi = self.sweeper.get_next()
-                    oar_replay = SshProcess("oar_replay" + combi['workload_filename'])
+                    oar_replay = SshProcess(script_path + "/oar_replay.py" + combi['workload_filename'])
                     oar_replay.run()
                     if oar_replay.ok:
                         logger.info("Replay workload OK: {}".format(combi))
