@@ -22,7 +22,7 @@ from execo_engine import Engine, logger, ParamSweeper, sweep, slugify
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
-is_a_test = True
+is_a_test = False
 
 is_a_reservation = True
 
@@ -243,7 +243,6 @@ class oar_replay_workload(Engine):
                     oar_replay.run()
                     if oar_replay.ok:
                         logger.info("Replay workload OK: {}".format(combi))
-                        raise
                         self.sweeper.done(combi)
                     else:
                         logger.info("Replay workload NOT OK: {}".format(combi))
@@ -255,6 +254,8 @@ class oar_replay_workload(Engine):
                 ipdb.set_trace()
 
             finally:
+                if is_a_test:
+                    ipdb.set_trace()
                 if not is_a_reservation:
                     logger.info("delete job: {}".format(jobs))
                     oardel(jobs)
