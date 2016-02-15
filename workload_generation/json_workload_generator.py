@@ -127,7 +127,7 @@ for job_id in range(args.job_number):
     job_release_date = release_date
     release_date = release_date + random.weibullvariate(args.job_iarrival_lambda, args.job_iarrival_k)
 
-    workload.append((job_id, job_size, job_profile, release_date))
+    workload.append((job_id, job_size, job_profile, release_date)) #fixme: use job_release_date
 
 #df = pandas.DataFrame(data = workload, columns=['id','size','profile','release_date'])
 #df.to_csv('jobs.csv',index=False,header=True)

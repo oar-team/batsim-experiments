@@ -1,2029 +1,2029 @@
 {
     "command": "json_workload_generator.py -i 4 profiles/delay_profiles_mpi_commands.json generated_workloads/g5k_workload_delay0.json -jn 250 -lambda 20 -k 20 -mu 0.25 -sigma 0.5 -rs 0",
-    "date": "2016-02-15 18:44:30.489328",
+    "date": "2016-02-15 20:58:22.794114",
     "description": "this workload had been automatically generated",
     "jobs": [
         {
             "id": 0,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 17.43616073230131,
-            "walltime": 71.864
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 19.2676056477234,
+            "walltime": 60
         },
         {
             "id": 1,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 36.70436648503078,
-            "walltime": 531.6
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 39.90204308317773,
+            "walltime": 559.98
         },
         {
             "id": 2,
-            "profile": "delay_lu.B.4",
+            "profile": "delay_ft.C.4",
             "res": 4,
-            "subtime": 55.62296932310015,
-            "walltime": 175.38
+            "subtime": 59.748716231145,
+            "walltime": 303.88
         },
         {
             "id": 3,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 76.75765642736451,
+            "profile": "delay_is.C.8",
+            "res": 8,
+            "subtime": 81.27789456140329,
             "walltime": 60
         },
         {
             "id": 4,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 96.99376458460854,
-            "walltime": 177.02
+            "profile": "delay_ft.B.2",
+            "res": 2,
+            "subtime": 101.82436248885249,
+            "walltime": 124.16
         },
         {
             "id": 5,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 117.30422185656248,
-            "walltime": 60
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 121.41442133583342,
+            "walltime": 559.98
         },
         {
             "id": 6,
-            "profile": "delay_is.B.1",
-            "res": 1,
-            "subtime": 135.1406549443894,
-            "walltime": 60
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 141.3930357696507,
+            "walltime": 1187.18
         },
         {
             "id": 7,
-            "profile": "delay_ft.B.2",
+            "profile": "delay_ft.C.2",
             "res": 2,
-            "subtime": 155.6714185183414,
-            "walltime": 124.16
+            "subtime": 159.12261810705274,
+            "walltime": 531.6
         },
         {
             "id": 8,
             "profile": "delay_ft.B.4",
             "res": 4,
-            "subtime": 175.60756173640775,
+            "subtime": 179.2691118005742,
             "walltime": 71.864
         },
         {
             "id": 9,
-            "profile": "delay_lu.B.2",
+            "profile": "delay_is.C.2",
             "res": 2,
-            "subtime": 193.6752583013614,
-            "walltime": 281.9
+            "subtime": 199.93434719404627,
+            "walltime": 60
         },
         {
             "id": 10,
             "profile": "delay_ft.C.4",
             "res": 4,
-            "subtime": 211.7826897176006,
+            "subtime": 220.0799255786247,
             "walltime": 303.88
         },
         {
             "id": 11,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 232.44104700854095,
-            "walltime": 772.96
+            "profile": "delay_lu.C.16",
+            "res": 16,
+            "subtime": 239.64055640892914,
+            "walltime": 191.12
         },
         {
             "id": 12,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 249.96443576531107,
-            "walltime": 772.96
+            "profile": "delay_ft.B.2",
+            "res": 2,
+            "subtime": 258.97225514835236,
+            "walltime": 124.16
         },
         {
             "id": 13,
-            "profile": "delay_lu.B.2",
+            "profile": "delay_ft.B.2",
             "res": 2,
-            "subtime": 271.070517764687,
-            "walltime": 281.9
+            "subtime": 277.97667594674476,
+            "walltime": 124.16
         },
         {
             "id": 14,
-            "profile": "delay_is.C.4",
-            "res": 4,
-            "subtime": 291.07371939584675,
-            "walltime": 60
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 296.79831260642555,
+            "walltime": 281.9
         },
         {
             "id": 15,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 309.9874532760768,
-            "walltime": 559.98
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 317.0449348543368,
+            "walltime": 60
         },
         {
             "id": 16,
-            "profile": "delay_lu.B.4",
-            "res": 4,
-            "subtime": 328.65294040301734,
-            "walltime": 175.38
+            "profile": "delay_ft.C.2",
+            "res": 2,
+            "subtime": 337.01952623957607,
+            "walltime": 531.6
         },
         {
             "id": 17,
             "profile": "delay_lu.C.1",
             "res": 1,
-            "subtime": 347.7820916971524,
+            "subtime": 355.7190092220889,
             "walltime": 2353.86
         },
         {
             "id": 18,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 368.6506669606763,
-            "walltime": 60
+            "profile": "delay_ft.B.4",
+            "res": 4,
+            "subtime": 376.38624725233046,
+            "walltime": 71.864
         },
         {
             "id": 19,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 389.3499053313906,
-            "walltime": 2353.86
-        },
-        {
-            "id": 20,
-            "profile": "delay_is.C.4",
-            "res": 4,
-            "subtime": 409.51776764495537,
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 396.575370364027,
             "walltime": 60
         },
         {
+            "id": 20,
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 416.3156895131327,
+            "walltime": 177.02
+        },
+        {
             "id": 21,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 428.486894943864,
-            "walltime": 71.864
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 436.8597794907349,
+            "walltime": 60
         },
         {
             "id": 22,
-            "profile": "delay_lu.C.2",
-            "res": 2,
-            "subtime": 445.4378803683134,
-            "walltime": 1187.18
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 457.6791580613493,
+            "walltime": 772.96
         },
         {
             "id": 23,
-            "profile": "delay_lu.B.4",
-            "res": 4,
-            "subtime": 466.1656630064784,
-            "walltime": 175.38
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 477.8466330612836,
+            "walltime": 281.9
         },
         {
             "id": 24,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 486.9942181251551,
-            "walltime": 2353.86
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 495.63538661363316,
+            "walltime": 60
         },
         {
             "id": 25,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 505.3664248481649,
-            "walltime": 71.864
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 515.9554206328338,
+            "walltime": 60
         },
         {
             "id": 26,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 526.5478713664118,
-            "walltime": 124.16
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 536.290402519568,
+            "walltime": 60
         },
         {
             "id": 27,
             "profile": "delay_is.C.4",
             "res": 4,
-            "subtime": 547.5512914160456,
+            "subtime": 555.5962573332722,
             "walltime": 60
         },
         {
             "id": 28,
-            "profile": "delay_is.C.4",
-            "res": 4,
-            "subtime": 567.4776261924874,
-            "walltime": 60
-        },
-        {
-            "id": 29,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 587.0657760379258,
-            "walltime": 124.16
-        },
-        {
-            "id": 30,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 606.9834836037686,
-            "walltime": 124.16
-        },
-        {
-            "id": 31,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 627.2771654557939,
-            "walltime": 559.98
-        },
-        {
-            "id": 32,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 647.5647634914801,
-            "walltime": 177.02
-        },
-        {
-            "id": 33,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 667.2142291663394,
-            "walltime": 124.16
-        },
-        {
-            "id": 34,
-            "profile": "delay_lu.C.2",
-            "res": 2,
-            "subtime": 685.6378233622968,
-            "walltime": 1187.18
-        },
-        {
-            "id": 35,
-            "profile": "delay_is.B.1",
-            "res": 1,
-            "subtime": 706.8437167006387,
-            "walltime": 60
-        },
-        {
-            "id": 36,
-            "profile": "delay_lu.C.4",
-            "res": 4,
-            "subtime": 726.3155842986542,
-            "walltime": 581.06
-        },
-        {
-            "id": 37,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 743.7179036857301,
-            "walltime": 531.6
-        },
-        {
-            "id": 38,
-            "profile": "delay_is.C.2",
-            "res": 2,
-            "subtime": 762.7588711423094,
-            "walltime": 60
-        },
-        {
-            "id": 39,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 783.3512691094775,
-            "walltime": 281.9
-        },
-        {
-            "id": 40,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 801.4398213190311,
-            "walltime": 2353.86
-        },
-        {
-            "id": 41,
-            "profile": "delay_lu.C.4",
-            "res": 4,
-            "subtime": 819.1311581507086,
-            "walltime": 581.06
-        },
-        {
-            "id": 42,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 839.6460606168221,
-            "walltime": 71.864
-        },
-        {
-            "id": 43,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 859.5972367716878,
-            "walltime": 71.864
-        },
-        {
-            "id": 44,
-            "profile": "delay_is.B.1",
-            "res": 1,
-            "subtime": 877.5413861546826,
-            "walltime": 60
-        },
-        {
-            "id": 45,
-            "profile": "delay_lu.B.4",
-            "res": 4,
-            "subtime": 897.24386879646,
-            "walltime": 175.38
-        },
-        {
-            "id": 46,
             "profile": "delay_ft.C.1",
             "res": 1,
-            "subtime": 918.342967985042,
+            "subtime": 576.5059524412618,
             "walltime": 772.96
         },
         {
-            "id": 47,
-            "profile": "delay_is.B.2",
+            "id": 29,
+            "profile": "delay_ft.C.2",
             "res": 2,
-            "subtime": 936.1569370380697,
+            "subtime": 596.6097587542502,
+            "walltime": 531.6
+        },
+        {
+            "id": 30,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 616.5691484057348,
+            "walltime": 60
+        },
+        {
+            "id": 31,
+            "profile": "delay_lu.C.1",
+            "res": 1,
+            "subtime": 634.6708041685872,
+            "walltime": 2353.86
+        },
+        {
+            "id": 32,
+            "profile": "delay_ft.C.8",
+            "res": 8,
+            "subtime": 653.9369012517296,
+            "walltime": 161.42
+        },
+        {
+            "id": 33,
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 672.2555104060195,
+            "walltime": 1187.18
+        },
+        {
+            "id": 34,
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 691.6102189078571,
+            "walltime": 772.96
+        },
+        {
+            "id": 35,
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 709.0534626746494,
+            "walltime": 281.9
+        },
+        {
+            "id": 36,
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 729.0278842402038,
+            "walltime": 1187.18
+        },
+        {
+            "id": 37,
+            "profile": "delay_ft.B.4",
+            "res": 4,
+            "subtime": 747.9426241517479,
+            "walltime": 71.864
+        },
+        {
+            "id": 38,
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 766.698234215068,
+            "walltime": 281.9
+        },
+        {
+            "id": 39,
+            "profile": "delay_ft.B.2",
+            "res": 2,
+            "subtime": 785.906945624724,
+            "walltime": 124.16
+        },
+        {
+            "id": 40,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 807.043196655127,
+            "walltime": 60
+        },
+        {
+            "id": 41,
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 825.4006736055856,
+            "walltime": 772.96
+        },
+        {
+            "id": 42,
+            "profile": "delay_lu.C.1",
+            "res": 1,
+            "subtime": 843.1705400149992,
+            "walltime": 2353.86
+        },
+        {
+            "id": 43,
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 861.7701538655047,
+            "walltime": 281.9
+        },
+        {
+            "id": 44,
+            "profile": "delay_lu.C.1",
+            "res": 1,
+            "subtime": 882.3405031512194,
+            "walltime": 2353.86
+        },
+        {
+            "id": 45,
+            "profile": "delay_is.C.8",
+            "res": 8,
+            "subtime": 901.4488141328432,
+            "walltime": 60
+        },
+        {
+            "id": 46,
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 922.2037020889825,
+            "walltime": 60
+        },
+        {
+            "id": 47,
+            "profile": "delay_is.B.4",
+            "res": 4,
+            "subtime": 941.0743118944364,
             "walltime": 60
         },
         {
             "id": 48,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 955.4817532496089,
-            "walltime": 60
+            "profile": "delay_lu.B.4",
+            "res": 4,
+            "subtime": 958.9620933742224,
+            "walltime": 175.38
         },
         {
             "id": 49,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 975.4839696770931,
-            "walltime": 60
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 978.6464356342478,
+            "walltime": 177.02
         },
         {
             "id": 50,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 994.8308648299372,
+            "profile": "delay_is.B.4",
+            "res": 4,
+            "subtime": 997.9294588023693,
             "walltime": 60
         },
         {
             "id": 51,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 1014.7829670849069,
-            "walltime": 60
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 1016.0819068473488,
+            "walltime": 559.98
         },
         {
             "id": 52,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 1034.1138336912293,
-            "walltime": 531.6
+            "profile": "delay_ft.B.4",
+            "res": 4,
+            "subtime": 1035.1405179966175,
+            "walltime": 71.864
         },
         {
             "id": 53,
-            "profile": "delay_lu.B.4",
+            "profile": "delay_ft.C.4",
             "res": 4,
-            "subtime": 1053.1298708796578,
-            "walltime": 175.38
+            "subtime": 1051.4554308472384,
+            "walltime": 303.88
         },
         {
             "id": 54,
-            "profile": "delay_ft.B.8",
-            "res": 8,
-            "subtime": 1072.5740593097591,
-            "walltime": 60
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 1070.388500885523,
+            "walltime": 559.98
         },
         {
             "id": 55,
             "profile": "delay_lu.B.4",
             "res": 4,
-            "subtime": 1090.1477061431128,
+            "subtime": 1089.4642037839376,
             "walltime": 175.38
         },
         {
             "id": 56,
-            "profile": "delay_lu.C.4",
-            "res": 4,
-            "subtime": 1107.7062505242852,
-            "walltime": 581.06
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 1109.5043825366556,
+            "walltime": 60
         },
         {
             "id": 57,
-            "profile": "delay_ft.C.2",
+            "profile": "delay_lu.B.2",
             "res": 2,
-            "subtime": 1128.5705775636427,
-            "walltime": 531.6
+            "subtime": 1128.4363206781575,
+            "walltime": 281.9
         },
         {
             "id": 58,
             "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 1148.0858825726318,
+            "subtime": 1148.0177479609501,
             "walltime": 60
         },
         {
             "id": 59,
-            "profile": "delay_lu.C.2",
+            "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 1167.075838341247,
-            "walltime": 1187.18
+            "subtime": 1167.395081915797,
+            "walltime": 60
         },
         {
             "id": 60,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 1185.5055587526842,
-            "walltime": 531.6
-        },
-        {
-            "id": 61,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 1205.8051678603035,
-            "walltime": 772.96
-        },
-        {
-            "id": 62,
-            "profile": "delay_lu.C.4",
-            "res": 4,
-            "subtime": 1223.43310824511,
-            "walltime": 581.06
-        },
-        {
-            "id": 63,
             "profile": "delay_ft.B.2",
             "res": 2,
-            "subtime": 1243.96858087211,
+            "subtime": 1183.2452417308036,
             "walltime": 124.16
         },
         {
-            "id": 64,
+            "id": 61,
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 1203.2760752290528,
+            "walltime": 177.02
+        },
+        {
+            "id": 62,
             "profile": "delay_ft.C.2",
             "res": 2,
-            "subtime": 1263.0576725324806,
+            "subtime": 1222.2606188040315,
             "walltime": 531.6
         },
         {
-            "id": 65,
-            "profile": "delay_lu.B.1",
+            "id": 63,
+            "profile": "delay_lu.C.1",
             "res": 1,
-            "subtime": 1284.0232301019155,
-            "walltime": 559.98
+            "subtime": 1239.778300259174,
+            "walltime": 2353.86
+        },
+        {
+            "id": 64,
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 1261.4162999292937,
+            "walltime": 60
+        },
+        {
+            "id": 65,
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 1281.986659254757,
+            "walltime": 772.96
         },
         {
             "id": 66,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 1301.4463095616197,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 1301.5034001504894,
             "walltime": 60
         },
         {
             "id": 67,
-            "profile": "delay_lu.C.2",
-            "res": 2,
-            "subtime": 1317.0612314549896,
-            "walltime": 1187.18
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 1321.2168989846848,
+            "walltime": 559.98
         },
         {
             "id": 68,
-            "profile": "delay_lu.B.2",
+            "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 1335.2164357756606,
-            "walltime": 281.9
-        },
-        {
-            "id": 69,
-            "profile": "delay_is.C.2",
-            "res": 2,
-            "subtime": 1354.1396381378852,
+            "subtime": 1340.8048311372663,
             "walltime": 60
         },
         {
-            "id": 70,
-            "profile": "delay_is.B.2",
+            "id": 69,
+            "profile": "delay_lu.B.2",
             "res": 2,
-            "subtime": 1374.3230817450751,
+            "subtime": 1359.3458285877916,
+            "walltime": 281.9
+        },
+        {
+            "id": 70,
+            "profile": "delay_is.C.4",
+            "res": 4,
+            "subtime": 1379.46179920999,
             "walltime": 60
         },
         {
             "id": 71,
-            "profile": "delay_lu.C.8",
-            "res": 8,
-            "subtime": 1392.6824657727266,
-            "walltime": 358.16
+            "profile": "delay_is.B.4",
+            "res": 4,
+            "subtime": 1398.7993804546438,
+            "walltime": 60
         },
         {
             "id": 72,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 1413.551786769538,
-            "walltime": 177.02
+            "profile": "delay_ft.D.8",
+            "res": 8,
+            "subtime": 1418.7884464515457,
+            "walltime": 4381.64
         },
         {
             "id": 73,
-            "profile": "delay_ft.B.4",
+            "profile": "delay_is.C.4",
             "res": 4,
-            "subtime": 1433.1981785886032,
-            "walltime": 71.864
+            "subtime": 1438.905051187452,
+            "walltime": 60
         },
         {
             "id": 74,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 1453.430819011413,
-            "walltime": 124.16
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 1458.2889312566372,
+            "walltime": 177.02
         },
         {
             "id": 75,
-            "profile": "delay_lu.B.2",
+            "profile": "delay_lu.C.2",
             "res": 2,
-            "subtime": 1474.136842932766,
-            "walltime": 281.9
+            "subtime": 1477.6993078974972,
+            "walltime": 1187.18
         },
         {
             "id": 76,
-            "profile": "delay_is.B.1",
-            "res": 1,
-            "subtime": 1493.2440379067025,
-            "walltime": 60
+            "profile": "delay_lu.B.4",
+            "res": 4,
+            "subtime": 1497.1547223437476,
+            "walltime": 175.38
         },
         {
             "id": 77,
-            "profile": "delay_ft.C.2",
+            "profile": "delay_is.C.2",
             "res": 2,
-            "subtime": 1513.5380173371798,
-            "walltime": 531.6
+            "subtime": 1517.5778674623382,
+            "walltime": 60
         },
         {
             "id": 78,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 1532.4162012629113,
-            "walltime": 531.6
+            "profile": "delay_lu.C.1",
+            "res": 1,
+            "subtime": 1536.7957047249856,
+            "walltime": 2353.86
         },
         {
             "id": 79,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 1551.4073139121465,
-            "walltime": 281.9
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 1556.3523322969663,
+            "walltime": 772.96
         },
         {
             "id": 80,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 1571.180572437669,
-            "walltime": 531.6
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 1574.0913618232257,
+            "walltime": 772.96
         },
         {
             "id": 81,
-            "profile": "delay_is.B.2",
+            "profile": "delay_ft.B.2",
             "res": 2,
-            "subtime": 1589.5720773539826,
-            "walltime": 60
+            "subtime": 1595.4091688145695,
+            "walltime": 124.16
         },
         {
             "id": 82,
             "profile": "delay_is.C.4",
             "res": 4,
-            "subtime": 1608.1884852745814,
+            "subtime": 1616.188194027625,
             "walltime": 60
         },
         {
             "id": 83,
-            "profile": "delay_lu.B.4",
-            "res": 4,
-            "subtime": 1628.40371622022,
-            "walltime": 175.38
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 1636.6251333818927,
+            "walltime": 1187.18
         },
         {
             "id": 84,
             "profile": "delay_lu.C.4",
             "res": 4,
-            "subtime": 1649.151661923606,
+            "subtime": 1656.1031338934004,
             "walltime": 581.06
         },
         {
             "id": 85,
-            "profile": "delay_is.B.1",
+            "profile": "delay_ft.B.1",
             "res": 1,
-            "subtime": 1670.3595255196087,
-            "walltime": 60
+            "subtime": 1677.0768948425352,
+            "walltime": 177.02
         },
         {
             "id": 86,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 1690.5517810767476,
-            "walltime": 559.98
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 1696.6776956176247,
+            "walltime": 1187.18
         },
         {
             "id": 87,
-            "profile": "delay_lu.B.2",
+            "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 1710.1115686216422,
-            "walltime": 281.9
+            "subtime": 1717.7253017469989,
+            "walltime": 60
         },
         {
             "id": 88,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 1730.6231539932298,
-            "walltime": 559.98
-        },
-        {
-            "id": 89,
-            "profile": "delay_is.C.2",
-            "res": 2,
-            "subtime": 1750.534566939527,
-            "walltime": 60
-        },
-        {
-            "id": 90,
             "profile": "delay_lu.B.4",
             "res": 4,
-            "subtime": 1770.8135072843756,
+            "subtime": 1738.4167091814077,
             "walltime": 175.38
         },
         {
-            "id": 91,
+            "id": 89,
             "profile": "delay_lu.C.4",
             "res": 4,
-            "subtime": 1789.2443500436727,
+            "subtime": 1758.6119379937252,
             "walltime": 581.06
+        },
+        {
+            "id": 90,
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 1778.397151309027,
+            "walltime": 60
+        },
+        {
+            "id": 91,
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 1798.2993413859303,
+            "walltime": 177.02
         },
         {
             "id": 92,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 1810.268792183457,
-            "walltime": 60
-        },
-        {
-            "id": 93,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 1829.158553293857,
-            "walltime": 124.16
-        },
-        {
-            "id": 94,
-            "profile": "delay_lu.B.8",
-            "res": 8,
-            "subtime": 1847.6994333253097,
-            "walltime": 97.6
-        },
-        {
-            "id": 95,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 1866.5040573172487,
-            "walltime": 772.96
-        },
-        {
-            "id": 96,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 1884.7327506476038,
-            "walltime": 60
-        },
-        {
-            "id": 97,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 1905.9903491423547,
-            "walltime": 2353.86
-        },
-        {
-            "id": 98,
             "profile": "delay_lu.B.1",
             "res": 1,
-            "subtime": 1925.7648283578526,
+            "subtime": 1817.5856752459522,
             "walltime": 559.98
         },
         {
-            "id": 99,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 1944.6795360063122,
-            "walltime": 281.9
+            "id": 93,
+            "profile": "delay_lu.C.8",
+            "res": 8,
+            "subtime": 1837.411403433656,
+            "walltime": 358.16
         },
         {
-            "id": 100,
+            "id": 94,
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 1857.8311673328435,
+            "walltime": 559.98
+        },
+        {
+            "id": 95,
             "profile": "delay_ft.B.4",
             "res": 4,
-            "subtime": 1963.7376361438112,
+            "subtime": 1876.3322048225045,
             "walltime": 71.864
         },
         {
-            "id": 101,
+            "id": 96,
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 1894.371030553562,
+            "walltime": 177.02
+        },
+        {
+            "id": 97,
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 1914.6939297620586,
+            "walltime": 1187.18
+        },
+        {
+            "id": 98,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 1934.8175670964222,
+            "walltime": 60
+        },
+        {
+            "id": 99,
             "profile": "delay_ft.C.1",
             "res": 1,
-            "subtime": 1983.5521930629623,
+            "subtime": 1954.494490193617,
             "walltime": 772.96
         },
         {
+            "id": 100,
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 1973.4294273463147,
+            "walltime": 1187.18
+        },
+        {
+            "id": 101,
+            "profile": "delay_is.C.4",
+            "res": 4,
+            "subtime": 1992.082155847501,
+            "walltime": 60
+        },
+        {
             "id": 102,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 2002.8895901723827,
-            "walltime": 177.02
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 2012.880832565255,
+            "walltime": 281.9
         },
         {
             "id": 103,
-            "profile": "delay_lu.C.4",
+            "profile": "delay_ft.C.4",
             "res": 4,
-            "subtime": 2023.0774681231258,
-            "walltime": 581.06
+            "subtime": 2033.6983536610278,
+            "walltime": 303.88
         },
         {
             "id": 104,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 2043.3095951319472,
-            "walltime": 2353.86
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 2054.1119438553105,
+            "walltime": 281.9
         },
         {
             "id": 105,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 2062.905100410505,
-            "walltime": 71.864
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 2073.151703634565,
+            "walltime": 1187.18
         },
         {
             "id": 106,
-            "profile": "delay_lu.B.2",
+            "profile": "delay_ft.B.2",
             "res": 2,
-            "subtime": 2083.2663220669697,
-            "walltime": 281.9
+            "subtime": 2094.204082716162,
+            "walltime": 124.16
         },
         {
             "id": 107,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 2101.7363281227704,
-            "walltime": 281.9
+            "profile": "delay_is.B.8",
+            "res": 8,
+            "subtime": 2115.6421405554606,
+            "walltime": 60
         },
         {
             "id": 108,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 2121.5359138344998,
-            "walltime": 177.02
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 2132.6805466149267,
+            "walltime": 281.9
         },
         {
             "id": 109,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 2140.7405047404445,
-            "walltime": 124.16
+            "profile": "delay_lu.B.4",
+            "res": 4,
+            "subtime": 2152.595498403989,
+            "walltime": 175.38
         },
         {
             "id": 110,
             "profile": "delay_ft.B.2",
             "res": 2,
-            "subtime": 2160.7977418255978,
+            "subtime": 2171.5353541833715,
             "walltime": 124.16
         },
         {
             "id": 111,
-            "profile": "delay_ft.C.4",
-            "res": 4,
-            "subtime": 2180.6890880690585,
-            "walltime": 303.88
+            "profile": "delay_ft.C.8",
+            "res": 8,
+            "subtime": 2192.340796500858,
+            "walltime": 161.42
         },
         {
             "id": 112,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 2199.35384014304,
-            "walltime": 281.9
-        },
-        {
-            "id": 113,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 2217.5302600786536,
-            "walltime": 124.16
-        },
-        {
-            "id": 114,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 2238.2804239422435,
-            "walltime": 177.02
-        },
-        {
-            "id": 115,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 2257.635562755997,
-            "walltime": 2353.86
-        },
-        {
-            "id": 116,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 2274.726293201836,
-            "walltime": 60
-        },
-        {
-            "id": 117,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 2292.8648141747053,
-            "walltime": 71.864
-        },
-        {
-            "id": 118,
-            "profile": "delay_is.B.1",
-            "res": 1,
-            "subtime": 2314.295486030576,
-            "walltime": 60
-        },
-        {
-            "id": 119,
-            "profile": "delay_lu.B.8",
-            "res": 8,
-            "subtime": 2332.228861652321,
-            "walltime": 97.6
-        },
-        {
-            "id": 120,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 2353.9286497943585,
-            "walltime": 531.6
-        },
-        {
-            "id": 121,
             "profile": "delay_lu.C.4",
             "res": 4,
-            "subtime": 2371.9424403510325,
+            "subtime": 2213.3526437878327,
             "walltime": 581.06
         },
         {
-            "id": 122,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 2392.975431821392,
-            "walltime": 177.02
-        },
-        {
-            "id": 123,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 2411.8139150003785,
-            "walltime": 772.96
-        },
-        {
-            "id": 124,
+            "id": 113,
             "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 2431.0248191903324,
+            "subtime": 2233.8788075686375,
             "walltime": 60
         },
         {
-            "id": 125,
-            "profile": "delay_is.C.4",
-            "res": 4,
-            "subtime": 2450.2393165592985,
-            "walltime": 60
-        },
-        {
-            "id": 126,
-            "profile": "delay_is.C.4",
-            "res": 4,
-            "subtime": 2470.606341004024,
-            "walltime": 60
-        },
-        {
-            "id": 127,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 2491.0778658304234,
-            "walltime": 60
-        },
-        {
-            "id": 128,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 2509.8971475459116,
-            "walltime": 531.6
-        },
-        {
-            "id": 129,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 2530.2004118119803,
-            "walltime": 559.98
-        },
-        {
-            "id": 130,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 2547.3267976341995,
-            "walltime": 71.864
-        },
-        {
-            "id": 131,
-            "profile": "delay_is.B.8",
-            "res": 8,
-            "subtime": 2568.564054383113,
-            "walltime": 60
-        },
-        {
-            "id": 132,
+            "id": 114,
             "profile": "delay_ft.B.2",
             "res": 2,
-            "subtime": 2587.3639777945905,
+            "subtime": 2251.3673340881937,
             "walltime": 124.16
         },
         {
-            "id": 133,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 2606.710580137036,
-            "walltime": 281.9
-        },
-        {
-            "id": 134,
-            "profile": "delay_is.C.4",
+            "id": 115,
+            "profile": "delay_lu.C.4",
             "res": 4,
-            "subtime": 2625.137994841335,
-            "walltime": 60
+            "subtime": 2271.7661778679335,
+            "walltime": 581.06
         },
         {
-            "id": 135,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 2644.1447933986988,
-            "walltime": 124.16
-        },
-        {
-            "id": 136,
-            "profile": "delay_ft.B.4",
-            "res": 4,
-            "subtime": 2663.3075475285063,
-            "walltime": 71.864
-        },
-        {
-            "id": 137,
-            "profile": "delay_lu.C.16",
-            "res": 16,
-            "subtime": 2681.6528097445303,
-            "walltime": 191.12
-        },
-        {
-            "id": 138,
+            "id": 116,
             "profile": "delay_lu.C.2",
             "res": 2,
-            "subtime": 2700.4219067059903,
+            "subtime": 2290.4421138800244,
             "walltime": 1187.18
         },
         {
-            "id": 139,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 2718.4455210530014,
+            "id": 117,
+            "profile": "delay_is.C.8",
+            "res": 8,
+            "subtime": 2311.31873484328,
             "walltime": 60
         },
         {
-            "id": 140,
+            "id": 118,
+            "profile": "delay_ft.C.2",
+            "res": 2,
+            "subtime": 2331.696078835553,
+            "walltime": 531.6
+        },
+        {
+            "id": 119,
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 2349.7306209487956,
+            "walltime": 1187.18
+        },
+        {
+            "id": 120,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 2369.6526431478956,
+            "walltime": 60
+        },
+        {
+            "id": 121,
             "profile": "delay_is.C.2",
             "res": 2,
-            "subtime": 2738.268458804358,
+            "subtime": 2389.2181253463045,
+            "walltime": 60
+        },
+        {
+            "id": 122,
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 2408.743780304346,
+            "walltime": 60
+        },
+        {
+            "id": 123,
+            "profile": "delay_ft.C.2",
+            "res": 2,
+            "subtime": 2429.0365253877862,
+            "walltime": 531.6
+        },
+        {
+            "id": 124,
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 2449.19419993231,
+            "walltime": 177.02
+        },
+        {
+            "id": 125,
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 2469.043125731708,
+            "walltime": 559.98
+        },
+        {
+            "id": 126,
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 2488.443471783706,
+            "walltime": 1187.18
+        },
+        {
+            "id": 127,
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 2507.717211490558,
+            "walltime": 559.98
+        },
+        {
+            "id": 128,
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 2528.32177030129,
+            "walltime": 772.96
+        },
+        {
+            "id": 129,
+            "profile": "delay_ft.C.4",
+            "res": 4,
+            "subtime": 2545.8057677960905,
+            "walltime": 303.88
+        },
+        {
+            "id": 130,
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 2565.6970453370063,
+            "walltime": 60
+        },
+        {
+            "id": 131,
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 2586.5488050934614,
+            "walltime": 559.98
+        },
+        {
+            "id": 132,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 2606.8503742015496,
+            "walltime": 60
+        },
+        {
+            "id": 133,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 2625.959843704374,
+            "walltime": 60
+        },
+        {
+            "id": 134,
+            "profile": "delay_ft.B.2",
+            "res": 2,
+            "subtime": 2645.9402822537804,
+            "walltime": 124.16
+        },
+        {
+            "id": 135,
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 2664.0891477769287,
+            "walltime": 281.9
+        },
+        {
+            "id": 136,
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 2682.132380973455,
+            "walltime": 177.02
+        },
+        {
+            "id": 137,
+            "profile": "delay_is.C.4",
+            "res": 4,
+            "subtime": 2701.839977886387,
+            "walltime": 60
+        },
+        {
+            "id": 138,
+            "profile": "delay_is.B.8",
+            "res": 8,
+            "subtime": 2721.472634981675,
+            "walltime": 60
+        },
+        {
+            "id": 139,
+            "profile": "delay_ft.C.4",
+            "res": 4,
+            "subtime": 2740.7027808945113,
+            "walltime": 303.88
+        },
+        {
+            "id": 140,
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 2759.1069111934794,
             "walltime": 60
         },
         {
             "id": 141,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 2758.0203435848453,
-            "walltime": 60
+            "profile": "delay_lu.C.8",
+            "res": 8,
+            "subtime": 2778.1918998739775,
+            "walltime": 358.16
         },
         {
             "id": 142,
-            "profile": "delay_ft.C.1",
+            "profile": "delay_ft.B.1",
             "res": 1,
-            "subtime": 2778.9226706148015,
-            "walltime": 772.96
+            "subtime": 2798.2955578505885,
+            "walltime": 177.02
         },
         {
             "id": 143,
-            "profile": "delay_is.C.2",
+            "profile": "delay_ft.C.2",
             "res": 2,
-            "subtime": 2798.61567839563,
-            "walltime": 60
+            "subtime": 2819.232497643081,
+            "walltime": 531.6
         },
         {
             "id": 144,
-            "profile": "delay_ft.C.4",
-            "res": 4,
-            "subtime": 2818.2234041386637,
-            "walltime": 303.88
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 2839.646757765689,
+            "walltime": 1187.18
         },
         {
             "id": 145,
-            "profile": "delay_lu.B.4",
-            "res": 4,
-            "subtime": 2839.2780715560834,
-            "walltime": 175.38
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 2858.449678671437,
+            "walltime": 1187.18
         },
         {
             "id": 146,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 2859.239365556395,
-            "walltime": 124.16
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 2878.540522418138,
+            "walltime": 60
         },
         {
             "id": 147,
-            "profile": "delay_lu.B.4",
-            "res": 4,
-            "subtime": 2879.3271803001685,
-            "walltime": 175.38
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 2899.532012139412,
+            "walltime": 60
         },
         {
             "id": 148,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 2897.9853333877,
+            "profile": "delay_is.C.16",
+            "res": 16,
+            "subtime": 2919.400916519756,
             "walltime": 60
         },
         {
             "id": 149,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 2917.3274912014604,
-            "walltime": 531.6
+            "profile": "delay_lu.C.1",
+            "res": 1,
+            "subtime": 2940.9110117802825,
+            "walltime": 2353.86
         },
         {
             "id": 150,
-            "profile": "delay_is.C.4",
-            "res": 4,
-            "subtime": 2935.3075231430385,
-            "walltime": 60
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 2960.0563643208156,
+            "walltime": 772.96
         },
         {
             "id": 151,
-            "profile": "delay_ft.B.2",
+            "profile": "delay_is.C.2",
             "res": 2,
-            "subtime": 2953.929294568664,
-            "walltime": 124.16
+            "subtime": 2979.8777052353107,
+            "walltime": 60
         },
         {
             "id": 152,
-            "profile": "delay_is.B.2",
+            "profile": "delay_lu.B.2",
             "res": 2,
-            "subtime": 2974.448167113809,
-            "walltime": 60
+            "subtime": 2999.9570121634247,
+            "walltime": 281.9
         },
         {
             "id": 153,
             "profile": "delay_lu.B.1",
             "res": 1,
-            "subtime": 2992.7655061341097,
+            "subtime": 3018.5255733761005,
             "walltime": 559.98
         },
         {
             "id": 154,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 3013.9599634330766,
-            "walltime": 281.9
-        },
-        {
-            "id": 155,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 3032.072671222558,
-            "walltime": 559.98
-        },
-        {
-            "id": 156,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 3050.4023133666483,
-            "walltime": 177.02
-        },
-        {
-            "id": 157,
-            "profile": "delay_lu.C.4",
-            "res": 4,
-            "subtime": 3070.3212956717025,
-            "walltime": 581.06
-        },
-        {
-            "id": 158,
-            "profile": "delay_lu.C.4",
-            "res": 4,
-            "subtime": 3089.996764529484,
-            "walltime": 581.06
-        },
-        {
-            "id": 159,
-            "profile": "delay_lu.C.2",
-            "res": 2,
-            "subtime": 3109.6598767569276,
-            "walltime": 1187.18
-        },
-        {
-            "id": 160,
             "profile": "delay_is.B.4",
             "res": 4,
-            "subtime": 3128.669010691431,
+            "subtime": 3038.2439493312236,
             "walltime": 60
         },
         {
-            "id": 161,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 3148.6143156825005,
-            "walltime": 124.16
+            "id": 155,
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 3059.285954126199,
+            "walltime": 772.96
         },
         {
-            "id": 162,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 3168.4720576467967,
-            "walltime": 281.9
+            "id": 156,
+            "profile": "delay_lu.C.1",
+            "res": 1,
+            "subtime": 3080.8571537376065,
+            "walltime": 2353.86
         },
         {
-            "id": 163,
+            "id": 157,
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 3101.163136806225,
+            "walltime": 772.96
+        },
+        {
+            "id": 158,
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 3122.424897284405,
+            "walltime": 60
+        },
+        {
+            "id": 159,
             "profile": "delay_ft.C.2",
             "res": 2,
-            "subtime": 3189.110153996097,
+            "subtime": 3141.721743901112,
             "walltime": 531.6
         },
         {
-            "id": 164,
-            "profile": "delay_is.B.2",
+            "id": 160,
+            "profile": "delay_lu.C.2",
             "res": 2,
-            "subtime": 3206.7165806264306,
+            "subtime": 3159.550879221626,
+            "walltime": 1187.18
+        },
+        {
+            "id": 161,
+            "profile": "delay_ft.B.4",
+            "res": 4,
+            "subtime": 3180.2224485472702,
+            "walltime": 71.864
+        },
+        {
+            "id": 162,
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 3199.7488639011694,
+            "walltime": 772.96
+        },
+        {
+            "id": 163,
+            "profile": "delay_lu.C.4",
+            "res": 4,
+            "subtime": 3219.0828487292843,
+            "walltime": 581.06
+        },
+        {
+            "id": 164,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 3238.81431191838,
             "walltime": 60
         },
         {
             "id": 165,
-            "profile": "delay_ft.C.4",
-            "res": 4,
-            "subtime": 3227.7040991567396,
-            "walltime": 303.88
-        },
-        {
-            "id": 166,
-            "profile": "delay_lu.C.2",
-            "res": 2,
-            "subtime": 3246.8755497412567,
-            "walltime": 1187.18
-        },
-        {
-            "id": 167,
             "profile": "delay_ft.C.2",
             "res": 2,
-            "subtime": 3267.4769032556774,
+            "subtime": 3258.3910236689107,
             "walltime": 531.6
         },
         {
-            "id": 168,
-            "profile": "delay_lu.C.2",
+            "id": 166,
+            "profile": "delay_lu.B.2",
             "res": 2,
-            "subtime": 3286.344377449443,
-            "walltime": 1187.18
+            "subtime": 3279.6267444804735,
+            "walltime": 281.9
         },
         {
-            "id": 169,
-            "profile": "delay_is.C.2",
+            "id": 167,
+            "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 3306.8832734525545,
+            "subtime": 3298.2529489208027,
             "walltime": 60
         },
         {
-            "id": 170,
-            "profile": "delay_lu.C.2",
+            "id": 168,
+            "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 3327.2536467880054,
-            "walltime": 1187.18
+            "subtime": 3316.273416586298,
+            "walltime": 60
         },
         {
-            "id": 171,
+            "id": 169,
             "profile": "delay_ft.B.2",
             "res": 2,
-            "subtime": 3347.1339194210113,
+            "subtime": 3336.0824543214903,
             "walltime": 124.16
         },
         {
-            "id": 172,
-            "profile": "delay_lu.C.1",
+            "id": 170,
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 3356.5258629442906,
+            "walltime": 60
+        },
+        {
+            "id": 171,
+            "profile": "delay_ft.B.1",
             "res": 1,
-            "subtime": 3367.1538123681385,
-            "walltime": 2353.86
+            "subtime": 3376.417599572833,
+            "walltime": 177.02
+        },
+        {
+            "id": 172,
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 3396.720093580361,
+            "walltime": 281.9
         },
         {
             "id": 173,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 3387.3877381722054,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 3418.181128323139,
             "walltime": 60
         },
         {
             "id": 174,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 3406.994666125957,
-            "walltime": 124.16
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 3438.937503082616,
+            "walltime": 559.98
         },
         {
             "id": 175,
-            "profile": "delay_lu.B.2",
+            "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 3428.019631917422,
-            "walltime": 281.9
+            "subtime": 3458.062557113964,
+            "walltime": 60
         },
         {
             "id": 176,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 3445.954672657648,
-            "walltime": 531.6
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 3480.1936668961634,
+            "walltime": 772.96
         },
         {
             "id": 177,
-            "profile": "delay_lu.B.1",
+            "profile": "delay_ft.B.1",
             "res": 1,
-            "subtime": 3462.3089573389225,
-            "walltime": 559.98
+            "subtime": 3500.5313597189624,
+            "walltime": 177.02
         },
         {
             "id": 178,
-            "profile": "delay_is.B.4",
-            "res": 4,
-            "subtime": 3482.2552881789848,
-            "walltime": 60
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 3519.7793508698055,
+            "walltime": 177.02
         },
         {
             "id": 179,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 3502.157851967755,
-            "walltime": 60
+            "profile": "delay_ft.C.1",
+            "res": 1,
+            "subtime": 3539.8764665623376,
+            "walltime": 772.96
         },
         {
             "id": 180,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 3520.4274586235547,
-            "walltime": 559.98
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 3558.4693925301785,
+            "walltime": 1187.18
         },
         {
             "id": 181,
             "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 3540.527829108049,
+            "subtime": 3578.883374640358,
             "walltime": 60
         },
         {
             "id": 182,
-            "profile": "delay_lu.C.4",
+            "profile": "delay_is.B.4",
             "res": 4,
-            "subtime": 3560.706153985705,
-            "walltime": 581.06
+            "subtime": 3597.9000665932185,
+            "walltime": 60
         },
         {
             "id": 183,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 3579.8978242850203,
-            "walltime": 772.96
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 3617.851587276768,
+            "walltime": 1187.18
         },
         {
             "id": 184,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 3600.846223231918,
+            "profile": "delay_is.C.4",
+            "res": 4,
+            "subtime": 3635.428220250054,
             "walltime": 60
         },
         {
             "id": 185,
-            "profile": "delay_is.B.4",
-            "res": 4,
-            "subtime": 3620.9967722786123,
-            "walltime": 60
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 3656.1172375462024,
+            "walltime": 281.9
         },
         {
             "id": 186,
-            "profile": "delay_is.C.4",
+            "profile": "delay_ft.C.4",
             "res": 4,
-            "subtime": 3640.641446746452,
-            "walltime": 60
+            "subtime": 3674.8949511794194,
+            "walltime": 303.88
         },
         {
             "id": 187,
-            "profile": "delay_is.C.2",
-            "res": 2,
-            "subtime": 3659.3760236628796,
-            "walltime": 60
+            "profile": "delay_lu.C.4",
+            "res": 4,
+            "subtime": 3694.8421440377347,
+            "walltime": 581.06
         },
         {
             "id": 188,
             "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 3680.096064772485,
+            "subtime": 3712.1358927003353,
             "walltime": 60
         },
         {
             "id": 189,
-            "profile": "delay_is.B.2",
+            "profile": "delay_ft.B.2",
             "res": 2,
-            "subtime": 3699.364518246219,
-            "walltime": 60
+            "subtime": 3731.74241859513,
+            "walltime": 124.16
         },
         {
             "id": 190,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 3718.3825205846433,
-            "walltime": 60
+            "profile": "delay_ft.C.4",
+            "res": 4,
+            "subtime": 3751.9088386364956,
+            "walltime": 303.88
         },
         {
             "id": 191,
-            "profile": "delay_is.B.1",
-            "res": 1,
-            "subtime": 3738.646937548689,
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 3771.090274249934,
             "walltime": 60
         },
         {
             "id": 192,
-            "profile": "delay_is.B.2",
+            "profile": "delay_lu.B.2",
             "res": 2,
-            "subtime": 3758.6677982344127,
-            "walltime": 60
+            "subtime": 3790.4690532425284,
+            "walltime": 281.9
         },
         {
             "id": 193,
-            "profile": "delay_is.C.4",
-            "res": 4,
-            "subtime": 3778.825342575818,
-            "walltime": 60
+            "profile": "delay_ft.C.2",
+            "res": 2,
+            "subtime": 3810.1521593961534,
+            "walltime": 531.6
         },
         {
             "id": 194,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 3796.462199380361,
-            "walltime": 559.98
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 3830.1558747081385,
+            "walltime": 60
         },
         {
             "id": 195,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 3818.0244839017923,
-            "walltime": 60
-        },
-        {
-            "id": 196,
-            "profile": "delay_ft.B.2",
-            "res": 2,
-            "subtime": 3837.072770144161,
-            "walltime": 124.16
-        },
-        {
-            "id": 197,
             "profile": "delay_ft.B.1",
             "res": 1,
-            "subtime": 3857.6173579113506,
+            "subtime": 3850.161079864694,
             "walltime": 177.02
         },
         {
-            "id": 198,
-            "profile": "delay_is.B.2",
+            "id": 196,
+            "profile": "delay_lu.B.2",
             "res": 2,
-            "subtime": 3876.905193334355,
-            "walltime": 60
+            "subtime": 3870.8617530701345,
+            "walltime": 281.9
         },
         {
-            "id": 199,
-            "profile": "delay_ft.C.4",
+            "id": 197,
+            "profile": "delay_lu.B.4",
             "res": 4,
-            "subtime": 3897.112417413658,
-            "walltime": 303.88
+            "subtime": 3891.6259395438506,
+            "walltime": 175.38
         },
         {
-            "id": 200,
-            "profile": "delay_ft.C.16",
-            "res": 16,
-            "subtime": 3916.226443323279,
-            "walltime": 83.996
-        },
-        {
-            "id": 201,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 3932.2289177191315,
-            "walltime": 2353.86
-        },
-        {
-            "id": 202,
+            "id": 198,
             "profile": "delay_lu.C.4",
             "res": 4,
-            "subtime": 3952.6717097777896,
+            "subtime": 3909.8917042410862,
             "walltime": 581.06
         },
         {
-            "id": 203,
-            "profile": "delay_ft.B.2",
+            "id": 199,
+            "profile": "delay_ft.C.2",
             "res": 2,
-            "subtime": 3973.053468850524,
-            "walltime": 124.16
+            "subtime": 3928.4964893384686,
+            "walltime": 531.6
+        },
+        {
+            "id": 200,
+            "profile": "delay_ft.B.4",
+            "res": 4,
+            "subtime": 3947.962050379766,
+            "walltime": 71.864
+        },
+        {
+            "id": 201,
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 3968.954795349617,
+            "walltime": 281.9
+        },
+        {
+            "id": 202,
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 3989.3632319429535,
+            "walltime": 60
+        },
+        {
+            "id": 203,
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 4009.31893740159,
+            "walltime": 60
         },
         {
             "id": 204,
             "profile": "delay_lu.C.2",
             "res": 2,
-            "subtime": 3993.2832555423356,
+            "subtime": 4027.232052576402,
             "walltime": 1187.18
         },
         {
             "id": 205,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 4013.616041264775,
-            "walltime": 559.98
+            "profile": "delay_is.C.2",
+            "res": 2,
+            "subtime": 4046.163127800933,
+            "walltime": 60
         },
         {
             "id": 206,
-            "profile": "delay_is.B.8",
-            "res": 8,
-            "subtime": 4032.4730490095594,
-            "walltime": 60
+            "profile": "delay_ft.C.2",
+            "res": 2,
+            "subtime": 4067.200920144625,
+            "walltime": 531.6
         },
         {
             "id": 207,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 4052.5675766584063,
-            "walltime": 531.6
-        },
-        {
-            "id": 208,
-            "profile": "delay_is.C.2",
-            "res": 2,
-            "subtime": 4073.1558568712535,
-            "walltime": 60
-        },
-        {
-            "id": 209,
-            "profile": "delay_ft.C.4",
-            "res": 4,
-            "subtime": 4092.8457649104266,
-            "walltime": 303.88
-        },
-        {
-            "id": 210,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 4112.310467775821,
-            "walltime": 60
-        },
-        {
-            "id": 211,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 4132.523635823387,
-            "walltime": 531.6
-        },
-        {
-            "id": 212,
-            "profile": "delay_is.B.4",
-            "res": 4,
-            "subtime": 4151.425237932198,
-            "walltime": 60
-        },
-        {
-            "id": 213,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 4171.495734069448,
-            "walltime": 2353.86
-        },
-        {
-            "id": 214,
-            "profile": "delay_lu.B.1",
-            "res": 1,
-            "subtime": 4190.007597583642,
-            "walltime": 559.98
-        },
-        {
-            "id": 215,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 4210.370596701199,
-            "walltime": 772.96
-        },
-        {
-            "id": 216,
-            "profile": "delay_ft.C.4",
-            "res": 4,
-            "subtime": 4228.648051924176,
-            "walltime": 303.88
-        },
-        {
-            "id": 217,
-            "profile": "delay_lu.C.2",
-            "res": 2,
-            "subtime": 4247.537518278185,
-            "walltime": 1187.18
-        },
-        {
-            "id": 218,
-            "profile": "delay_is.C.4",
-            "res": 4,
-            "subtime": 4267.002487638448,
-            "walltime": 60
-        },
-        {
-            "id": 219,
             "profile": "delay_ft.B.1",
             "res": 1,
-            "subtime": 4286.460791921351,
+            "subtime": 4085.2763146175303,
             "walltime": 177.02
         },
         {
-            "id": 220,
-            "profile": "delay_lu.B.4",
-            "res": 4,
-            "subtime": 4304.926051595057,
-            "walltime": 175.38
-        },
-        {
-            "id": 221,
+            "id": 208,
             "profile": "delay_lu.C.2",
             "res": 2,
-            "subtime": 4324.412139360079,
+            "subtime": 4104.38251704023,
             "walltime": 1187.18
         },
         {
-            "id": 222,
-            "profile": "delay_lu.C.1",
+            "id": 209,
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 4122.835438604234,
+            "walltime": 60
+        },
+        {
+            "id": 210,
+            "profile": "delay_ft.B.1",
             "res": 1,
-            "subtime": 4342.895334279535,
-            "walltime": 2353.86
+            "subtime": 4139.400885665256,
+            "walltime": 177.02
+        },
+        {
+            "id": 211,
+            "profile": "delay_lu.B.2",
+            "res": 2,
+            "subtime": 4159.568650977842,
+            "walltime": 281.9
+        },
+        {
+            "id": 212,
+            "profile": "delay_ft.C.2",
+            "res": 2,
+            "subtime": 4178.690025515463,
+            "walltime": 531.6
+        },
+        {
+            "id": 213,
+            "profile": "delay_lu.B.1",
+            "res": 1,
+            "subtime": 4198.985380680124,
+            "walltime": 559.98
+        },
+        {
+            "id": 214,
+            "profile": "delay_lu.B.8",
+            "res": 8,
+            "subtime": 4219.952133978076,
+            "walltime": 97.6
+        },
+        {
+            "id": 215,
+            "profile": "delay_lu.C.2",
+            "res": 2,
+            "subtime": 4240.365883337478,
+            "walltime": 1187.18
+        },
+        {
+            "id": 216,
+            "profile": "delay_is.C.4",
+            "res": 4,
+            "subtime": 4260.553091382641,
+            "walltime": 60
+        },
+        {
+            "id": 217,
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 4278.380312412389,
+            "walltime": 177.02
+        },
+        {
+            "id": 218,
+            "profile": "delay_ft.B.1",
+            "res": 1,
+            "subtime": 4298.5664537904595,
+            "walltime": 177.02
+        },
+        {
+            "id": 219,
+            "profile": "delay_ft.C.4",
+            "res": 4,
+            "subtime": 4313.150426219252,
+            "walltime": 303.88
+        },
+        {
+            "id": 220,
+            "profile": "delay_ft.C.4",
+            "res": 4,
+            "subtime": 4334.464975683324,
+            "walltime": 303.88
+        },
+        {
+            "id": 221,
+            "profile": "delay_lu.C.4",
+            "res": 4,
+            "subtime": 4352.581811584217,
+            "walltime": 581.06
+        },
+        {
+            "id": 222,
+            "profile": "delay_ft.C.4",
+            "res": 4,
+            "subtime": 4369.182484216157,
+            "walltime": 303.88
         },
         {
             "id": 223,
             "profile": "delay_lu.C.2",
             "res": 2,
-            "subtime": 4362.70755115152,
+            "subtime": 4389.162179044142,
             "walltime": 1187.18
         },
         {
             "id": 224,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 4384.268657274278,
-            "walltime": 177.02
+            "profile": "delay_ft.B.4",
+            "res": 4,
+            "subtime": 4408.809884109491,
+            "walltime": 71.864
         },
         {
             "id": 225,
-            "profile": "delay_ft.C.4",
+            "profile": "delay_ft.B.4",
             "res": 4,
-            "subtime": 4403.307745761618,
-            "walltime": 303.88
+            "subtime": 4429.0052483531135,
+            "walltime": 71.864
         },
         {
             "id": 226,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 4419.486581866912,
-            "walltime": 2353.86
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 4447.618067647,
+            "walltime": 60
         },
         {
             "id": 227,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 4438.615229805266,
-            "walltime": 60
+            "profile": "delay_lu.C.8",
+            "res": 8,
+            "subtime": 4466.684352742083,
+            "walltime": 358.16
         },
         {
             "id": 228,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 4458.337507415593,
-            "walltime": 2353.86
+            "profile": "delay_is.C.4",
+            "res": 4,
+            "subtime": 4487.1589681826,
+            "walltime": 60
         },
         {
             "id": 229,
-            "profile": "delay_is.B.2",
-            "res": 2,
-            "subtime": 4477.835129742421,
-            "walltime": 60
+            "profile": "delay_lu.B.4",
+            "res": 4,
+            "subtime": 4506.775969421241,
+            "walltime": 175.38
         },
         {
             "id": 230,
             "profile": "delay_is.B.2",
             "res": 2,
-            "subtime": 4495.443393951792,
+            "subtime": 4525.715806988357,
             "walltime": 60
         },
         {
             "id": 231,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 4516.183656996866,
-            "walltime": 772.96
+            "profile": "delay_ft.C.2",
+            "res": 2,
+            "subtime": 4543.942285317485,
+            "walltime": 531.6
         },
         {
             "id": 232,
-            "profile": "delay_lu.C.2",
-            "res": 2,
-            "subtime": 4535.565552380742,
-            "walltime": 1187.18
-        },
-        {
-            "id": 233,
-            "profile": "delay_is.B.1",
-            "res": 1,
-            "subtime": 4554.863217028165,
-            "walltime": 60
-        },
-        {
-            "id": 234,
             "profile": "delay_ft.C.1",
             "res": 1,
-            "subtime": 4574.937666049777,
+            "subtime": 4563.7088278264255,
             "walltime": 772.96
         },
         {
+            "id": 233,
+            "profile": "delay_ft.C.2",
+            "res": 2,
+            "subtime": 4584.326125428297,
+            "walltime": 531.6
+        },
+        {
+            "id": 234,
+            "profile": "delay_ft.C.4",
+            "res": 4,
+            "subtime": 4603.885290319087,
+            "walltime": 303.88
+        },
+        {
             "id": 235,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 4595.265877466619,
-            "walltime": 177.02
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 4621.09317278076,
+            "walltime": 60
         },
         {
             "id": 236,
             "profile": "delay_lu.B.2",
             "res": 2,
-            "subtime": 4613.695798425353,
+            "subtime": 4641.431631943443,
             "walltime": 281.9
         },
         {
             "id": 237,
-            "profile": "delay_ft.C.1",
-            "res": 1,
-            "subtime": 4633.558708248675,
-            "walltime": 772.96
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 4656.586180248333,
+            "walltime": 60
         },
         {
             "id": 238,
-            "profile": "delay_lu.C.4",
-            "res": 4,
-            "subtime": 4653.991334866721,
-            "walltime": 581.06
+            "profile": "delay_ft.B.2",
+            "res": 2,
+            "subtime": 4673.832908588965,
+            "walltime": 124.16
         },
         {
             "id": 239,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 4672.358212319222,
-            "walltime": 177.02
+            "profile": "delay_is.C.4",
+            "res": 4,
+            "subtime": 4693.390911632372,
+            "walltime": 60
         },
         {
             "id": 240,
-            "profile": "delay_lu.C.4",
-            "res": 4,
-            "subtime": 4691.163149626129,
-            "walltime": 581.06
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 4712.481213385363,
+            "walltime": 60
         },
         {
             "id": 241,
-            "profile": "delay_lu.B.2",
-            "res": 2,
-            "subtime": 4710.039287225102,
-            "walltime": 281.9
+            "profile": "delay_ft.B.4",
+            "res": 4,
+            "subtime": 4732.531578797577,
+            "walltime": 71.864
         },
         {
             "id": 242,
-            "profile": "delay_lu.C.1",
-            "res": 1,
-            "subtime": 4729.119120855218,
-            "walltime": 2353.86
-        },
-        {
-            "id": 243,
-            "profile": "delay_ft.C.4",
-            "res": 4,
-            "subtime": 4747.145988850585,
-            "walltime": 303.88
-        },
-        {
-            "id": 244,
             "profile": "delay_lu.C.2",
             "res": 2,
-            "subtime": 4767.60355919875,
+            "subtime": 4753.718704403713,
             "walltime": 1187.18
         },
         {
+            "id": 243,
+            "profile": "delay_lu.C.8",
+            "res": 8,
+            "subtime": 4773.6432218708505,
+            "walltime": 358.16
+        },
+        {
+            "id": 244,
+            "profile": "delay_ft.B.4",
+            "res": 4,
+            "subtime": 4793.82135631847,
+            "walltime": 71.864
+        },
+        {
             "id": 245,
-            "profile": "delay_ft.C.2",
-            "res": 2,
-            "subtime": 4786.444322122277,
-            "walltime": 531.6
+            "profile": "delay_lu.C.1",
+            "res": 1,
+            "subtime": 4812.797309948771,
+            "walltime": 2353.86
         },
         {
             "id": 246,
-            "profile": "delay_is.C.2",
-            "res": 2,
-            "subtime": 4804.954241327908,
+            "profile": "delay_is.B.1",
+            "res": 1,
+            "subtime": 4831.739467967835,
             "walltime": 60
         },
         {
             "id": 247,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 4825.81865498119,
-            "walltime": 177.02
+            "profile": "delay_is.B.2",
+            "res": 2,
+            "subtime": 4851.196732024985,
+            "walltime": 60
         },
         {
             "id": 248,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 4846.628383252788,
-            "walltime": 177.02
+            "profile": "delay_is.B.4",
+            "res": 4,
+            "subtime": 4871.266972496592,
+            "walltime": 60
         },
         {
             "id": 249,
-            "profile": "delay_ft.B.1",
-            "res": 1,
-            "subtime": 4864.1243741178305,
-            "walltime": 177.02
+            "profile": "delay_ft.C.4",
+            "res": 4,
+            "subtime": 4890.499820340814,
+            "walltime": 303.88
         }
     ],
     "nb_res": 32,
     "profiles": {
         "delay_ft.B.1": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1",
             "delay": 88.51,
             "np": 1,
             "runtime": 88.51,
             "type": "delay"
         },
         "delay_ft.B.16": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.B.16",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.B.16",
             "delay": 10.346,
             "np": 16,
             "runtime": 10.346,
             "type": "delay"
         },
         "delay_ft.B.2": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2",
             "delay": 62.08,
             "np": 2,
             "runtime": 62.08,
             "type": "delay"
         },
         "delay_ft.B.32": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-32 --path $PATH ft.B.32",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-32 --path $PATH ft.B.32",
             "delay": 6.31,
             "np": 32,
             "runtime": 6.31,
             "type": "delay"
         },
         "delay_ft.B.4": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.B.4",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.B.4",
             "delay": 35.932,
             "np": 4,
             "runtime": 35.932,
             "type": "delay"
         },
         "delay_ft.B.8": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.B.8",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.B.8",
             "delay": 19.294,
             "np": 8,
             "runtime": 19.294,
             "type": "delay"
         },
         "delay_ft.C.1": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1",
             "delay": 386.48,
             "np": 1,
             "runtime": 386.48,
             "type": "delay"
         },
         "delay_ft.C.16": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.C.16",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.C.16",
             "delay": 41.998,
             "np": 16,
             "runtime": 41.998,
             "type": "delay"
         },
         "delay_ft.C.2": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2",
             "delay": 265.8,
             "np": 2,
             "runtime": 265.8,
             "type": "delay"
         },
         "delay_ft.C.32": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-32 --path $PATH ft.C.32",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-32 --path $PATH ft.C.32",
             "delay": 22.671,
             "np": 32,
             "runtime": 22.671,
             "type": "delay"
         },
         "delay_ft.C.4": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.C.4",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.C.4",
             "delay": 151.94,
             "np": 4,
             "runtime": 151.94,
             "type": "delay"
         },
         "delay_ft.C.8": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.C.8",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.C.8",
             "delay": 80.71,
             "np": 8,
             "runtime": 80.71,
             "type": "delay"
         },
         "delay_ft.D.16": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.D.16",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.D.16",
             "delay": 1119.22,
             "np": 16,
             "runtime": 1119.22,
             "type": "delay"
         },
         "delay_ft.D.32": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-32 --path $PATH ft.D.32",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-32 --path $PATH ft.D.32",
             "delay": 568.66,
             "np": 32,
             "runtime": 568.66,
             "type": "delay"
         },
         "delay_ft.D.8": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.D.8",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.D.8",
             "delay": 2190.82,
             "np": 8,
             "runtime": 2190.82,
             "type": "delay"
         },
         "delay_is.B.1": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1",
             "delay": 9.257,
             "np": 1,
             "runtime": 9.257,
             "type": "delay"
         },
         "delay_is.B.16": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-16 --path $PATH is.B.16",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH is.B.16",
             "delay": 1.561,
             "np": 16,
             "runtime": 1.561,
             "type": "delay"
         },
         "delay_is.B.2": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2",
             "delay": 6.609,
             "np": 2,
             "runtime": 6.609,
             "type": "delay"
         },
         "delay_is.B.32": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-32 --path $PATH is.B.32",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-32 --path $PATH is.B.32",
             "delay": 1.908,
             "np": 32,
             "runtime": 1.908,
             "type": "delay"
         },
         "delay_is.B.4": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4",
             "delay": 3.993,
             "np": 4,
             "runtime": 3.993,
             "type": "delay"
         },
         "delay_is.B.8": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.B.8",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.B.8",
             "delay": 2.33,
             "np": 8,
             "runtime": 2.33,
             "type": "delay"
         },
         "delay_is.C.16": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-16 --path $PATH is.C.16",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH is.C.16",
             "delay": 5.59,
             "np": 16,
             "runtime": 5.59,
             "type": "delay"
         },
         "delay_is.C.2": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2",
             "delay": 26.481,
             "np": 2,
             "runtime": 26.481,
             "type": "delay"
         },
         "delay_is.C.32": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-32 --path $PATH is.C.32",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-32 --path $PATH is.C.32",
             "delay": 3.301,
             "np": 32,
             "runtime": 3.301,
             "type": "delay"
         },
         "delay_is.C.4": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4",
             "delay": 16.684,
             "np": 4,
             "runtime": 16.684,
             "type": "delay"
         },
         "delay_is.C.8": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.C.8",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.C.8",
             "delay": 9.567,
             "np": 8,
             "runtime": 9.567,
             "type": "delay"
         },
         "delay_is.D.32": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-32 --path $PATH is.D.32",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-32 --path $PATH is.D.32",
             "delay": 46.028,
             "np": 32,
             "runtime": 46.028,
             "type": "delay"
         },
         "delay_lu.B.1": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1",
             "delay": 279.99,
             "np": 1,
             "runtime": 279.99,
             "type": "delay"
         },
         "delay_lu.B.16": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-16 --path $PATH lu.B.16",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH lu.B.16",
             "delay": 25.905,
             "np": 16,
             "runtime": 25.905,
             "type": "delay"
         },
         "delay_lu.B.2": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2",
             "delay": 140.95,
             "np": 2,
             "runtime": 140.95,
             "type": "delay"
         },
         "delay_lu.B.32": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-32 --path $PATH lu.B.32",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-32 --path $PATH lu.B.32",
             "delay": 13.385,
             "np": 32,
             "runtime": 13.385,
             "type": "delay"
         },
         "delay_lu.B.4": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.B.4",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.B.4",
             "delay": 87.69,
             "np": 4,
             "runtime": 87.69,
             "type": "delay"
         },
         "delay_lu.B.8": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-8 --path $PATH lu.B.8",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH lu.B.8",
             "delay": 48.8,
             "np": 8,
             "runtime": 48.8,
             "type": "delay"
         },
         "delay_lu.C.1": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1",
             "delay": 1176.93,
             "np": 1,
             "runtime": 1176.93,
             "type": "delay"
         },
         "delay_lu.C.16": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-16 --path $PATH lu.C.16",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH lu.C.16",
             "delay": 95.56,
             "np": 16,
             "runtime": 95.56,
             "type": "delay"
         },
         "delay_lu.C.2": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2",
             "delay": 593.59,
             "np": 2,
             "runtime": 593.59,
             "type": "delay"
         },
         "delay_lu.C.32": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-32 --path $PATH lu.C.32",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-32 --path $PATH lu.C.32",
             "delay": 52.81,
             "np": 32,
             "runtime": 52.81,
             "type": "delay"
         },
         "delay_lu.C.4": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4",
             "delay": 290.53,
             "np": 4,
             "runtime": 290.53,
             "type": "delay"
         },
         "delay_lu.C.8": {
-            "command": "mpirun -hostfile ${HOSTDIR}/hostfile-8 --path $PATH lu.C.8",
+            "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH lu.C.8",
             "delay": 179.08,
             "np": 8,
             "runtime": 179.08,
