@@ -50,7 +50,8 @@ class oar_replay_workload(Engine):
 
         # define the parameters
         if is_a_test:
-            workloads = [script_path + '/test_profile.json']
+            # workloads = [script_path + '/test_profile.json']
+            workloads = [script_path + '/../workload_generation/generated_workloads/mini_workload5.json']
         else:
             workloads = [script_path +
                          '../workload_generation/generated_workloads/' +
@@ -167,7 +168,7 @@ class oar_replay_workload(Engine):
                 # propagate SSH keys
                 logger.info("configuring OAR SSH")
                 oar_key = "/tmp/.ssh"
-                Process('rm -rf ' + oar_key)
+                Process('rm -rf ' + oar_key).run()
                 Process('scp -o BatchMode=yes -o PasswordAuthentication=no '
                         '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null '
                         '-o ConnectTimeout=20 -rp -o User=root ' +
@@ -178,11 +179,11 @@ class oar_replay_workload(Engine):
 
                 ## Use this for new version of oar_resources_init
                 ##
-                # Add nodes to OAR cluster
-                #hostfile_filename = self.result_dir + '/' + 'hostfile'
-                #with open(hostfile_filename, 'w') as hostfile:
-                #    for node in nodes[1:]:
-                #        print>>hostfile, node.address
+                # Create hostfile
+                hostfile_filename = self.result_dir + '/' + 'hostfile'
+                with open(hostfile_filename, 'w') as hostfile:
+                    for node in nodes[1:]:
+                        print>>hostfile, node.address
                 # add_resources_cmd = "oar_resources_init -y -x " + hostfile_filename
 
                 add_resources_cmd = """
@@ -203,12 +204,20 @@ class oar_replay_workload(Engine):
                 else:
                     raise RuntimeError("error in the OAR configuration: Abort!")
 
+                logger.info('creating hostfiles for MPI')
+                nb_nodes = ['1', '2', '4', '8', '16', '32']
+                for node_number in nb_nodes:
+                    hostfile_filename = self.result_dir + '/' + 'hostfile-' + node_number
+                    with open(hostfile_filename, 'w') as hostfile:
+                        for node in nodes[:int(node_number)]:
+                            print>>hostfile, node.address
+
                 # Do the replay
                 while len(self.sweeper.get_remaining()) > 0:
                     combi = self.sweeper.get_next()
                     oar_replay = SshProcess(script_path + "/oar_replay.py " +
                                             combi['workload_filename'] + " " +
-                                            self.result_dir + "/oar_gant_" +
+                                            self.result_dir + "  oar_gant_" +
                                             os.path.basename(combi['workload_filename']),
                                             nodes[0])
                     oar_replay.run()
