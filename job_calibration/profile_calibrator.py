@@ -79,7 +79,7 @@ for line in input_lines:
         print("Warning: line '{}' of file '{}' has been skipped: command '{}' is unknown".format(line, args.inputJSON.name, command))
 
 try:
-    json.dump(json_data, args.outputJSON, indent=args.indent)
+    json.dump(json_data, args.outputJSON, indent=args.indent, sort_keys=True)
     args.outputJSON.close()
 except IOError:
     print("Cannot write file ", args.outputJSON)
