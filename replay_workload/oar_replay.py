@@ -4,6 +4,7 @@ This script is taking a Batsim profile as input and replay the profile
 using the provided commands.
 '''
 import argparse
+import os
 import json
 import sched
 import time
@@ -69,12 +70,11 @@ for job in jobs:
                             'walltime': job['walltime'],
                             'resources': job['res'],
                             'hostfile_dir': args.result_dir})
-    scheduler.run()
+scheduler.run()
 
 while True:
-    process = Popen(["oarstat"], stdout=PIPE)
-    (output, err) = process.communicate()
-    if not output:
+    process = call("oarstat > /tmp/out" , shell=True)
+    if os.stat("/tmp/out").st_size == 0:
         break
     time.sleep(1)
 

@@ -24,11 +24,11 @@ script_path = os.path.dirname(os.path.realpath(__file__))
 
 is_a_test = False
 
-is_a_reservation = True
+is_a_reservation = False
 
 reservation_job_id = 872895
 
-alredy_configured = True
+alredy_configured = False
 
 def prediction_callback(ts):
     logger.info("job start prediction = %s" % (format_date(ts),))
@@ -42,6 +42,7 @@ class oar_replay_workload(Engine):
             run_type = "test"
         self.result_dir = script_path + '/' + run_type + 'results_' + \
                 time.strftime("%Y-%m-%d--%H-%M-%S")
+        logger.info('resutlt directory: {}'.format(self.result_dir))
 
     def run(self):
         """Run the experiment"""
@@ -64,7 +65,7 @@ class oar_replay_workload(Engine):
             workloads = [script_path +
                          '/../workload_generation/generated_workloads/' +
                          'g5k_workload_delay' + str(num) + '.json'
-                         for num in range(0, 6)]
+                         for num in range(2, 5)]
 
         self.parameters = {
             'workload_filename': workloads
@@ -80,6 +81,7 @@ class oar_replay_workload(Engine):
 
         logger.info('Number of parameters combinations {}'.format(
             str(len(self.sweeper.get_remaining()))))
+        logger.info('combinations {}'.format(str(self.sweeper.get_remaining())))
 
         site = get_cluster_site(cluster)
         if is_a_test and not is_a_reservation:
@@ -91,7 +93,7 @@ class oar_replay_workload(Engine):
         else:
             jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
                                           job_type='deploy',
-                                          walltime='04:00:00'), site)])
+                                          walltime='07:00:00'), site)])
         job_id, site = jobs[0]
         if job_id:
             try:

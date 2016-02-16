@@ -1,0 +1,751 @@
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=1
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=2
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=3
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:11 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=4
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=5
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=6
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=7
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=8
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=9
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=10
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=11
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.C.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=12
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=13
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=14
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=15
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=16
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=17
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:05:03 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=18
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=19
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=20
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=21
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=22
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=23
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:02:55 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=24
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=25
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=26
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=27
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=28
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=29
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=30
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=31
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=32
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=33
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=34
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=35
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=36
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:05:03 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=37
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=38
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=39
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=40
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:02:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.C.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=41
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=42
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=43
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=44
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=45
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=46
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=47
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=48
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=49
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=50
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=52
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=53
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=54
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=55
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=56
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=57
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=58
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=59
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=60
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=61
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=62
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=63
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=64
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=65
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=66
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=67
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=68
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=69
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=70
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=71
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=72
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=73
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=74
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=75
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=76
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=77
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=78
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=79
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=80
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=81
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=82
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=83
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:05:03 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=84
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=85
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=86
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=87
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=88
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=89
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=90
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=91
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=92
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=93
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=94
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=95
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:37 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH lu.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=96
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=97
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=98
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=99
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=100
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=101
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=102
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=103
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=104
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=105
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=106
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=107
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=108
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=109
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:37 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH lu.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=110
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=111
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=112
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=113
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=114
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=115
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=16,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH is.C.16"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=116
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=117
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=118
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=119
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=120
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=121
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=122
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=123
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=16,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH is.B.16"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=124
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=125
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=126
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=127
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=16,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.B.16"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=128
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=129
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=130
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=131
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=132
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=133
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=134
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=135
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=136
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=137
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=138
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=139
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=140
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=141
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=142
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=143
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=144
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=145
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=146
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=147
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=148
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=149
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=150
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=151
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=152
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=153
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=154
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=155
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=156
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=157
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=158
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=159
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=160
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:05:03 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=161
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.C.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=162
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=163
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=164
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=165
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=166
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=167
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:02:55 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=168
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=169
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=170
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=171
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=172
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=173
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:05:03 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=174
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=175
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=176
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=177
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:05:58 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH lu.C.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=178
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:09:19 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=179
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=16,walltime=0:37:18 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.D.16"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=180
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=181
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=182
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=183
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:02:55 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=184
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.C.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=185
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.C.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=186
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=187
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=188
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=16,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-16 --path $PATH ft.B.16"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=189
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=190
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:11 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=191
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=192
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=193
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=194
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=195
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=196
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=197
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=198
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=199
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:37 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH lu.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=200
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=201
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=202
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=203
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=204
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=205
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:02:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.C.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=206
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=1:13:01 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH ft.D.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=207
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=208
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=209
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=210
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=211
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=212
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=213
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:39:13 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH lu.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=214
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=215
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:11 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=216
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=217
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=218
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:11 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=219
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=220
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:02:55 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=221
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=222
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:11 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=223
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:04:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=224
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=225
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:11 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH ft.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=226
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=227
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.C.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=228
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=229
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=230
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:08:51 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=231
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=232
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=233
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:02:55 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=234
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=235
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=236
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:12:52 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.C.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=237
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=238
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=239
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH is.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=240
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=241
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=242
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=243
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:02:04 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH ft.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=244
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH is.B.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=245
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:19:47 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH lu.C.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=246
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=2,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-2 --path $PATH is.B.2"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=247
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=1,walltime=0:02:57 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=248
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=249
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=8,walltime=0:01:00 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-8 --path $PATH is.B.8"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=250
+export PATH=$PATH:/home/mmercier/expe-batsim/workload_generation/NPB_bin/; export HOSTDIR=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26;oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/OAR%jobid%.stderr  -l \nodes=4,walltime=0:09:41 "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-4 --path $PATH lu.C.4"
+[ADMISSION RULE] Modify resource description with type constraints
+OAR_JOB_ID=251
+oarstat -J --gantt "2016-02-16 10:01:41,2016-02-16 11:52:28" > /home/mmercier/expe-batsim/replay_workload/results_2016-02-16--07-56-26/oar_gant_g5k_workload_delay1.json
