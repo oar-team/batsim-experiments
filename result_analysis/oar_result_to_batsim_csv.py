@@ -30,19 +30,20 @@ for job in jobs:
     job_stop_time = float(jobs[job]['stop_time'])
     job_resources = [int(x) for x in jobs[job]['resources']]
     job_resources_string = ' '.join([str(x) for x in jobs[job]['resources']])
-    job_size = len(job_resources)
+    job_size = int(len(job_resources))
     job_walltime = float(jobs[job]['walltime'])
     job_state = str(jobs[job]['state'])
-    job_consumed_energy = -1
+    job_consumed_energy = int(-1)
 
-    job_runtime = job_stop_time - job_start_time
-    job_waiting_time = job_start_time - job_submission_time
-    job_turnaround_time = job_stop_time - job_submission_time
-    job_stretch = job_turnaround_time / job_runtime
+    job_runtime = float(job_stop_time - job_start_time)
+    job_waiting_time = float(job_start_time - job_submission_time)
+    job_turnaround_time = float(job_stop_time - job_submission_time)
+    job_stretch = float(job_turnaround_time / job_runtime)
 
     job_success = 0
     if job_state == 'Terminated':
         job_success = 1
+    job_success = int(job_success)
 
     output_jobs.append({'jobID':job_id,
                         'submission_time':job_submission_time,
