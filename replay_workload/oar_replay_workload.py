@@ -22,11 +22,11 @@ from execo_engine import Engine, logger, ParamSweeper, sweep, slugify
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
-is_a_test = False
+is_a_test = True
 
 is_a_reservation = False
 
-reservation_job_id = 872895
+reservation_job_id = 874495
 
 alredy_configured = False
 
