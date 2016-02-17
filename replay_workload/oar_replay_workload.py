@@ -22,15 +22,15 @@ from execo_engine import Engine, logger, ParamSweeper, sweep, slugify
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
-is_a_test = True
+is_a_test = False
 
 workload_type = 'mini'
 
-is_a_reservation = False
+is_a_reservation = True
 
-reservation_job_id = 874495
+reservation_job_id = 874300
 
-alredy_configured = False
+alredy_configured = True
 
 def prediction_callback(ts):
     logger.info("job start prediction = %s" % (format_date(ts),))
@@ -95,9 +95,9 @@ class oar_replay_workload(Engine):
                                           job_type='deploy',
                                           walltime='00:30:00'), site)])
         if is_a_test and not is_a_reservation and workload_type == 'mini':
-            jobs = oarsub([(OarSubmission(resources="/nodes=32",
+            jobs = oarsub([(OarSubmission(resources="/nodes=33",
                                           job_type='deploy',
-                                          walltime='01:00:00'), site)])
+                                          walltime='00:20:00'), site)])
         elif is_a_reservation:
             jobs = [(reservation_job_id, site)]
         else:

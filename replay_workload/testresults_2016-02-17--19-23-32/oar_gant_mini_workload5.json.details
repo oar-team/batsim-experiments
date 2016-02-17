@@ -1,0 +1,1042 @@
+{
+    "jobs": {
+        "1": {
+            "Job_Id": "1",
+            "array_id": 1,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-10.nancy.grid5000.fr",
+                "graphene-11.nancy.grid5000.fr",
+                "graphene-12.nancy.grid5000.fr",
+                "graphene-13.nancy.grid5000.fr",
+                "graphene-14.nancy.grid5000.fr",
+                "graphene-15.nancy.grid5000.fr",
+                "graphene-16.nancy.grid5000.fr",
+                "graphene-17.nancy.grid5000.fr",
+                "graphene-18.nancy.grid5000.fr",
+                "graphene-19.nancy.grid5000.fr",
+                "graphene-20.nancy.grid5000.fr",
+                "graphene-21.nancy.grid5000.fr",
+                "graphene-22.nancy.grid5000.fr",
+                "graphene-23.nancy.grid5000.fr",
+                "graphene-25.nancy.grid5000.fr",
+                "graphene-26.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-16 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ lu.C.16",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455733944,
+                    "description": "[bipbip 1] Ask to change the job state",
+                    "event_id": "3",
+                    "job_id": 1,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": null,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=16,walltime=0:15:55 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-16 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ lu.C.16",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=16,W=0:15:55,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733832,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR1.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR1.stdout",
+            "stopTime": 1455733944,
+            "submissionTime": 1455733831,
+            "types": [],
+            "walltime": 955,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=16,walltime=0:15:55\" "
+        },
+        "10": {
+            "Job_Id": "10",
+            "array_id": 10,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-7.nancy.grid5000.fr",
+                "graphene-8.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                32,
+                33
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.C.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455733979,
+                    "description": "[bipbip 10] Ask to change the job state",
+                    "event_id": "7",
+                    "job_id": 10,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:04:24 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.C.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:4:24,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733841,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR10.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR10.stdout",
+            "stopTime": 1455733979,
+            "submissionTime": 1455733839,
+            "types": [],
+            "walltime": 264,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:4:24\" "
+        },
+        "11": {
+            "Job_Id": "11",
+            "array_id": 11,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-9.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                34
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.B.1",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455734028,
+                    "description": "[bipbip 11] Ask to change the job state",
+                    "event_id": "14",
+                    "job_id": 11,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=1,walltime=0:14:45 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.B.1",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=1,W=0:14:45,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733842,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR11.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR11.stdout",
+            "stopTime": 1455734028,
+            "submissionTime": 1455733840,
+            "types": [],
+            "walltime": 885,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=1,walltime=0:14:45\" "
+        },
+        "12": {
+            "Job_Id": "12",
+            "array_id": 12,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-10.nancy.grid5000.fr",
+                "graphene-11.nancy.grid5000.fr",
+                "graphene-12.nancy.grid5000.fr",
+                "graphene-13.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-4 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ lu.C.4",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455734447,
+                    "description": "[bipbip 12] Ask to change the job state",
+                    "event_id": "18",
+                    "job_id": 12,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=4,walltime=0:48:25 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-4 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ lu.C.4",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=4,W=0:48:25,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733946,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR12.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR12.stdout",
+            "stopTime": 1455734447,
+            "submissionTime": 1455733841,
+            "types": [],
+            "walltime": 2905,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=4,walltime=0:48:25\" "
+        },
+        "13": {
+            "Job_Id": "13",
+            "array_id": 13,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-14.nancy.grid5000.fr",
+                "graphene-15.nancy.grid5000.fr",
+                "graphene-16.nancy.grid5000.fr",
+                "graphene-17.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                5,
+                6,
+                7,
+                8
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-4 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.B.4",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455733991,
+                    "description": "[bipbip 13] Ask to change the job state",
+                    "event_id": "8",
+                    "job_id": 13,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=4,walltime=0:01:00 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-4 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.B.4",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=4,W=0:1:0,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733946,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR13.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR13.stdout",
+            "stopTime": 1455733991,
+            "submissionTime": 1455733842,
+            "types": [],
+            "walltime": 60,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=4,walltime=0:1:0\" "
+        },
+        "14": {
+            "Job_Id": "14",
+            "array_id": 14,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-18.nancy.grid5000.fr",
+                "graphene-19.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                9,
+                10
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.B.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455734133,
+                    "description": "[bipbip 14] Ask to change the job state",
+                    "event_id": "16",
+                    "job_id": 14,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:10:20 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.B.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:10:20,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733946,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR14.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR14.stdout",
+            "stopTime": 1455734133,
+            "submissionTime": 1455733843,
+            "types": [],
+            "walltime": 620,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:10:20\" "
+        },
+        "15": {
+            "Job_Id": "15",
+            "array_id": 15,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-20.nancy.grid5000.fr",
+                "graphene-21.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                12,
+                13
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.C.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455734081,
+                    "description": "[bipbip 15] Ask to change the job state",
+                    "event_id": "15",
+                    "job_id": 15,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:04:24 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.C.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:4:24,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733946,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR15.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR15.stdout",
+            "stopTime": 1455734081,
+            "submissionTime": 1455733844,
+            "types": [],
+            "walltime": 264,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:4:24\" "
+        },
+        "16": {
+            "Job_Id": "16",
+            "array_id": 16,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-22.nancy.grid5000.fr",
+                "graphene-23.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                14,
+                15
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ lu.B.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455734242,
+                    "description": "[bipbip 16] Ask to change the job state",
+                    "event_id": "17",
+                    "job_id": 16,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:23:29 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ lu.B.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:23:29,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733946,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR16.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR16.stdout",
+            "stopTime": 1455734242,
+            "submissionTime": 1455733845,
+            "types": [],
+            "walltime": 1409,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:23:29\" "
+        },
+        "17": {
+            "Job_Id": "17",
+            "array_id": 17,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-25.nancy.grid5000.fr",
+                "graphene-26.nancy.grid5000.fr",
+                "graphene-33.nancy.grid5000.fr",
+                "graphene-34.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                16,
+                17,
+                23,
+                24
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-4 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.B.4",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455734003,
+                    "description": "[bipbip 17] Ask to change the job state",
+                    "event_id": "9",
+                    "job_id": 17,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=4,walltime=0:01:00 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-4 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.B.4",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=4,W=0:1:0,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733971,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR17.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR17.stdout",
+            "stopTime": 1455734003,
+            "submissionTime": 1455733846,
+            "types": [],
+            "walltime": 60,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=4,walltime=0:1:0\" "
+        },
+        "18": {
+            "Job_Id": "18",
+            "array_id": 18,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-25.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                16
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.B.1",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455733948,
+                    "description": "[bipbip 18] Ask to change the job state",
+                    "event_id": "4",
+                    "job_id": 18,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 35072,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=1,walltime=0:14:45 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.B.1",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=1,W=0:14:45,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733947,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR18.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR18.stdout",
+            "stopTime": 1455733948,
+            "submissionTime": 1455733847,
+            "types": [],
+            "walltime": 885,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=1,walltime=0:14:45\" "
+        },
+        "19": {
+            "Job_Id": "19",
+            "array_id": 19,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-31.nancy.grid5000.fr",
+                "graphene-32.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                21,
+                22
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.B.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455734016,
+                    "description": "[bipbip 19] Ask to change the job state",
+                    "event_id": "13",
+                    "job_id": 19,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_ERROR_STATE"
+                },
+                {
+                    "date": 1455734015,
+                    "description": "[Leon] Send the kill signal to oarexec on graphene-31.nancy.grid5000.fr for job 19",
+                    "event_id": "12",
+                    "job_id": 19,
+                    "to_check": "NO",
+                    "type": "SEND_KILL_JOB"
+                },
+                {
+                    "date": 1455734014,
+                    "description": "[sarko] Job [19] from 1455733937 with 66; current time=1455734014 (Elapsed)",
+                    "event_id": "11",
+                    "job_id": 19,
+                    "to_check": "NO",
+                    "type": "WALLTIME"
+                },
+                {
+                    "date": 1455734014,
+                    "description": "User root requested to frag the job 19",
+                    "event_id": "10",
+                    "job_id": 19,
+                    "to_check": "NO",
+                    "type": "FRAG_JOB_REQUEST"
+                }
+            ],
+            "exit_code": null,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:01:06 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.B.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:1:6,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733937,
+            "state": "Error",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR19.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR19.stdout",
+            "stopTime": 1455734016,
+            "submissionTime": 1455733848,
+            "types": [],
+            "walltime": 66,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:1:6\" "
+        },
+        "2": {
+            "Job_Id": "2",
+            "array_id": 2,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-27.nancy.grid5000.fr",
+                "graphene-29.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                18,
+                19
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455735451,
+                    "description": "[bipbip 2] Ask to change the job state",
+                    "event_id": "23",
+                    "job_id": 2,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:44:18 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:44:18,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733833,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR2.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR2.stdout",
+            "stopTime": 1455735451,
+            "submissionTime": 1455733831,
+            "types": [],
+            "walltime": 2658,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:44:18\" "
+        },
+        "20": {
+            "Job_Id": "20",
+            "array_id": 20,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-25.nancy.grid5000.fr",
+                "graphene-26.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                16,
+                17
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455733950,
+                    "description": "[bipbip 20] Ask to change the job state",
+                    "event_id": "5",
+                    "job_id": 20,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 35072,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:44:18 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:44:18,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733949,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR20.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR20.stdout",
+            "stopTime": 1455733950,
+            "submissionTime": 1455733849,
+            "types": [],
+            "walltime": 2658,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:44:18\" "
+        },
+        "3": {
+            "Job_Id": "3",
+            "array_id": 3,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-2.nancy.grid5000.fr",
+                "graphene-30.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                11,
+                20
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455735288,
+                    "description": "[bipbip 3] Ask to change the job state",
+                    "event_id": "21",
+                    "job_id": 3,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:44:18 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:44:18,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733833,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR3.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR3.stdout",
+            "stopTime": 1455735287,
+            "submissionTime": 1455733832,
+            "types": [],
+            "walltime": 2658,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:44:18\" "
+        },
+        "4": {
+            "Job_Id": "4",
+            "array_id": 4,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-31.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                21
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.1",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455733936,
+                    "description": "[bipbip 4] Ask to change the job state",
+                    "event_id": "2",
+                    "job_id": 4,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 35072,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=1,walltime=1:04:24 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.1",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=1,W=1:4:24,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733835,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR4.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR4.stdout",
+            "stopTime": 1455733936,
+            "submissionTime": 1455733833,
+            "types": [],
+            "walltime": 3864,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=1,walltime=1:4:24\" "
+        },
+        "5": {
+            "Job_Id": "5",
+            "array_id": 5,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-32.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                22
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.B.1",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455733861,
+                    "description": "[bipbip 5] Ask to change the job state",
+                    "event_id": "1",
+                    "job_id": 5,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=1,walltime=0:01:32 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ is.B.1",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=1,W=0:1:32,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733836,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR5.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR5.stdout",
+            "stopTime": 1455733861,
+            "submissionTime": 1455733834,
+            "types": [],
+            "walltime": 92,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=1,walltime=0:1:32\" "
+        },
+        "6": {
+            "Job_Id": "6",
+            "array_id": 6,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-33.nancy.grid5000.fr",
+                "graphene-34.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                23,
+                24
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.B.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455733969,
+                    "description": "[bipbip 6] Ask to change the job state",
+                    "event_id": "6",
+                    "job_id": 6,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:10:20 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.B.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:10:20,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733836,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR6.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR6.stdout",
+            "stopTime": 1455733969,
+            "submissionTime": 1455733835,
+            "types": [],
+            "walltime": 620,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:10:20\" "
+        },
+        "7": {
+            "Job_Id": "7",
+            "array_id": 7,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-35.nancy.grid5000.fr",
+                "graphene-36.nancy.grid5000.fr",
+                "graphene-37.nancy.grid5000.fr",
+                "graphene-38.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                25,
+                26,
+                27,
+                28
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-4 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.4",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455735266,
+                    "description": "[bipbip 7] Ask to change the job state",
+                    "event_id": "20",
+                    "job_id": 7,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=4,walltime=0:25:19 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-4 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.4",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=4,W=0:25:19,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733838,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR7.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR7.stdout",
+            "stopTime": 1455735266,
+            "submissionTime": 1455733836,
+            "types": [],
+            "walltime": 1519,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=4,walltime=0:25:19\" "
+        },
+        "8": {
+            "Job_Id": "8",
+            "array_id": 8,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-4.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                29
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.1",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455735130,
+                    "description": "[bipbip 8] Ask to change the job state",
+                    "event_id": "19",
+                    "job_id": 8,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 35072,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=1,walltime=1:04:24 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-1 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.1",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=1,W=1:4:24,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733839,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR8.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR8.stdout",
+            "stopTime": 1455735130,
+            "submissionTime": 1455733837,
+            "types": [],
+            "walltime": 3864,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=1,walltime=1:4:24\" "
+        },
+        "9": {
+            "Job_Id": "9",
+            "array_id": 9,
+            "array_index": 1,
+            "assigned_network_address": [
+                "graphene-5.nancy.grid5000.fr",
+                "graphene-6.nancy.grid5000.fr"
+            ],
+            "assigned_resources": [
+                30,
+                31
+            ],
+            "command": "mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.2",
+            "cpuset_name": null,
+            "dependencies": [],
+            "events": [
+                {
+                    "date": 1455735422,
+                    "description": "[bipbip 9] Ask to change the job state",
+                    "event_id": "22",
+                    "job_id": 9,
+                    "to_check": "NO",
+                    "type": "SWITCH_INTO_TERMINATE_STATE"
+                }
+            ],
+            "exit_code": 0,
+            "initial_request": "oarsub --stdout=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stdout --stderr=/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR%jobid%.stderr -l nodes=2,walltime=0:44:18 mpirun --mca btl self,sm,tcp -hostfile /home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/hostfile-2 --path /usr/local/bin:/usr/bin:/bin:/usr/games:/home/mmercier/expe-batsim/workload_generation/NPB_bin/ ft.C.2",
+            "jobType": "PASSIVE",
+            "job_user": "mmercier",
+            "launchingDirectory": "/home/mmercier",
+            "message": "R=2,W=0:44:18,J=B",
+            "name": null,
+            "owner": "mmercier",
+            "project": "default",
+            "properties": "(desktop_computing = 'NO') AND drain='NO'",
+            "queue": "default",
+            "reservation": "None",
+            "resubmit_job_id": 0,
+            "scheduledStart": null,
+            "startTime": 1455733839,
+            "state": "Terminated",
+            "stderr_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR9.stderr",
+            "stdout_file": "/home/mmercier/expe-batsim/replay_workload/testresults_2016-02-17--19-23-32/mini_workload5/OAR9.stdout",
+            "stopTime": 1455735422,
+            "submissionTime": 1455733838,
+            "types": [],
+            "walltime": 2658,
+            "wanted_resources": "-l \"{type = 'default'}/network_address=2,walltime=0:44:18\" "
+        }
+    }
+}
