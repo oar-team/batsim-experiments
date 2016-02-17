@@ -20,7 +20,7 @@ def do_oar_submission(command, walltime, resources, result_dir,
                       batsim_job_id):
     hms_time = timedelta(seconds=walltime)
     oar_time = str(hms_time).split('.')[0]
-    exports = 'export PATH=$PATH:{}; export HOSTDIR={};'.format(command_path, result_dir)
+    exports = 'export PATH=$PATH:{}; '.format(command_path)
     oar_options = '--stdout={0}/OAR%jobid%.stdout --stderr={0}/OAR%jobid%.stderr '.format(workload_dir)
     oar_cmd = (exports + 'oarsub ' + oar_options + ' -l \\nodes=' + str(resources) + ',walltime=' +
                oar_time + ' "' + command + '"')
@@ -31,6 +31,8 @@ def do_oar_submission(command, walltime, resources, result_dir,
         if find_job:
             job_id = int(find_job.group(1))
             writer.writerow({"batsim_id": batsim_job_id, "oar_id": job_id})
+        else:
+            print("JOB_NOT_SUBMITTED_BATSIM_JOB_ID: {}".format(batsim_job_id))
 
 
 def get_scheduling_results(results_file):

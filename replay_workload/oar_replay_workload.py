@@ -57,12 +57,13 @@ class oar_replay_workload(Engine):
         env_name = "debian8_workload_generation_nfs"
 
         # define the parameters
-        if is_a_test and workload_type == 'micro':
+        logger.info('Workload type: {}'.format(workload_type))
+        if (is_a_test and (workload_type == 'micro')):
             workloads = [script_path +
                          '/../workload_generation/generated_workloads/' +
                          'micro_workload' + str(num) + '.json'
                          for num in range(0, 3)]
-        if is_a_test and workload_type == 'mini':
+        elif is_a_test and workload_type == 'mini':
             workloads = [script_path +
                          '/../workload_generation/generated_workloads/' +
                          'mini_workload' + str(num) + '.json'
@@ -230,14 +231,6 @@ class oar_replay_workload(Engine):
                         logger.info("oar is now configured!")
                     else:
                         raise RuntimeError("error in the OAR configuration: Abort!")
-
-                logger.info('creating hostfiles for MPI')
-                nb_nodes = ['1', '2', '4', '8', '16', '32']
-                for node_number in nb_nodes:
-                    hostfile_filename = self.result_dir + '/' + 'hostfile-' + node_number
-                    with open(hostfile_filename, 'w') as hostfile:
-                        for node in nodes[1:int(node_number)+1]:
-                            print>>hostfile, node.address
 
                 # Do the replay
                 logger.info('begining the replay')
