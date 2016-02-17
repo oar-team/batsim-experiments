@@ -27,18 +27,33 @@ jobs = input_json_data['jobs']
 
 finished_jobs = []
 error_jobs = []
+timeout_jobs = []
 
 for job in jobs:
     job_id = int(job)
-    state = jobs[job]['state']
+    job_state = jobs[job]['state']
+    job_limit_stop_time = float(jobs[job]['limit_stop_time'])
+    job_stop_time = float(jobs[job]['stop_time'])
 
-    if state == 'Terminated':
+    if job_stop_time >= job_limit_stop_time:
+        timeout_jobs.append(job)
+
+    if job_state == 'Terminated':
         finished_jobs.append(job)
-    elif state == 'Error':
+    elif job_state == 'Error':
         error_jobs.append(job)
     else:
-        print("{}: {}".format(job_id, state))
+        print("{}: {}".format(job_id, job_state))
+
+finished_jobs.sort()
+error_jobs.sort()
+timeout_jobs.sort()
 
 print('Finished jobs: {}, [{}]'.format(len(finished_jobs), ','.join(finished_jobs)))
 print()
 print('Error jobs: {}, [{}]'.format(len(error_jobs), ','.join(error_jobs)))
+print()
+print('Timeout jobs: {}, [{}]'.format(len(error_jobs), ','.join(error_jobs)))
+
+print('Timeout jobs that are not error:', set(timeout_jobs) - set(error_jobs))
+print('Error jobs that are not timeout:', set(error_jobs) - set(timeout_jobs))
