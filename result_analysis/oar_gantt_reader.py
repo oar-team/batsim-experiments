@@ -60,17 +60,17 @@ for job in terminated_jobs:
 print('Finished jobs no stderr: {}, [{}]'.format(len(terminated_jobs_no_stderr), ','.join(terminated_jobs_no_stderr)))
 print()
 
-terminated_jobs_not_really_finished = []
+terminated_jobs_not_finished = []
 for job in terminated_jobs:
     filename = 'OAR{}.stdout'.format(job)
     with open(filename, 'r') as file:
         content = file.read()
         if content.find('Time in seconds') == -1:
-            terminated_jobs_not_really_finished.append(job)
+            terminated_jobs_not_finished.append(job)
 
 terminated_jobs_no_stderr.sort()
-terminated_jobs_not_really_finished.sort()
-terminated_jobs_finished = list(set(terminated_jobs) - set(terminated_jobs_not_really_finished))
+terminated_jobs_not_finished.sort()
+terminated_jobs_finished = list(set(terminated_jobs) - set(terminated_jobs_not_finished))
 terminated_finished_jobs_with_stderr = list(set(terminated_jobs_finished) - set(terminated_jobs_no_stderr))
 
 print('Terminated jobs: {}, [{}]'.format(len(terminated_jobs), ','.join(terminated_jobs)))
@@ -85,7 +85,7 @@ print('Error jobs that are not timeout: {}'.format(set(error_jobs) - set(timeout
 
 print()
 print('Terminated jobs that have no stderr: {}, [{}]'.format(len(terminated_jobs_no_stderr), ','.join(terminated_jobs_no_stderr)))
-print('Terminated jobs not really finished: {}, [{}]'.format(len(terminated_jobs_not_really_finished), ','.join(terminated_jobs_not_really_finished)))
+print('Terminated jobs not finished: {}, [{}]'.format(len(terminated_jobs_not_finished), ','.join(terminated_jobs_not_finished)))
 
 print('Terminated finished jobs: {}, [{}]'.format(len(terminated_jobs_finished), ','.join(terminated_jobs_finished)))
 print('Terminated finished jobs that have a stderr: {}, [{}]'.format(len(terminated_finished_jobs_with_stderr), ','.join(terminated_finished_jobs_with_stderr)))
