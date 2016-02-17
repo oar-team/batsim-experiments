@@ -18,7 +18,6 @@ import argparse
 import math
 import sys
 import random
-import pandas
 import json
 import datetime
 
@@ -26,6 +25,7 @@ import datetime
 parser = argparse.ArgumentParser(description='Reads a JSON profiles description file and generates a JSON workload (used by Batsim) from it')
 parser.add_argument('inputJSON', type=argparse.FileType('r'), help='The input JSON profiles description file')
 parser.add_argument('outputJSON', type=argparse.FileType('w'), help='The output JSON workload file')
+parser.add_argument('resourcesNumber', type=int, help='The number of resources in the platform')
 parser.add_argument('-rs', '--random_seed', type=int, default=None, help='The random seed')
 parser.add_argument('-jn', '--job_number', type=int, default=300, help='The number of jobs to generate')
 parser.add_argument('-sjp', '--serial_job_probability', type=float, default=0.25, help="The probability of a job being serial (executed on a single resource)")
@@ -143,7 +143,7 @@ json_data = {
     'command':' '.join(sys.argv[:]),
     'date': datetime.datetime.now().isoformat(' '),
     'description':'this workload had been automatically generated',
-    'nb_res': 32,
+    'nb_res': args.resourcesNumber,
     'jobs':djobs,
     'profiles':profiles
     }

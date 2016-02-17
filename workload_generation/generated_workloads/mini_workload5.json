@@ -1,6 +1,6 @@
 {
-    "command": "json_workload_generator.py -i 4 profiles/delay_profiles_mpi_commands.json generated_workloads/mini_workload5.json -jn 20 -lambda 1 -k 20 -mu 0.3 -sigma 0.5 -rs 5",
-    "date": "2016-02-17 15:42:59.082499",
+    "command": "json_workload_generator.py -i 4 profiles/delay_profiles_mpi_commands.json generated_workloads/mini_workload5.json 37 -jn 20 -lambda 1 -k 20 -mu 0.3 -sigma 0.5 -rs 5",
+    "date": "2016-02-17 19:59:22.393713",
     "description": "this workload had been automatically generated",
     "jobs": [
         {
@@ -144,7 +144,7 @@
             "walltime": 2658.0
         }
     ],
-    "nb_res": 32,
+    "nb_res": 37,
     "profiles": {
         "delay_ft.B.1": {
             "command": "mpirun --mca btl self,sm,tcp -hostfile ${HOSTDIR}/hostfile-1 --path $PATH ft.B.1",
