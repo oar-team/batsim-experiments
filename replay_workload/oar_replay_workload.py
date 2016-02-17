@@ -24,6 +24,8 @@ script_path = os.path.dirname(os.path.realpath(__file__))
 
 is_a_test = True
 
+workload_type = 'mini'
+
 is_a_reservation = False
 
 reservation_job_id = 874495
@@ -55,17 +57,21 @@ class oar_replay_workload(Engine):
         env_name = "debian8_workload_generation_nfs"
 
         # define the parameters
-        if is_a_test:
-            # workloads = [script_path + '/test_profile.json']
+        if is_a_test and workload_type == 'micro':
             workloads = [script_path +
                          '/../workload_generation/generated_workloads/' +
                          'micro_workload' + str(num) + '.json'
                          for num in range(0, 3)]
+        if is_a_test and workload_type == 'mini':
+            workloads = [script_path +
+                         '/../workload_generation/generated_workloads/' +
+                         'mini_workload' + str(num) + '.json'
+                         for num in range(5, 6)]
         else:
             workloads = [script_path +
                          '/../workload_generation/generated_workloads/' +
                          'g5k_workload_delay' + str(num) + '.json'
-                         for num in range(2, 5)]
+                         for num in range(0, 6)]
 
         self.parameters = {
             'workload_filename': workloads
@@ -84,10 +90,14 @@ class oar_replay_workload(Engine):
         logger.info('combinations {}'.format(str(self.sweeper.get_remaining())))
 
         site = get_cluster_site(cluster)
-        if is_a_test and not is_a_reservation:
+        if is_a_test and not is_a_reservation and workload_type == 'micro':
             jobs = oarsub([(OarSubmission(resources="/nodes=3",
                                           job_type='deploy',
                                           walltime='00:30:00'), site)])
+        if is_a_test and not is_a_reservation and workload_type == 'mini':
+            jobs = oarsub([(OarSubmission(resources="/nodes=32",
+                                          job_type='deploy',
+                                          walltime='01:00:00'), site)])
         elif is_a_reservation:
             jobs = [(reservation_job_id, site)]
         else:
