@@ -21,7 +21,7 @@ def do_oar_submission(command, walltime, resources, result_dir,
     hms_time = timedelta(seconds=walltime)
     oar_time = str(hms_time).split('.')[0]
     exports = 'export PATH=$PATH:{}; export HOSTDIR={};'.format(command_path, result_dir)
-    oar_options = '--stdout={workload_dir}/OAR%jobid%.stdout --stderr={workload_dir}/OAR%jobid%.stderr '.format(result_dir=result_dir)
+    oar_options = '--stdout={0}/OAR%jobid%.stdout --stderr={0}/OAR%jobid%.stderr '.format(workload_dir)
     oar_cmd = (exports + 'oarsub ' + oar_options + ' -l \\nodes=' + str(resources) + ',walltime=' +
                oar_time + ' "' + command + '"')
     print(oar_cmd)
@@ -71,7 +71,7 @@ assert('profiles' in json_data), ("Invalid input file: It must contains a"
                                   "'profiles' map")
 
 # get informations
-workload = os.path.splitext(args.inputJSON.name)[0]
+workload = os.path.splitext(os.path.basename(args.inputJSON.name))[0]
 jobs = json_data['jobs']
 profiles = json_data['profiles']
 result_dir = args.result_dir
@@ -96,7 +96,11 @@ for job in jobs:
 
 # prepare output directory
 workload_dir = result_dir + '/' + workload
-os.mkdir(workload_dir)
+try:
+    os.mkdir(workload_dir)
+except OSError as exc:
+    if exc.errno != os.errno.EEXIST:
+        raise exc
 
 # prepare output file
 try:
