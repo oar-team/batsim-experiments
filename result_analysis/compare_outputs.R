@@ -25,10 +25,6 @@ output_dir = args[3]
 # Setting working directory to OUTPUT_DIR
 setwd(output_dir)
 
-# TOREMOVE: test-only purpose
-real$submission_time = real$submission_time + 1000
-real$execution_time = real$execution_time + 100
-
 # Data manipulations
 # Renaming columns to do an inner join
 rename_mapping = c(

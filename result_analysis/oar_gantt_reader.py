@@ -24,6 +24,9 @@ args = parser.parse_args()
 input_json_data = json.load(args.inputJSON)
 assert('jobs' in input_json_data), "No 'jobs' in {}".format(args.inputJSON)
 
+resources = input_json_data['resources']
+print('Number of resources: {}'.format(len(resources)))
+
 jobs = input_json_data['jobs']
 
 terminated_jobs = []

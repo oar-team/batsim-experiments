@@ -14,6 +14,8 @@ parser = argparse.ArgumentParser(description='Reads an OAR result JSON file and 
 parser.add_argument('inputJSON', type=argparse.FileType('r'), help='The input OAR result JSON file')
 parser.add_argument('outputCSV', type=argparse.FileType('w'), help='The output CSV Batsim jobs file')
 parser.add_argument('-m', '--jobIDMappingCSV', type=argparse.FileType('r'), default=None, help='The optionnal CSV mapping of job IDs between those of Batsim and those of OAR')
+parser.add_argument('-r', '--reduceSubmitTimes', action='store_true', help='If set, job submission times are translated s.t. min(submission_time) = 0')
+parser.set_defaults(reduceSubmitTimes=False)
 
 args = parser.parse_args()
 
@@ -37,6 +39,15 @@ input_json_data = json.load(args.inputJSON)
 assert('jobs' in input_json_data), "No 'jobs' in {}".format(args.inputJSON.name)
 jobs = input_json_data['jobs']
 
+# Computing the offset for submission time
+print(args.reduceSubmitTimes)
+submission_time_offset = float('inf')
+if args.reduceSubmitTimes:
+    for job in jobs:
+        job_submission_time = float(jobs[job]['submission_time'])
+        submission_time_offset = min(submission_time_offset, job_submission_time)
+print(submission_time_offset)
+
 # Traversing the input file to create the output jobs
 output_jobs = list()
 for job in jobs:
@@ -44,9 +55,9 @@ for job in jobs:
         job_id = oar_id_to_batsim_id[int(job)]
     else:
         job_id = int(job)
-    job_submission_time = float(jobs[job]['submission_time'])
-    job_start_time = float(jobs[job]['start_time'])
-    job_stop_time = float(jobs[job]['stop_time'])
+    job_submission_time = float(jobs[job]['submission_time']) - submission_time_offset
+    job_start_time = float(jobs[job]['start_time']) - submission_time_offset
+    job_stop_time = float(jobs[job]['stop_time']) - submission_time_offset
     job_resources = [int(x) for x in jobs[job]['resources']]
     job_resources_string = ' '.join([str(x) for x in jobs[job]['resources']])
     job_size = int(len(job_resources))
@@ -60,7 +71,7 @@ for job in jobs:
     job_stretch = float(job_turnaround_time / job_runtime)
 
     job_success = 0
-    if job_state == 'Terminatéed':
+    if job_state == 'Terminated':
         job_success = 1
     job_success = int(job_success)
 
