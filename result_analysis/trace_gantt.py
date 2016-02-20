@@ -5,16 +5,33 @@ Batsim using *evalys* module.
 '''
 
 import argparse
-import csv
+import os
+import matplotlib.pyplot as plt
 from evalys.jobset import JobSet
 
-parser = argparse.ArgumentParser(description='Generate Gantt charts from Batsim CSV job file.')
-parser.add_argument('inputCSV', help='The input CSV file')
 
-args = parser.parse_args()
+def main():
+    parser = argparse.ArgumentParser(description='Generate Gantt charts '
+                                     'from Batsim CSV job file.')
+    parser.add_argument('inputCSV', nargs='+', help='The input CSV file(s)')
 
-js = JobSet(args.inputCSV)
-print(js.df.describe())
+    args = parser.parse_args()
 
-js.df.hist()
-js.gantt()
+    fig, ax_list = plt.subplots(len(args.inputCSV), sharex=True,
+                                sharey=True)
+    if not isinstance(ax_list, list):
+        ax_list = list(ax_list)
+
+    for ax, inputCSV in zip(ax_list, sorted(args.inputCSV)):
+        js = JobSet(inputCSV)
+        js.gantt(ax, os.path.basename(inputCSV))
+
+    plt.show()
+
+    # print(js.df.describe())
+
+    # js.df.hist()
+
+
+if __name__ == "__main__":
+    main()
