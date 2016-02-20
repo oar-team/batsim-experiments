@@ -116,11 +116,17 @@ ggplot(msg, aes(x = real_makespan, y = stretch_difference_sd)) + geom_point() + 
 ggsave("msg_stretch_difference_sd_scatterplot.pdf")
 
 
-ggplot(msg, aes(x = real_makespan, y = makespan_difference)) + geom_point() + geom_smooth(method=lm)
+ggplot(msg, aes(x = real_makespan, y = makespan_difference)) + geom_point(aes(color= workload_name, shape= workload_name)) + scale_shape_manual(values=c(0,1,2,3,4,5,6,7,8))
 ggsave("msg_metrics_makespan_difference_scatterplot.pdf")
 
-ggplot(msg, aes(x = real_makespan, y = mean_stretch_difference)) + geom_point() + geom_smooth(method=lm)
+ggplot(msg, aes(x = real_makespan, y = mean_stretch_difference)) + geom_point(aes(color= workload_name, shape= workload_name)) + scale_shape_manual(values=c(0,1,2,3,4,5,6,7,8))
 ggsave("msg_metrics_mean_stretch_difference_scatterplot.pdf")
 
-ggplot(msg, aes(x = real_makespan, y = mean_turnaround_time_difference)) + geom_point() + geom_smooth(method=lm)
+ggplot(msg, aes(x = real_makespan, y = mean_bounded_stretch_difference)) + geom_point(aes(color= workload_name, shape= workload_name)) + scale_shape_manual(values=c(0,1,2,3,4,5,6,7,8))
+ggsave("msg_metrics_mean_bounded_stretch_difference_scatterplot.pdf")
+
+ggplot(msg, aes(x = real_makespan, y = mean_waiting_time_difference)) + geom_point(aes(color= workload_name, shape= workload_name)) + scale_shape_manual(values=c(0,1,2,3,4,5,6,7,8))
+ggsave("msg_metrics_mean_waiting_time_difference_scatterplot.pdf")
+
+ggplot(msg, aes(x = real_makespan, y = mean_turnaround_time_difference)) + geom_point(aes(color= workload_name, shape= workload_name)) + scale_shape_manual(values=c(0,1,2,3,4,5,6,7,8))
 ggsave("msg_metrics_mean_turnaround_time_difference_scatterplot.pdf")

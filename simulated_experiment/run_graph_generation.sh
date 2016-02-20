@@ -12,8 +12,10 @@ aggregated_dir="simulated_run/aggregated"
 
 mkdir -p ${aggregated_dir}
 
-echo "submission_time_difference_mean,submission_time_difference_sd,execution_time_difference_mean,execution_time_difference_sd,waiting_time_difference_mean,waiting_time_difference_sd,turnaround_time_difference_mean,turnaround_time_difference_sd,stretch_difference_mean,stretch_difference_sd,makespan_difference,mean_stretch_difference,mean_waiting_time_difference,mean_turnaround_time_difference,workload_name,batsim_makespan,real_makespan,batsim_mean_stretch,real_mean_stretch,batsim_mean_waiting_time,real_mean_waiting_time,batsim_mean_turnaround_time,real_mean_turnaround_time" > ${aggregated_dir}/g5k_workload_delay_results.csv
-echo "submission_time_difference_mean,submission_time_difference_sd,execution_time_difference_mean,execution_time_difference_sd,waiting_time_difference_mean,waiting_time_difference_sd,turnaround_time_difference_mean,turnaround_time_difference_sd,stretch_difference_mean,stretch_difference_sd,makespan_difference,mean_stretch_difference,mean_waiting_time_difference,mean_turnaround_time_difference,workload_name,batsim_makespan,real_makespan,batsim_mean_stretch,real_mean_stretch,batsim_mean_waiting_time,real_mean_waiting_time,batsim_mean_turnaround_time,real_mean_turnaround_time" > ${aggregated_dir}/g5k_workload_merged_msg_results.csv
+csv_header="submission_time_difference_mean,submission_time_difference_sd,execution_time_difference_mean,execution_time_difference_sd,waiting_time_difference_mean,waiting_time_difference_sd,turnaround_time_difference_mean,turnaround_time_difference_sd,stretch_difference_mean,stretch_difference_sd,makespan_difference,mean_stretch_difference,mean_bounded_stretch_difference,mean_waiting_time_difference,mean_turnaround_time_difference,workload_name,batsim_makespan,real_makespan,batsim_mean_stretch,real_mean_stretch,batsim_mean_bounded_stretch,real_mean_bounded_stretch,batsim_mean_waiting_time,real_mean_waiting_time,batsim_mean_turnaround_time,real_mean_turnaround_time"
+
+echo ${csv_header} > ${aggregated_dir}/g5k_workload_delay_results.csv
+echo ${csv_header} > ${aggregated_dir}/g5k_workload_merged_msg_results.csv
 
 for platform_size in 34 37
 do
@@ -70,7 +72,7 @@ do
             cp ${batsim_jobs_out} ${batsim_jobs_csv}
 
             # Retrieve real jobs csv output
-            ${base_dir}/${oar_to_jobs_csv} -r -m ${mapping} ${oar_gant_out} ${real_jobs_csv} \
+            python ${base_dir}/${oar_to_jobs_csv} -r -m ${mapping} ${oar_gant_out} ${real_jobs_csv} \
             >output/real_to_jobs_csv.stdout 2>output/real_to_jobs_csv.stderr
 
             # Generate graphs & check calibration
@@ -88,6 +90,6 @@ done
 
 Rscript --vanilla "${base_dir}/${r_aggregated_graph_generator}" "${aggregated_dir}/g5k_workload_delay_results.csv" \
 "${aggregated_dir}/g5k_workload_merged_msg_results.csv" ${aggregated_dir} \
->graph_aggregated.stdout 2>graph_aggregated.stderr
+>"simulated_run/graph_aggregated.stdout" 2>"simulated_run/graph_aggregated.stderr"
 
 exit 0

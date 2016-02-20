@@ -41,6 +41,26 @@ mean_stretch_difference = real_mean_stretch - batsim_mean_stretch
 mean_waiting_time_difference = real_mean_waiting_time - batsim_mean_waiting_time
 mean_turnaround_time_difference = real_mean_turnaround_time - batsim_mean_turnaround_time
 
+# Translate submission times towards 0
+batsim_min_submission_time = min(batsim$submission_time)
+batsim['submission_time'] = batsim$submission_time - batsim_min_submission_time
+batsim['starting_time'] = batsim$starting_time - batsim_min_submission_time
+batsim['finish_time'] = batsim$finish_time - batsim_min_submission_time
+
+real_min_submission_time = min(real$submission_time)
+real['submission_time'] = real$submission_time - real_min_submission_time
+real['starting_time'] = real$starting_time - real_min_submission_time
+real['finish_time'] = real$finish_time - real_min_submission_time
+
+# Compute bounded stretch
+bounded_stretch_min_runtime = 125
+batsim['bounded_stretch'] = batsim$turnaround_time / max(bounded_stretch_min_runtime, batsim$execution_time)
+real['bounded_stretch'] = real$turnaround_time / max(bounded_stretch_min_runtime, real$execution_time)
+
+batsim_mean_bounded_stretch = mean(batsim$bounded_stretch)
+real_mean_bounded_stretch = mean(real$bounded_stretch)
+mean_bounded_stretch_difference = real_mean_bounded_stretch - batsim_mean_bounded_stretch
+
 # Setting working directory to OUTPUT_DIR
 setwd(output_dir)
 
@@ -60,24 +80,23 @@ rename_mapping = c(
 "finish_time"="real_finish_time",
 "turnaround_time"="real_turnaround_time",
 "consumed_energy"="real_consumed_energy",
-"makespan"="real_makespan",
-"mean_stretch"="real_mean_stretch",
-"mean_waiting_time"="real_mean_waiting_time",
-"mean_turnaround_time"="real_mean_turnaround_time")
+"bounded_stretch"="real_bounded_stretch")
 
 real_renamed = rename(real, rename_mapping)
 
 m = merge(batsim, real_renamed, by="jobID")
 m['submission_time_difference'] = m$real_submission_time - m$submission_time
 m['execution_time_difference'] = m$real_execution_time - m$execution_time
+m['normalized_execution_time_difference'] = m$execution_time_difference / m$execution_time
 m['waiting_time_difference'] = m$real_waiting_time - m$waiting_time
 m['turnaround_time_difference'] = m$real_turnaround_time - m$turnaround_time
 m['stretch_difference'] = m$real_stretch - m$stretch
+m['bounded_stretch_difference'] = m$real_bounded_stretch - m$bounded_stretch
 m['makespan_difference'] = m$real_makespan - m$makespan
 m['makespan_difference'] = m$real_makespan - m$makespan
 
-batsim["simulated"] = TRUE
-real["simulated"] = FALSE
+batsim["type"] = 'simulated'
+real["type"] = 'real'
 alldata = rbind(batsim, real)
 
 # Graph generation
@@ -91,85 +110,123 @@ alldata = rbind(batsim, real)
 
 # Submission times
 ggplot(alldata, aes(x= jobID, y=submission_time)) +
-    geom_point(aes(color = simulated, shape = simulated))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
 ggsave("submission_times.pdf")
 
 # Execution times
-ggplot(alldata, aes(x= jobID, y=execution_time)) +
-    geom_point(aes(color = simulated, shape = simulated))
+ggplot(alldata, aes(x= jobID, y=execution_time), axis.title.x=element.blank(), axis.title.y=element.blank()) +
+    geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
+    xlab("Job ID") + ylab("Execution time (s)") + theme(legend.title=element_blank())
 ggsave("execution_times_scatterplot.pdf")
 
-ggplot(alldata, aes(x= execution_time, fill = simulated)) +
-    geom_density(alpha=.3)
+ggplot(alldata, aes(x= execution_time, fill = type)) +
+    geom_density(alpha=.5, aes(linetype = type))
 ggsave("execution_times_distribution_density.pdf")
 
-ggplot(alldata, aes(x= execution_time, fill = simulated)) +
+ggplot(alldata, aes(x= execution_time, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
 ggsave("execution_times_distribution_histogram.pdf")
 
-ggplot(alldata, aes(x = simulated, y= execution_time, fill = simulated)) +
+ggplot(alldata, aes(x = type, y= execution_time, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
 ggsave("execution_times_distribution_boxplot.pdf")
 
 # Waiting times
 ggplot(alldata, aes(x = jobID, y= waiting_time)) +
-    geom_point(aes(color = simulated, shape = simulated))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
 ggsave("waiting_times_scatterplot.pdf")
 
-ggplot(alldata, aes(x= waiting_time, fill = simulated)) +
-    geom_density(alpha=.3)
+ggplot(alldata, aes(x= waiting_time, fill = type)) +
+    geom_density(alpha=.5, aes(linetype = type))
 ggsave("waiting_times_distribution_density.pdf")
 
-ggplot(alldata, aes(x= waiting_time, fill = simulated)) +
+ggplot(alldata, aes(x= waiting_time, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
 ggsave("waiting_times_distribution_histogram.pdf")
 
-ggplot(alldata, aes(x = simulated, y= waiting_time, fill = simulated)) +
+ggplot(alldata, aes(x = type, y= waiting_time, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
 ggsave("waiting_times_distribution_boxplot.pdf")
 
 # Turnaround time
-ggplot(alldata, aes(x = jobID, y= turnaround_time)) +
-    geom_point(aes(color = simulated, shape = simulated))
+ggplot(alldata, aes(x = jobID, y= turnaround_time), axis.title.x=element.blank(), axis.title.y=element.blank()) +
+    geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
+    xlab("Job ID") + ylab("Turnaround time (s)") + theme(legend.title=element_blank())
 ggsave("turnaround_times_scatterplot.pdf")
 
-ggplot(alldata, aes(x= turnaround_time, fill = simulated)) +
-    geom_density(alpha=.3)
+ggplot(alldata, aes(x= turnaround_time, fill = type), axis.title.x=element.blank(), axis.title.y=element.blank()) +
+    geom_density(alpha=.5, aes(linetype = type)) +
+    xlab("Turnaround time (s)") + theme(legend.title=element_blank())
 ggsave("turnaround_times_distribution_density.pdf")
 
-ggplot(alldata, aes(x= turnaround_time, fill = simulated)) +
+ggplot(alldata, aes(x= turnaround_time, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
 ggsave("turnaround_times_distribution_histogram.pdf")
 
-ggplot(alldata, aes(x = simulated, y= turnaround_time, fill = simulated)) +
+ggplot(alldata, aes(x = type, y= turnaround_time, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
 ggsave("turnaround_times_distribution_boxplot.pdf")
 
 # Stretch
 ggplot(alldata, aes(x = jobID, y= stretch)) +
-    geom_point(aes(color = simulated, shape = simulated))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
 ggsave("stretch_scatterplot.pdf")
 
-ggplot(alldata, aes(x= stretch, fill = simulated)) +
-    geom_density(alpha=.3)
+ggplot(alldata, aes(x= stretch, fill = type)) +
+    geom_density(alpha=.5, aes(linetype = type))
 ggsave("stretch_distribution_density.pdf")
 
-ggplot(alldata, aes(x= stretch, fill = simulated)) +
+ggplot(alldata, aes(x= stretch, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
 ggsave("stretch_distribution_histogram.pdf")
 
-ggplot(alldata, aes(x = simulated, y= stretch, fill = simulated)) +
+ggplot(alldata, aes(x = type, y= stretch, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
 ggsave("stretch_distribution_boxplot.pdf")
 
-# Job-by-job differences
-ggplot(m, aes(x= jobID, y= submission_time_difference)) +
-    geom_point()
+# Bounded stretch
+ggplot(alldata, aes(x = jobID, y= bounded_stretch)) +
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+ggsave("bounded_stretch_scatterplot.pdf")
+
+ggplot(alldata, aes(x= bounded_stretch, fill = type)) +
+    geom_density(alpha=.5, aes(linetype = type))
+ggsave("bounded_stretch_distribution_density.pdf")
+
+ggplot(alldata, aes(x= bounded_stretch, fill = type)) +
+    geom_histogram(binwidth=15, position="dodge")
+ggsave("bounded_stretch_distribution_histogram.pdf")
+
+ggplot(alldata, aes(x = type, y= bounded_stretch, fill = type)) +
+    geom_boxplot() + guides(fill=FALSE)
+ggsave("stretch_distribution_boxplot.pdf")
+
+
+##########################
+# Job-by-job differences #
+##########################
+
+ggplot(m, aes(x= jobID, y= submission_time_difference), axis.title.x=element.blank(), axis.title.y=element.blank()) +
+    geom_point() +
+    xlab("Job ID") + ylab("Submission time difference (s)")
 ggsave("submission_time_difference.pdf")
 
 ggplot(m, aes(x= jobID, y= execution_time_difference)) +
     geom_point()
 ggsave("execution_time_difference.pdf")
+
+ggplot(m, aes(x= jobID, y= execution_time_difference, color = execution_time)) +
+    geom_point() + scale_color_gradient(low="lightgray", high="black") +
+    xlab("job ID") + ylab("Execution time difference (s)")
+ggsave("execution_time_difference_color.pdf")
+
+ggplot(m, aes(x= jobID, y= normalized_execution_time_difference)) +
+    geom_point()
+ggsave("normalized_execution_time_difference.pdf")
+
+ggplot(m, aes(x= jobID, y= normalized_execution_time_difference, color = execution_time)) +
+    geom_point() + scale_color_gradient(low="lightblue", high="black")
+ggsave("normalized_execution_time_difference_color.pdf")
 
 ggplot(m, aes(x= jobID, y= waiting_time_difference)) +
     geom_point()
@@ -182,6 +239,10 @@ ggsave("turnaround_time_difference.pdf")
 ggplot(m, aes(x= jobID, y= stretch_difference)) +
     geom_point()
 ggsave("stretch_difference.pdf")
+
+ggplot(m, aes(x= jobID, y= bounded_stretch_difference)) +
+    geom_point()
+ggsave("bounded_stretch_difference.pdf")
 
 ###############
 # CALIBRATION #
@@ -211,11 +272,6 @@ turnaround_time_difference_sd = sd(m$turnaround_time_difference)
 stretch_difference_mean = mean(m$stretch_difference)
 stretch_difference_sd = sd(m$stretch_difference)
 
-makespan_difference = real_makespan - batsim_makespan
-mean_stretch_difference = real_mean_stretch - batsim_mean_stretch
-mean_waiting_time_difference = real_mean_waiting_time - batsim_mean_waiting_time
-mean_turnaround_time_difference = real_mean_turnaround_time - batsim_mean_turnaround_time
-
 export_data = data.frame(submission_time_difference_mean = double(),
                          submission_time_difference_sd = double(),
                          execution_time_difference_mean = double(),
@@ -226,15 +282,21 @@ export_data = data.frame(submission_time_difference_mean = double(),
                          turnaround_time_difference_sd = double(),
                          stretch_difference_mean = double(),
                          stretch_difference_sd = double(),
+
                          makespan_difference = double(),
                          mean_stretch_difference = double(),
+                         mean_bounded_stretch_difference = double(),
                          mean_waiting_time_difference = double(),
                          mean_turnaround_time_difference = double(),
+
                          workload_name = character(),
+
                          batsim_makespan = double(),
                          real_makespan = double(),
                          batsim_mean_stretch = double(),
                          real_mean_stretch = double(),
+                         batsim_mean_bounded_stretch = double(),
+                         real_mean_bounded_stretch = double(),
                          batsim_mean_waiting_time = double(),
                          real_mean_waiting_time = double(),
                          batsim_mean_turnaround_time = double(),
@@ -251,15 +313,21 @@ export_data[1,] = c(submission_time_difference_mean,
                    turnaround_time_difference_sd,
                    stretch_difference_mean,
                    stretch_difference_sd,
+
                    makespan_difference,
                    mean_stretch_difference,
+                   mean_bounded_stretch_difference,
                    mean_waiting_time_difference,
                    mean_turnaround_time_difference,
+
                    workload_name,
+
                    batsim_makespan,
                    real_makespan,
                    batsim_mean_stretch,
                    real_mean_stretch,
+                   batsim_mean_bounded_stretch,
+                   real_mean_bounded_stretch,
                    batsim_mean_waiting_time,
                    real_mean_waiting_time,
                    batsim_mean_turnaround_time,
