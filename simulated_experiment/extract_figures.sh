@@ -1,13 +1,13 @@
 #!/usr/bin/bash -e
 
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
-    echo "Usage: $0 OUTPUT_DIRECTORY"
+    echo "Usage: $0 INPUT_SIMULATED_RUN_DIRECTORY OUTPUT_DIRECTORY"
     exit 1
 fi
 
-output_dir=$1
-input_dir="simulated_run_2016-02-20_13_22"
+input_dir=$1
+output_dir=$2
 
 good_wload_dir="g5k_workload_merged_msg_seed1_size37"
 bad_wload_dir="g5k_workload_merged_msg_seed4_size37"

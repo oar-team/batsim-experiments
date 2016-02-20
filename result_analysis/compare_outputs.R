@@ -108,98 +108,101 @@ alldata = rbind(batsim, real)
 # points(real$submission_time ~ real$jobID)
 #dev.off()
 
+fig_width=6
+fig_height=4
+
 # Submission times
 ggplot(alldata, aes(x= jobID, y=submission_time)) +
     geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
-ggsave("submission_times.pdf")
+ggsave("submission_times.pdf", width=fig_width, height=fig_height)
 
 # Execution times
 ggplot(alldata, aes(x= jobID, y=execution_time), axis.title.x=element.blank(), axis.title.y=element.blank()) +
     geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
     xlab("Job ID") + ylab("Execution time (s)") + theme(legend.title=element_blank())
-ggsave("execution_times_scatterplot.pdf")
+ggsave("execution_times_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= execution_time, fill = type)) +
     geom_density(alpha=.5, aes(linetype = type))
-ggsave("execution_times_distribution_density.pdf")
+ggsave("execution_times_distribution_density.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= execution_time, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
-ggsave("execution_times_distribution_histogram.pdf")
+ggsave("execution_times_distribution_histogram.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x = type, y= execution_time, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
-ggsave("execution_times_distribution_boxplot.pdf")
+ggsave("execution_times_distribution_boxplot.pdf", width=fig_width, height=fig_height)
 
 # Waiting times
 ggplot(alldata, aes(x = jobID, y= waiting_time)) +
     geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
-ggsave("waiting_times_scatterplot.pdf")
+ggsave("waiting_times_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= waiting_time, fill = type)) +
     geom_density(alpha=.5, aes(linetype = type))
-ggsave("waiting_times_distribution_density.pdf")
+ggsave("waiting_times_distribution_density.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= waiting_time, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
-ggsave("waiting_times_distribution_histogram.pdf")
+ggsave("waiting_times_distribution_histogram.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x = type, y= waiting_time, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
-ggsave("waiting_times_distribution_boxplot.pdf")
+ggsave("waiting_times_distribution_boxplot.pdf", width=fig_width, height=fig_height)
 
 # Turnaround time
 ggplot(alldata, aes(x = jobID, y= turnaround_time), axis.title.x=element.blank(), axis.title.y=element.blank()) +
     geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
     xlab("Job ID") + ylab("Turnaround time (s)") + theme(legend.title=element_blank())
-ggsave("turnaround_times_scatterplot.pdf")
+ggsave("turnaround_times_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= turnaround_time, fill = type), axis.title.x=element.blank(), axis.title.y=element.blank()) +
     geom_density(alpha=.5, aes(linetype = type)) +
     xlab("Turnaround time (s)") + theme(legend.title=element_blank())
-ggsave("turnaround_times_distribution_density.pdf")
+ggsave("turnaround_times_distribution_density.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= turnaround_time, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
-ggsave("turnaround_times_distribution_histogram.pdf")
+ggsave("turnaround_times_distribution_histogram.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x = type, y= turnaround_time, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
-ggsave("turnaround_times_distribution_boxplot.pdf")
+ggsave("turnaround_times_distribution_boxplot.pdf", width=fig_width, height=fig_height)
 
 # Stretch
 ggplot(alldata, aes(x = jobID, y= stretch)) +
     geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
-ggsave("stretch_scatterplot.pdf")
+ggsave("stretch_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= stretch, fill = type)) +
     geom_density(alpha=.5, aes(linetype = type))
-ggsave("stretch_distribution_density.pdf")
+ggsave("stretch_distribution_density.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= stretch, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
-ggsave("stretch_distribution_histogram.pdf")
+ggsave("stretch_distribution_histogram.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x = type, y= stretch, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
-ggsave("stretch_distribution_boxplot.pdf")
+ggsave("stretch_distribution_boxplot.pdf", width=fig_width, height=fig_height)
 
 # Bounded stretch
 ggplot(alldata, aes(x = jobID, y= bounded_stretch)) +
     geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
-ggsave("bounded_stretch_scatterplot.pdf")
+ggsave("bounded_stretch_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= bounded_stretch, fill = type)) +
     geom_density(alpha=.5, aes(linetype = type))
-ggsave("bounded_stretch_distribution_density.pdf")
+ggsave("bounded_stretch_distribution_density.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= bounded_stretch, fill = type)) +
     geom_histogram(binwidth=15, position="dodge")
-ggsave("bounded_stretch_distribution_histogram.pdf")
+ggsave("bounded_stretch_distribution_histogram.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x = type, y= bounded_stretch, fill = type)) +
     geom_boxplot() + guides(fill=FALSE)
-ggsave("stretch_distribution_boxplot.pdf")
+ggsave("stretch_distribution_boxplot.pdf", width=fig_width, height=fig_height)
 
 
 ##########################
@@ -209,40 +212,40 @@ ggsave("stretch_distribution_boxplot.pdf")
 ggplot(m, aes(x= jobID, y= submission_time_difference), axis.title.x=element.blank(), axis.title.y=element.blank()) +
     geom_point() +
     xlab("Job ID") + ylab("Submission time difference (s)")
-ggsave("submission_time_difference.pdf")
+ggsave("submission_time_difference.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= execution_time_difference)) +
     geom_point()
-ggsave("execution_time_difference.pdf")
+ggsave("execution_time_difference.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= execution_time_difference, color = execution_time)) +
     geom_point() + scale_color_gradient(low="lightgray", high="black") +
     xlab("job ID") + ylab("Execution time difference (s)")
-ggsave("execution_time_difference_color.pdf")
+ggsave("execution_time_difference_color.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= normalized_execution_time_difference)) +
     geom_point()
-ggsave("normalized_execution_time_difference.pdf")
+ggsave("normalized_execution_time_difference.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= normalized_execution_time_difference, color = execution_time)) +
     geom_point() + scale_color_gradient(low="lightblue", high="black")
-ggsave("normalized_execution_time_difference_color.pdf")
+ggsave("normalized_execution_time_difference_color.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= waiting_time_difference)) +
     geom_point()
-ggsave("waiting_time_difference.pdf")
+ggsave("waiting_time_difference.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= turnaround_time_difference)) +
     geom_point()
-ggsave("turnaround_time_difference.pdf")
+ggsave("turnaround_time_difference.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= stretch_difference)) +
     geom_point()
-ggsave("stretch_difference.pdf")
+ggsave("stretch_difference.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= bounded_stretch_difference)) +
     geom_point()
-ggsave("bounded_stretch_difference.pdf")
+ggsave("bounded_stretch_difference.pdf", width=fig_width, height=fig_height)
 
 ###############
 # CALIBRATION #
