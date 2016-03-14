@@ -1,42 +1,42 @@
 <?xml version='1.0'?>
-<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
-<platform version="3">
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4">
 <AS  id="AS_griffon"  routing="Full">
    	
      <cluster id="cab1" prefix="a" suffix=""
-         radical="10-25" power="286.087kf" bw="125MBps" lat="24us"
+         radical="10-25" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/> 
 
      <cluster id="cab2" prefix="b" suffix=""
-         radical="10-25" power="286.087kf" bw="125MBps" lat="24us"
+         radical="10-25" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/> 
 
      <cluster id="cab3" prefix="c" suffix=""
-         radical="10-25" power="286.087kf" bw="125MBps" lat="24us"
+         radical="10-25" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/> 
 
      <cluster id="cab4" prefix="d" suffix=""
-         radical="10-25" power="286.087kf" bw="125MBps" lat="24us"
+         radical="10-25" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/> 
 
      <cluster id="cab5" prefix="e" suffix=""
-         radical="10-25" power="286.087kf" bw="125MBps" lat="24us"
+         radical="10-25" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/> 
 
      <cluster id="cab6" prefix="f" suffix=""
-         radical="10-25" power="286.087kf" bw="125MBps" lat="24us"
+         radical="10-25" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/> 
 
      <cluster id="cab7" prefix="g" suffix=""
-         radical="10-25" power="286.087kf" bw="125MBps" lat="24us"
+         radical="10-25" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/> 
 
      <cluster id="cab8" prefix="h" suffix=""
-         radical="10-25" power="286.087kf" bw="125MBps" lat="24us"
+         radical="10-25" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/>
 
      <cluster id="master_cluster" prefix="master_host" suffix=""
-         radical="0-0" power="286.087kf" bw="125MBps" lat="24us"
+         radical="0-0" speed="286.087kf" bw="125MBps" lat="24us"
          bb_bw="1.25GBps" bb_lat="0" sharing_policy="FULLDUPLEX" bb_sharing_policy="SHARED"/>     
 
 

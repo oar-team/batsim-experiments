@@ -19,7 +19,7 @@ import sys
 import multiprocessing
 
 # Debug mode
-DEBUG = False
+DEBUG = True
 
 # initialyse logger
 if DEBUG:
@@ -145,8 +145,6 @@ def run_batsim(instance_name, socket, json_file, export_prefix,
                                log_level,
                                log_level)
 
-    batsim_args = str.split(batsim_command, sep=' ')
-
     # Let's create the processes
     LOG.debug("Run Batsim process: " + batsim_command)
     if DEBUG:
@@ -154,7 +152,7 @@ def run_batsim(instance_name, socket, json_file, export_prefix,
     else:
         output_mode = subprocess.DEVNULL
     return subprocess.Popen(
-        batsim_args, stdout=output_mode, stderr=output_mode)
+        batsim_command, shell=True, stdout=output_mode, stderr=output_mode)
 
 
 def run_batsim_and_scheduler(json_file,
@@ -184,7 +182,7 @@ def run_batsim_and_scheduler(json_file,
         # run bataar scheduler
         sched_args = ('bataar -s ' + socket + " " + json_file).split()
 
-        LOG.debug("Run OAR scheduler process: " + str(sched_args))
+        LOG.debug("Run OAR scheduler process: {}".format(sched_args))
         sched_process = subprocess.Popen(
             sched_args,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -219,10 +217,10 @@ def run_batsim_and_scheduler(json_file,
     # If batsim did not finish successfully, let's display it
     if sched_process.returncode != 0:
 
-        LOG.error('Scheduler failed on instance', instance_name)
-        LOG.error('Command args: ', str(sched_args))
-        LOG.error('sched_out :', str(sched_out))
-        LOG.error('sched_err :', str(sched_err))
+        LOG.error("Scheduler failed on instance {}".format(instance_name))
+        LOG.error("Command args: {}".format(sched_args))
+        LOG.error("sched_out : {}".format(sched_out.decode("unicode_escape")))
+        LOG.error("sched_err : {}".format(sched_err.decode("unicode_escape")))
         return
 
     # create empty result dict
@@ -303,16 +301,13 @@ def generateJsonFile(inputSWFFile,
 
     generator_command.replace('\xa0', ' ')
 
-    generator_args = str.split(generator_command, sep=' ')
-
     generator_process = subprocess.Popen(
         generator_command, shell=True, cwd=os.getcwd(),
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if generator_process.wait() != 0:
         out, err = generator_process.communicate()
-        LOG.error('Failed to generate json files', outputJsonFiles)
-        LOG.debug(generator_command)
-        LOG.debug("\n\n" + str(generator_args) + "\n\n")
+        LOG.error("Failed to generate json files {}".format(outputJsonFiles))
+        LOG.debug("\n\n" + str(generator_command) + "\n\n")
         LOG.debug('out = ', out)
         LOG.debug('err = ', err)
 
