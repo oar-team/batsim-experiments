@@ -19,7 +19,7 @@ import sys
 import multiprocessing
 
 # Debug mode
-DEBUG = True
+DEBUG = False
 
 # initialyse logger
 if DEBUG:
