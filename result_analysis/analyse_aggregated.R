@@ -130,3 +130,54 @@ ggsave("msg_metrics_mean_waiting_time_difference_scatterplot.pdf")
 
 ggplot(msg, aes(x = real_makespan, y = mean_turnaround_time_difference)) + geom_point(aes(color= workload_name, shape= workload_name)) + scale_shape_manual(values=c(0,1,2,3,4,5,6,7,8))
 ggsave("msg_metrics_mean_turnaround_time_difference_scatterplot.pdf")
+
+########################################
+# Scheduling metrics for the MSG model #
+########################################
+
+# Let's create another data frame to have both real and batsim metrics on the same dataframe
+batsim_part = msg
+real_part = msg
+
+real_part['type'] = 'real'
+batsim_part['type'] = 'batsim'
+
+real_part['makespan'] = real_part['real_makespan']
+real_part['mean_stretch'] = real_part['real_mean_stretch']
+real_part['mean_bounded_stretch'] = real_part['real_mean_bounded_stretch']
+real_part['mean_waiting_time'] = real_part['real_mean_waiting_time']
+real_part['mean_turnaround_time'] = real_part['real_mean_turnaround_time']
+
+batsim_part['makespan'] = batsim_part['batsim_makespan']
+batsim_part['mean_stretch'] = batsim_part['batsim_mean_stretch']
+batsim_part['mean_bounded_stretch'] = batsim_part['batsim_mean_bounded_stretch']
+batsim_part['mean_waiting_time'] = batsim_part['batsim_mean_waiting_time']
+batsim_part['mean_turnaround_time'] = batsim_part['batsim_mean_turnaround_time']
+
+merged_parts = rbind(real_part, batsim_part)
+
+# Let's do some graphs
+ggplot(merged_parts, aes(x = real_makespan, y = makespan)) +
+    geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
+    xlab("Real makespan (s)") + ylab("Makespan (s)") + theme(legend.title=element_blank())
+ggsave("aggregated_comparison_makespan.pdf")
+
+ggplot(merged_parts, aes(x = real_makespan, y = mean_stretch)) +
+    geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
+    xlab("Real makespan (s)") + ylab("Mean stretch") + theme(legend.title=element_blank())
+ggsave("aggregated_comparison_mean_stretch.pdf")
+
+ggplot(merged_parts, aes(x = real_makespan, y = mean_bounded_stretch)) +
+    geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
+    xlab("Real makespan (s)") + ylab("Mean bounded stretch") + theme(legend.title=element_blank())
+ggsave("aggregated_comparison_mean_bounded_stretch.pdf")
+
+ggplot(merged_parts, aes(x = real_makespan, y = mean_waiting_time)) +
+    geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
+    xlab("Real makespan (s)") + ylab("Mean waiting time (s)") + theme(legend.title=element_blank())
+ggsave("aggregated_comparison_mean_waiting_time.pdf")
+
+ggplot(merged_parts, aes(x = real_makespan, y = mean_turnaround_time)) +
+    geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
+    xlab("Real makespan (s)") + ylab("Mean turnaround time (s)") + theme(legend.title=element_blank())
+ggsave("aggregated_comparison_mean_turnaround_time.pdf")

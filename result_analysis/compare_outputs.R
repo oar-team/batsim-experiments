@@ -52,6 +52,10 @@ real['submission_time'] = real$submission_time - real_min_submission_time
 real['starting_time'] = real$starting_time - real_min_submission_time
 real['finish_time'] = real$finish_time - real_min_submission_time
 
+# Compute stretch
+batsim['stretch'] = batsim$turnaround_time / batsim$execution_time
+real['stretch'] = real$turnaround_time / real$execution_time
+
 # Compute bounded stretch
 bounded_stretch_min_runtime = 125
 batsim['bounded_stretch'] = batsim$turnaround_time / max(bounded_stretch_min_runtime, batsim$execution_time)
@@ -92,7 +96,6 @@ m['waiting_time_difference'] = m$real_waiting_time - m$waiting_time
 m['turnaround_time_difference'] = m$real_turnaround_time - m$turnaround_time
 m['stretch_difference'] = m$real_stretch - m$stretch
 m['bounded_stretch_difference'] = m$real_bounded_stretch - m$bounded_stretch
-m['makespan_difference'] = m$real_makespan - m$makespan
 m['makespan_difference'] = m$real_makespan - m$makespan
 
 batsim["type"] = 'simulated'
