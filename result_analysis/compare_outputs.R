@@ -90,6 +90,8 @@ real_renamed = rename(real, rename_mapping)
 
 m = merge(batsim, real_renamed, by="jobID")
 m['submission_time_difference'] = m$real_submission_time - m$submission_time
+m['starting_time_difference'] = m$real_starting_time - m$starting_time
+m['finish_time_difference'] = m$real_finish_time - m$finish_time
 m['execution_time_difference'] = m$real_execution_time - m$execution_time
 m['normalized_execution_time_difference'] = m$execution_time_difference / m$execution_time
 m['waiting_time_difference'] = m$real_waiting_time - m$waiting_time
@@ -118,6 +120,35 @@ fig_height=4
 ggplot(alldata, aes(x= jobID, y=submission_time)) +
     geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
 ggsave("submission_times.pdf", width=fig_width, height=fig_height)
+
+# Starting times
+ggplot(alldata, aes(x= jobID, y=starting_time)) +
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+ggsave("starting_times.pdf", width=fig_width, height=fig_height)
+
+# Finition times
+ggplot(alldata, aes(x= jobID, y=finish_time)) +
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+ggsave("finish_times.pdf", width=fig_width, height=fig_height)
+
+
+sub_times = alldata
+sub_times['time'] = sub_times['submission_time']
+sub_times['name'] = 'Submission time'
+
+start_times = alldata
+start_times['time'] = start_times['starting_time']
+start_times['name'] = 'Start time'
+
+finish_times = alldata
+finish_times['time'] = finish_times['finish_time']
+finish_times['name'] = 'Finish time'
+
+ggplot(sub_times, aes(x=jobID, y=time)) +
+    geom_point(data=sub_times, aes(color=name, shape=type)) + scale_shape_manual(values=(c(1,3))) +
+    geom_point(data=start_times, aes(color=name, shape=type)) + scale_shape_manual(values=(c(1,3))) +
+    geom_point(data=finish_times, aes(color=name, shape=type)) + scale_shape_manual(values=(c(1,3))) +
+ggsave("merged_times_scatterplot.pdf")
 
 # Execution times
 ggplot(alldata, aes(x= jobID, y=execution_time), axis.title.x=element.blank(), axis.title.y=element.blank()) +
@@ -215,6 +246,16 @@ ggsave("stretch_distribution_boxplot.pdf", width=fig_width, height=fig_height)
 ggplot(m, aes(x= jobID, y= submission_time_difference), axis.title.x=element.blank(), axis.title.y=element.blank()) +
     geom_point() +
     xlab("Job ID") + ylab("Submission time difference (s)")
+ggsave("submission_time_difference.pdf", width=fig_width, height=fig_height)
+
+ggplot(m, aes(x= jobID, y= starting_time_difference), axis.title.x=element.blank(), axis.title.y=element.blank()) +
+    geom_point() +
+    xlab("Job ID") + ylab("Starting time difference (s)")
+ggsave("submission_time_difference.pdf", width=fig_width, height=fig_height)
+
+ggplot(m, aes(x= jobID, y= finish_time_difference), axis.title.x=element.blank(), axis.title.y=element.blank()) +
+    geom_point() +
+    xlab("Job ID") + ylab("Finish time difference (s)")
 ggsave("submission_time_difference.pdf", width=fig_width, height=fig_height)
 
 ggplot(m, aes(x= jobID, y= execution_time_difference)) +
