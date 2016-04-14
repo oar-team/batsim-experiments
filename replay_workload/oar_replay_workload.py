@@ -13,12 +13,12 @@ import os
 import time
 import ipdb
 import traceback
-from execo import Process, SshProcess, Remote, format_date, Get, Put
+from execo import Process, SshProcess, Remote, format_date, Put
 from execo_g5k import oarsub, oardel, OarSubmission, \
     get_oar_job_nodes, wait_oar_job_start, \
     get_cluster_site
 from execo_g5k.kadeploy import deploy, Deployment
-from execo_engine import Engine, logger, ParamSweeper, sweep, slugify
+from execo_engine import Engine, logger, ParamSweeper, sweep
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -32,6 +32,7 @@ reservation_job_id = 874300
 
 alredy_configured = True
 
+
 def prediction_callback(ts):
     logger.info("job start prediction = %s" % (format_date(ts),))
 
@@ -43,7 +44,7 @@ class oar_replay_workload(Engine):
         if is_a_test:
             run_type = "test"
         self.result_dir = script_path + '/' + run_type + 'results_' + \
-                time.strftime("%Y-%m-%d--%H-%M-%S")
+            time.strftime("%Y-%m-%d--%H-%M-%S")
         logger.info('resutlt directory: {}'.format(self.result_dir))
 
     def run(self):
@@ -88,7 +89,8 @@ class oar_replay_workload(Engine):
 
         logger.info('Number of parameters combinations {}'.format(
             str(len(self.sweeper.get_remaining()))))
-        logger.info('combinations {}'.format(str(self.sweeper.get_remaining())))
+        logger.info('combinations {}'.format(
+            str(self.sweeper.get_remaining())))
 
         site = get_cluster_site(cluster)
         if is_a_test and not is_a_reservation and workload_type == 'micro':
@@ -102,14 +104,16 @@ class oar_replay_workload(Engine):
         elif is_a_reservation:
             jobs = [(reservation_job_id, site)]
         else:
-            jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
+            jobs = oarsub(
+                [(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
                                           job_type='deploy',
                                           walltime='07:00:00'), site)])
         job_id, site = jobs[0]
         if job_id:
             try:
                 logger.info("waiting job start %s on %s" % (job_id, site))
-                wait_oar_job_start(job_id, site, prediction_callback=prediction_callback)
+                wait_oar_job_start(
+                    job_id, site, prediction_callback=prediction_callback)
                 logger.info("getting nodes of %s on %s" % (job_id, site))
                 nodes = get_oar_job_nodes(job_id, site)
                 # sort the nodes
@@ -266,5 +270,13 @@ class oar_replay_workload(Engine):
                     oardel(jobs)
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--is-test', dest='is_a_test', action='store_true',
+                        default=False, help='set the experiment as a test:'
+                        'select small workload and resources and prefix the'
+                        'result folder with "test"')
+    args = parser.parse_args()
+    
     engine = oar_replay_workload()
     engine.start()
