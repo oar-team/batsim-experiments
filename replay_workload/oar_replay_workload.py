@@ -1,8 +1,7 @@
 #!/usr/bin/env python2
 """
 This script is running a complete OAR cluster deployment on Grid'5000 to
-experiment OAR scheduling policies in real conditions using a replay tool
-named *Riplay*.
+experiment OAR scheduling policies in real conditions.
 
 It use the development version of an OAR scheduler name Kamelot
 
@@ -96,13 +95,14 @@ class oar_replay_workload(Engine):
                                           job_type='deploy',
                                           walltime='00:30:00'), site)])
         if is_a_test and not is_a_reservation and workload_type == 'mini':
-            jobs = oarsub([(OarSubmission(resources="/nodes=33",
+            jobs = oarsub([(OarSubmission(resources="/nodes=10",
                                           job_type='deploy',
                                           walltime='00:20:00'), site)])
         elif is_a_reservation:
             jobs = [(reservation_job_id, site)]
         else:
-            jobs = oarsub([(OarSubmission(resources="{switch='" + switch + "'}/switch=1",
+            jobs = oarsub([(OarSubmission(resources="{switch='" + switch +
+                                          "'}/switch=1/nodes=32",
                                           job_type='deploy',
                                           walltime='07:00:00'), site)])
         job_id, site = jobs[0]
@@ -138,13 +138,9 @@ class oar_replay_workload(Engine):
                     install_oar_sched_cmd = """
                     mkdir -p /opt/oar_sched; \
                     cd /opt/oar_sched; \
-                    git clone https://github.com/oar-team/oar-lib.git; \
-                    cd oar-lib; \
-                    git checkout a1a59f1e3; \
-                    pip3 install -e .; \
-                    cd ..; \
-                    git clone https://github.com/oar-team/oar-kao.git; \
-                    cd oar-kao; \
+                    git clone https://github.com/oar-team/oar3.git; \
+                    cd oar3; \
+                    git checkout 2c7c4df; \
                     pip3 install -e .; \
                     cd /usr/lib/oar/schedulers; \
                     ln -s /usr/local/bin/kamelot; \
