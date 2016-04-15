@@ -2,18 +2,20 @@
 
 if [ $# -ne 2 ]
 then
-    echo 'Expected parameters : BATSIM_EXECUTABLE BATAAR_EXECUTABLE'
+    echo 'Expected parameters : BATSIM_EXECUTABLE SCHED_EXECUTABLE'
     exit 1
 fi
 
 batsim=$1
-bataar=$2
+sched=$2
 
-for platform_size in 34 37
+use_bataar=false
+
+for platform_size in 32
 do
-    for random_seed in {0..4}
+    for random_seed in {0..9}
     do
-        for workload_name_prefix in 'g5k_workload_delay_' 'g5k_workload_merged_msg_'
+        for workload_name_prefix in 'g5k_workload_delay_'
         do
 
             if [ ${platform_size} -eq 37 ]
@@ -29,7 +31,7 @@ do
             mkdir -p "simulated_run/${workload_name_prefix}seed${random_seed}_size${platform_size}/output"
             cd "simulated_run/${workload_name_prefix}seed${random_seed}_size${platform_size}/output"
 
-            echo "Running experiment random_seed=${random_seed}, platform_size=${platform_size}, workload_name_prefix=${workload_name_prefix}"
+            echo "Running experiment platform_size=${platform_size}, random_seed=${random_seed}, workload_name_prefix=${workload_name_prefix}"
 
             # Run batsim in the background
             ${batsim} -m'graphene-1144.nancy.grid5000.fr' ${base_dir}/platforms/graphene.xml \
@@ -37,14 +39,26 @@ do
             -e "${workload_name_prefix}seed${random_seed}_size${platform_size}" \
             >batsim.stdout 2>batsim.stderr & batsim_pid=$!
 
-            # Wait few seconds then run bataar
-            sleep 2
-            ${bataar} "${base_dir}/workloads/${workload_name_prefix}seed${random_seed}_size${platform_size}.json" \
-            >bataar.stdout 2>bataar.stderr & bataar_pid=$!
+            # Wait for socket creation
+            while [[ -z $(grep '/tmp/bat_socket' /proc/net/unix) ]]
+            do
+                sleep 0.1
+            done
+
+            # Run scheduler
+            if [ ${use_bataar} = true ]
+            then
+                ${sched} "${base_dir}/workloads/${workload_name_prefix}seed${random_seed}_size${platform_size}.json" \
+                >sched.stdout 2>sched.stderr & sched_pid=$!
+            else
+                ${sched} -j "${base_dir}/workloads/${workload_name_prefix}seed${random_seed}_size${platform_size}.json" \
+                -v conservative_bf \
+                >sched.stdout 2>sched.stderr & sched_pid=$!
+            fi
 
             # Sync
             wait ${batsim_pid}
-            wait ${bataar_pid}
+            wait ${sched_pid}
 
             cd ${base_dir}
         done

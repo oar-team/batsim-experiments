@@ -16,7 +16,7 @@ import datetime
 parser = argparse.ArgumentParser(description='Modifies the profiles of a Batsim workload to add a noise on the execution time of each profile')
 parser.add_argument('inputJSON', type=argparse.FileType('r'), help='The input JSON workload file')
 parser.add_argument('--runtime_noise_mu', type=float, default=0.5, help='The mean of the gaussian noise')
-parser.add_argument('--runtime_noise_sigma', type=float, default=0.7, help='The standard deviation of the gaussian noise')
+parser.add_argument('--runtime_noise_sigma', type=float, default=1, help='The standard deviation of the gaussian noise')
 parser.add_argument('--subtime_noise_mu', type=float, default=0.4, help='The mean of the gaussian noise')
 parser.add_argument('--subtime_noise_sigma', type=float, default=0.18, help='The standard deviation of the gaussian noise')
 parser.add_argument('--random_seed', type=int, default=None, help='The random seed used to generate the noise')
