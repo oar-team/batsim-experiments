@@ -136,7 +136,7 @@ for job_id in range(args.job_number):
 # Json generation
 djobs = []
 for (job_id, job_size, job_profile, release_date) in workload:
-    djobs.append({'id':job_id, 'subtime':release_date , 'walltime':max(60,profiles[job_profile]["runtime"]*1.5), 'res':job_size, 'profile': job_profile})
+    djobs.append({'id':job_id, 'subtime':release_date , 'walltime':max(profiles[job_profile]['runtime']+60, profiles[job_profile]['runtime']*1.5), 'res':job_size, 'profile': job_profile})
 
 json_data = {
     #'version':version,
