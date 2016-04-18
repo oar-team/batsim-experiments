@@ -35,6 +35,7 @@ parser.add_argument('-lambda', '--job_iarrival_lambda', type=float, default=5, h
 parser.add_argument('-k', '--job_iarrival_k', type=float, default=10, help="The lambda (shape parameter) used in the Weibull distribution used to generate job interarrival times")
 parser.add_argument('-i', '--indent', type=int, default=None, help='If set to a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0, or negative, will only insert newlines. The default value (None) selects the most compact representation.')
 parser.add_argument('-mp', '--maximum_power_of_two', type=int, default=5, help="The maximum allowed job size. The default (5) means the jobs exceeding 2^5=32 resources are ignored")
+parser.add_argument('--maximum_job_length', type=float, default=None, help='If set, only jobs with a runtime lesser than this value are kept')
 
 args = parser.parse_args()
 
@@ -74,17 +75,25 @@ sprofiles = []
 for i in range(args.maximum_power_of_two + 1):
     sprofiles.append([])
 
+nb_ignored_because_of_length = 0
+
 for prof in profiles:
     #prof = profiles[prof]
     i = math.log(profiles[prof]["np"], 2)
     if (i == int(i)):
         if (i >= 0) and (i <= args.maximum_power_of_two):
-            i = int(i)
-            sprofiles[i].append(prof)
+            if (args.maximum_job_length) and (float(profiles[prof]['runtime']) <= args.maximum_job_length):
+                i = int(i)
+                sprofiles[i].append(prof)
+            else:
+                nb_ignored_because_of_length += 1
         else:
             print("Warning: profile {} is ignored because its size ({}) is not between 0 and {}".format(prof, profiles[prof]['np'], 2**args.maximum_power_of_two))
     else:
         print("Warning: profile {} is ignored because its size ({}) is not a power of 2".format(prof, profiles[prof]['np']))
+
+if nb_ignored_because_of_length > 0:
+    print('{} jobs have been ignored because of maximum job length {}'.format(nb_ignored_because_of_length, args.maximum_job_length))
 
 # Let us make sure that profiles exist for all i
 for i in range(args.maximum_power_of_two + 1):
