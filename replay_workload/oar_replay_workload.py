@@ -12,6 +12,8 @@ import os
 import time
 import ipdb
 import traceback
+import json
+from shutil import copy
 from execo import Process, SshProcess, Remote, format_date, Put
 from execo_g5k import oarsub, oardel, OarSubmission, \
     get_oar_job_nodes, wait_oar_job_start
@@ -34,24 +36,56 @@ def prediction_callback(ts):
 
 class oar_replay_workload(Engine):
 
+    def init(self):
+        parser = self.options_parser
+        parser.add_option('--is_a_test',
+                          dest='is_a_test',
+                          action='store_true',
+                          default=False,
+                          help='prefix the result folder with "test", enter '
+                          'a debug mode if fails and remove the job '
+                          'afterward, unless it is a reservation')
+        parser.add_option('--already_configured',
+                          dest='already_configured',
+                          action='store_true',
+                          default=False,
+                          help='if set, the OAR cluster is not re-configured')
+
+        parser.add_option('--reservation_id',
+                          help="Grid'5000 reservation job ID")
+
+        parser.add_argument('experiment_config',
+                            'The config JSON experiment description file')
+
     def setup_result_dir(self):
+        is_a_test = self.options.is_a_test
+
         run_type = ""
         if is_a_test:
-            run_type = "test"
+            run_type = "test_"
         self.result_dir = script_path + '/' + run_type + 'results_' + \
             time.strftime("%Y-%m-%d--%H-%M-%S")
         logger.info('resutlt directory: {}'.format(self.result_dir))
 
     def run(self):
         """Run the experiment"""
+        already_configured = self.options.already_configured
+        reservation_job_id = self.options.reservation_id
+        is_a_test = self.options.is_a_test
+
         if is_a_test:
             logger.warn('THIS IS A TEST! This run will use only a few '
                         'resources')
 
-        config = args
+        # Import configuration
+        with open(self.args[0]) as config_file:
+            config = json.load(config_file)
+        # backup configuration
+        copy(self.args[0], self.result_dir)
+
         site = config["grid5000_site"]
         resources = config["resources"]
-        walltime = config["walltime"]
+        walltime = str(config["walltime"])
         env_name = config["kadeploy_env_name"]
         workloads = config["workloads"]
 
@@ -93,19 +127,23 @@ class oar_replay_workload(Engine):
                 logger.info("deploying nodes: {}".format(str(nodes)))
                 deployed, undeployed = deploy(
                     Deployment(nodes, env_name=env_name),
-                    check_deployed_command=alredy_configured)
+                    check_deployed_command=already_configured)
                 if undeployed:
-                    logger.warn("NOT deployed nodes: {}".format(str(undeployed)))
+                    logger.warn(
+                        "NOT deployed nodes: {}".format(str(undeployed)))
                     raise RuntimeError('Deployement failed')
 
-                if not alredy_configured:
+                if not already_configured:
 
                     # install OAR
                     install_cmd = "apt-get install -y "
                     node_packages = "oar-node"
-                    logger.info("installing OAR nodes: {}".format(str(nodes[1:])))
-                    install_oar_nodes = Remote(install_cmd + node_packages, nodes[1:],
-                                               connection_params={'user': 'root'})
+                    logger.info(
+                        "installing OAR nodes: {}".format(str(nodes[1:])))
+                    install_oar_nodes = Remote(
+                        install_cmd + node_packages,
+                        nodes[1:],
+                        connection_params={'user': 'root'})
                     install_oar_nodes.start()
 
                     server_packages = ("oar-server oar-server-pgsql oar-user "
@@ -159,7 +197,8 @@ class oar_replay_workload(Engine):
                     config_oar_sched = ("oarnotify --remove-queue default;"
                                         "oarnotify --add-queue default,1,kamelot")
                     start_oar = "systemctl start oar-server.service"
-                    logger.info("configuring OAR database: {}".format(str(nodes[0])))
+                    logger.info(
+                        "configuring OAR database: {}".format(str(nodes[0])))
                     config_master = SshProcess(create_db + ";" + config_oar_sched + ";" + start_oar,
                                                nodes[0],
                                                connection_params={'user': 'root'})
@@ -228,35 +267,5 @@ class oar_replay_workload(Engine):
                     oardel(jobs)
 
 if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--is_test',
-                        dest='is_a_test',
-                        action='store_true',
-                        default=False,
-                        help='prefix the result folder with "test", enter '
-                        'a debug mode if fails and remove the job '
-                        'afterward, unless it is a reservation')
-    parser.add_argument('--already_configured',
-                        dest='already_configured',
-                        action='store_true',
-                        default=False,
-                        help='if set, the OAR cluster is not re-configured')
-
-    parser.add_argument('--reservation_id',
-                        help="Grid'5000 reservation job ID")
-
-    parser.add_argument('experiment_config',
-                        type=argparse.FileType('r'),
-                        help='The config JSON experiment description file')
-    args = parser.parse_args()
-
-    is_a_test = args.is_a_test
-    already_configured = args.already_configured
-    reservation_job_id = args.reservation_id
-
-    import json
-    config = json.load(args.experiment_config)
-
-    engine = oar_replay_workload(config)
+    engine = oar_replay_workload()
     engine.start()
