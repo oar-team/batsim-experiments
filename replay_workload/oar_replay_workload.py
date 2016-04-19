@@ -256,7 +256,7 @@ if __name__ == "__main__":
     reservation_job_id = args.reservation_id
 
     import json
-    config = json.load(args.config)
+    config = json.load(args.experiment_config)
 
     engine = oar_replay_workload(config)
     engine.start()
