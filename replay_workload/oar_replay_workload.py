@@ -12,24 +12,20 @@ import os
 import time
 import ipdb
 import traceback
-from execo import Process, SshProcess, Remote, format_date, Get, Put
+from execo import Process, SshProcess, Remote, format_date, Put
 from execo_g5k import oarsub, oardel, OarSubmission, \
-    get_oar_job_nodes, wait_oar_job_start, \
-    get_cluster_site
+    get_oar_job_nodes, wait_oar_job_start
 from execo_g5k.kadeploy import deploy, Deployment
-from execo_engine import Engine, logger, ParamSweeper, sweep, slugify
+from execo_engine import Engine, logger, ParamSweeper, sweep
+from execo.report import Report
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 
 is_a_test = False
 
-workload_type = 'mini'
+reservation_job_id = None
 
-is_a_reservation = True
-
-reservation_job_id = 874300
-
-alredy_configured = True
+alredy_configured = False
 
 
 def prediction_callback(ts):
@@ -52,31 +48,18 @@ class oar_replay_workload(Engine):
             logger.warn('THIS IS A TEST! This run will use only a few '
                         'resources')
 
-        cluster = 'graphene'
-        switch = 'sgraphene4'
-        env_name = "debian8_workload_generation_nfs"
+        config = args
+        site = config["grid5000_site"]
+        resources = config["resources"]
+        walltime = config["walltime"]
+        env_name = config["kadeploy_env_name"]
+        workloads = config["workloads"]
 
-        # define the parameters
-        logger.info('Workload type: {}'.format(workload_type))
-        if (is_a_test and (workload_type == 'micro')):
-            workloads = [script_path +
-                         '/../workload_generation/generated_workloads/' +
-                         'micro_workload' + str(num) + '.json'
-                         for num in range(0, 3)]
-        elif is_a_test and workload_type == 'mini':
-            workloads = [script_path +
-                         '/../workload_generation/generated_workloads/' +
-                         'mini_workload' + str(num) + '.json'
-                         for num in range(5, 6)]
-        else:
-            workloads = [script_path +
-                         '/../workload_generation/generated_workloads/' +
-                         'g5k_workload_delay' + str(num) + '.json'
-                         for num in range(0, 6)]
-
+        # define the workloads parameters
         self.parameters = {
             'workload_filename': workloads
         }
+        logger.info('Workloads: {}'.format(workloads))
 
         # define the iterator over the parameters combinations
         self.sweeper = ParamSweeper(os.path.join(self.result_dir, "sweeps"),
@@ -91,22 +74,12 @@ class oar_replay_workload(Engine):
         logger.info('combinations {}'.format(
             str(self.sweeper.get_remaining())))
 
-        site = get_cluster_site(cluster)
-        if is_a_test and not is_a_reservation and workload_type == 'micro':
-            jobs = oarsub([(OarSubmission(resources="/nodes=3",
-                                          job_type='deploy',
-                                          walltime='00:30:00'), site)])
-        if is_a_test and not is_a_reservation and workload_type == 'mini':
-            jobs = oarsub([(OarSubmission(resources="/nodes=10",
-                                          job_type='deploy',
-                                          walltime='00:20:00'), site)])
-        elif is_a_reservation:
+        if reservation_job_id is not None:
             jobs = [(reservation_job_id, site)]
         else:
-            jobs = oarsub([(OarSubmission(resources="{switch='" + switch +
-                                          "'}/switch=1/nodes=32",
+            jobs = oarsub([(OarSubmission(resources=resources,
                                           job_type='deploy',
-                                          walltime='07:00:00'), site)])
+                                          walltime=walltime), site)])
         job_id, site = jobs[0]
         if job_id:
             try:
@@ -120,7 +93,7 @@ class oar_replay_workload(Engine):
                 logger.info("deploying nodes: {}".format(str(nodes)))
                 deployed, undeployed = deploy(
                     Deployment(nodes, env_name=env_name),
-                               check_deployed_command=alredy_configured)
+                    check_deployed_command=alredy_configured)
                 if undeployed:
                     logger.warn("NOT deployed nodes: {}".format(str(undeployed)))
                     raise RuntimeError('Deployement failed')
@@ -203,16 +176,6 @@ class oar_replay_workload(Engine):
                             ' ' + oar_key).run()
                     # Get(nodes[0], "/var/lib/oar/.ssh", [oar_key], connection_params={'user': 'root'}).run()
                     Put(nodes[1:], [oar_key], "/var/lib/oar/", connection_params={'user': 'root'}).run()
-
-                    ## Use this for new version of oar_resources_init
-                    ##
-                    # Create hostfile
-                    #hostfile_filename = self.result_dir + '/' + 'hostfile'
-                    #with open(hostfile_filename, 'w') as hostfile:
-                    #    for node in nodes[1:]:
-                    #        print>>hostfile, node.address
-                    # add_resources_cmd = "oar_resources_init -y -x " + hostfile_filename
-
                     add_resources_cmd = """
                     oarproperty -a cpu || true; \
                     oarproperty -a core || true; \
@@ -260,18 +223,40 @@ class oar_replay_workload(Engine):
             finally:
                 if is_a_test:
                     ipdb.set_trace()
-                if not is_a_reservation:
+                if reservation_job_id is None:
                     logger.info("delete job: {}".format(jobs))
                     oardel(jobs)
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--is-test', dest='is_a_test', action='store_true',
-                        default=False, help='set the experiment as a test:'
-                        'select small workload and resources and prefix the'
-                        'result folder with "test"')
+    parser.add_argument('--is_test',
+                        dest='is_a_test',
+                        action='store_true',
+                        default=False,
+                        help='prefix the result folder with "test", enter '
+                        'a debug mode if fails and remove the job '
+                        'afterward, unless it is a reservation')
+    parser.add_argument('--already_configured',
+                        dest='already_configured',
+                        action='store_true',
+                        default=False,
+                        help='if set, the OAR cluster is not re-configured')
+
+    parser.add_argument('--reservation_id',
+                        help="Grid'5000 reservation job ID")
+
+    parser.add_argument('experiment_config',
+                        type=argparse.FileType('r'),
+                        help='The config JSON experiment description file')
     args = parser.parse_args()
-    
-    engine = oar_replay_workload()
+
+    is_a_test = args.is_a_test
+    already_configured = args.already_configured
+    reservation_job_id = args.reservation_id
+
+    import json
+    config = json.load(args.config)
+
+    engine = oar_replay_workload(config)
     engine.start()
