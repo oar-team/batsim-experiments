@@ -182,11 +182,12 @@ class oar_replay_workload(Engine):
                         -e 's/^\(SERVER_HOSTNAME\)=.*/\\1="localhost"/' \
                         -e 's/^\(SERVER_PORT\)=.*/\\1="16666"/' \
                         -e 's/^\(LOG_LEVEL\)\=\"2\"/\\1\=\"3\"/' \
+                        -e 's/^\(LOG_FILE\)\=.*/\\1="{result_dir}\/oar.log"/' \
                         -e 's/^\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/#\\1/' \
                         -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\\1/' \
                         -e 's/^\(FINAUD_FREQUENCY\)\=.*/\\1="0"/' \
                         /etc/oar/oar.conf
-                    """
+                    """.format(result_dir=self.result_dir)
                     configure_oar = Remote(configure_oar_cmd, nodes,
                                            connection_params={'user': 'root'})
                     configure_oar.run()
