@@ -148,8 +148,7 @@ class oar_replay_workload(Engine):
 
                     server_packages = ("oar-server oar-server-pgsql oar-user "
                                        "oar-user-pgsql postgresql python3-pip "
-                                       "libjson-perl postgresql-server-dev-all "
-                                       "libpq-dev")
+                                       "libjson-perl postgresql-server-dev-all")
                     install_oar_sched_cmd = """
                     mkdir -p /opt/oar_sched; \
                     cd /opt/oar_sched; \
