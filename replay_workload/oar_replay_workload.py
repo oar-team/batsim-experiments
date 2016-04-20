@@ -91,6 +91,12 @@ class oar_replay_workload(Engine):
         walltime = str(config["walltime"])
         env_name = config["kadeploy_env_name"]
         workloads = config["workloads"]
+        # check if workloads exists (Suppose that the same NFS mount point
+        # is present on the remote and the local environment
+        for workload_file in workloads:
+            with open(workload_file) as w:
+                pass
+            # TODO copy the workloads files to the results dir
 
         # define the workloads parameters
         self.parameters = {
