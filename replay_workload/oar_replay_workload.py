@@ -70,13 +70,15 @@ class oar_replay_workload(Engine):
     def run(self):
         """Run the experiment"""
         already_configured = self.options.already_configured
-        reservation_job_id = self.options.reservation_id
+        reservation_job_id = int(self.options.reservation_id)
         is_a_test = self.options.is_a_test
 
         if is_a_test:
             logger.warn('THIS IS A TEST! This run will use only a few '
                         'resources')
 
+        # make the result folder writable for all
+        os.chmod(self.result_dir, 0o777)
         # Import configuration
         with open(self.args[0]) as config_file:
             config = json.load(config_file)
@@ -136,7 +138,7 @@ class oar_replay_workload(Engine):
                 if not already_configured:
 
                     # install OAR
-                    install_cmd = "apt-get install -y "
+                    install_cmd = "apt-get update; apt-get install -y "
                     node_packages = "oar-node"
                     logger.info(
                         "installing OAR nodes: {}".format(str(nodes[1:])))
@@ -183,7 +185,7 @@ class oar_replay_workload(Engine):
                         -e 's/^\(SERVER_HOSTNAME\)=.*/\\1="localhost"/' \
                         -e 's/^\(SERVER_PORT\)=.*/\\1="16666"/' \
                         -e 's/^\(LOG_LEVEL\)\=\"2\"/\\1\=\"3\"/' \
-                        -e 's/^\(LOG_FILE\)\=.*/\\1="{result_dir}\/oar.log"/' \
+                        -e 's#^\(LOG_FILE\)\=.*#\\1="{result_dir}/oar.log"#' \
                         -e 's/^\(JOB_RESOURCE_MANAGER_PROPERTY_DB_FIELD\=\"cpuset\".*\)/#\\1/' \
                         -e 's/^#\(CPUSET_PATH\=\"\/oar\".*\)/\\1/' \
                         -e 's/^\(FINAUD_FREQUENCY\)\=.*/\\1="0"/' \
@@ -234,6 +236,8 @@ class oar_replay_workload(Engine):
                         logger.info("oar is now configured!")
                     else:
                         raise RuntimeError("error in the OAR configuration: Abort!")
+
+                # TODO backup de la config de OAR
 
                 # Do the replay
                 logger.info('begining the replay')
