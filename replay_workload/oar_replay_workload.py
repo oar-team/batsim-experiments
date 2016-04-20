@@ -70,7 +70,8 @@ class oar_replay_workload(Engine):
     def run(self):
         """Run the experiment"""
         already_configured = self.options.already_configured
-        reservation_job_id = int(self.options.reservation_id)
+        reservation_job_id = int(self.options.reservation_id) \
+                if self.options.reservation_id is not None else None
         is_a_test = self.options.is_a_test
 
         if is_a_test:
