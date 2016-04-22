@@ -22,7 +22,7 @@ def do_oar_submission(command, walltime, resources, result_dir,
     oar_time = str(hms_time).split('.')[0]
     exports = 'export PATH=$PATH:{}; '.format(command_path)
     oar_options = '--stdout={0}/OAR%jobid%.stdout --stderr={0}/OAR%jobid%.stderr '.format(workload_dir)
-    oar_cmd = (exports + 'oarsub ' + oar_options + ' -l \\nodes=' + str(resources) + ',walltime=' +
+    oar_cmd = (exports + '/usr/bin/oarsub ' + oar_options + ' -l \\nodes=' + str(resources) + ',walltime=' +
                oar_time + ' "' + command + '"')
     print(oar_cmd)
     with Popen(oar_cmd, stdout=PIPE, shell=True) as oar_cmd:
