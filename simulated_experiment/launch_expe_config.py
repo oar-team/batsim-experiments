@@ -32,7 +32,7 @@ def run_subprocess_do_not_wait(command, working_directory, stdout_file, stderr_f
 def wait_for_termination(process, timeout=None):
     (stdout, stderr) = process.communicate(timeout=timeout)
 
-def run_write_output(command, working_directory, stdout_filename, stderr_filename, timeout=None):
+def run_write_output(command, working_directory, stdout_filename, stderr_filename, timeout=2*60):
     stdout_file = open(stdout_filename, 'w+')
     stderr_file = open(stderr_filename, 'w+')
     try:
@@ -40,13 +40,16 @@ def run_write_output(command, working_directory, stdout_filename, stderr_filenam
         wait_for_termination(process, timeout)
     except subprocess.TimeoutExpired:
         print('Command {} reached timeout!'.format(command))
+    except FileNotFoundError as e:
+        (errno, strerror) = e.args
+        print('Command {} could not be executed: {}'.format(command, strerror))
 
     stdout_file.close()
     stderr_file.close()
 
     return process.returncode == 0
 
-def run_string_write_output(command_str, working_directory, stdout_filename, stderr_filename, timeout=None):
+def run_string_write_output(command_str, working_directory, stdout_filename, stderr_filename, timeout=2*60):
     command = command_str.split(' ')
     return run_write_output(command, working_directory, stdout_filename, stderr_filename, timeout)
 
@@ -122,31 +125,46 @@ def execute_in_simulo(experiment,
     success = False
     reason = ''
     remove_file_if_exists(socket)
-    batsim_process = run_subprocess_do_not_wait(command = batsim_command,
-                                                working_directory = os.getcwd(),
-                                                stdout_file = batsim_stdout_file,
-                                                stderr_file = batsim_stderr_file)
-    if wait_for_batsim_to_open_connection(timeout = socket_creation_timeout):
-        sched_process = run_subprocess_do_not_wait(command = sched_command,
-                                                   working_directory = os.getcwd(),
-                                                   stdout_file = sched_stdout_file,
-                                                   stderr_file = sched_stderr_file)
-        try:
-            wait_for_termination(sched_process, timeout = timeout)
-            wait_for_termination(batsim_process, timeout = timeout)
+    try:
+        batsim_launched = True
+        batsim_process = run_subprocess_do_not_wait(command = batsim_command,
+                                                    working_directory = os.getcwd(),
+                                                    stdout_file = batsim_stdout_file,
+                                                    stderr_file = batsim_stderr_file)
+    except FileNotFoundError as e:
+        (errno, strerror) = e.args
+        reason = 'cannot launch batsim. ' + strerror
+        batsim_launched = False
 
-            # Let's check return values
-            if (sched_process.returncode != 0) or (batsim_process.returncode != 0):
-                reason = 'bad returncode (batsim={}, sched={})'.format(batsim_process.returncode,
-                                                                       sched_process.returncode)
-            else:
-                success = True
-        except subprocess.TimeoutExpired:
-            reason = 'execution timeout reached :('
-        sched_process.kill()
-    else:
-        reason ='cannot reach batsim socket creation :('
-    batsim_process.kill()
+    if batsim_launched:
+        if wait_for_batsim_to_open_connection(timeout = socket_creation_timeout):
+            sched_launched = True
+            try:
+                sched_process = run_subprocess_do_not_wait(command = sched_command,
+                                                           working_directory = os.getcwd(),
+                                                           stdout_file = sched_stdout_file,
+                                                           stderr_file = sched_stderr_file)
+            except FileNotFoundError as e:
+                (errno, strerror) = e.args
+                reason = 'cannot launch scheduler. ' + strerror
+                sched_launched = False
+            if sched_launched:
+                try:
+                    wait_for_termination(sched_process, timeout = timeout)
+                    wait_for_termination(batsim_process, timeout = timeout)
+
+                    # Let's check return values
+                    if (sched_process.returncode != 0) or (batsim_process.returncode != 0):
+                        reason = 'bad returncode (batsim={}, sched={})'.format(batsim_process.returncode,
+                                                                               sched_process.returncode)
+                    else:
+                        success = True
+                except subprocess.TimeoutExpired:
+                    reason = 'execution timeout reached :('
+                sched_process.kill()
+        else:
+            reason ='cannot reach batsim socket creation :('
+        batsim_process.kill()
 
     batsim_stdout_file.close()
     batsim_stderr_file.close()
@@ -289,6 +307,12 @@ def launch_experiment(config_json_filename):
                 if not success:
                     failed_experiments.append(experiment_name)
                     print('FAILED: ' + reason)
+                else:
+                    if ('test_noise_impact' in experiment) and (bool(experiment['test_noise_impact'])):
+                        (success, reason) = test_noise_impact(experiment = experiment,
+                                                              experiment_name = experiment_name,
+                                                              base_directory = base_directory,
+                                                              experiment_base_directory = experiment_base_directory)
         else:
             failed_experiments.append(experiment_name)
             print('FAILED: ' + reason)
