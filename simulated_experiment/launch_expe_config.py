@@ -6,9 +6,12 @@ import os
 import subprocess
 import shutil
 import time
+from collections import OrderedDict
 
 script_oar_gantt_to_csv = '../result_analysis/oar_result_to_batsim_csv.py'
 script_r_compare_oar_batsim_jobs = '../result_analysis/compare_outputs.R'
+script_r_analyse_schedule_jobs = '../result_analysis/analyse_schedule_jobs.R'
+script_r_do_metrics_graphs_aggregated = '../result_analysis/do_metrics_graphs_aggregated.R'
 script_draw_gantts = 'evalys'
 
 def create_dir_if_not_exists(directory):
@@ -252,9 +255,98 @@ def compare_to_oar(experiment,
 
     return (True, '')
 
+
+def aggregate_results(experiments,
+                      succesful_experiment_names,
+                      bounded_slowdown_min_runtime,
+                      aggregated_directory,
+                      base_directory,
+                      experiment_base_directory):
+    schedule_metrics_filename = 'schedule_metrics.csv'
+    print('Aggregating results...')
+    print('bounded_slowdown_min_runtime = ', bounded_slowdown_min_runtime)
+    os.chdir(experiment_base_directory)
+    # Let's compute some metrics on each schedule thanks to a R script
+    print('Computing scheduling metrics on each successful experiment')
+    for experiment_name in succesful_experiment_names:
+        # Rscript --vanilla analyse_schedule_jobs.R JOBS OUTPUT_METRICS_FILE WORKLOAD_NAME WORKLOAD_TYPE BOUNDED_STRETCH_MIN_RUNTIME
+        compute_metrics_command = 'Rscript --vanilla {base_dir}/{script} {exp_base_dir}/{exp_name}/{batsim_jobs_csv} {exp_base_dir}/{exp_name}/{schedule_metrics_filename} {exp_name} simulated {bounded_slowdown_min_runtime}'.format(
+            base_dir = base_directory,
+            script = script_r_analyse_schedule_jobs,
+            exp_base_dir = experiment_base_directory,
+            exp_name = experiment_name,
+            batsim_jobs_csv = 'batsim_out_jobs.csv',
+            bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
+            schedule_metrics_filename = schedule_metrics_filename)
+        run_string_write_output(command_str = compute_metrics_command,
+                                working_directory = os.getcwd() + '/' + experiment_name,
+                                stdout_filename = os.getcwd() + '/' + experiment_name + '/compute_metrics.stdout',
+                                stderr_filename = os.getcwd() + '/' + experiment_name + '/compute_metrics.stderr')
+
+    # Merging metrics in the same file
+    print('Merging metrics in the same file...')
+    create_dir_if_not_exists(experiment_base_directory + '/' + aggregated_directory)
+
+    shutil.copy(src = '{exp_dir}/{exp_name}/{schedule_metrics_filename}'.format(
+                    exp_dir = experiment_base_directory,
+                    exp_name = succesful_experiment_names[0],
+                    schedule_metrics_filename = schedule_metrics_filename),
+                dst = '{exp_dir}/{agg_dir}/{schedule_metrics_filename}'.format(
+                    exp_dir = experiment_base_directory,
+                    agg_dir = aggregated_directory,
+                    schedule_metrics_filename = schedule_metrics_filename))
+
+    with open('{exp_dir}/{agg_dir}/{schedule_metrics_filename}'.format(
+                exp_dir = experiment_base_directory,
+                agg_dir = aggregated_directory,
+                schedule_metrics_filename = schedule_metrics_filename), 'a') as output_file:
+        for experiment_name in succesful_experiment_names[1:]:
+            with open('{exp_dir}/{exp_name}/{schedule_metrics_filename}'.format(
+                        exp_dir = experiment_base_directory,
+                        exp_name = experiment_name,
+                        schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
+                content = input_file.readlines()
+                line = content[1]
+                output_file.write(line)
+                input_file.close()
+
+        output_file.close()
+
+    print('Generating graphs...')
+    graph_dir = 'graphs'
+    create_dir_if_not_exists('{exp_dir}/{agg_dir}/{graph_dir}'.format(
+                                exp_dir = experiment_base_directory,
+                                agg_dir = aggregated_directory,
+                                graph_dir = graph_dir))
+    aggregated_graphs_command = 'Rscript --vanilla {base_dir}/{script} {exp_dir}/{agg_dir}/{schedule_metrics_filename} {exp_dir}/{agg_dir}/{graph_dir}'.format(
+        base_dir = base_directory,
+        script = script_r_do_metrics_graphs_aggregated,
+        exp_dir = experiment_base_directory,
+        agg_dir = aggregated_directory,
+        schedule_metrics_filename = schedule_metrics_filename,
+        graph_dir = graph_dir)
+    run_string_write_output(command_str = aggregated_graphs_command,
+                                working_directory = experiment_base_directory + '/' + aggregated_directory,
+                                stdout_filename = experiment_base_directory + '/' + aggregated_directory + '/do_graphs.stdout',
+                                stderr_filename = experiment_base_directory + '/' + aggregated_directory + '/do_graphs.stderr')
+
+    # Generating the aggregated gantt chart
+    print('Generating the aggregated gantt charts')
+    aggregated_draw_gantt_charts_command = '{script} -o {exp_dir}/{agg_dir}/gantts.svg {out_job_filenames}'.format(
+        script = script_draw_gantts,
+        exp_dir = experiment_base_directory,
+        agg_dir = aggregated_directory,
+        out_job_filenames = ' '.join(['{exp_dir}/{exp_name}/batsim_out_jobs.csv'.format(exp_dir = experiment_base_directory, exp_name = experiment_name) for experiment_name in succesful_experiment_names]))
+    print(aggregated_draw_gantt_charts_command)
+    run_string_write_output(command_str = aggregated_draw_gantt_charts_command,
+                            working_directory = experiment_base_directory + '/' + aggregated_directory,
+                            stdout_filename = experiment_base_directory + '/' + aggregated_directory + '/draw_gantt_charts_svg.stdout',
+                            stderr_filename = experiment_base_directory + '/' + aggregated_directory + '/draw_gantt_charts_svg.stderr')
+
+
 def launch_experiment(config_json_filename):
     json_file = open(config_json_filename, 'r')
-    json_data = json.load(json_file)
+    json_data = json.load(json_file, object_pairs_hook=OrderedDict)
 
     output_directory = str(json_data['output_directory'])
     create_dir_if_not_exists(output_directory)
@@ -271,16 +363,29 @@ def launch_experiment(config_json_filename):
     if 'default_socket' in json_data:
         default_socket = str(json_data['default_socket'])
 
+    default_generate_gantt_evalys = False
+    if 'default_generate_gantt_evalys' in json_data:
+        default_generate_gantt_evalys = bool(json_data['default_generate_gantt_evalys'])
+
     base_directory = os.getcwd()
     os.chdir(os.getcwd() + '/' + output_directory)
     experiment_base_directory = os.getcwd()
 
-    aggregate_results = False
+    must_aggregate_results = False
     if 'aggregate_results' in json_data:
-        aggregate_results = bool(json_data['aggregate_results'])
+        must_aggregate_results = bool(json_data['aggregate_results'])
+
+    aggregated_directory = 'aggregated'
+    if 'aggregated_directory' in json_data:
+        aggregated_directory = str(json_data['aggregated_directory'])
+
+    bounded_slowdown_min_runtime = 60
+    if 'bounded_slowdown_min_runtime' in json_data:
+        bounded_slowdown_min_runtime = float(json_data['bounded_slowdown_min_runtime'])
 
     nb_experiments = len(json_data['experiments'])
     curr_experiment_number = 1
+    successful_experiments = []
     failed_experiments = []
 
     for experiment_name in json_data['experiments']:
@@ -299,6 +404,21 @@ def launch_experiment(config_json_filename):
                                               default_socket = default_socket)
 
         if success:
+            successful_experiments.append(experiment_name)
+
+            generate_gantt_chart_evalys = default_generate_gantt_evalys
+            if 'generate_gantt_chart_evalys' in experiment:
+                generate_gantt_chart_evalys = bool(experiment['generate_gantt_chart_evalys'])
+
+            if generate_gantt_chart_evalys:
+                draw_gantt_charts_command = '{script} -o {cwd}/gantt.svg {cwd}/batsim_out_jobs.csv'.format(
+                    script = script_draw_gantts,
+                    cwd = os.getcwd())
+                run_string_write_output(command_str = draw_gantt_charts_command,
+                                        working_directory = os.getcwd(),
+                                        stdout_filename = os.getcwd() + '/draw_gantt_chart_svg.stdout',
+                                        stderr_filename = os.getcwd() + '/draw_gantt_chart_svg.stderr')
+
             if ('compare_to_oar' in experiment) and (bool(experiment['compare_to_oar'])):
                 (success, reason) = compare_to_oar(experiment = experiment,
                                                    experiment_name = experiment_name,
@@ -324,6 +444,14 @@ def launch_experiment(config_json_filename):
         print('Everything seemed to be executed correctly')
     else:
         print('{} experiments failed : [{}]'.format(len(failed_experiments), ', '.join(failed_experiments)))
+
+    if must_aggregate_results and len(successful_experiments) > 0:
+        aggregate_results(experiments = json_data['experiments'],
+                          succesful_experiment_names = successful_experiments,
+                          bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
+                          aggregated_directory = aggregated_directory,
+                          base_directory = base_directory,
+                          experiment_base_directory = experiment_base_directory)
 
 def main():
     # Program parameters parsing
