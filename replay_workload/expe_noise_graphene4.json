@@ -1,0 +1,12 @@
+{
+  "description": "This experiment is running 3 workloads to check the noise effect",
+  "grid5000_site": "Nancy",
+  "resources": "{switch='sgraphene4'}/nodes=33",
+  "walltime": "13:00:00",
+  "kadeploy_env_name": "debian8_workload_generation_nfs",
+  "workloads": [
+    "/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed7_size32.json",
+    "/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed2_size32.json",
+    "/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed3_size32.json"
+  ]
+}
