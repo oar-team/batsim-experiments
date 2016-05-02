@@ -71,7 +71,7 @@ class oar_replay_workload(Engine):
         """Run the experiment"""
         already_configured = self.options.already_configured
         reservation_job_id = int(self.options.reservation_id) \
-                if self.options.reservation_id is not None else None
+            if self.options.reservation_id is not None else None
         is_a_test = self.options.is_a_test
 
         if is_a_test:
@@ -94,7 +94,7 @@ class oar_replay_workload(Engine):
         # check if workloads exists (Suppose that the same NFS mount point
         # is present on the remote and the local environment
         for workload_file in workloads:
-            with open(workload_file) as w:
+            with open(workload_file):
                 pass
             # TODO copy the workloads files to the results dir
 
@@ -163,7 +163,7 @@ class oar_replay_workload(Engine):
                     cd /opt/oar_sched; \
                     git clone https://github.com/oar-team/oar3.git; \
                     cd oar3; \
-                    git checkout 2c7c4df; \
+                    git checkout 6bb8a19dcc; \
                     pip3 install -e .; \
                     cd /usr/lib/oar/schedulers; \
                     ln -s /usr/local/bin/kamelot; \
