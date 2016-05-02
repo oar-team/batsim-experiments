@@ -15,7 +15,5 @@ do
             -jn 800 -lambda 16 -k 4 -mu 0.25 -sigma 0.5 -rs ${random_seed} --maximum_job_length 600
 
         python3 ${translate_script} -i 4 -w "${output_dir}/g5k_workload_delay_seed${random_seed}_size${platform_size}.json"
-
-        cp "${output_dir}/g5k_workload_delay_seed${random_seed}_size${platform_size}.json" ../simulated_experiment/workloads
     done
 done
