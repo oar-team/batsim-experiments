@@ -13,6 +13,7 @@ import datetime
 # Program parameters parsing
 parser = argparse.ArgumentParser(description='Reads a Batsim CSV workload and translates job submission times such that min(job submission time) = 0')
 parser.add_argument('inputJSON', type=argparse.FileType('r+'), help='The input JSON Batsim workload file')
+parser.add_argument('-w', '--forceIntegerWalltimes', action="store_true", help="If set, job walltimes are put into integer via ceil")
 parser.add_argument('-i', '--indent', type=int, default=None, help='If set to a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0, or negative, will only insert newlines. The default value (None) selects the most compact representation.')
 parser.set_defaults(reduceSubmitTimes=False)
 
@@ -37,6 +38,9 @@ for job in jobs:
     job_submission_time = float(job['subtime']) - submission_time_offset
 
     job['subtime'] = job_submission_time
+
+    if args.forceIntegerWalltimes:
+        job['walltime'] = int(math.ceil(job['walltime']))
 
 output_data = {'command' : ' '.join(sys.argv[:]),
                'date' : datetime.datetime.now().isoformat(' '),
