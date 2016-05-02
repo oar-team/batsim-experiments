@@ -47,7 +47,7 @@ assert(args.job_number > 0), "The number of jobs must be strictly positive (read
 assert(args.serial_job_probability >= 0 and args.serial_job_probability <= 1), "The probability of a job being serial must be between 0 and 1 (read {})".format(args.serial_job_probability)
 
 # Entry point
-if args.random_seed and args.random_seed > 0:
+if args.random_seed and args.random_seed >= 0:
     random.seed(args.random_seed)
 
 # Profile loading
