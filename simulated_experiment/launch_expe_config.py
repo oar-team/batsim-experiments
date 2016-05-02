@@ -237,27 +237,20 @@ def compare_to_oar(experiment,
         return (False, reason)
 
     # Let's draw the Gantt charts of the schedules
-    draw_gantt_charts_command = '{script} -o {cwd}/gantts.svg {cwd}/batsim_out_jobs.csv {cwd}/oar_out_jobs.csv'.format(
+    draw_gantt_charts_command = '{script} -o {cwd}/gantts_{exp_name}.pdf -s {cwd}/batsim_out_jobs.csv {cwd}/oar_out_jobs.csv'.format(
         script = script_draw_gantts,
+        exp_name = experiment_name,
         cwd = os.getcwd())
     run_string_write_output(command_str = draw_gantt_charts_command,
                             working_directory = os.getcwd(),
-                            stdout_filename = os.getcwd() + '/draw_gantt_charts_svg.stdout',
-                            stderr_filename = os.getcwd() + '/draw_gantt_charts_svg.stderr')
-
-    draw_gantt_charts_command = '{script} -o {cwd}/gantts.png {cwd}/batsim_out_jobs.csv {cwd}/oar_out_jobs.csv'.format(
-        script = script_draw_gantts,
-        cwd = os.getcwd())
-    run_string_write_output(command_str = draw_gantt_charts_command,
-                            working_directory = os.getcwd(),
-                            stdout_filename = os.getcwd() + '/draw_gantt_charts_png.stdout',
-                            stderr_filename = os.getcwd() + '/draw_gantt_charts_png.stderr')
+                            stdout_filename = os.getcwd() + '/draw_gantt_charts_pdf.stdout',
+                            stderr_filename = os.getcwd() + '/draw_gantt_charts_pdf.stderr')
 
     return (True, '')
 
 
 def aggregate_results(experiments,
-                      succesful_experiment_names,
+                      successful_experiment_names,
                       bounded_slowdown_min_runtime,
                       aggregated_directory,
                       base_directory,
@@ -268,47 +261,101 @@ def aggregate_results(experiments,
     os.chdir(experiment_base_directory)
     # Let's compute some metrics on each schedule thanks to a R script
     print('Computing scheduling metrics on each successful experiment')
-    for experiment_name in succesful_experiment_names:
+    for experiment_name in successful_experiment_names:
         # Rscript --vanilla analyse_schedule_jobs.R JOBS OUTPUT_METRICS_FILE WORKLOAD_NAME WORKLOAD_TYPE BOUNDED_STRETCH_MIN_RUNTIME
-        compute_metrics_command = 'Rscript --vanilla {base_dir}/{script} {exp_base_dir}/{exp_name}/{batsim_jobs_csv} {exp_base_dir}/{exp_name}/{schedule_metrics_filename} {exp_name} simulated {bounded_slowdown_min_runtime}'.format(
+        compute_metrics_command = 'Rscript --vanilla {base_dir}/{script} {exp_base_dir}/{exp_name}/{batsim_jobs_csv} {exp_base_dir}/{exp_name}/{workload_type}_{schedule_metrics_filename} {exp_name} {workload_type} {bounded_slowdown_min_runtime}'.format(
             base_dir = base_directory,
             script = script_r_analyse_schedule_jobs,
             exp_base_dir = experiment_base_directory,
             exp_name = experiment_name,
+            workload_type = 'simulated',
             batsim_jobs_csv = 'batsim_out_jobs.csv',
             bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
             schedule_metrics_filename = schedule_metrics_filename)
         run_string_write_output(command_str = compute_metrics_command,
-                                working_directory = os.getcwd() + '/' + experiment_name,
-                                stdout_filename = os.getcwd() + '/' + experiment_name + '/compute_metrics.stdout',
-                                stderr_filename = os.getcwd() + '/' + experiment_name + '/compute_metrics.stderr')
+                                working_directory = '{exp_dir}/{exp_name}'.format(exp_dir=experiment_base_directory, exp_name=experiment_name),
+                                stdout_filename = '{exp_dir}/{exp_name}/compute_metrics_{workload_type}.stdout'.format(
+                                    exp_dir = experiment_base_directory,
+                                    exp_name = experiment_name,
+                                    workload_type = 'simulated'),
+                                stderr_filename = '{exp_dir}/{exp_name}/compute_metrics_{workload_type}.stderr'.format(
+                                    exp_dir = experiment_base_directory,
+                                    exp_name = experiment_name,
+                                    workload_type = 'simulated'))
+
+        experiment = experiments[experiment_name]
+        if ('compare_to_oar' in experiment) and (bool(experiment['compare_to_oar'])):
+            compute_metrics_command = 'Rscript --vanilla {base_dir}/{script} {exp_base_dir}/{exp_name}/{oar_jobs_csv} {exp_base_dir}/{exp_name}/{workload_type}_{schedule_metrics_filename} {exp_name} {workload_type} {bounded_slowdown_min_runtime}'.format(
+            base_dir = base_directory,
+            script = script_r_analyse_schedule_jobs,
+            exp_base_dir = experiment_base_directory,
+            exp_name = experiment_name,
+            workload_type = 'real',
+            oar_jobs_csv = 'oar_out_jobs.csv',
+            bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
+            schedule_metrics_filename = schedule_metrics_filename)
+        run_string_write_output(command_str = compute_metrics_command,
+                                working_directory = '{exp_dir}/{exp_name}'.format(exp_dir=experiment_base_directory, exp_name=experiment_name),
+                                stdout_filename = '{exp_dir}/{exp_name}/compute_metrics_{workload_type}.stdout'.format(
+                                    exp_dir = experiment_base_directory,
+                                    exp_name = experiment_name,
+                                    workload_type = 'real'),
+                                stderr_filename = '{exp_dir}/{exp_name}/compute_metrics_{workload_type}.stderr'.format(
+                                    exp_dir = experiment_base_directory,
+                                    exp_name = experiment_name,
+                                    workload_type = 'real'))
+
 
     # Merging metrics in the same file
     print('Merging metrics in the same file...')
     create_dir_if_not_exists(experiment_base_directory + '/' + aggregated_directory)
 
-    shutil.copy(src = '{exp_dir}/{exp_name}/{schedule_metrics_filename}'.format(
-                    exp_dir = experiment_base_directory,
-                    exp_name = succesful_experiment_names[0],
-                    schedule_metrics_filename = schedule_metrics_filename),
-                dst = '{exp_dir}/{agg_dir}/{schedule_metrics_filename}'.format(
-                    exp_dir = experiment_base_directory,
-                    agg_dir = aggregated_directory,
-                    schedule_metrics_filename = schedule_metrics_filename))
+    # shutil.copy(src = '{exp_dir}/{exp_name}/{schedule_metrics_filename}'.format(
+    #                 exp_dir = experiment_base_directory,
+    #                 exp_name = successful_experiment_names[0],
+    #                 schedule_metrics_filename = schedule_metrics_filename),
+    #             dst = '{exp_dir}/{agg_dir}/{schedule_metrics_filename}'.format(
+    #                 exp_dir = experiment_base_directory,
+    #                 agg_dir = aggregated_directory,
+    #                 schedule_metrics_filename = schedule_metrics_filename))
 
     with open('{exp_dir}/{agg_dir}/{schedule_metrics_filename}'.format(
                 exp_dir = experiment_base_directory,
                 agg_dir = aggregated_directory,
-                schedule_metrics_filename = schedule_metrics_filename), 'a') as output_file:
-        for experiment_name in succesful_experiment_names[1:]:
-            with open('{exp_dir}/{exp_name}/{schedule_metrics_filename}'.format(
-                        exp_dir = experiment_base_directory,
-                        exp_name = experiment_name,
-                        schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
+                schedule_metrics_filename = schedule_metrics_filename), 'w+') as output_file:
+        # Let's copy the first line of one metrics result to retrieve the CSV header
+        with open('{exp_dir}/{exp_name}/{workload_type}_{schedule_metrics_filename}'.format(
+                    exp_dir = experiment_base_directory,
+                    exp_name = successful_experiment_names[0],
+                    workload_type = 'simulated',
+                    schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
+            content = input_file.readlines()
+            line = content[0]
+            output_file.write(line)
+            input_file.close()
+
+        # Let's add the second lines of all metrics result files and append them in our aggregated output file
+        for experiment_name in successful_experiment_names:
+            with open('{exp_dir}/{exp_name}/{workload_type}_{schedule_metrics_filename}'.format(
+                    exp_dir = experiment_base_directory,
+                    exp_name = experiment_name,
+                    workload_type = 'simulated',
+                    schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
                 content = input_file.readlines()
                 line = content[1]
                 output_file.write(line)
                 input_file.close()
+            experiment = experiments[experiment_name]
+            if ('compare_to_oar' in experiment) and (bool(experiment['compare_to_oar'])):
+                with open('{exp_dir}/{exp_name}/{workload_type}_{schedule_metrics_filename}'.format(
+                            exp_dir = experiment_base_directory,
+                            exp_name = experiment_name,
+                            workload_type = 'real',
+                            schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
+                    content = input_file.readlines()
+                    line = content[1]
+                    output_file.write(line)
+                    input_file.close()
 
         output_file.close()
 
@@ -332,16 +379,16 @@ def aggregate_results(experiments,
 
     # Generating the aggregated gantt chart
     print('Generating the aggregated gantt charts')
-    aggregated_draw_gantt_charts_command = '{script} -o {exp_dir}/{agg_dir}/gantts.svg {out_job_filenames}'.format(
+    aggregated_draw_gantt_charts_command = '{script} -o {exp_dir}/{agg_dir}/gantts.pdf {out_job_filenames}'.format(
         script = script_draw_gantts,
         exp_dir = experiment_base_directory,
         agg_dir = aggregated_directory,
-        out_job_filenames = ' '.join(['{exp_dir}/{exp_name}/batsim_out_jobs.csv'.format(exp_dir = experiment_base_directory, exp_name = experiment_name) for experiment_name in succesful_experiment_names]))
+        out_job_filenames = ' '.join(['{exp_dir}/{exp_name}/batsim_out_jobs.csv'.format(exp_dir = experiment_base_directory, exp_name = experiment_name) for experiment_name in successful_experiment_names]))
     print(aggregated_draw_gantt_charts_command)
     run_string_write_output(command_str = aggregated_draw_gantt_charts_command,
                             working_directory = experiment_base_directory + '/' + aggregated_directory,
-                            stdout_filename = experiment_base_directory + '/' + aggregated_directory + '/draw_gantt_charts_svg.stdout',
-                            stderr_filename = experiment_base_directory + '/' + aggregated_directory + '/draw_gantt_charts_svg.stderr')
+                            stdout_filename = experiment_base_directory + '/' + aggregated_directory + '/draw_gantt_charts_pdf.stdout',
+                            stderr_filename = experiment_base_directory + '/' + aggregated_directory + '/draw_gantt_charts_pdf.stderr')
 
 
 def launch_experiment(config_json_filename):
@@ -404,20 +451,18 @@ def launch_experiment(config_json_filename):
                                               default_socket = default_socket)
 
         if success:
-            successful_experiments.append(experiment_name)
-
             generate_gantt_chart_evalys = default_generate_gantt_evalys
             if 'generate_gantt_chart_evalys' in experiment:
                 generate_gantt_chart_evalys = bool(experiment['generate_gantt_chart_evalys'])
 
             if generate_gantt_chart_evalys:
-                draw_gantt_charts_command = '{script} -o {cwd}/gantt.svg {cwd}/batsim_out_jobs.csv'.format(
+                draw_gantt_charts_command = '{script} -o {cwd}/gantt.pdf {cwd}/batsim_out_jobs.csv'.format(
                     script = script_draw_gantts,
                     cwd = os.getcwd())
                 run_string_write_output(command_str = draw_gantt_charts_command,
                                         working_directory = os.getcwd(),
-                                        stdout_filename = os.getcwd() + '/draw_gantt_chart_svg.stdout',
-                                        stderr_filename = os.getcwd() + '/draw_gantt_chart_svg.stderr')
+                                        stdout_filename = os.getcwd() + '/draw_gantt_chart_pdf.stdout',
+                                        stderr_filename = os.getcwd() + '/draw_gantt_chart_pdf.stderr')
 
             if ('compare_to_oar' in experiment) and (bool(experiment['compare_to_oar'])):
                 (success, reason) = compare_to_oar(experiment = experiment,
@@ -433,6 +478,15 @@ def launch_experiment(config_json_filename):
                                                               experiment_name = experiment_name,
                                                               base_directory = base_directory,
                                                               experiment_base_directory = experiment_base_directory)
+                        if success:
+                            successful_experiments.append(experiment_name)
+                        else:
+                            failed_experiments.append(experiment_name)
+                            print('FAILED: ' + reason)
+                    else:
+                        successful_experiments.append(experiment_name)
+            else:
+                successful_experiments.append(experiment_name)
         else:
             failed_experiments.append(experiment_name)
             print('FAILED: ' + reason)
@@ -447,7 +501,7 @@ def launch_experiment(config_json_filename):
 
     if must_aggregate_results and len(successful_experiments) > 0:
         aggregate_results(experiments = json_data['experiments'],
-                          succesful_experiment_names = successful_experiments,
+                          successful_experiment_names = successful_experiments,
                           bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
                           aggregated_directory = aggregated_directory,
                           base_directory = base_directory,
