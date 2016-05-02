@@ -1,0 +1,88 @@
+{
+    "description":"This file represents the experiment which compares a real OAR output to a simulated one.",
+    "how_to_execute":"python3 launch_expe_config.py config/workloads_2016-04-26_my_sched.json",
+    "warning":"batsim and my_sched should be callable with the batsim and my_sched commands",
+
+    "output_directory": "exp_results/2016-04-26_workloads_my_sched",
+
+    "aggregate_results": true,
+    "aggregate_dir": "aggregated",
+    "bounded_slowdown_min_runtime" : 30,
+
+    "default_timeout":600,
+    "default_socket_creation_timeout":10,
+    "default_generate_gantt_evalys":true,
+
+    "experiments": {
+        "seed0_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed0_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed1_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed1_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed2_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed2_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed3_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed3_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed4_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed4_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed5_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed5_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed6_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed6_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed7_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed7_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed8_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed8_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        },
+        "seed9_size32":{
+            "simulated_workload": "../workload_generation/generated_workloads/2016-04-26/g5k_workload_delay_seed9_size32.json",
+            "simulated_platform": "platforms/graphene.xml",
+
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
+            "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
+        }
+    }
+}

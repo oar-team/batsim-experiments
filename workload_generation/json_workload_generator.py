@@ -82,7 +82,7 @@ for prof in profiles:
     i = math.log(profiles[prof]["np"], 2)
     if (i == int(i)):
         if (i >= 0) and (i <= args.maximum_power_of_two):
-            if (args.maximum_job_length) and (float(profiles[prof]['runtime']) <= args.maximum_job_length):
+            if (args.maximum_job_length == None) or ((args.maximum_job_length != None) and (float(profiles[prof]['runtime']) <= args.maximum_job_length)):
                 i = int(i)
                 sprofiles[i].append(prof)
             else:

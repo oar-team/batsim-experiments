@@ -10,9 +10,9 @@
 
     "experiments": {
         "microworkload_2016-04-21_bataar":{
-            "compare_to_oar":true,
             "timeout":10,
 
+            "compare_to_oar": true,
             "oar_output_directory": "../replay_workload/results_2016-04-21--09-20-21/simulated",
             "oar_gantt_json_filename": "oar_gant_g5k_micro_workload_delay_seed4_size32.json",
             "oar_gantt_json_details_filename": "oar_gant_g5k_micro_workload_delay_seed4_size32.json.details",
@@ -20,20 +20,20 @@
             "simulated_workload": "../workload_generation/generated_workloads/2016-04-15/g5k_micro_workload_delay_seed4_size32.json",
             "simulated_platform": "platforms/graphene.xml",
 
-            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD -e batsim_out",
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
             "sched_command":"bataar WORKLOAD"
         },
         "microworkload_2016-04-21_my_sched":{
-            "compare_to_oar":true,
-
-            "oar_output_directory": "../replay_workload/results_2016-04-21--09-20-21/simulated",
+            "compare_to_oar": true,
+            "oar_output_directory": "../replay_workload/results_2016-04-21--09-20-21",
+            "oar_job_id_mapping" : "g5k_micro_workload_delay_seed4_size32-job_id_mapping.csv",
             "oar_gantt_json_filename": "oar_gant_g5k_micro_workload_delay_seed4_size32.json",
             "oar_gantt_json_details_filename": "oar_gant_g5k_micro_workload_delay_seed4_size32.json.details",
 
             "simulated_workload": "../workload_generation/generated_workloads/2016-04-15/g5k_micro_workload_delay_seed4_size32.json",
             "simulated_platform": "platforms/graphene.xml",
 
-            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD -e batsim_out",
+            "batsim_command":"batsim -m graphene-1144.nancy.grid5000.fr PLATFORM WORKLOAD",
             "sched_command":"my_sched -j WORKLOAD -v conservative_bf"
         }
     }

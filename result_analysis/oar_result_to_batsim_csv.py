@@ -15,6 +15,7 @@ parser.add_argument('inputJSON', type=argparse.FileType('r'), help='The input OA
 parser.add_argument('outputCSV', type=argparse.FileType('w'), help='The output CSV Batsim jobs file')
 parser.add_argument('-m', '--jobIDMappingCSV', type=argparse.FileType('r'), default=None, help='The optionnal CSV mapping of job IDs between those of Batsim and those of OAR')
 parser.add_argument('-r', '--reduceSubmitTimes', action='store_true', help='If set, job submission times are translated s.t. min(submission_time) = 0')
+parser.add_argument('-z', '--reduceMachineNumbers', action='store_true', help='If set, the machine numbers are translated such that the new minimum is 0')
 parser.set_defaults(reduceSubmitTimes=False)
 
 args = parser.parse_args()
@@ -40,13 +41,23 @@ assert('jobs' in input_json_data), "No 'jobs' in {}".format(args.inputJSON.name)
 jobs = input_json_data['jobs']
 
 # Computing the offset for submission time
-print(args.reduceSubmitTimes)
 submission_time_offset = float('inf')
 if args.reduceSubmitTimes:
     for job in jobs:
         job_submission_time = float(jobs[job]['submission_time'])
         submission_time_offset = min(submission_time_offset, job_submission_time)
-print(submission_time_offset)
+else:
+    submission_time_offset = 0
+
+# Traversing the input file to find the minimum resource_id
+min_resource_id = 0
+if args.reduceMachineNumbers:
+    resource_ids = set()
+    for job in jobs:
+        job_resources = [int(x) for x in jobs[job]['resources']]
+        for resource_id in job_resources:
+            resource_ids.add(resource_id)
+    min_resource_id = min(resource_ids)
 
 # Traversing the input file to create the output jobs
 output_jobs = list()
@@ -58,8 +69,8 @@ for job in jobs:
     job_submission_time = float(jobs[job]['submission_time']) - submission_time_offset
     job_start_time = float(jobs[job]['start_time']) - submission_time_offset
     job_stop_time = float(jobs[job]['stop_time']) - submission_time_offset
-    job_resources = [int(x) for x in jobs[job]['resources']]
-    job_resources_string = ' '.join([str(x) for x in jobs[job]['resources']])
+    job_resources = [int(x) - min_resource_id for x in jobs[job]['resources']]
+    job_resources_string = ' '.join([str(x) for x in job_resources])
     job_size = int(len(job_resources))
     job_walltime = float(jobs[job]['walltime'])
     job_state = str(jobs[job]['state'])
