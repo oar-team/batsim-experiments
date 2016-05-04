@@ -163,7 +163,7 @@ class oar_replay_workload(Engine):
                     cd /opt/oar_sched; \
                     git clone https://github.com/oar-team/oar3.git; \
                     cd oar3; \
-                    git checkout 6bb8a19dcc; \
+                    git checkout dce942bebc2; \
                     pip3 install -e .; \
                     cd /usr/lib/oar/schedulers; \
                     ln -s /usr/local/bin/kamelot; \
