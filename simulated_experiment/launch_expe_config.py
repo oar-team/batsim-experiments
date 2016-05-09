@@ -200,100 +200,124 @@ def compare_to_oar(experiment,
                    base_directory,
                    experiment_base_directory):
     # Let's check that all needed parameters are in the experiment
-    oar_output_directory = ''
-    oar_job_id_mapping = ''
-    oar_gantt_json_filename = ''
-    oar_gantt_json_details_filename = ''
-    graph_dir = 'graphs'
 
-    if 'oar_output_directory' in experiment:
-        oar_output_directory = str(experiment['oar_output_directory'])
-    if 'oar_job_id_mapping' in experiment:
-        oar_job_id_mapping = str(experiment['oar_job_id_mapping'])
-    if 'oar_gantt_json_filename' in experiment:
-        oar_gantt_json_filename = str(experiment['oar_gantt_json_filename'])
-    if 'oar_gantt_json_details_filename' in experiment:
-        oar_gantt_json_details_filename = str(experiment['oar_gantt_json_details_filename'])
-
-    all_fields_set = bool(oar_output_directory) and bool(oar_job_id_mapping) and bool(oar_gantt_json_filename) and bool(oar_gantt_json_details_filename)
-
-    if not all_fields_set:
-        reason = "Invalid experiment {}: required fields for a compare_to_oar experiment are 'oar_output_directory', 'oar_job_id_mapping', 'oar_gantt_json_filename', 'oar_gantt_json_details_filename'".format(experiment_name)
+    if not 'oar_instances' in experiment:
+        reason = "Invalid experiment {}: no 'oar_instances' field set whereas this experiment should be compared to an OAR output".format(experiment_name)
         return (False, reason)
 
-    create_dir_if_not_exists('{exp_dir}/{exp_name}'.format(
-        exp_dir = experiment_base_directory,
-        exp_name = experiment_name))
+    for oar_instance_name in experiment['oar_instances']:
+        oar_instance = experiment['oar_instances'][oar_instance_name]
 
-    # Let's create a CSV for the real OAR gantt
-    build_csv_command = 'python3 {base_dir}/{script} -r -z -m {base_dir}/{oar_dir}/{mapping} {base_dir}/{oar_dir}/{gantt} {exp_dir}/{exp_name}/oar_{exp_name}_out_jobs.csv'.format(
-        base_dir = base_directory,
-        script = script_oar_gantt_to_csv,
-        oar_dir = oar_output_directory,
-        mapping = oar_job_id_mapping,
-        gantt = oar_gantt_json_filename,
-        exp_dir = experiment_base_directory,
-        exp_name = experiment_name)
-    if not run_string_write_output(command_str = build_csv_command,
-                                   working_directory = '{exp_dir}/{exp_name}'.format(
-                                        exp_dir = experiment_base_directory,
-                                        exp_name = experiment_name),
-                                   stdout_filename = '{exp_dir}/{exp_name}/oar_{exp_name}_gantt_to_csv.stdout'.format(
-                                        exp_dir = experiment_base_directory,
-                                        exp_name = experiment_name),
-                                   stderr_filename = '{exp_dir}/{exp_name}/oar_{exp_name}_gantt_to_csv.stderr'.format(
-                                        exp_dir = experiment_base_directory,
-                                        exp_name = experiment_name)):
-        reason ='cannot build the jobs CSV from the OAR gantt'
-        return (False, reason)
+        oar_output_directory = ''
+        oar_job_id_mapping = ''
+        oar_gantt_json_filename = ''
+        oar_gantt_json_details_filename = ''
+        graph_dir = 'graphs'
 
-    # Let's create the graph output directory
-    create_dir_if_not_exists('{exp_dir}/{exp_name}/graphs'.format(
-                                exp_dir = experiment_base_directory,
-                                exp_name = experiment_name))
+        if 'oar_output_directory' in oar_instance:
+            oar_output_directory = str(oar_instance['oar_output_directory'])
+        if 'oar_job_id_mapping' in oar_instance:
+            oar_job_id_mapping = str(oar_instance['oar_job_id_mapping'])
+        if 'oar_gantt_json_filename' in oar_instance:
+            oar_gantt_json_filename = str(oar_instance['oar_gantt_json_filename'])
+        if 'oar_gantt_json_details_filename' in oar_instance:
+            oar_gantt_json_details_filename = str(oar_instance['oar_gantt_json_details_filename'])
 
-    # Let's run the R script to compare Batsim's and OAR's jobs CSVs
-    compare_csv_command = 'Rscript --vanilla {base_dir}/{script} {batsim_jobs_csv} {oar_jobs_csv} {graph_dir}'.format(
-        base_dir = base_directory,
-        script = script_r_compare_oar_batsim_jobs,
-        batsim_jobs_csv = '{exp_dir}/{exp_name}/batsim_{exp_name}_out_jobs.csv'.format(
-            exp_dir = experiment_base_directory,
-            exp_name = experiment_name),
-        oar_jobs_csv = '{exp_dir}/{exp_name}/oar_{exp_name}_out_jobs.csv'.format(
-            exp_dir = experiment_base_directory,
-            exp_name = experiment_name),
-        graph_dir = '{exp_dir}/{exp_name}/{graph_dir}'.format(
+        all_fields_set = bool(oar_output_directory) and bool(oar_job_id_mapping) and bool(oar_gantt_json_filename) and bool(oar_gantt_json_details_filename)
+
+        if not all_fields_set:
+            reason = "Invalid experiment {}: oar_instance {} does not have required fields for a compare_to_oar experiment, which are 'oar_output_directory', 'oar_job_id_mapping', 'oar_gantt_json_filename' and 'oar_gantt_json_details_filename'".format(experiment_name, oar_instance_name)
+            return (False, reason)
+
+        create_dir_if_not_exists('{exp_dir}/{exp_name}/oar_{oar_instance_name}'.format(
             exp_dir = experiment_base_directory,
             exp_name = experiment_name,
-            graph_dir = graph_dir))
-    if not run_string_write_output(command_str = compare_csv_command,
-                                   working_directory = '{exp_dir}/{exp_name}'.format(
-                                        exp_dir = experiment_base_directory,
-                                        exp_name = experiment_name),
-                                   stdout_filename = '{exp_dir}/{exp_name}/compare_batsim_oar_csv_{exp_name}.stdout'.format(
-                                        exp_dir = experiment_base_directory,
-                                        exp_name = experiment_name),
-                                   stderr_filename = '{exp_dir}/{exp_name}/compare_batsim_oar_csv_{exp_name}.stderr'.format(
-                                        exp_dir = experiment_base_directory,
-                                        exp_name = experiment_name)):
-        reason = "cannot compute graphs comparing Batsim's and OAR's jobs CSVs"
-        return (False, reason)
+            oar_instance_name = oar_instance_name))
 
-    # Let's draw the Gantt charts of the schedules
-    draw_gantt_charts_command = '{script} -o {exp_dir}/{exp_name}/gantts_{exp_name}.pdf -s {exp_dir}/{exp_name}/batsim_{exp_name}_out_jobs.csv {exp_dir}/{exp_name}/oar_{exp_name}_out_jobs.csv'.format(
-        script = script_draw_gantts,
-        exp_dir = experiment_base_directory,
-        exp_name = experiment_name)
-    run_string_write_output(command_str = draw_gantt_charts_command,
-                            working_directory = '{exp_dir}/{exp_name}'.format(
-                                exp_dir = experiment_base_directory,
-                                exp_name = experiment_name),
-                            stdout_filename = '{exp_dir}/{exp_name}/draw_gantts_{exp_name}.stdout'.format(
-                                exp_dir = experiment_base_directory,
-                                exp_name = experiment_name),
-                            stderr_filename = '{exp_dir}/{exp_name}/draw_gantts_{exp_name}.stderr'.format(
-                                exp_dir = experiment_base_directory,
-                                exp_name = experiment_name))
+        # Let's create a CSV for the real OAR gantt
+        build_csv_command = 'python3 {base_dir}/{script} -r -z -m {base_dir}/{oar_dir}/{mapping} {base_dir}/{oar_dir}/{gantt} {exp_dir}/{exp_name}/oar_{oar_instance_name}/oar_{exp_name}_{oar_instance_name}_out_jobs.csv'.format(
+            base_dir = base_directory,
+            script = script_oar_gantt_to_csv,
+            oar_dir = oar_output_directory,
+            mapping = oar_job_id_mapping,
+            gantt = oar_gantt_json_filename,
+            exp_dir = experiment_base_directory,
+            exp_name = experiment_name,
+            oar_instance_name = oar_instance_name)
+        if not run_string_write_output(command_str = build_csv_command,
+                                       working_directory = '{exp_dir}/{exp_name}/oar_{oar_instance_name}'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            oar_instance_name = oar_instance_name),
+                                       stdout_filename = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/oar_{exp_name}_gantt_to_csv.stdout'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            oar_instance_name = oar_instance_name),
+                                       stderr_filename = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/oar_{exp_name}_gantt_to_csv.stderr'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            oar_instance_name = oar_instance_name)):
+            reason ='cannot build the jobs CSV from the OAR gantt'
+            return (False, reason)
+
+        # Let's create the graph output directory
+        create_dir_if_not_exists('{exp_dir}/{exp_name}/oar_{oar_instance_name}/{graph_dir}'.format(
+                                    exp_dir = experiment_base_directory,
+                                    exp_name = experiment_name,
+                                    oar_instance_name = oar_instance_name,
+                                    graph_dir = graph_dir))
+
+        # Let's run the R script to compare Batsim's and OAR's jobs CSVs
+        compare_csv_command = 'Rscript --vanilla {base_dir}/{script} {batsim_jobs_csv} {oar_jobs_csv} {graph_dir}'.format(
+            base_dir = base_directory,
+            script = script_r_compare_oar_batsim_jobs,
+            batsim_jobs_csv = '{exp_dir}/{exp_name}/batsim_{exp_name}_out_jobs.csv'.format(
+                exp_dir = experiment_base_directory,
+                exp_name = experiment_name),
+            oar_jobs_csv = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/oar_{exp_name}_{oar_instance_name}_out_jobs.csv'.format(
+                exp_dir = experiment_base_directory,
+                exp_name = experiment_name,
+                oar_instance_name = oar_instance_name),
+            graph_dir = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/{graph_dir}'.format(
+                exp_dir = experiment_base_directory,
+                exp_name = experiment_name,
+                graph_dir = graph_dir,
+                oar_instance_name = oar_instance_name))
+        if not run_string_write_output(command_str = compare_csv_command,
+                                       working_directory = '{exp_dir}/{exp_name}/oar_{oar_instance_name}'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            oar_instance_name = oar_instance_name),
+                                       stdout_filename = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/compare_batsim_oar_csv_{exp_name}.stdout'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            oar_instance_name = oar_instance_name),
+                                       stderr_filename = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/compare_batsim_oar_csv_{exp_name}.stderr'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            oar_instance_name = oar_instance_name)):
+            reason = "cannot compute graphs comparing Batsim's and OAR's jobs CSVs"
+            return (False, reason)
+
+        # Let's draw the Gantt charts of the schedules
+        draw_gantt_charts_command = '{script} -o {exp_dir}/{exp_name}/oar_{oar_instance_name}/gantts_{exp_name}.pdf -s {exp_dir}/{exp_name}/batsim_{exp_name}_out_jobs.csv {exp_dir}/{exp_name}/oar_{oar_instance_name}/oar_{exp_name}_{oar_instance_name}_out_jobs.csv'.format(
+            script = script_draw_gantts,
+            exp_dir = experiment_base_directory,
+            exp_name = experiment_name,
+            oar_instance_name = oar_instance_name)
+        run_string_write_output(command_str = draw_gantt_charts_command,
+                                working_directory = '{exp_dir}/{exp_name}/oar_{oar_instance_name}'.format(
+                                    exp_dir = experiment_base_directory,
+                                    exp_name = experiment_name,
+                                    oar_instance_name = oar_instance_name),
+                                stdout_filename = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/draw_gantts_{exp_name}.stdout'.format(
+                                    exp_dir = experiment_base_directory,
+                                    exp_name = experiment_name,
+                                    oar_instance_name = oar_instance_name),
+                                stderr_filename = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/draw_gantts_{exp_name}.stderr'.format(
+                                    exp_dir = experiment_base_directory,
+                                    exp_name = experiment_name,
+                                    oar_instance_name = oar_instance_name))
 
     return (True, '')
 
@@ -332,26 +356,31 @@ def aggregate_results(experiments,
 
         experiment = experiments[experiment_name]
         if ('compare_to_oar' in experiment) and (bool(experiment['compare_to_oar'])):
-            compute_metrics_command = 'Rscript --vanilla {base_dir}/{script} {exp_dir}/{exp_name}/oar_{exp_name}_out_jobs.csv {exp_dir}/{exp_name}/{exp_name}_{workload_type}_{schedule_metrics_filename} {exp_name} {workload_type} {bounded_slowdown_min_runtime}'.format(
-                base_dir = base_directory,
-                script = script_r_analyse_schedule_jobs,
-                exp_dir = experiment_base_directory,
-                exp_name = experiment_name,
-                workload_type = 'real',
-                bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
-                schedule_metrics_filename = schedule_metrics_filename)
-        run_string_write_output(command_str = compute_metrics_command,
-                                working_directory = '{exp_dir}/{exp_name}'.format(
-                                    exp_dir=experiment_base_directory,
-                                    exp_name=experiment_name),
-                                stdout_filename = '{exp_dir}/{exp_name}/compute_metrics_{exp_name}_{workload_type}.stdout'.format(
-                                    exp_dir = experiment_base_directory,
-                                    exp_name = experiment_name,
-                                    workload_type = 'real'),
-                                stderr_filename = '{exp_dir}/{exp_name}/compute_metrics_{exp_name}_{workload_type}.stderr'.format(
-                                    exp_dir = experiment_base_directory,
-                                    exp_name = experiment_name,
-                                    workload_type = 'real'))
+            for oar_instance_name in experiment['oar_instances']:
+                compute_metrics_command = 'Rscript --vanilla {base_dir}/{script} {exp_dir}/{exp_name}/oar_{oar_instance_name}/oar_{exp_name}_{oar_instance_name}_out_jobs.csv {exp_dir}/{exp_name}/oar_{oar_instance_name}/{exp_name}_{workload_type}_{schedule_metrics_filename} {exp_name} {workload_type} {bounded_slowdown_min_runtime}'.format(
+                    base_dir = base_directory,
+                    script = script_r_analyse_schedule_jobs,
+                    exp_dir = experiment_base_directory,
+                    exp_name = experiment_name,
+                    oar_instance_name = oar_instance_name,
+                    workload_type = 'real',
+                    bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
+                    schedule_metrics_filename = schedule_metrics_filename)
+                run_string_write_output(command_str = compute_metrics_command,
+                                        working_directory = '{exp_dir}/{exp_name}/oar_{oar_instance_name}'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            oar_instance_name = oar_instance_name),
+                                        stdout_filename = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/compute_metrics_{exp_name}_{workload_type}.stdout'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            workload_type = 'real',
+                                            oar_instance_name = oar_instance_name),
+                                        stderr_filename = '{exp_dir}/{exp_name}/oar_{oar_instance_name}/compute_metrics_{exp_name}_{workload_type}.stderr'.format(
+                                            exp_dir = experiment_base_directory,
+                                            exp_name = experiment_name,
+                                            workload_type = 'real',
+                                            oar_instance_name = oar_instance_name))
 
 
     # Merging metrics in the same file
@@ -371,7 +400,6 @@ def aggregate_results(experiments,
                     workload_type = 'simulated',
                     schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
             content = input_file.readlines()
-            print('content = ', content)
             line = content[0]
             output_file.write(line)
             input_file.close()
@@ -389,15 +417,17 @@ def aggregate_results(experiments,
                 input_file.close()
             experiment = experiments[experiment_name]
             if ('compare_to_oar' in experiment) and (bool(experiment['compare_to_oar'])):
-                with open('{exp_dir}/{exp_name}/{exp_name}_{workload_type}_{schedule_metrics_filename}'.format(
-                            exp_dir = experiment_base_directory,
-                            exp_name = experiment_name,
-                            workload_type = 'real',
-                            schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
-                    content = input_file.readlines()
-                    line = content[1]
-                    output_file.write(line)
-                    input_file.close()
+                for oar_instance_name in experiment['oar_instances']:
+                    with open('{exp_dir}/{exp_name}/oar_{oar_instance_name}/{exp_name}_{workload_type}_{schedule_metrics_filename}'.format(
+                                exp_dir = experiment_base_directory,
+                                exp_name = experiment_name,
+                                oar_instance_name = oar_instance_name,
+                                workload_type = 'real',
+                                schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
+                        content = input_file.readlines()
+                        line = content[1]
+                        output_file.write(line)
+                        input_file.close()
 
         output_file.close()
 
