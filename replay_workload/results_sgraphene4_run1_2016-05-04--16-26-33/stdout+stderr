@@ -54,3 +54,337 @@ RuntimeError: error in the OAR replay: Abort!
 [0m[0;32m    276 [0;31m                    [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
 [0m
 ipdb> [33m2016-05-05 18:40:39,924 [m[35mINFO:[m delete job: [(974910, u'Nancy')]
+[33m2016-05-05 18:56:26,560 [m[35mINFO:[m dup stdout / stderr to results_sgraphene4_run1_2016-05-04--16-26-33/stdout+stderr and results_sgraphene4_run1_2016-05-04--16-26-33/stdout+stderr
+[33m2016-05-05 18:56:26,562 [m[35mINFO:[m command line arguments: ['./oar_replay_workload.py', '-ML', 'expe_graphene4_run_1.json', '-c', 'results_sgraphene4_run1_2016-05-04--16-26-33']
+[33m2016-05-05 18:56:26,562 [m[35mINFO:[m command line: ./oar_replay_workload.py -ML expe_graphene4_run_1.json -c results_sgraphene4_run1_2016-05-04--16-26-33
+[33m2016-05-05 18:56:26,562 [m[35mINFO:[m run in directory results_sgraphene4_run1_2016-05-04--16-26-33
+[33m2016-05-05 18:56:26,576 [m[35mINFO:[m Workloads: [u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed0_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed5_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json']
+[33m2016-05-05 18:56:26,600 [m[35mINFO:[m Skipped parameters:set([])
+[33m2016-05-05 18:56:26,600 [m[35mINFO:[m Number of parameters combinations 9
+[33m2016-05-05 18:56:26,600 [m[35mINFO:[m combinations set([{'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed0_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json'}])
+[33m2016-05-05 18:56:27,649 [m[35mINFO:[m waiting job start 975020 on Nancy
+Traceback (most recent call last):
+  File "./oar_replay_workload.py", line 131, in run
+    job_id, site, prediction_callback=prediction_callback)
+  File "/home/mmercier/execo/src/execo_g5k/oar.py", line 546, in wait_oar_job_start
+    sleep(checked_min(g5k_configuration.get('polling_interval'), countdown.remaining()))
+  File "/home/mmercier/execo/src/execo/time_utils.py", line 289, in sleep
+    _safe_sleep(sleeptime)
+  File "/home/mmercier/execo/src/execo/time_utils.py", line 263, in _safe_sleep
+    time.sleep(sleep_time)
+KeyboardInterrupt
+> [0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m(275)[0;36mrun[0;34m()[0m
+[0;32m    274 [0;31m            [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m--> 275 [0;31m                [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m    276 [0;31m                    [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+ipdb> [33m2016-05-05 18:56:39,755 [m[35mINFO:[m delete job: [(975020, u'Nancy')]
+[33m2016-05-05 18:57:36,859 [m[35mINFO:[m dup stdout / stderr to results_sgraphene4_run1_2016-05-04--16-26-33/stdout+stderr and results_sgraphene4_run1_2016-05-04--16-26-33/stdout+stderr
+[33m2016-05-05 18:57:36,861 [m[35mINFO:[m command line arguments: ['./oar_replay_workload.py', '-ML', 'expe_graphene4_run_1.json', '-c', 'results_sgraphene4_run1_2016-05-04--16-26-33']
+[33m2016-05-05 18:57:36,861 [m[35mINFO:[m command line: ./oar_replay_workload.py -ML expe_graphene4_run_1.json -c results_sgraphene4_run1_2016-05-04--16-26-33
+[33m2016-05-05 18:57:36,861 [m[35mINFO:[m run in directory results_sgraphene4_run1_2016-05-04--16-26-33
+[33m2016-05-05 18:57:36,877 [m[35mINFO:[m Workloads: [u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed0_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed5_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json']
+[33m2016-05-05 18:57:36,881 [m[35mINFO:[m Skipped parameters:set([])
+[33m2016-05-05 18:57:36,881 [m[35mINFO:[m Number of parameters combinations 9
+[33m2016-05-05 18:57:36,882 [m[35mINFO:[m combinations set([{'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed0_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json'}])
+[33m2016-05-05 18:57:37,866 [m[35mINFO:[m waiting job start 975021 on Nancy
+[33m2016-05-05 18:57:59,351 [m[35mINFO:[m job start prediction = 2016-05-06 08:06:01+02:00
+[33m2016-05-06 08:05:18,153 [m[35mINFO:[m job start prediction = 2016-05-06 08:06:07+02:00
+[33m2016-05-06 08:08:04,211 [m[35mINFO:[m job start prediction = 2016-05-06 08:07:56+02:00
+[33m2016-05-06 08:08:04,211 [m[35mINFO:[m getting nodes of 975021 on Nancy
+[33m2016-05-06 08:08:06,178 [m[35mINFO:[m deploying nodes: [Host([35m[1m'graphene-109.nancy.grid5000.fr'[m), Host([35m[1m'graphene-110.nancy.grid5000.fr'[m), Host([35m[1m'graphene-111.nancy.grid5000.fr'[m), Host([35m[1m'graphene-112.nancy.grid5000.fr'[m), Host([35m[1m'graphene-113.nancy.grid5000.fr'[m), Host([35m[1m'graphene-114.nancy.grid5000.fr'[m), Host([35m[1m'graphene-115.nancy.grid5000.fr'[m), Host([35m[1m'graphene-116.nancy.grid5000.fr'[m), Host([35m[1m'graphene-117.nancy.grid5000.fr'[m), Host([35m[1m'graphene-118.nancy.grid5000.fr'[m), Host([35m[1m'graphene-119.nancy.grid5000.fr'[m), Host([35m[1m'graphene-120.nancy.grid5000.fr'[m), Host([35m[1m'graphene-121.nancy.grid5000.fr'[m), Host([35m[1m'graphene-122.nancy.grid5000.fr'[m), Host([35m[1m'graphene-124.nancy.grid5000.fr'[m), Host([35m[1m'graphene-125.nancy.grid5000.fr'[m), Host([35m[1m'graphene-126.nancy.grid5000.fr'[m), Host([35m[1m'graphene-127.nancy.grid5000.fr'[m), Host([35m[1m'graphene-128.nancy.grid5000.fr'[m), Host([35m[1m'graphene-129.nancy.grid5000.fr'[m), Host([35m[1m'graphene-130.nancy.grid5000.fr'[m), Host([35m[1m'graphene-131.nancy.grid5000.fr'[m), Host([35m[1m'graphene-132.nancy.grid5000.fr'[m), Host([35m[1m'graphene-133.nancy.grid5000.fr'[m), Host([35m[1m'graphene-134.nancy.grid5000.fr'[m), Host([35m[1m'graphene-135.nancy.grid5000.fr'[m), Host([35m[1m'graphene-136.nancy.grid5000.fr'[m), Host([35m[1m'graphene-137.nancy.grid5000.fr'[m), Host([35m[1m'graphene-138.nancy.grid5000.fr'[m), Host([35m[1m'graphene-140.nancy.grid5000.fr'[m), Host([35m[1m'graphene-141.nancy.grid5000.fr'[m), Host([35m[1m'graphene-142.nancy.grid5000.fr'[m), Host([35m[1m'graphene-143.nancy.grid5000.fr'[m)]
+[33m2016-05-06 08:11:35,972 [m[35mINFO:[m installing OAR nodes: [Host([35m[1m'graphene-110.nancy.grid5000.fr'[m), Host([35m[1m'graphene-111.nancy.grid5000.fr'[m), Host([35m[1m'graphene-112.nancy.grid5000.fr'[m), Host([35m[1m'graphene-113.nancy.grid5000.fr'[m), Host([35m[1m'graphene-114.nancy.grid5000.fr'[m), Host([35m[1m'graphene-115.nancy.grid5000.fr'[m), Host([35m[1m'graphene-116.nancy.grid5000.fr'[m), Host([35m[1m'graphene-117.nancy.grid5000.fr'[m), Host([35m[1m'graphene-118.nancy.grid5000.fr'[m), Host([35m[1m'graphene-119.nancy.grid5000.fr'[m), Host([35m[1m'graphene-120.nancy.grid5000.fr'[m), Host([35m[1m'graphene-121.nancy.grid5000.fr'[m), Host([35m[1m'graphene-122.nancy.grid5000.fr'[m), Host([35m[1m'graphene-124.nancy.grid5000.fr'[m), Host([35m[1m'graphene-125.nancy.grid5000.fr'[m), Host([35m[1m'graphene-126.nancy.grid5000.fr'[m), Host([35m[1m'graphene-127.nancy.grid5000.fr'[m), Host([35m[1m'graphene-128.nancy.grid5000.fr'[m), Host([35m[1m'graphene-129.nancy.grid5000.fr'[m), Host([35m[1m'graphene-130.nancy.grid5000.fr'[m), Host([35m[1m'graphene-131.nancy.grid5000.fr'[m), Host([35m[1m'graphene-132.nancy.grid5000.fr'[m), Host([35m[1m'graphene-133.nancy.grid5000.fr'[m), Host([35m[1m'graphene-134.nancy.grid5000.fr'[m), Host([35m[1m'graphene-135.nancy.grid5000.fr'[m), Host([35m[1m'graphene-136.nancy.grid5000.fr'[m), Host([35m[1m'graphene-137.nancy.grid5000.fr'[m), Host([35m[1m'graphene-138.nancy.grid5000.fr'[m), Host([35m[1m'graphene-140.nancy.grid5000.fr'[m), Host([35m[1m'graphene-141.nancy.grid5000.fr'[m), Host([35m[1m'graphene-142.nancy.grid5000.fr'[m), Host([35m[1m'graphene-143.nancy.grid5000.fr'[m)]
+[33m2016-05-06 08:11:36,183 [m[35mINFO:[m installing OAR server node: Host([35m[1m'graphene-109.nancy.grid5000.fr'[m)
+[33m2016-05-06 08:14:20,019 [m[35mINFO:[m OAR is configured on all nodes
+[33m2016-05-06 08:14:20,019 [m[35mINFO:[m configuring OAR database: Host([35m[1m'graphene-109.nancy.grid5000.fr'[m)
+[33m2016-05-06 08:14:25,505 [m[35mINFO:[m configuring OAR SSH
+[33m2016-05-06 08:14:37,704 [m[35mINFO:[m oar is now configured!
+[33m2016-05-06 08:14:37,704 [m[35mINFO:[m begining the replay
+[33m2016-05-06 08:14:37,740 [m[35mINFO:[m replaying workload: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}
+[33m2016-05-06 08:14:38,081 [m[36mWARNING:[m [36mterminated:[m <[34mSshProcess[m([34m[1mu'/home/mmercier/expe-batsim/replay_workload/oar_replay.py /home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json results_sgraphene4_run1_2016-05-04--16-26-33  oar_gant_g5k_workload_delay_seed2_size32.json'[m, Host([35m[1m'graphene-109.nancy.grid5000.fr'[m), real cmd=('ssh', '-tt', '-o', 'BatchMode=yes', '-o', 'PasswordAuthentication=no', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', '-o', 'ConnectTimeout=20', 'graphene-109.nancy.grid5000.fr', u'/home/mmercier/expe-batsim/replay_workload/oar_replay.py /home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json results_sgraphene4_run1_2016-05-04--16-26-33  oar_gant_g5k_workload_delay_seed2_size32.json'), name=/home/mmercier/expe-batsim/replay_wo..., started=True, start_date=2016-05-06 08:14:37+02:00, ended=True, end_date=2016-05-06 08:14:38+02:00, killed=False, error=False, error_reason=None, timeouted=False, expect_fail=False, write_error=False, exit_code=256, ok=False, pid=7771)>
+[36mstdout:[m
+Traceback (most recent call last):
+  File "/home/mmercier/expe-batsim/replay_workload/oar_replay.py", line 105, in <module>
+    raise exc
+  File "/home/mmercier/expe-batsim/replay_workload/oar_replay.py", line 102, in <module>
+    os.mkdir(workload_dir)
+FileNotFoundError: [Errno 2] No such file or directory: 'results_sgraphene4_run1_2016-05-04--16-26-33/g5k_workload_delay_seed2_size32'
+
+[36mstderr:[m
+Warning: Permanently added 'graphene-109.nancy.grid5000.fr,172.16.64.109' (RSA) to the list of known hosts.
+Connection to graphene-109.nancy.grid5000.fr closed.
+
+[33m2016-05-06 08:14:38,121 [m[35mINFO:[m Replay workload NOT OK: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}
+Traceback (most recent call last):
+  File "./oar_replay_workload.py", line 268, in run
+    raise RuntimeError("error in the OAR replay: Abort!")
+RuntimeError: error in the OAR replay: Abort!
+> [0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m(275)[0;36mrun[0;34m()[0m
+[0;32m    274 [0;31m            [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m--> 275 [0;31m                [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m    276 [0;31m                    [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+ipdb> 
+KeyboardInterrupt
+> [0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m(275)[0;36mrun[0;34m()[0m
+[0;32m    274 [0;31m            [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m--> 275 [0;31m                [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m    276 [0;31m                    [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+ipdb> 
+KeyboardInterrupt
+> [0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m(275)[0;36mrun[0;34m()[0m
+[0;32m    274 [0;31m            [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m--> 275 [0;31m                [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m    276 [0;31m                    [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+ipdb> [0;31m---------------------------------------------------------------------------[0m
+[0;31mIOError[0m                                   Traceback (most recent call last)
+[0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m in [0;36m<module>[0;34m()[0m
+[1;32m    281[0m [0;32mif[0m [0m__name__[0m [0;34m==[0m [0;34m"__main__"[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    282[0m     [0mengine[0m [0;34m=[0m [0moar_replay_workload[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0;32m--> 283[0;31m     [0mengine[0m[0;34m.[0m[0mstart[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+[0;32m/home/mmercier/execo/src/execo_engine/engine.pyc[0m in [0;36mstart[0;34m(self, args)[0m
+[1;32m    260[0m         [0mlogger[0m[0;34m.[0m[0minfo[0m[0;34m([0m[0;34m"command line: "[0m [0;34m+[0m [0;34m" "[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0;34m[[0m[0mpipes[0m[0;34m.[0m[0mquote[0m[0;34m([0m[0marg[0m[0;34m)[0m [0;32mfor[0m [0marg[0m [0;32min[0m [0msys[0m[0;34m.[0m[0margv[0m[0;34m][0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    261[0m         [0mlogger[0m[0;34m.[0m[0minfo[0m[0;34m([0m[0;34m"run in directory %s"[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mresult_dir[0m[0;34m)[0m[0;34m[0m[0m
+[0;32m--> 262[0;31m         [0mrun_meth_on_engine_ancestors[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m"run"[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    263[0m [0;34m[0m[0m
+[1;32m    264[0m     [0;31m# ------------------------------------------------------------------[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/home/mmercier/execo/src/execo_engine/engine.pyc[0m in [0;36mrun_meth_on_engine_ancestors[0;34m(instance, method_name)[0m
+[1;32m     74[0m         [0mmeth[0m [0;34m=[0m [0mcls[0m[0;34m.[0m[0m__dict__[0m[0;34m.[0m[0mget[0m[0;34m([0m[0mmethod_name[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m     75[0m         [0;32mif[0m [0mmeth[0m [0;32mis[0m [0;32mnot[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m---> 76[0;31m             [0mmeth[0m[0;34m([0m[0minstance[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m     77[0m [0;34m[0m[0m
+[1;32m     78[0m [0;32mclass[0m [0mEngine[0m[0;34m([0m[0mobject[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m in [0;36mrun[0;34m(self)[0m
+[1;32m    273[0m [0;34m[0m[0m
+[1;32m    274[0m             [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 275[0;31m                 [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m    276[0m                     [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    277[0m                 [0;32mif[0m [0mreservation_job_id[0m [0;32mis[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m in [0;36mrun[0;34m(self)[0m
+[1;32m    273[0m [0;34m[0m[0m
+[1;32m    274[0m             [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 275[0;31m                 [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m    276[0m                     [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    277[0m                 [0;32mif[0m [0mreservation_job_id[0m [0;32mis[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/bdb.pyc[0m in [0;36mtrace_dispatch[0;34m(self, frame, event, arg)[0m
+[1;32m     47[0m             [0;32mreturn[0m [0;31m# None[0m[0;34m[0m[0m
+[1;32m     48[0m         [0;32mif[0m [0mevent[0m [0;34m==[0m [0;34m'line'[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m---> 49[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdispatch_line[0m[0;34m([0m[0mframe[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m     50[0m         [0;32mif[0m [0mevent[0m [0;34m==[0m [0;34m'call'[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m     51[0m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdispatch_call[0m[0;34m([0m[0mframe[0m[0;34m,[0m [0marg[0m[0;34m)[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/bdb.pyc[0m in [0;36mdispatch_line[0;34m(self, frame)[0m
+[1;32m     65[0m     [0;32mdef[0m [0mdispatch_line[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mframe[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m     66[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mstop_here[0m[0;34m([0m[0mframe[0m[0;34m)[0m [0;32mor[0m [0mself[0m[0;34m.[0m[0mbreak_here[0m[0;34m([0m[0mframe[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m---> 67[0;31m             [0mself[0m[0;34m.[0m[0muser_line[0m[0;34m([0m[0mframe[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m     68[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0mquitting[0m[0;34m:[0m [0;32mraise[0m [0mBdbQuit[0m[0;34m[0m[0m
+[1;32m     69[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mtrace_dispatch[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/pdb.pyc[0m in [0;36muser_line[0;34m(self, frame)[0m
+[1;32m    156[0m             [0mself[0m[0;34m.[0m[0m_wait_for_mainpyfile[0m [0;34m=[0m [0;36m0[0m[0;34m[0m[0m
+[1;32m    157[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mbp_commands[0m[0;34m([0m[0mframe[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 158[0;31m             [0mself[0m[0;34m.[0m[0minteraction[0m[0;34m([0m[0mframe[0m[0;34m,[0m [0mNone[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    159[0m [0;34m[0m[0m
+[1;32m    160[0m     [0;32mdef[0m [0mbp_commands[0m[0;34m([0m[0mself[0m[0;34m,[0m[0mframe[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/dist-packages/IPython/core/debugger.pyc[0m in [0;36minteraction[0;34m(self, frame, traceback)[0m
+[1;32m    276[0m         [0;32mwhile[0m [0mTrue[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    277[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 278[0;31m                 [0mOldPdb[0m[0;34m.[0m[0minteraction[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mframe[0m[0;34m,[0m [0mtraceback[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    279[0m             [0;32mexcept[0m [0mKeyboardInterrupt[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    280[0m                 [0mself[0m[0;34m.[0m[0mshell[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0;34m"\nKeyboardInterrupt\n"[0m[0;34m)[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/pdb.pyc[0m in [0;36minteraction[0;34m(self, frame, traceback)[0m
+[1;32m    208[0m         [0mself[0m[0;34m.[0m[0msetup[0m[0;34m([0m[0mframe[0m[0;34m,[0m [0mtraceback[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    209[0m         [0mself[0m[0;34m.[0m[0mprint_stack_entry[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mstack[0m[0;34m[[0m[0mself[0m[0;34m.[0m[0mcurindex[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0m
+[0;32m--> 210[0;31m         [0mself[0m[0;34m.[0m[0mcmdloop[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    211[0m         [0mself[0m[0;34m.[0m[0mforget[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    212[0m [0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/cmd.pyc[0m in [0;36mcmdloop[0;34m(self, intro)[0m
+[1;32m    128[0m                     [0;32mif[0m [0mself[0m[0;34m.[0m[0muse_rawinput[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    129[0m                         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 130[0;31m                             [0mline[0m [0;34m=[0m [0mraw_input[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mprompt[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    131[0m                         [0;32mexcept[0m [0mEOFError[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    132[0m                             [0mline[0m [0;34m=[0m [0;34m'EOF'[0m[0;34m[0m[0m
+
+[0;31mIOError[0m: [Errno 25] Inappropriate ioctl for device
+[33m2016-05-09 09:14:37,753 [m[35mINFO:[m dup stdout / stderr to results_sgraphene4_run1_2016-05-04--16-26-33/stdout+stderr and results_sgraphene4_run1_2016-05-04--16-26-33/stdout+stderr
+[33m2016-05-09 09:14:37,754 [m[35mINFO:[m command line arguments: ['./oar_replay_workload.py', '-ML', 'expe_graphene4_run_1.json', '-c', 'results_sgraphene4_run1_2016-05-04--16-26-33']
+[33m2016-05-09 09:14:37,755 [m[35mINFO:[m command line: ./oar_replay_workload.py -ML expe_graphene4_run_1.json -c results_sgraphene4_run1_2016-05-04--16-26-33
+[33m2016-05-09 09:14:37,755 [m[35mINFO:[m run in directory results_sgraphene4_run1_2016-05-04--16-26-33
+[33m2016-05-09 09:14:37,800 [m[35mINFO:[m Workloads: [u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed0_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed5_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json']
+[33m2016-05-09 09:14:37,819 [m[35mINFO:[m Skipped parameters:set([])
+[33m2016-05-09 09:14:37,819 [m[35mINFO:[m Number of parameters combinations 9
+[33m2016-05-09 09:14:37,820 [m[35mINFO:[m combinations set([{'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed0_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json'}])
+[33m2016-05-09 09:14:38,897 [m[35mINFO:[m waiting job start 981311 on Nancy
+[33m2016-05-09 09:15:00,348 [m[35mINFO:[m job start prediction = 2016-05-09 09:14:50+02:00
+[33m2016-05-09 09:15:00,349 [m[35mINFO:[m getting nodes of 981311 on Nancy
+[33m2016-05-09 09:15:02,287 [m[35mINFO:[m deploying nodes: [Host([35m[1m'graphene-110.nancy.grid5000.fr'[m), Host([35m[1m'graphene-111.nancy.grid5000.fr'[m), Host([35m[1m'graphene-112.nancy.grid5000.fr'[m), Host([35m[1m'graphene-113.nancy.grid5000.fr'[m), Host([35m[1m'graphene-114.nancy.grid5000.fr'[m), Host([35m[1m'graphene-115.nancy.grid5000.fr'[m), Host([35m[1m'graphene-116.nancy.grid5000.fr'[m), Host([35m[1m'graphene-117.nancy.grid5000.fr'[m), Host([35m[1m'graphene-118.nancy.grid5000.fr'[m), Host([35m[1m'graphene-119.nancy.grid5000.fr'[m), Host([35m[1m'graphene-120.nancy.grid5000.fr'[m), Host([35m[1m'graphene-121.nancy.grid5000.fr'[m), Host([35m[1m'graphene-122.nancy.grid5000.fr'[m), Host([35m[1m'graphene-124.nancy.grid5000.fr'[m), Host([35m[1m'graphene-125.nancy.grid5000.fr'[m), Host([35m[1m'graphene-126.nancy.grid5000.fr'[m), Host([35m[1m'graphene-127.nancy.grid5000.fr'[m), Host([35m[1m'graphene-128.nancy.grid5000.fr'[m), Host([35m[1m'graphene-129.nancy.grid5000.fr'[m), Host([35m[1m'graphene-130.nancy.grid5000.fr'[m), Host([35m[1m'graphene-131.nancy.grid5000.fr'[m), Host([35m[1m'graphene-132.nancy.grid5000.fr'[m), Host([35m[1m'graphene-133.nancy.grid5000.fr'[m), Host([35m[1m'graphene-134.nancy.grid5000.fr'[m), Host([35m[1m'graphene-135.nancy.grid5000.fr'[m), Host([35m[1m'graphene-136.nancy.grid5000.fr'[m), Host([35m[1m'graphene-137.nancy.grid5000.fr'[m), Host([35m[1m'graphene-138.nancy.grid5000.fr'[m), Host([35m[1m'graphene-139.nancy.grid5000.fr'[m), Host([35m[1m'graphene-140.nancy.grid5000.fr'[m), Host([35m[1m'graphene-141.nancy.grid5000.fr'[m), Host([35m[1m'graphene-142.nancy.grid5000.fr'[m), Host([35m[1m'graphene-143.nancy.grid5000.fr'[m)]
+[33m2016-05-09 09:18:46,241 [m[35mINFO:[m installing OAR nodes: [Host([35m[1m'graphene-111.nancy.grid5000.fr'[m), Host([35m[1m'graphene-112.nancy.grid5000.fr'[m), Host([35m[1m'graphene-113.nancy.grid5000.fr'[m), Host([35m[1m'graphene-114.nancy.grid5000.fr'[m), Host([35m[1m'graphene-115.nancy.grid5000.fr'[m), Host([35m[1m'graphene-116.nancy.grid5000.fr'[m), Host([35m[1m'graphene-117.nancy.grid5000.fr'[m), Host([35m[1m'graphene-118.nancy.grid5000.fr'[m), Host([35m[1m'graphene-119.nancy.grid5000.fr'[m), Host([35m[1m'graphene-120.nancy.grid5000.fr'[m), Host([35m[1m'graphene-121.nancy.grid5000.fr'[m), Host([35m[1m'graphene-122.nancy.grid5000.fr'[m), Host([35m[1m'graphene-124.nancy.grid5000.fr'[m), Host([35m[1m'graphene-125.nancy.grid5000.fr'[m), Host([35m[1m'graphene-126.nancy.grid5000.fr'[m), Host([35m[1m'graphene-127.nancy.grid5000.fr'[m), Host([35m[1m'graphene-128.nancy.grid5000.fr'[m), Host([35m[1m'graphene-129.nancy.grid5000.fr'[m), Host([35m[1m'graphene-130.nancy.grid5000.fr'[m), Host([35m[1m'graphene-131.nancy.grid5000.fr'[m), Host([35m[1m'graphene-132.nancy.grid5000.fr'[m), Host([35m[1m'graphene-133.nancy.grid5000.fr'[m), Host([35m[1m'graphene-134.nancy.grid5000.fr'[m), Host([35m[1m'graphene-135.nancy.grid5000.fr'[m), Host([35m[1m'graphene-136.nancy.grid5000.fr'[m), Host([35m[1m'graphene-137.nancy.grid5000.fr'[m), Host([35m[1m'graphene-138.nancy.grid5000.fr'[m), Host([35m[1m'graphene-139.nancy.grid5000.fr'[m), Host([35m[1m'graphene-140.nancy.grid5000.fr'[m), Host([35m[1m'graphene-141.nancy.grid5000.fr'[m), Host([35m[1m'graphene-142.nancy.grid5000.fr'[m), Host([35m[1m'graphene-143.nancy.grid5000.fr'[m)]
+[33m2016-05-09 09:18:46,422 [m[35mINFO:[m installing OAR server node: Host([35m[1m'graphene-110.nancy.grid5000.fr'[m)
+[33m2016-05-09 09:21:25,228 [m[35mINFO:[m OAR is configured on all nodes
+[33m2016-05-09 09:21:25,229 [m[35mINFO:[m configuring OAR database: Host([35m[1m'graphene-110.nancy.grid5000.fr'[m)
+[33m2016-05-09 09:21:30,336 [m[35mINFO:[m configuring OAR SSH
+[33m2016-05-09 09:21:42,809 [m[35mINFO:[m oar is now configured!
+[33m2016-05-09 09:21:42,809 [m[35mINFO:[m begining the replay
+[33m2016-05-09 09:21:42,818 [m[35mINFO:[m replaying workload: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}
+[33m2016-05-09 09:21:43,123 [m[36mWARNING:[m [36mterminated:[m <[34mSshProcess[m([34m[1mu'/home/mmercier/expe-batsim/replay_workload/oar_replay.py /home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json results_sgraphene4_run1_2016-05-04--16-26-33  oar_gant_g5k_workload_delay_seed2_size32.json'[m, Host([35m[1m'graphene-110.nancy.grid5000.fr'[m), real cmd=('ssh', '-tt', '-o', 'BatchMode=yes', '-o', 'PasswordAuthentication=no', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', '-o', 'ConnectTimeout=20', 'graphene-110.nancy.grid5000.fr', u'/home/mmercier/expe-batsim/replay_workload/oar_replay.py /home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json results_sgraphene4_run1_2016-05-04--16-26-33  oar_gant_g5k_workload_delay_seed2_size32.json'), name=/home/mmercier/expe-batsim/replay_wo..., started=True, start_date=2016-05-09 09:21:42+02:00, ended=True, end_date=2016-05-09 09:21:43+02:00, killed=False, error=False, error_reason=None, timeouted=False, expect_fail=False, write_error=False, exit_code=256, ok=False, pid=30060)>
+[36mstdout:[m
+pwd = /home/mmercier
+Traceback (most recent call last):
+  File "/home/mmercier/expe-batsim/replay_workload/oar_replay.py", line 106, in <module>
+    raise exc
+  File "/home/mmercier/expe-batsim/replay_workload/oar_replay.py", line 102, in <module>
+    os.mkdir(workload_dir)
+FileNotFoundError: [Errno 2] No such file or directory: 'results_sgraphene4_run1_2016-05-04--16-26-33/g5k_workload_delay_seed2_size32'
+
+[36mstderr:[m
+Warning: Permanently added 'graphene-110.nancy.grid5000.fr,172.16.64.110' (RSA) to the list of known hosts.
+Connection to graphene-110.nancy.grid5000.fr closed.
+
+[33m2016-05-09 09:21:43,154 [m[35mINFO:[m Replay workload NOT OK: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}
+Traceback (most recent call last):
+  File "./oar_replay_workload.py", line 268, in run
+    raise RuntimeError("error in the OAR replay: Abort!")
+RuntimeError: error in the OAR replay: Abort!
+> [0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m(275)[0;36mrun[0;34m()[0m
+[0;32m    274 [0;31m            [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m--> 275 [0;31m                [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m    276 [0;31m                    [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+ipdb> 
+KeyboardInterrupt
+> [0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m(275)[0;36mrun[0;34m()[0m
+[0;32m    274 [0;31m            [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m--> 275 [0;31m                [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m    276 [0;31m                    [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+ipdb> [0;31m---------------------------------------------------------------------------[0m
+[0;31mIOError[0m                                   Traceback (most recent call last)
+[0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m in [0;36m<module>[0;34m()[0m
+[1;32m    281[0m [0;32mif[0m [0m__name__[0m [0;34m==[0m [0;34m"__main__"[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    282[0m     [0mengine[0m [0;34m=[0m [0moar_replay_workload[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0;32m--> 283[0;31m     [0mengine[0m[0;34m.[0m[0mstart[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+[0;32m/home/mmercier/execo/src/execo_engine/engine.pyc[0m in [0;36mstart[0;34m(self, args)[0m
+[1;32m    260[0m         [0mlogger[0m[0;34m.[0m[0minfo[0m[0;34m([0m[0;34m"command line: "[0m [0;34m+[0m [0;34m" "[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0;34m[[0m[0mpipes[0m[0;34m.[0m[0mquote[0m[0;34m([0m[0marg[0m[0;34m)[0m [0;32mfor[0m [0marg[0m [0;32min[0m [0msys[0m[0;34m.[0m[0margv[0m[0;34m][0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    261[0m         [0mlogger[0m[0;34m.[0m[0minfo[0m[0;34m([0m[0;34m"run in directory %s"[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mresult_dir[0m[0;34m)[0m[0;34m[0m[0m
+[0;32m--> 262[0;31m         [0mrun_meth_on_engine_ancestors[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m"run"[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    263[0m [0;34m[0m[0m
+[1;32m    264[0m     [0;31m# ------------------------------------------------------------------[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/home/mmercier/execo/src/execo_engine/engine.pyc[0m in [0;36mrun_meth_on_engine_ancestors[0;34m(instance, method_name)[0m
+[1;32m     74[0m         [0mmeth[0m [0;34m=[0m [0mcls[0m[0;34m.[0m[0m__dict__[0m[0;34m.[0m[0mget[0m[0;34m([0m[0mmethod_name[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m     75[0m         [0;32mif[0m [0mmeth[0m [0;32mis[0m [0;32mnot[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m---> 76[0;31m             [0mmeth[0m[0;34m([0m[0minstance[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m     77[0m [0;34m[0m[0m
+[1;32m     78[0m [0;32mclass[0m [0mEngine[0m[0;34m([0m[0mobject[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m in [0;36mrun[0;34m(self)[0m
+[1;32m    273[0m [0;34m[0m[0m
+[1;32m    274[0m             [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 275[0;31m                 [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m    276[0m                     [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    277[0m                 [0;32mif[0m [0mreservation_job_id[0m [0;32mis[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m in [0;36mrun[0;34m(self)[0m
+[1;32m    273[0m [0;34m[0m[0m
+[1;32m    274[0m             [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 275[0;31m                 [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m    276[0m                     [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    277[0m                 [0;32mif[0m [0mreservation_job_id[0m [0;32mis[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/bdb.pyc[0m in [0;36mtrace_dispatch[0;34m(self, frame, event, arg)[0m
+[1;32m     47[0m             [0;32mreturn[0m [0;31m# None[0m[0;34m[0m[0m
+[1;32m     48[0m         [0;32mif[0m [0mevent[0m [0;34m==[0m [0;34m'line'[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m---> 49[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdispatch_line[0m[0;34m([0m[0mframe[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m     50[0m         [0;32mif[0m [0mevent[0m [0;34m==[0m [0;34m'call'[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m     51[0m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdispatch_call[0m[0;34m([0m[0mframe[0m[0;34m,[0m [0marg[0m[0;34m)[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/bdb.pyc[0m in [0;36mdispatch_line[0;34m(self, frame)[0m
+[1;32m     65[0m     [0;32mdef[0m [0mdispatch_line[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mframe[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m     66[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mstop_here[0m[0;34m([0m[0mframe[0m[0;34m)[0m [0;32mor[0m [0mself[0m[0;34m.[0m[0mbreak_here[0m[0;34m([0m[0mframe[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m---> 67[0;31m             [0mself[0m[0;34m.[0m[0muser_line[0m[0;34m([0m[0mframe[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m     68[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0mquitting[0m[0;34m:[0m [0;32mraise[0m [0mBdbQuit[0m[0;34m[0m[0m
+[1;32m     69[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mtrace_dispatch[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/pdb.pyc[0m in [0;36muser_line[0;34m(self, frame)[0m
+[1;32m    156[0m             [0mself[0m[0;34m.[0m[0m_wait_for_mainpyfile[0m [0;34m=[0m [0;36m0[0m[0;34m[0m[0m
+[1;32m    157[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mbp_commands[0m[0;34m([0m[0mframe[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 158[0;31m             [0mself[0m[0;34m.[0m[0minteraction[0m[0;34m([0m[0mframe[0m[0;34m,[0m [0mNone[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    159[0m [0;34m[0m[0m
+[1;32m    160[0m     [0;32mdef[0m [0mbp_commands[0m[0;34m([0m[0mself[0m[0;34m,[0m[0mframe[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/dist-packages/IPython/core/debugger.pyc[0m in [0;36minteraction[0;34m(self, frame, traceback)[0m
+[1;32m    276[0m         [0;32mwhile[0m [0mTrue[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    277[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 278[0;31m                 [0mOldPdb[0m[0;34m.[0m[0minteraction[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mframe[0m[0;34m,[0m [0mtraceback[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    279[0m             [0;32mexcept[0m [0mKeyboardInterrupt[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    280[0m                 [0mself[0m[0;34m.[0m[0mshell[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0;34m"\nKeyboardInterrupt\n"[0m[0;34m)[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/pdb.pyc[0m in [0;36minteraction[0;34m(self, frame, traceback)[0m
+[1;32m    208[0m         [0mself[0m[0;34m.[0m[0msetup[0m[0;34m([0m[0mframe[0m[0;34m,[0m [0mtraceback[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    209[0m         [0mself[0m[0;34m.[0m[0mprint_stack_entry[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mstack[0m[0;34m[[0m[0mself[0m[0;34m.[0m[0mcurindex[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0m
+[0;32m--> 210[0;31m         [0mself[0m[0;34m.[0m[0mcmdloop[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    211[0m         [0mself[0m[0;34m.[0m[0mforget[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    212[0m [0;34m[0m[0m
+
+[0;32m/usr/lib/python2.7/cmd.pyc[0m in [0;36mcmdloop[0;34m(self, intro)[0m
+[1;32m    128[0m                     [0;32mif[0m [0mself[0m[0;34m.[0m[0muse_rawinput[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    129[0m                         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 130[0;31m                             [0mline[0m [0;34m=[0m [0mraw_input[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mprompt[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    131[0m                         [0;32mexcept[0m [0mEOFError[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    132[0m                             [0mline[0m [0;34m=[0m [0;34m'EOF'[0m[0;34m[0m[0m
+
+[0;31mIOError[0m: [Errno 25] Inappropriate ioctl for device
+[33m2016-05-09 09:27:21,000 [m[35mINFO:[m dup stdout / stderr to /home/mmercier/expe-batsim/replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33/stdout+stderr and /home/mmercier/expe-batsim/replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33/stdout+stderr
+[33m2016-05-09 09:27:21,002 [m[35mINFO:[m command line arguments: ['./oar_replay_workload.py', '-ML', 'expe_graphene4_run_1.json', '-c', '/home/mmercier/expe-batsim/replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33']
+[33m2016-05-09 09:27:21,002 [m[35mINFO:[m command line: ./oar_replay_workload.py -ML expe_graphene4_run_1.json -c /home/mmercier/expe-batsim/replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33
+[33m2016-05-09 09:27:21,002 [m[35mINFO:[m run in directory /home/mmercier/expe-batsim/replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33
+[33m2016-05-09 09:27:21,018 [m[35mINFO:[m Workloads: [u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed0_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed5_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json', u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json']
+[33m2016-05-09 09:27:21,021 [m[35mINFO:[m Skipped parameters:set([])
+[33m2016-05-09 09:27:21,021 [m[35mINFO:[m Number of parameters combinations 9
+[33m2016-05-09 09:27:21,022 [m[35mINFO:[m combinations set([{'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed0_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json'}, {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json'}])
+[33m2016-05-09 09:27:22,060 [m[35mINFO:[m waiting job start 981313 on Nancy
+[33m2016-05-09 09:27:43,445 [m[35mINFO:[m job start prediction = 2016-05-10 08:53:02+02:00
+[33m2016-05-09 09:30:08,723 [m[35mINFO:[m job start prediction = 2016-05-09 09:29:56+02:00
+[33m2016-05-09 09:30:08,723 [m[35mINFO:[m getting nodes of 981313 on Nancy
+[33m2016-05-09 09:30:10,362 [m[35mINFO:[m deploying nodes: [Host([35m[1m'graphene-109.nancy.grid5000.fr'[m), Host([35m[1m'graphene-111.nancy.grid5000.fr'[m), Host([35m[1m'graphene-112.nancy.grid5000.fr'[m), Host([35m[1m'graphene-113.nancy.grid5000.fr'[m), Host([35m[1m'graphene-114.nancy.grid5000.fr'[m), Host([35m[1m'graphene-115.nancy.grid5000.fr'[m), Host([35m[1m'graphene-116.nancy.grid5000.fr'[m), Host([35m[1m'graphene-117.nancy.grid5000.fr'[m), Host([35m[1m'graphene-118.nancy.grid5000.fr'[m), Host([35m[1m'graphene-119.nancy.grid5000.fr'[m), Host([35m[1m'graphene-120.nancy.grid5000.fr'[m), Host([35m[1m'graphene-121.nancy.grid5000.fr'[m), Host([35m[1m'graphene-122.nancy.grid5000.fr'[m), Host([35m[1m'graphene-124.nancy.grid5000.fr'[m), Host([35m[1m'graphene-125.nancy.grid5000.fr'[m), Host([35m[1m'graphene-126.nancy.grid5000.fr'[m), Host([35m[1m'graphene-127.nancy.grid5000.fr'[m), Host([35m[1m'graphene-128.nancy.grid5000.fr'[m), Host([35m[1m'graphene-129.nancy.grid5000.fr'[m), Host([35m[1m'graphene-130.nancy.grid5000.fr'[m), Host([35m[1m'graphene-131.nancy.grid5000.fr'[m), Host([35m[1m'graphene-132.nancy.grid5000.fr'[m), Host([35m[1m'graphene-133.nancy.grid5000.fr'[m), Host([35m[1m'graphene-134.nancy.grid5000.fr'[m), Host([35m[1m'graphene-135.nancy.grid5000.fr'[m), Host([35m[1m'graphene-136.nancy.grid5000.fr'[m), Host([35m[1m'graphene-137.nancy.grid5000.fr'[m), Host([35m[1m'graphene-138.nancy.grid5000.fr'[m), Host([35m[1m'graphene-139.nancy.grid5000.fr'[m), Host([35m[1m'graphene-140.nancy.grid5000.fr'[m), Host([35m[1m'graphene-141.nancy.grid5000.fr'[m), Host([35m[1m'graphene-142.nancy.grid5000.fr'[m), Host([35m[1m'graphene-143.nancy.grid5000.fr'[m)]
+[33m2016-05-09 09:33:56,110 [m[35mINFO:[m installing OAR nodes: [Host([35m[1m'graphene-111.nancy.grid5000.fr'[m), Host([35m[1m'graphene-112.nancy.grid5000.fr'[m), Host([35m[1m'graphene-113.nancy.grid5000.fr'[m), Host([35m[1m'graphene-114.nancy.grid5000.fr'[m), Host([35m[1m'graphene-115.nancy.grid5000.fr'[m), Host([35m[1m'graphene-116.nancy.grid5000.fr'[m), Host([35m[1m'graphene-117.nancy.grid5000.fr'[m), Host([35m[1m'graphene-118.nancy.grid5000.fr'[m), Host([35m[1m'graphene-119.nancy.grid5000.fr'[m), Host([35m[1m'graphene-120.nancy.grid5000.fr'[m), Host([35m[1m'graphene-121.nancy.grid5000.fr'[m), Host([35m[1m'graphene-122.nancy.grid5000.fr'[m), Host([35m[1m'graphene-124.nancy.grid5000.fr'[m), Host([35m[1m'graphene-125.nancy.grid5000.fr'[m), Host([35m[1m'graphene-126.nancy.grid5000.fr'[m), Host([35m[1m'graphene-127.nancy.grid5000.fr'[m), Host([35m[1m'graphene-128.nancy.grid5000.fr'[m), Host([35m[1m'graphene-129.nancy.grid5000.fr'[m), Host([35m[1m'graphene-130.nancy.grid5000.fr'[m), Host([35m[1m'graphene-131.nancy.grid5000.fr'[m), Host([35m[1m'graphene-132.nancy.grid5000.fr'[m), Host([35m[1m'graphene-133.nancy.grid5000.fr'[m), Host([35m[1m'graphene-134.nancy.grid5000.fr'[m), Host([35m[1m'graphene-135.nancy.grid5000.fr'[m), Host([35m[1m'graphene-136.nancy.grid5000.fr'[m), Host([35m[1m'graphene-137.nancy.grid5000.fr'[m), Host([35m[1m'graphene-138.nancy.grid5000.fr'[m), Host([35m[1m'graphene-139.nancy.grid5000.fr'[m), Host([35m[1m'graphene-140.nancy.grid5000.fr'[m), Host([35m[1m'graphene-141.nancy.grid5000.fr'[m), Host([35m[1m'graphene-142.nancy.grid5000.fr'[m), Host([35m[1m'graphene-143.nancy.grid5000.fr'[m)]
+[33m2016-05-09 09:33:56,251 [m[35mINFO:[m installing OAR server node: Host([35m[1m'graphene-109.nancy.grid5000.fr'[m)
+[33m2016-05-09 09:36:25,178 [m[35mINFO:[m OAR is configured on all nodes
+[33m2016-05-09 09:36:25,178 [m[35mINFO:[m configuring OAR database: Host([35m[1m'graphene-109.nancy.grid5000.fr'[m)
+[33m2016-05-09 09:36:30,504 [m[35mINFO:[m configuring OAR SSH
+[33m2016-05-09 09:36:42,950 [m[35mINFO:[m oar is now configured!
+[33m2016-05-09 09:36:42,950 [m[35mINFO:[m begining the replay
+[33m2016-05-09 09:36:42,959 [m[35mINFO:[m replaying workload: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}
+[33m2016-05-09 12:42:35,593 [m[35mINFO:[m Replay workload OK: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json'}
+[33m2016-05-09 12:42:35,690 [m[35mINFO:[m replaying workload: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json'}
+[33m2016-05-09 15:48:16,084 [m[35mINFO:[m Replay workload OK: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json'}
+[33m2016-05-09 15:48:16,123 [m[35mINFO:[m replaying workload: {'workload_filename': u'/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json'}
+Traceback (most recent call last):
+  File "./oar_replay_workload.py", line 261, in run
+    oar_replay.run()
+  File "/home/mmercier/execo/src/execo/process.py", line 1269, in run
+    return self.start().wait(timeout)
+  File "/home/mmercier/execo/src/execo/process.py", line 1261, in wait
+    non_retrying_intr_cond_wait(the_conductor.condition, timeout)
+  File "/home/mmercier/execo/src/execo/utils.py", line 77, in non_retrying_intr_cond_wait
+    return cond.wait(float(t) if t else None)
+  File "/usr/lib/python2.7/threading.py", line 359, in wait
+    _sleep(delay)
+KeyboardInterrupt
+> [0;32m/home/mmercier/expe-batsim/replay_workload/oar_replay_workload.py[0m(275)[0;36mrun[0;34m()[0m
+[0;32m    274 [0;31m            [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m--> 275 [0;31m                [0;32mif[0m [0mis_a_test[0m[0;34m:[0m[0;34m[0m[0m
+[0m[0;32m    276 [0;31m                    [0mipdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m
+ipdb> [33m2016-05-09 16:38:37,778 [m[35mINFO:[m delete job: [(981313, u'Nancy')]
