@@ -88,6 +88,7 @@ class oar_replay_workload(Engine):
 
         site = config["grid5000_site"]
         resources = config["resources"]
+        nb_experiment_nodes = config["nb_experiment_nodes"]
         walltime = str(config["walltime"])
         env_name = config["kadeploy_env_name"]
         workloads = config["workloads"]
@@ -96,7 +97,8 @@ class oar_replay_workload(Engine):
         for workload_file in workloads:
             with open(workload_file):
                 pass
-            # TODO copy the workloads files to the results dir
+            # copy the workloads files to the results dir
+            copy(workload_file, self.result_dir)
 
         # define the workloads parameters
         self.parameters = {
@@ -133,6 +135,14 @@ class oar_replay_workload(Engine):
                 nodes = get_oar_job_nodes(job_id, site)
                 # sort the nodes
                 nodes = sorted(nodes, key=lambda node: node.address)
+                # get only the necessary nodes under the switch
+                if nb_experiment_nodes > len(nodes):
+                    raise RuntimeError('The number of given node in the '
+                                       'reservation ({}) do not match the '
+                                       'requested resources '
+                                       '({})'.format(len(nodes),
+                                                     nb_experiment_nodes))
+                nodes = nodes[:nb_experiment_nodes]
                 logger.info("deploying nodes: {}".format(str(nodes)))
                 deployed, undeployed = deploy(
                     Deployment(nodes, env_name=env_name),
