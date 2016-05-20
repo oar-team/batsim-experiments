@@ -198,7 +198,8 @@ def execute_in_simulo(experiment,
 def compare_to_oar(experiment,
                    experiment_name,
                    base_directory,
-                   experiment_base_directory):
+                   experiment_base_directory,
+                   default_simulation_model):
     # Let's check that all needed parameters are in the experiment
 
     if not 'oar_instances' in experiment:
@@ -327,20 +328,25 @@ def aggregate_results(experiments,
                       bounded_slowdown_min_runtime,
                       aggregated_directory,
                       base_directory,
-                      experiment_base_directory):
+                      experiment_base_directory,
+                      default_simulation_model):
     schedule_metrics_filename = 'schedule_metrics.csv'
     print('Aggregating results...')
     print('bounded_slowdown_min_runtime = ', bounded_slowdown_min_runtime)
     # Let's compute some metrics on each schedule thanks to a R script
     print('Computing scheduling metrics on each successful experiment')
     for experiment_name in successful_experiment_names:
+        experiment = experiments[experiment_name]
+        simulation_model = default_simulation_model
+        if 'simulation_model' in experiment:
+            simulation_model = str(experiment['simulation_model'])
         # Rscript --vanilla analyse_schedule_jobs.R JOBS OUTPUT_METRICS_FILE WORKLOAD_NAME WORKLOAD_TYPE BOUNDED_STRETCH_MIN_RUNTIME
         compute_metrics_command = 'Rscript --vanilla {base_dir}/{script} {exp_dir}/{exp_name}/batsim_{exp_name}_out_jobs.csv {exp_dir}/{exp_name}/{exp_name}_{workload_type}_{schedule_metrics_filename} {exp_name} {workload_type} {bounded_slowdown_min_runtime}'.format(
             base_dir = base_directory,
             script = script_r_analyse_schedule_jobs,
             exp_dir = experiment_base_directory,
             exp_name = experiment_name,
-            workload_type = 'simulated',
+            workload_type = simulation_model,
             bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
             schedule_metrics_filename = schedule_metrics_filename)
         run_string_write_output(command_str = compute_metrics_command,
@@ -348,13 +354,14 @@ def aggregate_results(experiments,
                                 stdout_filename = '{exp_dir}/{exp_name}/compute_metrics_{exp_name}_{workload_type}.stdout'.format(
                                     exp_dir = experiment_base_directory,
                                     exp_name = experiment_name,
-                                    workload_type = 'simulated'),
+                                    workload_type = simulation_model),
                                 stderr_filename = '{exp_dir}/{exp_name}/compute_metrics_{exp_name}_{workload_type}.stderr'.format(
                                     exp_dir = experiment_base_directory,
                                     exp_name = experiment_name,
-                                    workload_type = 'simulated'))
+                                    workload_type = simulation_model))
 
-        experiment = experiments[experiment_name]
+
+
         if ('compare_to_oar' in experiment) and (bool(experiment['compare_to_oar'])):
             for oar_instance_name in experiment['oar_instances']:
                 compute_metrics_command = 'Rscript --vanilla {base_dir}/{script} {exp_dir}/{exp_name}/oar_{oar_instance_name}/oar_{exp_name}_{oar_instance_name}_out_jobs.csv {exp_dir}/{exp_name}/oar_{oar_instance_name}/{exp_name}_{workload_type}_{schedule_metrics_filename} {exp_name} {workload_type} {bounded_slowdown_min_runtime}'.format(
@@ -397,7 +404,7 @@ def aggregate_results(experiments,
         with open('{exp_dir}/{exp_name}/{exp_name}_{workload_type}_{schedule_metrics_filename}'.format(
                     exp_dir = experiment_base_directory,
                     exp_name = successful_experiment_names[0],
-                    workload_type = 'simulated',
+                    workload_type = simulation_model,
                     schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
             content = input_file.readlines()
             line = content[0]
@@ -409,7 +416,7 @@ def aggregate_results(experiments,
             with open('{exp_dir}/{exp_name}/{exp_name}_{workload_type}_{schedule_metrics_filename}'.format(
                     exp_dir = experiment_base_directory,
                     exp_name = experiment_name,
-                    workload_type = 'simulated',
+                    workload_type = simulation_model,
                     schedule_metrics_filename = schedule_metrics_filename), 'r') as input_file:
                 content = input_file.readlines()
                 line = content[1]
@@ -496,6 +503,10 @@ def launch_experiment(config_json_filename):
     if 'default_socket' in json_data:
         default_socket = str(json_data['default_socket'])
 
+    default_simulation_model = "unset",
+    if 'default_simulation_model' in json_data:
+        default_simulation_model = str(json_data['default_simulation_model'])
+
     default_generate_gantt_evalys = False
     if 'default_generate_gantt_evalys' in json_data:
         default_generate_gantt_evalys = bool(json_data['default_generate_gantt_evalys'])
@@ -562,7 +573,8 @@ def launch_experiment(config_json_filename):
                 (success, reason) = compare_to_oar(experiment = experiment,
                                                    experiment_name = experiment_name,
                                                    base_directory = base_directory,
-                                                   experiment_base_directory = experiment_base_directory)
+                                                   experiment_base_directory = experiment_base_directory,
+                                                   default_simulation_model = default_simulation_model)
                 if not success:
                     failed_experiments.append(experiment_name)
                     print('FAILED: ' + reason)
@@ -599,7 +611,8 @@ def launch_experiment(config_json_filename):
                           bounded_slowdown_min_runtime = bounded_slowdown_min_runtime,
                           aggregated_directory = aggregated_directory,
                           base_directory = base_directory,
-                          experiment_base_directory = experiment_base_directory)
+                          experiment_base_directory = experiment_base_directory,
+                          default_simulation_model = default_simulation_model)
 
 def main():
     # Program parameters parsing

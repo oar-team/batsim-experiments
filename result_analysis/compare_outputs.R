@@ -113,22 +113,30 @@ alldata = rbind(batsim, real)
 # points(real$submission_time ~ real$jobID)
 #dev.off()
 
-fig_width=6
-fig_height=4
+ratio.display = 4/3
+
+fig_width=8
+fig_height=6
 
 # Submission times
+ratio.values = (max(alldata$jobID)-min(alldata$jobID))/(max(alldata$submission_time)-min(alldata$submission_time))
 ggplot(alldata, aes(x= jobID, y=submission_time)) +
-    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3)) +
+    coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ggsave("submission_times.pdf", width=fig_width, height=fig_height)
 
 # Starting times
+ratio.values = (max(alldata$jobID)-min(alldata$jobID))/(max(alldata$starting_time)-min(alldata$starting_time))
 ggplot(alldata, aes(x= jobID, y=starting_time)) +
-    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3)) +
+    coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ggsave("starting_times.pdf", width=fig_width, height=fig_height)
 
 # Finition times
+ratio.values = (max(alldata$jobID)-min(alldata$jobID))/(max(alldata$finish_time)-min(alldata$finish_time))
 ggplot(alldata, aes(x= jobID, y=finish_time)) +
-    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3)) +
+    coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ggsave("finish_times.pdf", width=fig_width, height=fig_height)
 
 
@@ -147,48 +155,38 @@ finish_times['name'] = 'Finish time'
 ggplot(sub_times, aes(x=jobID, y=time)) +
     geom_point(data=sub_times, aes(color=name, shape=type)) + scale_shape_manual(values=(c(1,3))) +
     geom_point(data=start_times, aes(color=name, shape=type)) + scale_shape_manual(values=(c(1,3))) +
-    geom_point(data=finish_times, aes(color=name, shape=type)) + scale_shape_manual(values=(c(1,3))) +
+    geom_point(data=finish_times, aes(color=name, shape=type)) + scale_shape_manual(values=(c(1,3)))
 ggsave("merged_times_scatterplot.pdf")
 
 # Execution times
+ratio.values = (max(alldata$jobID)-min(alldata$jobID))/(max(alldata$execution_time)-min(alldata$execution_time))
 ggplot(alldata, aes(x= jobID, y=execution_time), axis.title.x=element.blank(), axis.title.y=element.blank()) +
     geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
-    xlab("Job ID") + ylab("Execution time (s)") + theme(legend.title=element_blank())
+    xlab("Job ID") + ylab("Execution time (s)") + theme(legend.title=element_blank()) +
+    coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ggsave("execution_times_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= execution_time, fill = type)) +
     geom_density(alpha=.5, aes(linetype = type))
 ggsave("execution_times_distribution_density.pdf", width=fig_width, height=fig_height)
 
-ggplot(alldata, aes(x= execution_time, fill = type)) +
-    geom_histogram(binwidth=15, position="dodge")
-ggsave("execution_times_distribution_histogram.pdf", width=fig_width, height=fig_height)
-
-ggplot(alldata, aes(x = type, y= execution_time, fill = type)) +
-    geom_boxplot() + guides(fill=FALSE)
-ggsave("execution_times_distribution_boxplot.pdf", width=fig_width, height=fig_height)
-
 # Waiting times
+ratio.values = (max(alldata$jobID)-min(alldata$jobID))/(max(alldata$waiting_time)-min(alldata$waiting_time))
 ggplot(alldata, aes(x = jobID, y= waiting_time)) +
-    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3)) +
+    coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ggsave("waiting_times_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= waiting_time, fill = type)) +
     geom_density(alpha=.5, aes(linetype = type))
 ggsave("waiting_times_distribution_density.pdf", width=fig_width, height=fig_height)
 
-ggplot(alldata, aes(x= waiting_time, fill = type)) +
-    geom_histogram(binwidth=15, position="dodge")
-ggsave("waiting_times_distribution_histogram.pdf", width=fig_width, height=fig_height)
-
-ggplot(alldata, aes(x = type, y= waiting_time, fill = type)) +
-    geom_boxplot() + guides(fill=FALSE)
-ggsave("waiting_times_distribution_boxplot.pdf", width=fig_width, height=fig_height)
-
 # Turnaround time
+ratio.values = (max(alldata$jobID)-min(alldata$jobID))/(max(alldata$turnaround_time)-min(alldata$turnaround_time))
 ggplot(alldata, aes(x = jobID, y= turnaround_time), axis.title.x=element.blank(), axis.title.y=element.blank()) +
     geom_point(aes(shape = type)) + scale_shape_manual(values=c(1,3)) +
-    xlab("Job ID") + ylab("Turnaround time (s)") + theme(legend.title=element_blank())
+    xlab("Job ID") + ylab("Turnaround time (s)") + theme(legend.title=element_blank()) +
+    coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ggsave("turnaround_times_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= turnaround_time, fill = type), axis.title.x=element.blank(), axis.title.y=element.blank()) +
@@ -196,48 +194,27 @@ ggplot(alldata, aes(x= turnaround_time, fill = type), axis.title.x=element.blank
     xlab("Turnaround time (s)") + theme(legend.title=element_blank())
 ggsave("turnaround_times_distribution_density.pdf", width=fig_width, height=fig_height)
 
-ggplot(alldata, aes(x= turnaround_time, fill = type)) +
-    geom_histogram(binwidth=15, position="dodge")
-ggsave("turnaround_times_distribution_histogram.pdf", width=fig_width, height=fig_height)
-
-ggplot(alldata, aes(x = type, y= turnaround_time, fill = type)) +
-    geom_boxplot() + guides(fill=FALSE)
-ggsave("turnaround_times_distribution_boxplot.pdf", width=fig_width, height=fig_height)
-
 # Stretch
+ratio.values = (max(alldata$jobID)-min(alldata$jobID))/(max(alldata$stretch)-min(alldata$stretch))
 ggplot(alldata, aes(x = jobID, y= stretch)) +
-    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3)) +
+    coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ggsave("stretch_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= stretch, fill = type)) +
     geom_density(alpha=.5, aes(linetype = type))
 ggsave("stretch_distribution_density.pdf", width=fig_width, height=fig_height)
 
-ggplot(alldata, aes(x= stretch, fill = type)) +
-    geom_histogram(binwidth=15, position="dodge")
-ggsave("stretch_distribution_histogram.pdf", width=fig_width, height=fig_height)
-
-ggplot(alldata, aes(x = type, y= stretch, fill = type)) +
-    geom_boxplot() + guides(fill=FALSE)
-ggsave("stretch_distribution_boxplot.pdf", width=fig_width, height=fig_height)
-
 # Bounded stretch
+ratio.values = (max(alldata$jobID)-min(alldata$jobID))/(max(alldata$bounded_stretch)-min(alldata$bounded_stretch))
 ggplot(alldata, aes(x = jobID, y= bounded_stretch)) +
-    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3))
+    geom_point(aes(color = type, shape = type)) + scale_shape_manual(values=c(1,3)) +
+    coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ggsave("bounded_stretch_scatterplot.pdf", width=fig_width, height=fig_height)
 
 ggplot(alldata, aes(x= bounded_stretch, fill = type)) +
     geom_density(alpha=.5, aes(linetype = type))
 ggsave("bounded_stretch_distribution_density.pdf", width=fig_width, height=fig_height)
-
-ggplot(alldata, aes(x= bounded_stretch, fill = type)) +
-    geom_histogram(binwidth=15, position="dodge")
-ggsave("bounded_stretch_distribution_histogram.pdf", width=fig_width, height=fig_height)
-
-ggplot(alldata, aes(x = type, y= bounded_stretch, fill = type)) +
-    geom_boxplot() + guides(fill=FALSE)
-ggsave("stretch_distribution_boxplot.pdf", width=fig_width, height=fig_height)
-
 
 ##########################
 # Job-by-job differences #
