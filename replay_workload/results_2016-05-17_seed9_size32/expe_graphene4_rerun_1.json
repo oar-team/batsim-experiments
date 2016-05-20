@@ -1,0 +1,11 @@
+{
+  "description": "This experiment is running 10 workload on 32 nodes + 1 master under a fixed switch (sgraphene4) for batsim comparison",
+  "grid5000_site": "Nancy",
+  "resources": "{switch='sgraphene4'}/switch=1",
+  "walltime": "04:30:00",
+  "kadeploy_env_name": "debian8_workload_generation_nfs",
+  "nb_experiment_nodes": 33,
+  "workloads": [
+    "/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json"
+  ]
+}
