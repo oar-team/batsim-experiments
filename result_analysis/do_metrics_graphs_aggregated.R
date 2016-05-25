@@ -79,6 +79,7 @@ cbPalette = c("#593586",
 ggplot(aggregated, aes(x = makespan, y = makespan)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     xlab("Makespan (s)") + ylab("Makespan (s)") + theme(legend.title=element_blank()) +
     coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
     ggsave("aggregated_comparison_makespan.pdf", width=8, height=6)
@@ -88,6 +89,7 @@ ratio.values = ratio.values <- (max(aggregated$makespan)-min(aggregated$makespan
 ggplot(aggregated, aes(x = makespan, y = mean_stretch)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     xlab("Makespan (s)") + ylab("Mean stretch") + theme(legend.title=element_blank()) +
     coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
     ggsave("aggregated_comparison_mean_stretch.pdf", width=8, height=6)
@@ -98,6 +100,7 @@ ratio.values = ratio.values <- (max(aggregated_one_workload$makespan)-min(aggreg
 ggplot(aggregated_one_workload, aes(x = makespan, y = mean_bounded_stretch)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette[7]) +
+    theme(text = element_text(size=14)) +
     xlab("Makespan (s)") + ylab("Mean bounded stretch (bound = 60 s)") + theme(legend.title=element_blank()) +
     coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
     ggsave("aggregated_comparison_mean_bounded_stretch_one_workload_zoomed_a_lot.pdf", width=8, height=6)
@@ -109,6 +112,7 @@ ggplot(aggregated_one_workload, aes(x = makespan, y = mean_bounded_stretch)) +
     ylim(min(aggregated$mean_bounded_stretch), max(aggregated$mean_bounded_stretch)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette[7]) +
+    theme(text = element_text(size=14)) +
     xlab("Makespan (s)") + ylab("Mean bounded stretch (bound = 60 s)") + theme(legend.title=element_blank()) +
     coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
     ggsave("aggregated_comparison_mean_bounded_stretch_one_workload_zoomed.pdf", width=8, height=6)
@@ -120,6 +124,7 @@ ggplot(aggregated_one_workload, aes(x = makespan, y = mean_bounded_stretch)) +
     ylim(0, max(aggregated$mean_bounded_stretch)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette[7]) +
+    theme(text = element_text(size=14)) +
     xlab("Makespan (s)") + ylab("Mean bounded stretch (bound = 60 s)") + theme(legend.title=element_blank()) +
     coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
     ggsave("aggregated_comparison_mean_bounded_stretch_one_workload_zero_zero.pdf", width=8, height=6)
@@ -130,6 +135,7 @@ ratio.values = ratio.values <- (max(aggregated$makespan)-min(aggregated$makespan
 ggplot(aggregated, aes(x = makespan, y = mean_bounded_stretch)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     xlab("Makespan (s)") + ylab("Mean bounded stretch (bound = 60 s)") + theme(legend.title=element_blank()) +
     coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
     ggsave("aggregated_comparison_mean_bounded_stretch.pdf", width=8, height=6)
@@ -141,6 +147,7 @@ ggplot(aggregated, aes(x = makespan, y = mean_bounded_stretch)) +
     ylim(0, max(aggregated$mean_bounded_stretch)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     xlab("Makespan (s)") + ylab("Mean bounded stretch (bound = 60 s)") + theme(legend.title=element_blank()) +
     coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
     ggsave("aggregated_comparison_mean_bounded_stretch_zero_zero.pdf", width=8, height=6)
@@ -150,6 +157,7 @@ ratio.values = ratio.values <- (max(aggregated$makespan)-min(aggregated$makespan
 ggplot(aggregated, aes(x = makespan, y = mean_bounded_stretch)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     stat_ellipse(data = real_data, aes(x = makespan, y = mean_bounded_stretch), linetype=1) +
     stat_ellipse(data = simulated_data, aes(x = makespan, y = mean_bounded_stretch), linetype=3) +
     xlab("Makespan (s)") + ylab("Mean bounded stretch (bound = 60 s)") + theme(legend.title=element_blank()) +
@@ -163,6 +171,7 @@ ggplot(aggregated, aes(x = makespan, y = mean_bounded_stretch)) +
     ylim(0, max(aggregated$mean_bounded_stretch)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     stat_ellipse(data = real_data, aes(x = makespan, y = mean_bounded_stretch), linetype=1) +
     stat_ellipse(data = simulated_data, aes(x = makespan, y = mean_bounded_stretch), linetype=3) +
     xlab("Makespan (s)") + ylab("Mean bounded stretch (bound = 60 s)") + theme(legend.title=element_blank()) +
@@ -174,6 +183,7 @@ ratio.values = ratio.values <- (max(aggregated$makespan)-min(aggregated$makespan
 ggplot(aggregated, aes(x = makespan, y = mean_waiting_time)) +
     geom_point(aes(shape = workload_type, color = workload_name), size = 2) + scale_shape_manual(values=c(1,3,2)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     xlab("Makespan (s)") + ylab("Mean waiting time (s)") + theme(legend.title=element_blank()) +
     coord_fixed(ratio=ratio.values / ratio.display) + theme(plot.margin=grid::unit(c(0,0,0,0), "mm")) +
     ggsave("aggregated_comparison_mean_waiting_time.pdf", width=8, height=6)
@@ -273,10 +283,12 @@ ggplot(merged_data, aes(x = makespan_reality_difference, y = workload_name)) +
     geom_hline(yintercept = 0) + geom_vline(xintercept = 0) +
     scale_shape_manual(values=c(1,3)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     ylab("Workload") +
     xlab("Makespan difference") +
     theme(legend.title = element_blank()) +
-    coord_fixed(ratio = ratio.values) + theme(plot.margin = grid::unit(c(0,0,0,0), "mm")) +
+   
+   theme(legend.position="top", legend.background=element_rect(fill="gray90", size=.5, linetype="dotted")) + coord_fixed(ratio = ratio.values) + theme(plot.margin = grid::unit(c(0,0,0,0), "mm")) +
     ggsave("makespan_reality_difference.pdf", width=8, height=6)
 
 # Mean Stretch
@@ -286,9 +298,11 @@ ggplot(merged_data, aes(x = mean_stretch_reality_difference, y = workload_name))
     geom_hline(yintercept = 0) + geom_vline(xintercept = 0) +
     scale_shape_manual(values=c(1,3)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     ylab("Workload") +
     xlab("Mean stretch difference") +
     theme(legend.title = element_blank()) +
+    theme(legend.position="top", legend.background=element_rect(fill="gray90", size=.5, linetype="dotted")) +
     coord_fixed(ratio = ratio.values) + theme(plot.margin = grid::unit(c(0,0,0,0), "mm")) +
     ggsave("mean_stretch_reality_difference.pdf", width=8, height=6)
 
@@ -299,9 +313,11 @@ ggplot(merged_data, aes(x = mean_bounded_stretch_reality_difference, y = workloa
     geom_hline(yintercept = 0) + geom_vline(xintercept = 0) +
     scale_shape_manual(values=c(1,3)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     ylab("Workload") +
     xlab("Mean bounded stretch difference") +
     theme(legend.title = element_blank()) +
+    theme(legend.position="top", legend.background=element_rect(fill="gray90", size=.5, linetype="dotted")) +
     coord_fixed(ratio = ratio.values) + theme(plot.margin = grid::unit(c(0,0,0,0), "mm")) +
     ggsave("mean_bounded_stretch_reality_difference.pdf", width=8, height=6)
 
@@ -312,9 +328,11 @@ ggplot(merged_data, aes(x = mean_waiting_time_reality_difference, y = workload_n
     geom_hline(yintercept = 0) + geom_vline(xintercept = 0) +
     scale_shape_manual(values=c(1,3)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     ylab("Workload") +
     xlab("Mean waiting time difference") +
     theme(legend.title = element_blank()) +
+    theme(legend.position="top", legend.background=element_rect(fill="gray90", size=.5, linetype="dotted")) +
     coord_fixed(ratio = ratio.values) + theme(plot.margin = grid::unit(c(0,0,0,0), "mm")) +
     ggsave("mean_waiting_time_reality_difference.pdf", width=8, height=6)
 
@@ -325,9 +343,11 @@ ggplot(merged_data, aes(x = mean_turnaround_time_reality_difference, y = workloa
     geom_hline(yintercept = 0) + geom_vline(xintercept = 0) +
     scale_shape_manual(values=c(1,3)) +
     scale_colour_manual(values = cbPalette) +
+    theme(text = element_text(size=14)) +
     ylab("Workload") +
     xlab("Mean turnaround time difference") +
     theme(legend.title = element_blank()) +
+    theme(legend.position="top", legend.background=element_rect(fill="gray90", size=.5, linetype="dotted")) +
     coord_fixed(ratio = ratio.values) + theme(plot.margin = grid::unit(c(0,0,0,0), "mm")) +
     ggsave("mean_turnaround_time_reality_difference.pdf", width=8, height=6)
 
@@ -362,6 +382,15 @@ ggplot(merged_data, aes(mean_bounded_stretch_reality_difference)) +
     xlab("Mean bounded stretch difference (real - simulation)") +
     ggsave("mean_bounded_stretch_reality_difference_histogram.pdf", width=8, height=6)
 
+# Mean stretch
+ggplot(merged_data, aes(mean_stretch_reality_difference)) +
+    geom_histogram() +
+    geom_vline(xintercept = 0) +
+    geom_vline(xintercept = mean(merged_data$mean_stretch_reality_difference), color = "red") +
+    geom_vline(xintercept = median(merged_data$mean_stretch_reality_difference), color = "blue") +
+    xlab("Mean stretch difference (real - simulation)") +
+    ggsave("mean_stretch_reality_difference_histogram.pdf", width=8, height=6)
+
 #############
 # Densities #
 #############
@@ -392,6 +421,15 @@ ggplot(merged_data, aes(mean_bounded_stretch_reality_difference)) +
     geom_vline(xintercept = median(merged_data$mean_bounded_stretch_reality_difference), color = "blue") +
     xlab("Mean bounded stretch difference (real - simulation)") +
     ggsave("mean_bounded_stretch_reality_difference_density.pdf", width=8, height=6)
+
+# Mean stretch
+ggplot(merged_data, aes(mean_stretch_reality_difference)) +
+    geom_density() +
+    geom_vline(xintercept = 0) +
+    geom_vline(xintercept = mean(merged_data$mean_stretch_reality_difference), color = "red") +
+    geom_vline(xintercept = median(merged_data$mean_stretch_reality_difference), color = "blue") +
+    xlab("Mean stretch difference (real - simulation)") +
+    ggsave("mean_stretch_reality_difference_density.pdf", width=8, height=6)
 
 # Display some statistical informations
 print("Real makespan summary")
