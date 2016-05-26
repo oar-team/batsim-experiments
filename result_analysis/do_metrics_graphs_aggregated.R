@@ -65,7 +65,7 @@ merged_data <- merge(real_renamed, simulated_renamed, by = "workload_name")
 ratio.display = 4/3
 ratio.values = (max(aggregated$makespan)-min(aggregated$makespan))/(max(aggregated$makespan)-min(aggregated$makespan))
 
-is_presentation = FALSE
+is_presentation = TRUE
 
 fontsize = 14
 histo_fontsize = 15
@@ -87,6 +87,9 @@ cbPalette = c("#593586",
               "#719b45",
               "#c2a23d",
               "#4bc490")
+
+mean_color = "#e64949"
+median_color = "#01b48c"
 
 # Makespan / Makespan
 ggplot(aggregated, aes(x = makespan, y = makespan)) +
@@ -300,8 +303,7 @@ ggplot(merged_data, aes(x = makespan_reality_difference, y = workload_name)) +
     ylab("Workload") +
     xlab("Makespan difference") +
     theme(legend.title = element_blank()) +
-   
-   theme(legend.position="top", legend.background=element_rect(fill="gray90", size=.5, linetype="dotted")) + coord_fixed(ratio = ratio.values) + theme(plot.margin = grid::unit(c(0,0,0,0), "mm")) +
+    theme(legend.position="top", legend.background=element_rect(fill="gray90", size=.5, linetype="dotted")) + coord_fixed(ratio = ratio.values) + theme(plot.margin = grid::unit(c(0,0,0,0), "mm")) +
     ggsave("makespan_reality_difference.pdf", width=8, height=6)
 
 # Mean Stretch
@@ -369,11 +371,18 @@ ggplot(merged_data, aes(x = mean_turnaround_time_reality_difference, y = workloa
 ##############
 
 # Makespan
+
+# cutoff <- data.frame( x = c(-Inf, Inf), y = 50, cutoff = factor(50) )
+# ggplot(the.data, aes( year, value ) ) + 
+#         geom_point(aes( colour = source )) + 
+#         geom_smooth(aes( group = 1 )) + 
+#         geom_line(aes( x, y, linetype = cutoff ), cutoff)
+
 ggplot(merged_data, aes(makespan_reality_difference)) +
     geom_histogram() +
     geom_vline(xintercept = 0, size=histo_linesize) +
-    geom_vline(xintercept = mean(merged_data$makespan_reality_difference), color = "red", size=histo_linesize) +
-    geom_vline(xintercept = median(merged_data$makespan_reality_difference), color = "blue", size=histo_linesize) +
+    geom_vline(xintercept = mean(merged_data$makespan_reality_difference), color = mean_color, size=histo_linesize) +
+    geom_vline(xintercept = median(merged_data$makespan_reality_difference), color = median_color, size=histo_linesize) +
     xlab("Makespan difference (real - simulation)") +
     theme(text = element_text(size=histo_fontsize)) +
     ggsave("makespan_reality_difference_histogram.pdf", width=8, height=6)
@@ -382,8 +391,8 @@ ggplot(merged_data, aes(makespan_reality_difference)) +
 ggplot(merged_data, aes(mean_waiting_time_reality_difference)) +
     geom_histogram() +
     geom_vline(xintercept = 0, size=histo_linesize) +
-    geom_vline(xintercept = mean(merged_data$mean_waiting_time_reality_difference), color = "red", size=histo_linesize) +
-    geom_vline(xintercept = median(merged_data$mean_waiting_time_reality_difference), color = "blue", size=histo_linesize) +
+    geom_vline(xintercept = mean(merged_data$mean_waiting_time_reality_difference), color = mean_color, size=histo_linesize) +
+    geom_vline(xintercept = median(merged_data$mean_waiting_time_reality_difference), color = median_color, size=histo_linesize) +
     xlab("Mean waiting time difference (real - simulation)") +
     theme(text = element_text(size=histo_fontsize)) +
     ggsave("mean_waiting_time_reality_difference_histogram.pdf", width=8, height=6)
@@ -392,8 +401,8 @@ ggplot(merged_data, aes(mean_waiting_time_reality_difference)) +
 ggplot(merged_data, aes(mean_bounded_stretch_reality_difference)) +
     geom_histogram() +
     geom_vline(xintercept = 0, size=histo_linesize) +
-    geom_vline(xintercept = mean(merged_data$mean_bounded_stretch_reality_difference), color = "red", size=histo_linesize) +
-    geom_vline(xintercept = median(merged_data$mean_bounded_stretch_reality_difference), color = "blue", size=histo_linesize) +
+    geom_vline(xintercept = mean(merged_data$mean_bounded_stretch_reality_difference), color = mean_color, size=histo_linesize) +
+    geom_vline(xintercept = median(merged_data$mean_bounded_stretch_reality_difference), color = median_color, size=histo_linesize) +
     xlab("Mean bounded stretch difference (real - simulation)") +
     theme(text = element_text(size=histo_fontsize)) +
     ggsave("mean_bounded_stretch_reality_difference_histogram.pdf", width=8, height=6)
@@ -402,8 +411,8 @@ ggplot(merged_data, aes(mean_bounded_stretch_reality_difference)) +
 ggplot(merged_data, aes(mean_stretch_reality_difference)) +
     geom_histogram() +
     geom_vline(xintercept = 0, size=histo_linesize) +
-    geom_vline(xintercept = mean(merged_data$mean_stretch_reality_difference), color = "red", size=histo_linesize) +
-    geom_vline(xintercept = median(merged_data$mean_stretch_reality_difference), color = "blue", size=histo_linesize) +
+    geom_vline(xintercept = mean(merged_data$mean_stretch_reality_difference), color = mean_color, size=histo_linesize) +
+    geom_vline(xintercept = median(merged_data$mean_stretch_reality_difference), color = median_color, size=histo_linesize) +
     xlab("Mean stretch difference (real - simulation)") +
     theme(text = element_text(size=histo_fontsize)) +
     ggsave("mean_stretch_reality_difference_histogram.pdf", width=8, height=6)
@@ -416,8 +425,8 @@ ggplot(merged_data, aes(mean_stretch_reality_difference)) +
 ggplot(merged_data, aes(makespan_reality_difference)) +
     geom_density() +
     geom_vline(xintercept = 0) +
-    geom_vline(xintercept = mean(merged_data$makespan_reality_difference), color = "red") +
-    geom_vline(xintercept = median(merged_data$makespan_reality_difference), color = "blue") +
+    geom_vline(xintercept = mean(merged_data$makespan_reality_difference), color = mean_color) +
+    geom_vline(xintercept = median(merged_data$makespan_reality_difference), color = median_color) +
     xlab("Makespan difference (real - simulation)") +
     ggsave("makespan_reality_difference_density.pdf", width=8, height=6)
 
@@ -425,8 +434,8 @@ ggplot(merged_data, aes(makespan_reality_difference)) +
 ggplot(merged_data, aes(mean_waiting_time_reality_difference)) +
     geom_density() +
     geom_vline(xintercept = 0) +
-    geom_vline(xintercept = mean(merged_data$mean_waiting_time_reality_difference), color = "red") +
-    geom_vline(xintercept = median(merged_data$mean_waiting_time_reality_difference), color = "blue") +
+    geom_vline(xintercept = mean(merged_data$mean_waiting_time_reality_difference), color = mean_color) +
+    geom_vline(xintercept = median(merged_data$mean_waiting_time_reality_difference), color = median_color) +
     xlab("Mean waiting time difference (real - simulation)") +
     ggsave("mean_waiting_time_reality_difference_density.pdf", width=8, height=6)
 
@@ -434,8 +443,8 @@ ggplot(merged_data, aes(mean_waiting_time_reality_difference)) +
 ggplot(merged_data, aes(mean_bounded_stretch_reality_difference)) +
     geom_density() +
     geom_vline(xintercept = 0) +
-    geom_vline(xintercept = mean(merged_data$mean_bounded_stretch_reality_difference), color = "red") +
-    geom_vline(xintercept = median(merged_data$mean_bounded_stretch_reality_difference), color = "blue") +
+    geom_vline(xintercept = mean(merged_data$mean_bounded_stretch_reality_difference), color = mean_color) +
+    geom_vline(xintercept = median(merged_data$mean_bounded_stretch_reality_difference), color = median_color) +
     xlab("Mean bounded stretch difference (real - simulation)") +
     ggsave("mean_bounded_stretch_reality_difference_density.pdf", width=8, height=6)
 
@@ -443,8 +452,8 @@ ggplot(merged_data, aes(mean_bounded_stretch_reality_difference)) +
 ggplot(merged_data, aes(mean_stretch_reality_difference)) +
     geom_density() +
     geom_vline(xintercept = 0) +
-    geom_vline(xintercept = mean(merged_data$mean_stretch_reality_difference), color = "red") +
-    geom_vline(xintercept = median(merged_data$mean_stretch_reality_difference), color = "blue") +
+    geom_vline(xintercept = mean(merged_data$mean_stretch_reality_difference), color = mean_color) +
+    geom_vline(xintercept = median(merged_data$mean_stretch_reality_difference), color = median_color) +
     xlab("Mean stretch difference (real - simulation)") +
     ggsave("mean_stretch_reality_difference_density.pdf", width=8, height=6)
 
