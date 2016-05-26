@@ -40,7 +40,7 @@ jobs['finish_time'] = jobs$finish_time - jobs_min_submission_time
 jobs['stretch'] = jobs$turnaround_time / jobs$execution_time
 
 # Compute bounded stretch
-jobs['bounded_stretch'] = jobs$turnaround_time / max(bounded_stretch_min_runtime, jobs$execution_time)
+jobs['bounded_stretch'] = max((jobs$turnaround_time / max(bounded_stretch_min_runtime, jobs$execution_time)), 1)
 
 jobs_mean_bounded_stretch = mean(jobs$bounded_stretch)
 
