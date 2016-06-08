@@ -1,8 +1,0 @@
-{
-  "description": "Test if OAR is using the right scheduler (Kamelot)",
-  "grid5000_site": "Nancy",
-  "resources": "/nodes=32",
-  "walltime": "00:20:00",
-  "kadeploy_env_name": "debian8_workload_generation_nfs",
-  "workloads": ["/home/mmercier/expe-batsim/workload_generation/generated_workloads/2016-04-15/g5k_micro_workload_delay_seed4_size32.json"]
-}
