@@ -6,6 +6,16 @@ on a real OAR cluster on Grid'5000.
 It is heavily based on the [Execo](http://execo.gforge.inria.fr) library for
 remote execution, Grid'5000 bindings and experiment parameter sweeping.
 
+## Requirements
+
+You need python2 and a modified version of Execo because of bug on parameters
+overload.
+
+So install python 2 and the pip installer and then install Execo like this.
+```bash
+pip2 install --user git+https://github.com/mickours/execo.git
+```
+
 ## Usage
 
 Just run the ``oar_replay_workload.py`` script to see the usage:
