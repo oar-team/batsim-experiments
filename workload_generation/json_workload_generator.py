@@ -22,32 +22,46 @@ import json
 import datetime
 
 # Program parameters parsing
-parser = argparse.ArgumentParser(description='Reads a JSON profiles description file and generates a JSON workload (used by Batsim) from it')
-parser.add_argument('inputJSON', type=argparse.FileType('r'), help='The input JSON profiles description file')
-parser.add_argument('outputJSON', type=argparse.FileType('w'), help='The output JSON workload file')
-parser.add_argument('resourcesNumber', type=int, help='The number of resources in the platform')
-parser.add_argument('-rs', '--random_seed', type=int, default=None, help='The random seed')
-parser.add_argument('-jn', '--job_number', type=int, default=300, help='The number of jobs to generate')
-parser.add_argument('-sjp', '--serial_job_probability', type=float, default=0.25, help="The probability of a job being serial (executed on a single resource)")
-parser.add_argument('-mu', '--job_log_size_mu', type=float, default=1, help="The mu used in the lognormal distribution used to generate job sizes")
-parser.add_argument('-sigma', '--job_log_size_sigma', type=float, default=0.5, help="The sigma used in the lognormal distribution used to generate job sizes")
-parser.add_argument('-lambda', '--job_iarrival_lambda', type=float, default=5, help="The lambda (scale parameter) used in the Weibull distribution used to generate job interarrival times")
-parser.add_argument('-k', '--job_iarrival_k', type=float, default=10, help="The lambda (shape parameter) used in the Weibull distribution used to generate job interarrival times")
-parser.add_argument('-i', '--indent', type=int, default=None, help='If set to a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0, or negative, will only insert newlines. The default value (None) selects the most compact representation.')
-parser.add_argument('-mp', '--maximum_power_of_two', type=int, default=5, help="The maximum allowed job size. The default (5) means the jobs exceeding 2^5=32 resources are ignored")
-parser.add_argument('--maximum_job_length', type=float, default=None, help='If set, only jobs with a runtime lesser than this value are kept')
+parser = argparse.ArgumentParser(
+    description='Reads a JSON profiles description file and generates a JSON workload (used by Batsim) from it')
+parser.add_argument('inputJSON', type=argparse.FileType('r'),
+                    help='The input JSON profiles description file')
+parser.add_argument('outputJSON', type=argparse.FileType('w'),
+                    help='The output JSON workload file')
+parser.add_argument('resourcesNumber', type=int,
+                    help='The number of resources in the platform')
+parser.add_argument('-rs', '--random_seed', type=int, default=None,
+                    help='The random seed')
+parser.add_argument('-jn', '--job_number', type=int, default=300,
+                    help='The number of jobs to generate')
+parser.add_argument('-sjp', '--serial_job_probability', type=float,
+                    default=0.25,
+                    help="The probability of a job being serial (executed on a single resource)")
+parser.add_argument('-mu', '--job_log_size_mu', type=float, default=1,
+                    help="The mu used in the lognormal distribution used to generate job sizes")
+parser.add_argument('-sigma', '--job_log_size_sigma', type=float,
+                    default=0.5,
+                    help="The sigma used in the lognormal distribution used to generate job sizes")
+parser.add_argument('-lambda', '--job_iarrival_lambda', type=float,
+                    default=5,
+                    help="The lambda (scale parameter) used in the Weibull distribution used to generate job interarrival times")
+parser.add_argument('-k', '--job_iarrival_k', type=float, default=10,
+                    help="The lambda (shape parameter) used in the Weibull distribution used to generate job interarrival times")
+parser.add_argument('-i', '--indent', type=int, default=None,
+                    help='If set to a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0, or negative, will only insert newlines. The default value (None) selects the most compact representation.')
+parser.add_argument('-mp', '--maximum_power_of_two', type=int, default=5,
+                    help="The maximum allowed job size. The default (5) means the jobs exceeding 2^5=32 resources are ignored")
+parser.add_argument('--maximum_job_length', type=float, default=None,
+                    help='If set, only jobs with a runtime lesser than this value are kept')
 
 args = parser.parse_args()
-
-# Constants
-#args.maximum_power_of_two = 5
 
 # Input check
 assert(args.job_number > 0), "The number of jobs must be strictly positive (read {})".format(args.job_number)
 assert(args.serial_job_probability >= 0 and args.serial_job_probability <= 1), "The probability of a job being serial must be between 0 and 1 (read {})".format(args.serial_job_probability)
 
 # Entry point
-if (args.random_seed != None) and args.random_seed >= 0:
+if (args.random_seed is not None) and args.random_seed >= 0:
     random.seed(args.random_seed)
 
 # Profile loading
@@ -78,11 +92,13 @@ for i in range(args.maximum_power_of_two + 1):
 nb_ignored_because_of_length = 0
 
 for prof in profiles:
-    #prof = profiles[prof]
     i = math.log(profiles[prof]["np"], 2)
     if (i == int(i)):
         if (i >= 0) and (i <= args.maximum_power_of_two):
-            if (args.maximum_job_length == None) or ((args.maximum_job_length != None) and (float(profiles[prof]['runtime']) <= args.maximum_job_length)):
+            if (args.maximum_job_length is None or
+                ((args.maximum_job_length is not None) and
+                 (float(profiles[prof]['runtime']) <=
+                  args.maximum_job_length))):
                 i = int(i)
                 sprofiles[i].append(prof)
             else:
@@ -129,32 +145,35 @@ for job_id in range(args.job_number):
     # Now that we know the job size, we can select a profile uniformly among
     # those which have the right size
     idx = random.randint(0, len(sprofiles[job_size_base])-1)
-    job_profile = sprofiles[job_size_base][idx];
+    job_profile = sprofiles[job_size_base][idx]
 
     # The interarrival times are supposed to fit a Weibull distribution
     # cf. page 502 of "Workload modeling for performance evaluation", Dror Feitelson
     job_release_date = release_date
-    release_date = release_date + random.weibullvariate(args.job_iarrival_lambda, args.job_iarrival_k)
-
-    workload.append((job_id, job_size, job_profile, release_date)) #fixme: use job_release_date
-
-#df = pandas.DataFrame(data = workload, columns=['id','size','profile','release_date'])
-#df.to_csv('jobs.csv',index=False,header=True)
-#print(workload)
+    release_date = release_date + random.weibullvariate(
+        args.job_iarrival_lambda, args.job_iarrival_k)
+    # FIXME: use job_release_date
+    workload.append(
+        (job_id, job_size, job_profile, release_date))
 
 # Json generation
 djobs = []
 for (job_id, job_size, job_profile, release_date) in workload:
-    djobs.append({'id':job_id, 'subtime':release_date , 'walltime':max(profiles[job_profile]['runtime']+60, profiles[job_profile]['runtime']*1.5), 'res':job_size, 'profile': job_profile})
+    djobs.append({'id': job_id,
+                  'subtime': release_date,
+                  'walltime': max(
+                      profiles[job_profile]['runtime'] + 60,
+                      profiles[job_profile]['runtime'] * 1.5),
+                  'res': job_size,
+                  'profile': job_profile})
 
 json_data = {
-    #'version':version,
-    'command':' '.join(sys.argv[:]),
-    'date': datetime.datetime.now().isoformat(' '),
-    'description':'this workload had been automatically generated',
-    'nb_res': args.resourcesNumber,
-    'jobs':djobs,
-    'profiles':profiles
+    'command': ' '.join(sys.argv[:]),
+    'date':  datetime.datetime.now().isoformat(' '),
+    'description': 'this workload had been automatically generated',
+    'nb_res':  args.resourcesNumber,
+    'jobs': djobs,
+    'profiles': profiles
     }
 
 if 'description' in input_json_data:
