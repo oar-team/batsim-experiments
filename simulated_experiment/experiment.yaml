@@ -1,0 +1,244 @@
+# Must be executed in the same location as where the YAML file is located!
+base_working_directory: .
+base_output_directory: ${base_working_directory}/results
+
+base_variables:
+  evalys_dir: ${EVALYS_DIR} # environment variable
+  script_oar_result_to_jobset: ${base_working_directory}/../result_analysis/oar_result_to_batsim_csv.py
+  agg_dir: ${base_output_directory}/aggregated
+  do_gantts: "false"
+
+implicit_instances:
+  msg:
+    sweep:
+      group:
+        - {"name": "seed1_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed1_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1b",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_rerun_2016-05-10--17-00-24",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed1_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed1_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed1_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed1_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed1_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed1_size32.json.details"
+         }
+        - {"name": "seed2_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed2_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed2_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed2_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed2_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed2_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed2_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed2_size32.json.details"
+         }
+        - {"name": "seed3_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed3_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed3_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed3_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed3_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed3_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed3_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed3_size32.json.details"
+         }
+        - {"name": "seed4_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed4_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed4_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed4_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed4_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed4_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed4_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed4_size32.json.details"
+         }
+        - {"name": "seed5_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed5_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed5_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed5_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed5_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed5_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed5_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed5_size32.json.details"
+         }
+        - {"name": "seed6_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed6_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1b",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_rerun_2016-05-10--17-00-24",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed6_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed6_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed6_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed6_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed6_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed6_size32.json.details"
+         }
+        - {"name": "seed7_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed7_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1b",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_rerun_2016-05-10--17-00-24",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed7_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed7_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed7_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed7_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed7_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed7_size32.json.details"
+         }
+        - {"name": "seed8_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed8_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed8_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed8_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed8_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed8_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed8_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed8_size32.json.details"
+         }
+        - {"name": "seed9_size32",
+           "profile_type": "msg",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_msg_seed9_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed9_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed9_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed9_size32.json.details",
+
+           "oar2_name": "s4r2",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_2016-05-17_seed9_size32",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed9_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed9_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed9_size32.json.details"
+         }
+    generic_instance:
+      timeout: 60
+      working_directory: ${base_working_directory}
+      output_directory: ${base_output_directory}/results/${group[name]}_${group[profile_type]}
+      batsim_command: batsim -p ${group[platform]} -w ${group[workload]} -m ${group[master_host]} --mmax-workload -e ${output_directory}/batsim_${group[name]}_${group[profile_type]}_out
+      sched_command: bataar
+      commands_before_execution:
+        # Generate Batsim configuration
+        - |
+              #!/usr/bin/env bash
+              cat > ${output_directory}/batsim.conf << EOF
+              {
+                "redis": {
+                  "enabled": false
+                },
+                "job_submission": {
+                  "forward_profiles": false
+                }
+              }
+              EOF
+      commands_after_execution:
+        # Generate jobsets from OAR results
+        - |
+              #!/usr/bin/env bash
+              set -ex
+              source ${output_directory}/variables.bash
+
+              ${script_oar_result_to_jobset} -r -z \
+                  -m ${group[oar1_output_dir]}/${group[oar1_job_id_mapping]} \
+                  ${group[oar1_output_dir]}/${group[oar1_gantt_json_filename]} \
+                  ${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv
+
+              ${script_oar_result_to_jobset} -r -z \
+                  -m ${group[oar2_output_dir]}/${group[oar2_job_id_mapping]} \
+                  ${group[oar2_output_dir]}/${group[oar2_gantt_json_filename]} \
+                  ${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv
+
+        # Gantt chart
+        - |
+              #!/usr/bin/env bash
+              set -ex
+
+              source ${output_directory}/variables.bash
+              if [ ${do_gantts} = "true" ]
+              then
+                  ${evalys_dir}/examples/poquetm/plot_energy_info.py \
+                      --gantt \
+                      --names "Simulated (MSG profiles)" \
+                              "Real execution 1" \
+                              "Real execution 2" \
+                      -j ${output_directory}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv \
+                         ${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv \
+                         ${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv \
+                      -o ${output_directory}/gantt.pdf
+              fi
+
+        # Aggregate schedule results
+        - |
+              #!/usr/bin/env bash
+              set -ex
+
+              source ${output_directory}/variables.bash
+
+              ln -s ${output_directory}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv ${agg_dir}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv
+              ln -s ${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv ${agg_dir}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv
+              ln -s ${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv ${agg_dir}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv
+
+
