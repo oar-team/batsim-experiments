@@ -7,7 +7,26 @@ base_variables:
   script_oar_result_to_jobset: ${base_working_directory}/../result_analysis/oar_result_to_batsim_csv.py
   agg_dir: ${base_output_directory}/aggregated
   do_gantts: "false"
+  do_aggregate: "true"
 
+####################
+# Before instances #
+####################
+commands_before_instances:
+  # Aggregate directory
+  - |
+      #!/usr/bin/env bash
+      set -ex
+
+      if [ ${do_aggregate} = "true" ]
+      then
+          rm -rf ${agg_dir}
+          mkdir -p ${agg_dir}
+      fi
+
+#############
+# Instances #
+#############
 implicit_instances:
   msg:
     sweep:
@@ -236,9 +255,55 @@ implicit_instances:
               set -ex
 
               source ${output_directory}/variables.bash
+              cat > ${output_directory}/aggregate.py << EOF
+              #!/usr/bin/env python3
+              import pandas as pd
 
-              ln -s ${output_directory}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv ${agg_dir}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv
-              ln -s ${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv ${agg_dir}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv
-              ln -s ${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv ${agg_dir}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv
+              jobset_map = {'batsim': ('${output_directory}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv', '${agg_dir}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv'),
+                      'oar1': ('${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv', '${agg_dir}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv'),
+                      'oar2': ('${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv', '${agg_dir}/oar2_${group[name]}_${group[oar1_name]}_out_jobs.csv')}
 
+              def bounded_stretch(row, bound=60.0):
+                  return max(1, (row['finish_time'] - row['submission_time']) / max(row['execution_time'], bound))
 
+              instances_info = pd.read_csv('${base_output_directory}/instances/instances_info.csv')
+              instance_id = '${instance_id}'
+
+              for name, (in_fname, out_fname) in jobset_map.items():
+                  out_jobset = instances_info.query('instance_id == "{id}"'.format(id=instance_id))
+                  if out_jobset.shape[0] != 1:
+                      raise Exception('Cannot find instance_id={} (shape={})'.format(instance_id, out_jobset.shape))
+
+                  jobset = pd.read_csv(in_fname)
+                  out_jobset['mean_waiting_time'] = jobset.waiting_time.mean()
+                  out_jobset['mean_stretch'] = jobset.stretch.mean()
+                  out_jobset['mean_bounded_stretch'] = jobset.apply(bounded_stretch, axis=1)
+                  out_jobset['makespan'] = jobset.finish_time.max() - jobset.submission_time.min()
+                  out_jobset.to_csv(out_fname, index=False, na_rep = 'NA')
+              EOF
+        - chmod +x ${output_directory}/aggregate.py
+        - |
+              #!/usr/bin/env bash
+              set -ex
+
+              source ${output_directory}/variables.bash
+
+              if [ ${do_aggregate} = "true" ]
+              then
+                  ${output_directory}/aggregate.py
+              fi
+
+###################
+# After instances #
+###################
+commands_after_instances:
+  # Aggregate
+  - |
+      #!/usr/bin/env bash
+      set -ex
+
+      source ${base_output_directory}/base_variables.bash
+      if [ ${do_aggregate} = "true" ]
+      then
+          cat ${agg_dir}/*_out_jobs.csv | sort -u | tac > ${agg_dir}/schedules_aggregated.csv
+      fi
