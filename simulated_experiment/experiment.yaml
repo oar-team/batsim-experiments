@@ -8,6 +8,7 @@ base_variables:
   agg_dir: ${base_output_directory}/aggregated
   do_gantts: "false"
   do_aggregate: "true"
+  do_analysis: "true"
 
 ####################
 # Before instances #
@@ -21,7 +22,7 @@ commands_before_instances:
       if [ ${do_aggregate} = "true" ]
       then
           rm -rf ${agg_dir}
-          mkdir -p ${agg_dir}
+          mkdir -p ${agg_dir}/data
       fi
 
 #############
@@ -259,9 +260,9 @@ implicit_instances:
               #!/usr/bin/env python3
               import pandas as pd
 
-              jobset_map = {'batsim': ('${output_directory}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv', '${agg_dir}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv'),
-                      'oar1': ('${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv', '${agg_dir}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv'),
-                      'oar2': ('${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv', '${agg_dir}/oar2_${group[name]}_${group[oar1_name]}_out_jobs.csv')}
+              jobset_map = {'batsim': ('${output_directory}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv', '${agg_dir}/data/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv'),
+                      'oar1': ('${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv', '${agg_dir}/data/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv'),
+                      'oar2': ('${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv', '${agg_dir}/data/oar2_${group[name]}_${group[oar1_name]}_out_jobs.csv')}
 
               def bounded_stretch(row, bound=60.0):
                   return max(1, (row['finish_time'] - row['submission_time']) / max(row['execution_time'], bound))
@@ -277,8 +278,9 @@ implicit_instances:
                   jobset = pd.read_csv(in_fname)
                   out_jobset['mean_waiting_time'] = jobset.waiting_time.mean()
                   out_jobset['mean_stretch'] = jobset.stretch.mean()
-                  out_jobset['mean_bounded_stretch'] = jobset.apply(bounded_stretch, axis=1)
+                  out_jobset['mean_bounded_stretch'] = jobset.apply(bounded_stretch, axis=1).mean()
                   out_jobset['makespan'] = jobset.finish_time.max() - jobset.submission_time.min()
+                  out_jobset['type'] = name
                   out_jobset.to_csv(out_fname, index=False, na_rep = 'NA')
               EOF
         - chmod +x ${output_directory}/aggregate.py
@@ -305,5 +307,65 @@ commands_after_instances:
       source ${base_output_directory}/base_variables.bash
       if [ ${do_aggregate} = "true" ]
       then
-          cat ${agg_dir}/*_out_jobs.csv | sort -u | tac > ${agg_dir}/schedules_aggregated.csv
+          cat ${agg_dir}/data/*_out_jobs.csv | sort -u | tac > ${agg_dir}/schedules_aggregated.csv
+      fi
+
+  # Analysis
+  - |
+      #!/usr/bin/env bash
+      set -ex
+
+      source ${base_output_directory}/base_variables.bash
+      cat > ${base_output_directory}/analysis.R << EOF
+      #!/usr/bin/env Rscript
+      library(dplyr)
+      library(ggplot2)
+
+      schedules = read.csv('${agg_dir}/schedules_aggregated.csv')
+
+      # Differentiate types of rows
+      row_type <- function(rtype, profile_type)
+      {
+          if (rtype == "batsim") {
+              if (profile_type == "msg")
+                  return("simulation (msg)")
+              else
+                  return("simulation (delay)")
+          } else
+              return("real")
+      }
+
+      row_type_vec = Vectorize(row_type,
+                               vectorize.args=c('rtype', 'profile_type'))
+
+      schedules = schedules %>%
+          mutate(row_type = row_type_vec(type, group__profile_type))
+
+      # Figure variables
+      w = 6
+      h = 4.5
+      font_size = 18
+      point_size = 4
+
+      # Makespan / Mean bounded stretch (/row type, seed)
+      schedules %>%
+          ggplot(aes(x=makespan,
+                     y=mean_bounded_stretch)) +
+          geom_point(size=point_size,
+                     aes(shape=factor(row_type),
+                         color=factor(group__name))) +
+          theme_bw() +
+          ggsave("${agg_dir}/makespan__mean_bounded_stretch.pdf",
+                 width=w, height=h)
+
+      EOF
+  - chmod +x ${base_output_directory}/analysis.R
+  - |
+      #!/usr/bin/env bash
+      set -ex
+
+      source ${base_output_directory}/base_variables.bash
+      if [ ${do_analysis} = "true" ]
+      then
+          ${base_output_directory}/analysis.R
       fi
