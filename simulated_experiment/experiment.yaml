@@ -29,6 +29,9 @@ commands_before_instances:
 # Instances #
 #############
 implicit_instances:
+################################################################################
+# MSG
+################################################################################
   msg:
     sweep:
       group:
@@ -294,6 +297,274 @@ implicit_instances:
               then
                   ${output_directory}/aggregate.py
               fi
+################################################################################
+# MSG
+################################################################################
+  delay:
+    sweep:
+      group:
+        - {"name": "seed1_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed1_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1b",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_rerun_2016-05-10--17-00-24",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed1_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed1_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed1_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed1_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed1_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed1_size32.json.details"
+         }
+        - {"name": "seed2_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed2_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed2_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed2_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed2_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed2_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed2_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed2_size32.json.details"
+         }
+        - {"name": "seed3_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed3_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed3_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed3_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed3_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed3_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed3_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed3_size32.json.details"
+         }
+        - {"name": "seed4_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed4_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed4_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed4_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed4_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed4_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed4_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed4_size32.json.details"
+         }
+        - {"name": "seed5_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed5_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed5_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed5_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed5_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed5_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed5_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed5_size32.json.details"
+         }
+        - {"name": "seed6_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed6_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1b",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_rerun_2016-05-10--17-00-24",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed6_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed6_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed6_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed6_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed6_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed6_size32.json.details"
+         }
+        - {"name": "seed7_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed7_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1b",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_rerun_2016-05-10--17-00-24",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed7_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed7_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed7_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed7_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed7_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed7_size32.json.details"
+         }
+        - {"name": "seed8_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed8_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed8_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed8_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed8_size32.json.details",
+
+           "oar2_name": "s4r1",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene4_run1_2016-05-04--16-26-33",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed8_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed8_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed8_size32.json.details"
+         }
+        - {"name": "seed9_size32",
+           "profile_type": "delay",
+           "workload": "${base_working_directory}/../workload_generation/generated_workloads/2016-05-04/g5k_workload_delay_seed9_size32.json",
+           "platform": "${base_working_directory}/platforms/graphene.xml",
+           "master_host": "graphene-1144.nancy.grid5000.fr",
+
+           "oar1_name": "s1r1",
+           "oar1_output_dir": "${base_working_directory}/../replay_workload/results_sgraphene1_run1_2016-05-04--16-50-02",
+           "oar1_job_id_mapping": "g5k_workload_delay_seed9_size32-job_id_mapping.csv",
+           "oar1_gantt_json_filename": "oar_gant_g5k_workload_delay_seed9_size32.json",
+           "oar1_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed9_size32.json.details",
+
+           "oar2_name": "s4r2",
+           "oar2_output_dir": "${base_working_directory}/../replay_workload/results_2016-05-17_seed9_size32",
+           "oar2_job_id_mapping": "g5k_workload_delay_seed9_size32-job_id_mapping.csv",
+           "oar2_gantt_json_filename": "oar_gant_g5k_workload_delay_seed9_size32.json",
+           "oar2_gantt_json_details_filename": "oar_gant_g5k_workload_delay_seed9_size32.json.details"
+         }
+    generic_instance:
+      timeout: 60
+      working_directory: ${base_working_directory}
+      output_directory: ${base_output_directory}/results/${group[name]}_${group[profile_type]}
+      batsim_command: batsim -p ${group[platform]} -w ${group[workload]} -m ${group[master_host]} --mmax-workload -e ${output_directory}/batsim_${group[name]}_${group[profile_type]}_out
+      sched_command: bataar
+      commands_before_execution:
+        # Generate Batsim configuration
+        - |
+              #!/usr/bin/env bash
+              cat > ${output_directory}/batsim.conf << EOF
+              {
+                "redis": {
+                  "enabled": false
+                },
+                "job_submission": {
+                  "forward_profiles": false
+                }
+              }
+              EOF
+      commands_after_execution:
+        # Generate jobsets from OAR results
+        - |
+              #!/usr/bin/env bash
+              set -ex
+              source ${output_directory}/variables.bash
+
+              ${script_oar_result_to_jobset} -r -z \
+                  -m ${group[oar1_output_dir]}/${group[oar1_job_id_mapping]} \
+                  ${group[oar1_output_dir]}/${group[oar1_gantt_json_filename]} \
+                  ${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv
+
+              ${script_oar_result_to_jobset} -r -z \
+                  -m ${group[oar2_output_dir]}/${group[oar2_job_id_mapping]} \
+                  ${group[oar2_output_dir]}/${group[oar2_gantt_json_filename]} \
+                  ${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv
+
+        # Gantt chart
+        - |
+              #!/usr/bin/env bash
+              set -ex
+
+              source ${output_directory}/variables.bash
+              if [ ${do_gantts} = "true" ]
+              then
+                  ${evalys_dir}/examples/poquetm/plot_energy_info.py \
+                      --gantt \
+                      --names "Simulated (delay profiles)" \
+                              "Real execution 1" \
+                              "Real execution 2" \
+                      -j ${output_directory}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv \
+                         ${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv \
+                         ${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv \
+                      -o ${output_directory}/gantt.pdf
+              fi
+
+        # Aggregate schedule results
+        - |
+              #!/usr/bin/env bash
+              set -ex
+
+              source ${output_directory}/variables.bash
+              cat > ${output_directory}/aggregate.py << EOF
+              #!/usr/bin/env python3
+              import pandas as pd
+
+              jobset_map = {'batsim': ('${output_directory}/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv', '${agg_dir}/data/batsim_${group[name]}_${group[profile_type]}_out_jobs.csv'),
+                      'oar1': ('${output_directory}/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv', '${agg_dir}/data/oar_${group[name]}_${group[oar1_name]}_out_jobs.csv'),
+                      'oar2': ('${output_directory}/oar_${group[name]}_${group[oar2_name]}_out_jobs.csv', '${agg_dir}/data/oar2_${group[name]}_${group[oar1_name]}_out_jobs.csv')}
+
+              def bounded_stretch(row, bound=60.0):
+                  return max(1, (row['finish_time'] - row['submission_time']) / max(row['execution_time'], bound))
+
+              instances_info = pd.read_csv('${base_output_directory}/instances/instances_info.csv')
+              instance_id = '${instance_id}'
+
+              for name, (in_fname, out_fname) in jobset_map.items():
+                  out_jobset = instances_info.query('instance_id == "{id}"'.format(id=instance_id))
+                  if out_jobset.shape[0] != 1:
+                      raise Exception('Cannot find instance_id={} (shape={})'.format(instance_id, out_jobset.shape))
+
+                  jobset = pd.read_csv(in_fname)
+                  out_jobset['mean_waiting_time'] = jobset.waiting_time.mean()
+                  out_jobset['mean_stretch'] = jobset.stretch.mean()
+                  out_jobset['mean_bounded_stretch'] = jobset.apply(bounded_stretch, axis=1).mean()
+                  out_jobset['makespan'] = jobset.finish_time.max() - jobset.submission_time.min()
+                  out_jobset['type'] = name
+                  out_jobset.to_csv(out_fname, index=False, na_rep = 'NA')
+              EOF
+        - chmod +x ${output_directory}/aggregate.py
+        - |
+              #!/usr/bin/env bash
+              set -ex
+
+              source ${output_directory}/variables.bash
+
+              if [ ${do_aggregate} = "true" ]
+              then
+                  ${output_directory}/aggregate.py
+              fi
 
 ###################
 # After instances #
@@ -320,6 +591,7 @@ commands_after_instances:
       #!/usr/bin/env Rscript
       library(dplyr)
       library(ggplot2)
+      library(viridis)
 
       schedules = read.csv('${agg_dir}/schedules_aggregated.csv')
 
@@ -345,9 +617,43 @@ commands_after_instances:
       w = 6
       h = 4.5
       font_size = 18
-      point_size = 4
+      point_size = 3
 
-      # Makespan / Mean bounded stretch (/row type, seed)
+      # Makespan / Mean Waiting Time (/row type, seed)
+      schedules %>%
+          ggplot(aes(x=makespan,
+                     y=mean_waiting_time)) +
+          geom_point(size=point_size,
+                     aes(shape=factor(row_type),
+                         color=factor(group__name))) +
+          theme_bw() +
+          labs(x='Makespan (s)',
+               y='Mean Waiting Time (s)',
+               color='',
+               shape='') +
+          scale_shape_manual(values=c(1,2,3)) +
+          scale_color_viridis(discrete=TRUE) +
+          ggsave("${agg_dir}/makespan__mean_waiting_time.pdf",
+                 width=w, height=h)
+
+      # Makespan / Mean Slowdown (/row type, seed)
+      schedules %>%
+          ggplot(aes(x=makespan,
+                     y=mean_stretch)) +
+          geom_point(size=point_size,
+                     aes(shape=factor(row_type),
+                         color=factor(group__name))) +
+          theme_bw() +
+          labs(x='Makespan (s)',
+               y='Mean Slowdown',
+               color='',
+               shape='') +
+          scale_shape_manual(values=c(1,2,3)) +
+          scale_color_viridis(discrete=TRUE) +
+          ggsave("${agg_dir}/makespan__mean_slowdown.pdf",
+                 width=w, height=h)
+
+      # Makespan / Mean bounded slowdown (/row type, seed)
       schedules %>%
           ggplot(aes(x=makespan,
                      y=mean_bounded_stretch)) +
@@ -355,9 +661,267 @@ commands_after_instances:
                      aes(shape=factor(row_type),
                          color=factor(group__name))) +
           theme_bw() +
+          labs(x='Makespan (s)',
+               y='Mean Bounded Slowdown (bound = 60 s)',
+               color='',
+               shape='') +
+          scale_shape_manual(values=c(1,2,3)) +
+          scale_color_viridis(discrete=TRUE) +
           ggsave("${agg_dir}/makespan__mean_bounded_stretch.pdf",
                  width=w, height=h)
 
+
+
+      # "per workload" differences
+      msg_data = schedules %>%
+          filter(row_type == 'simulation (msg)') %>%
+          mutate(msg_mean_waiting_time = mean_waiting_time) %>%
+          mutate(msg_mean_stretch = mean_stretch) %>%
+          mutate(msg_mean_bounded_stretch = mean_bounded_stretch) %>%
+          select(group__name,
+                 msg_mean_waiting_time,
+                 msg_mean_stretch,
+                 msg_mean_bounded_stretch)
+
+      delay_data = schedules %>%
+          filter(row_type == 'simulation (delay)') %>%
+          mutate(delay_mean_waiting_time = mean_waiting_time) %>%
+          mutate(delay_mean_stretch = mean_stretch) %>%
+          mutate(delay_mean_bounded_stretch = mean_bounded_stretch) %>%
+          select(group__name,
+                 delay_mean_waiting_time,
+                 delay_mean_stretch,
+                 delay_mean_bounded_stretch)
+
+      merged = schedules %>%
+          inner_join(msg_data, by="group__name") %>%
+          inner_join(delay_data, by="group__name")
+
+      merged = merged %>%
+          mutate(msg_mean_waiting_time_diff = mean_waiting_time - msg_mean_waiting_time) %>%
+          mutate(msg_mean_stretch_diff = mean_stretch - msg_mean_stretch) %>%
+          mutate(msg_mean_bounded_stretch_diff = mean_bounded_stretch - msg_mean_bounded_stretch) %>%
+          mutate(delay_mean_waiting_time_diff = mean_waiting_time - delay_mean_waiting_time) %>%
+          mutate(delay_mean_stretch_diff = mean_stretch - delay_mean_stretch) %>%
+          mutate(delay_mean_bounded_stretch_diff = mean_bounded_stretch - delay_mean_bounded_stretch)
+
+      merged = merged %>% filter(row_type == 'real') %>% ungroup()
+
+      ##############
+      # Histograms #
+      ##############
+      # Mean Waiting Time
+      msg_mean_waiting_time_diff_mean = mean(merged[['msg_mean_waiting_time_diff']])
+      msg_mean_waiting_time_diff_median = median(merged[['msg_mean_waiting_time_diff']])
+      vlines = data.frame("value"=c(0,
+                                    msg_mean_waiting_time_diff_mean,
+                                    msg_mean_waiting_time_diff_median),
+                          "name"=c("zero","mean","median"))
+      ggplot() +
+          geom_histogram(data=merged, aes(msg_mean_waiting_time_diff)) +
+          geom_vline(data=vlines, aes(xintercept=value,
+                                      linetype=name)) +
+          scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
+          theme_bw() +
+          theme(legend.position=c(0.8,0.9),
+                legend.direction="horizontal",
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x='Mean Waiting Time Difference (real - msg_simulation)',
+               linetype='') +
+          ggsave("${agg_dir}/hist__msg_mean_waiting_time_diff.pdf",
+                 width=w, height=h)
+
+      delay_mean_waiting_time_diff_mean = mean(merged[['delay_mean_waiting_time_diff']])
+      delay_mean_waiting_time_diff_median = median(merged[['delay_mean_waiting_time_diff']])
+      vlines = data.frame("value"=c(0,
+                                    delay_mean_waiting_time_diff_mean,
+                                    delay_mean_waiting_time_diff_median),
+                          "name"=c("zero","mean","median"))
+      ggplot() +
+          geom_histogram(data=merged, aes(delay_mean_waiting_time_diff)) +
+          geom_vline(data=vlines, aes(xintercept=value,
+                                      linetype=name)) +
+          scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
+          theme_bw() +
+          theme(legend.position=c(0.8,0.9),
+                legend.direction="horizontal",
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x='Mean Waiting Time Difference (real - delay_simulation)',
+               linetype='') +
+          ggsave("${agg_dir}/hist__delay_mean_waiting_time_diff.pdf",
+                 width=w, height=h)
+
+      # Mean Slowdown
+      msg_mean_stretch_diff_mean = mean(merged[['msg_mean_stretch_diff']])
+      msg_mean_stretch_diff_median = median(merged[['msg_mean_stretch_diff']])
+      vlines = data.frame("value"=c(0,
+                                    msg_mean_stretch_diff_mean,
+                                    msg_mean_stretch_diff_median),
+                          "name"=c("zero","mean","median"))
+      ggplot() +
+          geom_histogram(data=merged, aes(msg_mean_stretch_diff)) +
+          geom_vline(data=vlines, aes(xintercept=value,
+                                      linetype=name)) +
+          scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
+          theme_bw() +
+          theme(legend.position=c(0.8,0.9),
+                legend.direction="horizontal",
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x='Mean Slowdown Difference (real - msg_simulation)',
+               linetype='') +
+          ggsave("${agg_dir}/hist__msg_mean_stretch_diff.pdf",
+                 width=w, height=h)
+
+      delay_mean_stretch_diff_mean = mean(merged[['delay_mean_stretch_diff']])
+      delay_mean_stretch_diff_median = median(merged[['delay_mean_stretch_diff']])
+      vlines = data.frame("value"=c(0,
+                                    delay_mean_stretch_diff_mean,
+                                    delay_mean_stretch_diff_median),
+                          "name"=c("zero","mean","median"))
+      ggplot() +
+          geom_histogram(data=merged, aes(delay_mean_stretch_diff)) +
+          geom_vline(data=vlines, aes(xintercept=value,
+                                      linetype=name)) +
+          scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
+          theme_bw() +
+          theme(legend.position=c(0.8,0.9),
+                legend.direction="horizontal",
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x='Mean Slowdown Difference (real - delay_simulation)',
+               linetype='') +
+          ggsave("${agg_dir}/hist__delay_mean_stretch_diff.pdf",
+                 width=w, height=h)
+
+      # Mean Bounded Slowdown
+      msg_mean_bounded_stretch_diff_mean = mean(merged[['msg_mean_bounded_stretch_diff']])
+      msg_mean_bounded_stretch_diff_median = median(merged[['msg_mean_bounded_stretch_diff']])
+      vlines = data.frame("value"=c(0,
+                                    msg_mean_bounded_stretch_diff_mean,
+                                    msg_mean_bounded_stretch_diff_median),
+                          "name"=c("zero","mean","median"))
+      ggplot() +
+          geom_histogram(data=merged, aes(msg_mean_bounded_stretch_diff)) +
+          geom_vline(data=vlines, aes(xintercept=value,
+                                      linetype=name)) +
+          scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
+          theme_bw() +
+          theme(legend.position=c(0.8,0.9),
+                legend.direction="horizontal",
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x='Mean Bounded Slowdown Difference (real - msg_simulation) (bound = 60 s)',
+               linetype='') +
+          ggsave("${agg_dir}/hist__msg_mean_bounded_stretch_diff.pdf",
+                 width=w, height=h)
+
+      delay_mean_bounded_stretch_diff_mean = mean(merged[['delay_mean_bounded_stretch_diff']])
+      delay_mean_bounded_stretch_diff_median = median(merged[['delay_mean_bounded_stretch_diff']])
+      vlines = data.frame("value"=c(0,
+                                    delay_mean_bounded_stretch_diff_mean,
+                                    delay_mean_bounded_stretch_diff_median),
+                          "name"=c("zero","mean","median"))
+      ggplot() +
+          geom_histogram(data=merged, aes(delay_mean_bounded_stretch_diff)) +
+          geom_vline(data=vlines, aes(xintercept=value,
+                                      linetype=name)) +
+          scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
+          theme_bw() +
+          theme(legend.position=c(0.8,0.9),
+                legend.direction="horizontal",
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x='Mean Bounded Slowdown Difference (real - delay_simulation) (bound = 60 s)',
+               linetype='') +
+          ggsave("${agg_dir}/hist__delay_mean_bounded_stretch_diff.pdf",
+                 width=w, height=h)
+
+      ##########################
+      # Difference scatterplot #
+      ##########################
+      # Mean Waiting Time
+      vlines = data.frame("value"=c(0),"name"=c("zero"))
+      ggplot() +
+          geom_point(data=merged, aes(x=msg_mean_waiting_time_diff,
+                                      y=group__name,
+                                      shape="real - msg_simulation")) +
+          geom_point(data=merged, aes(x=delay_mean_waiting_time_diff,
+                                      y=group__name,
+                                      shape="real - delay_simulation")) +
+          geom_vline(data=vlines, aes(xintercept=value,linetype=name)) +
+          scale_shape_manual(values=c(1,2)) +
+          theme_bw() +
+          theme(legend.position="top",
+                legend.direction="horizontal",
+                legend.title = element_blank(),
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x="Mean Waiting Time Difference (s)",
+               y="Workload",
+               linetype="",
+               shape="")
+          ggsave("${agg_dir}/scatterdiff__mean_waiting_time.pdf",
+                 width=w, height=h)
+
+      # Mean Slowdown
+      vlines = data.frame("value"=c(0),"name"=c("zero"))
+      ggplot() +
+          geom_point(data=merged, aes(x=msg_mean_stretch_diff,
+                                      y=group__name,
+                                      shape="real - msg_simulation")) +
+          geom_point(data=merged, aes(x=delay_mean_stretch_diff,
+                                      y=group__name,
+                                      shape="real - delay_simulation")) +
+          geom_vline(data=vlines, aes(xintercept=value,linetype=name)) +
+          scale_shape_manual(values=c(1,2)) +
+          theme_bw() +
+          theme(legend.position="top",
+                legend.direction="horizontal",
+                legend.title = element_blank(),
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x="Mean Slowdown Difference",
+               y="Workload",
+               linetype="",
+               shape="")
+          ggsave("${agg_dir}/scatterdiff__mean_stretch.pdf",
+                 width=w, height=h)
+
+      # Mean Bounded Slowdown
+      vlines = data.frame("value"=c(0),"name"=c("zero"))
+      ggplot() +
+          geom_point(data=merged, aes(x=msg_mean_bounded_stretch_diff,
+                                      y=group__name,
+                                      shape="real - msg_simulation")) +
+          geom_point(data=merged, aes(x=delay_mean_bounded_stretch_diff,
+                                      y=group__name,
+                                      shape="real - delay_simulation")) +
+          geom_vline(data=vlines, aes(xintercept=value,linetype=name)) +
+          scale_shape_manual(values=c(1,2)) +
+          theme_bw() +
+          theme(legend.position="top",
+                legend.direction="horizontal",
+                legend.title = element_blank(),
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x="Mean Bounded Slowdown Difference (bound = 60 s)",
+               y="Workload",
+               linetype="",
+               shape="")
+          ggsave("${agg_dir}/scatterdiff__mean_bounded_stretch.pdf",
+                 width=w, height=h)
       EOF
   - chmod +x ${base_output_directory}/analysis.R
   - |
