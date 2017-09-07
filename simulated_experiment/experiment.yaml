@@ -600,7 +600,7 @@ commands_after_instances:
       {
           if (rtype == "batsim") {
               if (profile_type == "msg")
-                  return("simulation (msg)")
+                  return("simulation (ptask)")
               else
                   return("simulation (delay)")
           } else
@@ -633,7 +633,7 @@ commands_after_instances:
                shape='') +
           scale_shape_manual(values=c(1,2,3)) +
           scale_color_viridis(discrete=TRUE) +
-          ggsave("${agg_dir}/makespan__mean_waiting_time.pdf",
+          ggsave("${agg_dir}/batsim__makespan__mean_waiting_time.pdf",
                  width=w, height=h)
 
       # Makespan / Mean Slowdown (/row type, seed)
@@ -650,7 +650,7 @@ commands_after_instances:
                shape='') +
           scale_shape_manual(values=c(1,2,3)) +
           scale_color_viridis(discrete=TRUE) +
-          ggsave("${agg_dir}/makespan__mean_slowdown.pdf",
+          ggsave("${agg_dir}/batsim__makespan__mean_slowdown.pdf",
                  width=w, height=h)
 
       # Makespan / Mean bounded slowdown (/row type, seed)
@@ -667,21 +667,21 @@ commands_after_instances:
                shape='') +
           scale_shape_manual(values=c(1,2,3)) +
           scale_color_viridis(discrete=TRUE) +
-          ggsave("${agg_dir}/makespan__mean_bounded_stretch.pdf",
+          ggsave("${agg_dir}/batsim__makespan__mean_bounded_stretch.pdf",
                  width=w, height=h)
 
 
 
       # "per workload" differences
-      msg_data = schedules %>%
-          filter(row_type == 'simulation (msg)') %>%
-          mutate(msg_mean_waiting_time = mean_waiting_time) %>%
-          mutate(msg_mean_stretch = mean_stretch) %>%
-          mutate(msg_mean_bounded_stretch = mean_bounded_stretch) %>%
+      ptask_data = schedules %>%
+          filter(row_type == 'simulation (ptask)') %>%
+          mutate(ptask_mean_waiting_time = mean_waiting_time) %>%
+          mutate(ptask_mean_stretch = mean_stretch) %>%
+          mutate(ptask_mean_bounded_stretch = mean_bounded_stretch) %>%
           select(group__name,
-                 msg_mean_waiting_time,
-                 msg_mean_stretch,
-                 msg_mean_bounded_stretch)
+                 ptask_mean_waiting_time,
+                 ptask_mean_stretch,
+                 ptask_mean_bounded_stretch)
 
       delay_data = schedules %>%
           filter(row_type == 'simulation (delay)') %>%
@@ -694,13 +694,13 @@ commands_after_instances:
                  delay_mean_bounded_stretch)
 
       merged = schedules %>%
-          inner_join(msg_data, by="group__name") %>%
+          inner_join(ptask_data, by="group__name") %>%
           inner_join(delay_data, by="group__name")
 
       merged = merged %>%
-          mutate(msg_mean_waiting_time_diff = mean_waiting_time - msg_mean_waiting_time) %>%
-          mutate(msg_mean_stretch_diff = mean_stretch - msg_mean_stretch) %>%
-          mutate(msg_mean_bounded_stretch_diff = mean_bounded_stretch - msg_mean_bounded_stretch) %>%
+          mutate(ptask_mean_waiting_time_diff = mean_waiting_time - ptask_mean_waiting_time) %>%
+          mutate(ptask_mean_stretch_diff = mean_stretch - ptask_mean_stretch) %>%
+          mutate(ptask_mean_bounded_stretch_diff = mean_bounded_stretch - ptask_mean_bounded_stretch) %>%
           mutate(delay_mean_waiting_time_diff = mean_waiting_time - delay_mean_waiting_time) %>%
           mutate(delay_mean_stretch_diff = mean_stretch - delay_mean_stretch) %>%
           mutate(delay_mean_bounded_stretch_diff = mean_bounded_stretch - delay_mean_bounded_stretch)
@@ -711,14 +711,14 @@ commands_after_instances:
       # Histograms #
       ##############
       # Mean Waiting Time
-      msg_mean_waiting_time_diff_mean = mean(merged[['msg_mean_waiting_time_diff']])
-      msg_mean_waiting_time_diff_median = median(merged[['msg_mean_waiting_time_diff']])
+      ptask_mean_waiting_time_diff_mean = mean(merged[['ptask_mean_waiting_time_diff']])
+      ptask_mean_waiting_time_diff_median = median(merged[['ptask_mean_waiting_time_diff']])
       vlines = data.frame("value"=c(0,
-                                    msg_mean_waiting_time_diff_mean,
-                                    msg_mean_waiting_time_diff_median),
+                                    ptask_mean_waiting_time_diff_mean,
+                                    ptask_mean_waiting_time_diff_median),
                           "name"=c("zero","mean","median"))
       ggplot() +
-          geom_histogram(data=merged, aes(msg_mean_waiting_time_diff)) +
+          geom_histogram(data=merged, aes(ptask_mean_waiting_time_diff)) +
           geom_vline(data=vlines, aes(xintercept=value,
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
@@ -728,9 +728,9 @@ commands_after_instances:
                 legend.background=element_rect(linetype="solid",
                                                color="black",
                                                fill="#A0A0A020")) +
-          labs(x='Mean Waiting Time Difference (real - msg_simulation)',
+          labs(x='Mean Waiting Time Difference (real - ptask_simulation)',
                linetype='') +
-          ggsave("${agg_dir}/hist__msg_mean_waiting_time_diff.pdf",
+          ggsave("${agg_dir}/batsim__hist__ptask_mean_waiting_time_diff.pdf",
                  width=w, height=h)
 
       delay_mean_waiting_time_diff_mean = mean(merged[['delay_mean_waiting_time_diff']])
@@ -752,18 +752,18 @@ commands_after_instances:
                                                fill="#A0A0A020")) +
           labs(x='Mean Waiting Time Difference (real - delay_simulation)',
                linetype='') +
-          ggsave("${agg_dir}/hist__delay_mean_waiting_time_diff.pdf",
+          ggsave("${agg_dir}/batsim__hist__delay_mean_waiting_time_diff.pdf",
                  width=w, height=h)
 
       # Mean Slowdown
-      msg_mean_stretch_diff_mean = mean(merged[['msg_mean_stretch_diff']])
-      msg_mean_stretch_diff_median = median(merged[['msg_mean_stretch_diff']])
+      ptask_mean_stretch_diff_mean = mean(merged[['ptask_mean_stretch_diff']])
+      ptask_mean_stretch_diff_median = median(merged[['ptask_mean_stretch_diff']])
       vlines = data.frame("value"=c(0,
-                                    msg_mean_stretch_diff_mean,
-                                    msg_mean_stretch_diff_median),
+                                    ptask_mean_stretch_diff_mean,
+                                    ptask_mean_stretch_diff_median),
                           "name"=c("zero","mean","median"))
       ggplot() +
-          geom_histogram(data=merged, aes(msg_mean_stretch_diff)) +
+          geom_histogram(data=merged, aes(ptask_mean_stretch_diff)) +
           geom_vline(data=vlines, aes(xintercept=value,
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
@@ -773,9 +773,9 @@ commands_after_instances:
                 legend.background=element_rect(linetype="solid",
                                                color="black",
                                                fill="#A0A0A020")) +
-          labs(x='Mean Slowdown Difference (real - msg_simulation)',
+          labs(x='Mean Slowdown Difference (real - ptask_simulation)',
                linetype='') +
-          ggsave("${agg_dir}/hist__msg_mean_stretch_diff.pdf",
+          ggsave("${agg_dir}/batsim__hist__ptask_mean_stretch_diff.pdf",
                  width=w, height=h)
 
       delay_mean_stretch_diff_mean = mean(merged[['delay_mean_stretch_diff']])
@@ -797,18 +797,18 @@ commands_after_instances:
                                                fill="#A0A0A020")) +
           labs(x='Mean Slowdown Difference (real - delay_simulation)',
                linetype='') +
-          ggsave("${agg_dir}/hist__delay_mean_stretch_diff.pdf",
+          ggsave("${agg_dir}/batsim__hist__delay_mean_stretch_diff.pdf",
                  width=w, height=h)
 
       # Mean Bounded Slowdown
-      msg_mean_bounded_stretch_diff_mean = mean(merged[['msg_mean_bounded_stretch_diff']])
-      msg_mean_bounded_stretch_diff_median = median(merged[['msg_mean_bounded_stretch_diff']])
+      ptask_mean_bounded_stretch_diff_mean = mean(merged[['ptask_mean_bounded_stretch_diff']])
+      ptask_mean_bounded_stretch_diff_median = median(merged[['ptask_mean_bounded_stretch_diff']])
       vlines = data.frame("value"=c(0,
-                                    msg_mean_bounded_stretch_diff_mean,
-                                    msg_mean_bounded_stretch_diff_median),
+                                    ptask_mean_bounded_stretch_diff_mean,
+                                    ptask_mean_bounded_stretch_diff_median),
                           "name"=c("zero","mean","median"))
       ggplot() +
-          geom_histogram(data=merged, aes(msg_mean_bounded_stretch_diff)) +
+          geom_histogram(data=merged, aes(ptask_mean_bounded_stretch_diff)) +
           geom_vline(data=vlines, aes(xintercept=value,
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
@@ -818,9 +818,9 @@ commands_after_instances:
                 legend.background=element_rect(linetype="solid",
                                                color="black",
                                                fill="#A0A0A020")) +
-          labs(x='Mean Bounded Slowdown Difference (real - msg_simulation) (bound = 60 s)',
+          labs(x='Mean Bounded Slowdown Difference (real - ptask_simulation) (bound = 60 s)',
                linetype='') +
-          ggsave("${agg_dir}/hist__msg_mean_bounded_stretch_diff.pdf",
+          ggsave("${agg_dir}/batsim__hist__ptask_mean_bounded_stretch_diff.pdf",
                  width=w, height=h)
 
       delay_mean_bounded_stretch_diff_mean = mean(merged[['delay_mean_bounded_stretch_diff']])
@@ -842,7 +842,7 @@ commands_after_instances:
                                                fill="#A0A0A020")) +
           labs(x='Mean Bounded Slowdown Difference (real - delay_simulation) (bound = 60 s)',
                linetype='') +
-          ggsave("${agg_dir}/hist__delay_mean_bounded_stretch_diff.pdf",
+          ggsave("${agg_dir}/batsim__hist__delay_mean_bounded_stretch_diff.pdf",
                  width=w, height=h)
 
       ##########################
@@ -851,9 +851,9 @@ commands_after_instances:
       # Mean Waiting Time
       vlines = data.frame("value"=c(0),"name"=c("zero"))
       ggplot() +
-          geom_point(data=merged, aes(x=msg_mean_waiting_time_diff,
+          geom_point(data=merged, aes(x=ptask_mean_waiting_time_diff,
                                       y=group__name,
-                                      shape="real - msg_simulation")) +
+                                      shape="real - ptask_simulation")) +
           geom_point(data=merged, aes(x=delay_mean_waiting_time_diff,
                                       y=group__name,
                                       shape="real - delay_simulation")) +
@@ -870,15 +870,15 @@ commands_after_instances:
                y="Workload",
                linetype="",
                shape="")
-          ggsave("${agg_dir}/scatterdiff__mean_waiting_time.pdf",
+          ggsave("${agg_dir}/batsim__scatterdiff__mean_waiting_time.pdf",
                  width=w, height=h)
 
       # Mean Slowdown
       vlines = data.frame("value"=c(0),"name"=c("zero"))
       ggplot() +
-          geom_point(data=merged, aes(x=msg_mean_stretch_diff,
+          geom_point(data=merged, aes(x=ptask_mean_stretch_diff,
                                       y=group__name,
-                                      shape="real - msg_simulation")) +
+                                      shape="real - ptask_simulation")) +
           geom_point(data=merged, aes(x=delay_mean_stretch_diff,
                                       y=group__name,
                                       shape="real - delay_simulation")) +
@@ -895,15 +895,15 @@ commands_after_instances:
                y="Workload",
                linetype="",
                shape="")
-          ggsave("${agg_dir}/scatterdiff__mean_stretch.pdf",
+          ggsave("${agg_dir}/batsim__scatterdiff__mean_stretch.pdf",
                  width=w, height=h)
 
       # Mean Bounded Slowdown
       vlines = data.frame("value"=c(0),"name"=c("zero"))
       ggplot() +
-          geom_point(data=merged, aes(x=msg_mean_bounded_stretch_diff,
+          geom_point(data=merged, aes(x=ptask_mean_bounded_stretch_diff,
                                       y=group__name,
-                                      shape="real - msg_simulation")) +
+                                      shape="real - ptask_simulation")) +
           geom_point(data=merged, aes(x=delay_mean_bounded_stretch_diff,
                                       y=group__name,
                                       shape="real - delay_simulation")) +
@@ -920,7 +920,7 @@ commands_after_instances:
                y="Workload",
                linetype="",
                shape="")
-          ggsave("${agg_dir}/scatterdiff__mean_bounded_stretch.pdf",
+          ggsave("${agg_dir}/batsim__scatterdiff__mean_bounded_stretch.pdf",
                  width=w, height=h)
       EOF
   - chmod +x ${base_output_directory}/analysis.R
