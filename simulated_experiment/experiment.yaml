@@ -581,6 +581,25 @@ commands_after_instances:
           cat ${agg_dir}/data/*_out_jobs.csv | sort -u | tac > ${agg_dir}/schedules_aggregated.csv
       fi
 
+  # Example Gantt chart comparison
+  - |
+      #!/usr/bin/env bash
+      set -eux
+
+      source ${base_output_directory}/base_variables.bash
+      cat > ${base_output_directory}/gantt_example.bash << EOF
+      dir=${base_output_directory}/results/seed6_size32_msg
+      ${evalys_dir}/examples/poquetm/plot_energy_info.py \
+        --gantt \
+        --names "Simulated (MSG profiles)" \
+                "Real execution 1" \
+                "Real execution 2" \
+        -j \${dir}/batsim_seed6_size32_msg_out_jobs.csv \
+           \${dir}/oar_seed6_size32_s1r1b_out_jobs.csv \
+           \${dir}/oar_seed6_size32_s4r1_out_jobs.csv
+      EOF
+  - chmod +x ${base_output_directory}/gantt_example.bash
+
   # Analysis
   - |
       #!/usr/bin/env bash
