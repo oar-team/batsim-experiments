@@ -612,7 +612,8 @@ commands_after_instances:
       library(ggplot2)
       library(viridis)
 
-      schedules = read.csv('${agg_dir}/schedules_aggregated.csv')
+      schedules = read.csv('${agg_dir}/schedules_aggregated.csv',
+                           stringsAsFactors=FALSE)
 
       # Differentiate types of rows
       row_type <- function(rtype, profile_type)
@@ -634,7 +635,7 @@ commands_after_instances:
 
       # Figure variables
       w = 6
-      h = 4.5
+      h = 4
       font_size = 18
       point_size = 3
 
@@ -653,6 +654,45 @@ commands_after_instances:
           scale_shape_manual(values=c(1,2,3)) +
           scale_color_viridis(discrete=TRUE) +
           ggsave("${agg_dir}/batsim__makespan__mean_waiting_time.pdf",
+                 width=w, height=h)
+
+      # Same plot, but unzoomed: (0,0) is visible
+      schedules %>%
+          ggplot(aes(x=makespan,
+                     y=mean_waiting_time)) +
+          geom_point(size=point_size,
+                     aes(shape=factor(row_type),
+                         color=factor(group__name))) +
+          theme_bw() +
+          labs(x='Makespan (s)',
+               y='Mean Waiting Time (s)',
+               color='',
+               shape='') +
+          scale_shape_manual(values=c(1,2,3)) +
+          scale_color_viridis(discrete=TRUE) +
+          expand_limits(x=0, y=0) +
+          ggsave("${agg_dir}/batsim__makespan__mean_waiting_time_00.pdf",
+                 width=w, height=h)
+
+      # Same plot, but with only one workload
+      schedules %>% filter(group__name == 'seed6_size32') %>%
+          ggplot(aes(x=makespan,
+                     y=mean_waiting_time)) +
+          geom_point(size=point_size,
+                     aes(shape=factor(row_type),
+                         color=factor(group__name))) +
+          theme_bw() +
+          labs(x='Makespan (s)',
+               y='Mean Waiting Time (s)',
+               color='',
+               shape='') +
+          scale_shape_manual(values=c(1,2,3)) +
+          scale_color_viridis(discrete=TRUE, begin=5/9) +
+          expand_limits(x=c(min(schedules[['makespan']]),
+                            max(schedules[['makespan']])),
+                        y=c(min(schedules[['mean_waiting_time']]),
+                            max(schedules[['mean_waiting_time']]))) +
+          ggsave("${agg_dir}/batsim__makespan__mean_waiting_time_1wload.pdf",
                  width=w, height=h)
 
       # Makespan / Mean Slowdown (/row type, seed)
@@ -694,20 +734,24 @@ commands_after_instances:
       # "per workload" differences
       ptask_data = schedules %>%
           filter(row_type == 'simulation (ptask)') %>%
+          mutate(ptask_makespan = makespan) %>%
           mutate(ptask_mean_waiting_time = mean_waiting_time) %>%
           mutate(ptask_mean_stretch = mean_stretch) %>%
           mutate(ptask_mean_bounded_stretch = mean_bounded_stretch) %>%
           select(group__name,
+                 ptask_makespan,
                  ptask_mean_waiting_time,
                  ptask_mean_stretch,
                  ptask_mean_bounded_stretch)
 
       delay_data = schedules %>%
           filter(row_type == 'simulation (delay)') %>%
+          mutate(delay_makespan = makespan) %>%
           mutate(delay_mean_waiting_time = mean_waiting_time) %>%
           mutate(delay_mean_stretch = mean_stretch) %>%
           mutate(delay_mean_bounded_stretch = mean_bounded_stretch) %>%
           select(group__name,
+                 delay_makespan,
                  delay_mean_waiting_time,
                  delay_mean_stretch,
                  delay_mean_bounded_stretch)
@@ -717,9 +761,11 @@ commands_after_instances:
           inner_join(delay_data, by="group__name")
 
       merged = merged %>%
+          mutate(ptask_makespan_diff = makespan - ptask_makespan) %>%
           mutate(ptask_mean_waiting_time_diff = mean_waiting_time - ptask_mean_waiting_time) %>%
           mutate(ptask_mean_stretch_diff = mean_stretch - ptask_mean_stretch) %>%
           mutate(ptask_mean_bounded_stretch_diff = mean_bounded_stretch - ptask_mean_bounded_stretch) %>%
+          mutate(delay_makespan_diff = makespan - delay_makespan) %>%
           mutate(delay_mean_waiting_time_diff = mean_waiting_time - delay_mean_waiting_time) %>%
           mutate(delay_mean_stretch_diff = mean_stretch - delay_mean_stretch) %>%
           mutate(delay_mean_bounded_stretch_diff = mean_bounded_stretch - delay_mean_bounded_stretch)
@@ -729,6 +775,54 @@ commands_after_instances:
       ##############
       # Histograms #
       ##############
+      hist_font_size = 16
+      # Makespan
+      ptask_makespan_diff_mean = mean(merged[['ptask_makespan_diff']])
+      ptask_makespan_diff_median = median(merged[['ptask_makespan_diff']])
+      vlines = data.frame("value"=c(0,
+                                    ptask_makespan_diff_mean,
+                                    ptask_makespan_diff_median),
+                          "name"=c("zero","mean","median"))
+      ggplot() +
+          geom_histogram(data=merged, aes(ptask_makespan_diff)) +
+          geom_vline(data=vlines, aes(xintercept=value,
+                                      linetype=name)) +
+          scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
+          theme_bw() +
+          theme(text = element_text(size=hist_font_size),
+                legend.position=c(0.3,0.9),
+                legend.direction="horizontal",
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x='Makespan Difference (real - ptask_simulation)',
+               linetype='') +
+          ggsave("${agg_dir}/batsim__hist__ptask_makespan_diff.pdf",
+                 width=w, height=h)
+
+      delay_makespan_diff_mean = mean(merged[['delay_makespan_diff']])
+      delay_makespan_diff_median = median(merged[['delay_makespan_diff']])
+      vlines = data.frame("value"=c(0,
+                                    delay_makespan_diff_mean,
+                                    delay_makespan_diff_median),
+                          "name"=c("zero","mean","median"))
+      ggplot() +
+          geom_histogram(data=merged, aes(delay_makespan_diff)) +
+          geom_vline(data=vlines, aes(xintercept=value,
+                                      linetype=name)) +
+          scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
+          theme_bw() +
+          theme(text = element_text(size=hist_font_size),
+                legend.position=c(0.3,0.9),
+                legend.direction="horizontal",
+                legend.background=element_rect(linetype="solid",
+                                               color="black",
+                                               fill="#A0A0A020")) +
+          labs(x='Makespan Difference (real - delay_simulation)',
+               linetype='') +
+          ggsave("${agg_dir}/batsim__hist__delay_makespan_diff.pdf",
+                 width=w, height=h)
+
       # Mean Waiting Time
       ptask_mean_waiting_time_diff_mean = mean(merged[['ptask_mean_waiting_time_diff']])
       ptask_mean_waiting_time_diff_median = median(merged[['ptask_mean_waiting_time_diff']])
@@ -742,7 +836,8 @@ commands_after_instances:
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
           theme_bw() +
-          theme(legend.position=c(0.8,0.9),
+          theme(text = element_text(size=hist_font_size),
+                legend.position=c(0.7,0.9),
                 legend.direction="horizontal",
                 legend.background=element_rect(linetype="solid",
                                                color="black",
@@ -764,7 +859,8 @@ commands_after_instances:
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
           theme_bw() +
-          theme(legend.position=c(0.8,0.9),
+          theme(text = element_text(size=hist_font_size),
+                legend.position=c(0.7,0.9),
                 legend.direction="horizontal",
                 legend.background=element_rect(linetype="solid",
                                                color="black",
@@ -787,7 +883,8 @@ commands_after_instances:
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
           theme_bw() +
-          theme(legend.position=c(0.8,0.9),
+          theme(text = element_text(size=hist_font_size),
+                legend.position="top",
                 legend.direction="horizontal",
                 legend.background=element_rect(linetype="solid",
                                                color="black",
@@ -809,7 +906,8 @@ commands_after_instances:
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
           theme_bw() +
-          theme(legend.position=c(0.8,0.9),
+          theme(text = element_text(size=hist_font_size),
+                legend.position="top",
                 legend.direction="horizontal",
                 legend.background=element_rect(linetype="solid",
                                                color="black",
@@ -832,12 +930,13 @@ commands_after_instances:
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
           theme_bw() +
-          theme(legend.position=c(0.8,0.9),
+          theme(text = element_text(size=hist_font_size),
+                legend.position=c(0.7,0.9),
                 legend.direction="horizontal",
                 legend.background=element_rect(linetype="solid",
                                                color="black",
                                                fill="#A0A0A020")) +
-          labs(x='Mean Bounded Slowdown Difference (real - ptask_simulation) (bound = 60 s)',
+          labs(x='Mean Bounded Slowdown Difference (real - ptask_simulation)\n(bound = 60 s)',
                linetype='') +
           ggsave("${agg_dir}/batsim__hist__ptask_mean_bounded_stretch_diff.pdf",
                  width=w, height=h)
@@ -854,12 +953,13 @@ commands_after_instances:
                                       linetype=name)) +
           scale_linetype_manual(values=c("longdash", "dotdash", "solid")) +
           theme_bw() +
-          theme(legend.position=c(0.8,0.9),
+          theme(text = element_text(size=hist_font_size),
+                legend.position=c(0.7,0.9),
                 legend.direction="horizontal",
                 legend.background=element_rect(linetype="solid",
                                                color="black",
                                                fill="#A0A0A020")) +
-          labs(x='Mean Bounded Slowdown Difference (real - delay_simulation) (bound = 60 s)',
+          labs(x='Mean Bounded Slowdown Difference (real - delay_simulation)\n(bound = 60 s)',
                linetype='') +
           ggsave("${agg_dir}/batsim__hist__delay_mean_bounded_stretch_diff.pdf",
                  width=w, height=h)
